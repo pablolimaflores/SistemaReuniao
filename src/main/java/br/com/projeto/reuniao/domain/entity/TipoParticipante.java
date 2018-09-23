@@ -1,20 +1,38 @@
 package br.com.projeto.reuniao.domain.entity;
 
-public enum TipoParticipante {
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
-	SOLICITANTE("Solicitante"),
-	MEDIADOR("Mediador"),
-	SECRETARIO("Secretario"),
-	INTEGRANTE("Integrante");
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+
+@Data
+@Entity
+@NoArgsConstructor
+@EqualsAndHashCode(callSuper = true)
+public class TipoParticipante extends AbstractEntity {
+			
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3701813693477289761L;
 	
-	private final String nome;
+	/**
+	 * 
+	 */
+	@NotBlank
+	@Column(nullable = false, length = 20)
+	@Size(min=3, max=20)
+	private String nome;
 	
-	private TipoParticipante(String nome) {
-		this.nome = nome;
-	}
+	/**
+	 * 
+	 */
+	@Column(length=100)
+	@Size(min=3, max=100)
+	private String descricao;
 		
-	public String getNome() {
-		return nome;
-	}
-	
 }

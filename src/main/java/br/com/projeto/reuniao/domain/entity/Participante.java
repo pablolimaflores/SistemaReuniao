@@ -2,8 +2,6 @@ package br.com.projeto.reuniao.domain.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
@@ -24,6 +22,12 @@ public class Participante extends AbstractEntity {
 	private static final long serialVersionUID = 390286427487319138L;
 	
 	/**
+     * 
+     */
+    @Column
+    private Boolean compareceu;
+	
+	/**
 	 * 
 	 */
 	@NotNull
@@ -34,8 +38,14 @@ public class Participante extends AbstractEntity {
 	 * 
 	 */
 	@NotNull
-	@Column(nullable = false)
-	@Enumerated(EnumType.ORDINAL)
+	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+	private Reuniao reuniao;		
+	
+    /**
+	 * 
+	 */
+	@NotNull
+	@ManyToOne(fetch = FetchType.LAZY, optional = false)	
 	private TipoParticipante tipoParticipante;
 
 }

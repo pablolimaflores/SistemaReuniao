@@ -4,6 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -24,27 +25,30 @@ public class Pessoa extends AbstractEntity{
 	 * 
 	 */	
 	@NotBlank
-    @Column(name="nome", nullable = false, length = 150)
-    private String nome;
+    @Column(nullable = false, length = 100)
+    @Size(min=3, max=100)
+	private String nome;
 	
 	/**
 	 * 
 	 */
     @Email(message = "Favor informar um e-mail válido.")
     @NotBlank
-    @Column(name="email", nullable = false, length = 150, unique = true)
+    @Column(nullable = false, length = 100, unique = true)
     private String email;	
     
     /**
 	 * 
 	 */	
-    @Column(name="telefone", length = 20)
+    @Column(length = 20)
+    @Size(min=8, max=20)
     private String telefone;
     
     /**
 	 * 
 	 */	
-    @Column(name="celular", length = 20)
+    @Column(length = 20)
+    @Size(min=8, max=20)
     private String celular;
     
 }

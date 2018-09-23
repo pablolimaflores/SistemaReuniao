@@ -7,6 +7,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
@@ -31,7 +32,8 @@ public class Usuario extends AbstractEntity {
 	 * 
 	 */
 	@NotBlank
-    @Column(nullable = false, length = 100)
+    @Column(nullable = false, length = 20)
+	@Size(min=3, max=20)
     private String login;
 
 	/**
@@ -39,8 +41,15 @@ public class Usuario extends AbstractEntity {
      */
     @JsonProperty(access = Access.WRITE_ONLY)
     @NotBlank
-    @Column(nullable = false, length = 100)
+    @Column(nullable = false, length = 20)
+    @Size(min=3, max=20)
     private String senha;
+    
+    /**
+     * 
+     */
+    @Column
+    private Boolean admin;
     
     /**
      * 
