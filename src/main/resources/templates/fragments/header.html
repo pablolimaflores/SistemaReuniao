@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>    
+	<div th:fragment="header-css">    	
+	    <link rel="stylesheet" type="text/css" media="all" href="../../css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+	    <script type="text/javascript" th:src="@{/js/jquery.min.js}" src="js/jquery.min.js"></script>
+	    <script type="text/javascript" th:src="@{/js/bootstrap.min.js}" src="js/bootstrap.min.js"></script>
+    </div>
+</head>
+<body>
+
+<div class="container">
+
+	<div class="masthead">        
+		<div th:fragment="header">
+			<nav>
+				<ul class="nav nav-justified">
+					<li class="active"><a href="/" th:href="@{/}">Home</a></li>
+					<li><a href="/pessoas" th:href="@{/pessoas}">Pessoas</a></li>
+					<li><a href="/notes" th:href="@{/notes}">Notes</a></li>
+					<li><a href="#">Reuniões</a></li>            
+					<li><a href="#">Sobre</a></li>
+					<li><a href="#">Contato</a></li>
+				</ul>
+			</nav>
+		</div>
+	</div>
+
+</div>
+
+</body>
+</html>      
