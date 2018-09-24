@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8" />
+    <title>Lista</title>
+
+    <div th:replace="fragments/header :: header-css"/>
+
+</head>
+<body>
+
+<div th:replace="fragments/header :: header"/>
+
+<div class="container">
+
+        <h1>Pessoas</h1>
+
+        <p>
+            <a href="/pessoas/pessoasEdit" th:href="@{/pessoas/pessoasEdit}">Novo</a>
+        </p>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Código</th>
+                    <th>Nome</th>
+                    <th>E-mail</th>
+                    <th>Telefone</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="pessoa : ${pessoasList}">
+                    <td th:text="${pessoa.id}">1</td>
+                    <td th:text="${pessoa.nome}">Admin</td>
+                    <td th:text="${pessoa.email}">admin@admin.com</td>
+                    <td th:text="${pessoa.telefone}">(55)5555-5555</td>
+                    <td>
+                        <a href="/pessoas/pessoasEdit/1" th:href="@{/pessoas/pessoasEdit/__${pessoa.id}__}">Editar</a>
+                        <a href="/pessoas/pessoasDelete/1" th:href="@{/pessoas/pessoasDelete/__${pessoa.id}__}">Excluir</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+<div th:replace="fragments/footer :: footer"/>
+
+</body>
+</html>
