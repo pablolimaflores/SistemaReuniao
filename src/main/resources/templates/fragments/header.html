@@ -10,23 +10,55 @@
 </head>
 <body>
 
-<div class="container">
-
-	<div class="masthead">        
-		<div th:fragment="header">
-			<nav>
-				<ul class="nav nav-justified">
-					<li class="active"><a href="/" th:href="@{/}">Home</a></li>
-					<li><a href="/pessoas" th:href="@{/pessoas}">Pessoas</a></li>
-					<li><a href="/notes" th:href="@{/notes}">Notes</a></li>
-					<li><a href="#">Reuniões</a></li>            
-					<li><a href="#">Sobre</a></li>
-					<li><a href="#">Contato</a></li>
-				</ul>
-			</nav>
-		</div>
+<div class="container">	      
+	<div th:fragment="header">									
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+		  <a class="navbar-brand" href="/" th:href="@{/}">Home</a>
+		  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+		    <span class="navbar-toggler-icon"></span>
+		  </button>
+		  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+		    <ul class="navbar-nav">
+		    <!-- 
+		      <li class="nav-item active">
+		        <a class="nav-link" href="/" th:href="@{/}">Home <span class="sr-only">(current)</span></a>
+		      </li>
+	        -->
+		      <li class="nav-item dropdown">
+		        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		          Cadastros
+		        </a>
+		        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+		          <a class="dropdown-item" href="/pessoas" th:href="@{/pessoas}">Pessoas</a>
+		          <a class="dropdown-item" href="/usuarios" th:href="@{/usuarios}">Usuarios</a>
+		          <a class="dropdown-item" href="/tipos" th:href="@{/tipos}">Tipo</a>
+		          <a class="dropdown-item" href="/tiposParticipante" th:href="@{/tiposParticipante}">Tipos de participante</a>			          
+		        </div>
+		      </li>
+		      <li class="nav-item dropdown">
+		        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		          Reunião
+		        </a>
+		        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+		          <a class="dropdown-item" href="/reunioes" th:href="@{/reunioes}">Listagem</a>
+		          <a class="dropdown-item" href="/" th:href="@{/}">Agendamento</a>			          
+		        </div>
+		      </li>
+		      <li class="nav-item dropdown">
+		        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		          Relatórios
+		        </a>
+		        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+		          <a class="dropdown-item" href="/" th:href="@{/reunioes}">Reuniões executadas por periodo</a>			          			         
+		        </div>
+		      </li>
+		      <li class="nav-item">
+		        <a class="nav-link" href="#">Sobre</a>
+		      </li>
+		    </ul>
+		  </div>
+		</nav>				
 	</div>
-
 </div>
 
 </body>

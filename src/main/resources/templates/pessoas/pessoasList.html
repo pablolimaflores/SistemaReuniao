@@ -13,14 +13,29 @@
 <div th:replace="fragments/header :: header"/>
 
 <div class="container">
+		<br>        
+		<div id="top" class="row">
+		    <div class="col-md-3">
+		        <h2>Pessoas</h2>
+		    </div>
+		 
+		    <div class="col-md-6">
+		        <div class="input-group h2">
+		            <input name="data[search]" class="form-control" id="search" type="text" placeholder="Pesquisar pessoas">
+		            <span class="input-group-btn">
+		                <button class="btn btn-primary" type="submit">
+		                    <span class="glyphicon glyphicon-search">Buscar</span>
+		                </button>
+		            </span>
+		        </div>
+		    </div>
+		 
+		    <div class="col-md-3">
+		        <a class="btn btn-success" href="/pessoas/pessoasEdit" th:href="@{/pessoas/pessoasEdit}">Novo</a>
+		    </div>
+		</div>
 
-        <h1>Pessoas</h1>
-
-        <p>
-            <a href="/pessoas/pessoasEdit" th:href="@{/pessoas/pessoasEdit}">Novo</a>
-        </p>
-
-        <table class="table">
+        <table class="table table-bordred table-striped">
             <thead>
                 <tr>
                     <th>Código</th>
@@ -37,8 +52,8 @@
                     <td th:text="${pessoa.email}">admin@admin.com</td>
                     <td th:text="${pessoa.telefone}">(55)5555-5555</td>
                     <td>
-                        <a href="/pessoas/pessoasEdit/1" th:href="@{/pessoas/pessoasEdit/__${pessoa.id}__}">Editar</a>
-                        <a href="/pessoas/pessoasDelete/1" th:href="@{/pessoas/pessoasDelete/__${pessoa.id}__}">Excluir</a>
+                        <a class="btn btn-info" href="/pessoas/pessoasEdit/1" th:href="@{/pessoas/pessoasEdit/__${pessoa.id}__}">Editar</a>
+                        <a class="btn btn-danger" href="/pessoas/pessoasDelete/1" th:href="@{/pessoas/pessoasDelete/__${pessoa.id}__}"> Excluir</a>                        
                     </td>
                 </tr>
             </tbody>
