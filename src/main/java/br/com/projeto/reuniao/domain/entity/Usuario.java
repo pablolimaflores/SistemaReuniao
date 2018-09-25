@@ -54,8 +54,8 @@ public class Usuario extends AbstractEntity {
     /**
      * 
      */
-    @NotNull
-    @OneToOne(fetch = FetchType.EAGER, optional = false)
+//    @NotNull
+    @OneToOne(fetch = FetchType.EAGER/*, optional = false*/)
     @JoinColumn(name = "pessoa_id")
     private Pessoa pessoa;
 }

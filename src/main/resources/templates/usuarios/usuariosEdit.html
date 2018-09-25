@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8" />
+    <title>Cadastro</title>
+
+    <div th:replace="fragments/header :: header-css"/>
+
+</head>
+<body>
+
+<div th:replace="fragments/header :: header"/>
+
+<div class="container">
+
+    <h1>Usuario</h1>
+
+    <form class="form-group" action="/usuarios/usuariosEdit" th:action="@{/usuarios/usuariosEdit}" method="post">
+        <input th:type="hidden" name="id" th:field="${usuarios.id}" />
+        <div class="form-group">
+            <label for="title">Login</label>
+            <input type="text" class="form-control" id="title" th:field="${usuarios.login}" />
+        </div>
+        <div class="form-group">
+            <label for="title">Senha</label>
+            <input type="password" class="form-control" id="title" th:field="${usuarios.senha}" />
+        </div>
+        <div class="form-group">
+            <label for="title">Administrador?</label>
+            <input type="checkbox" name="admin" th:field="${usuarios.admin}" />            
+        </div>        
+        <button type="submit" class="btn btn-primary">Salvar</button>
+        <a href="#" th:href="@{/usuarios}" class="btn btn-danger" role="button">Cancelar</a>
+    </form>
+
+</div>
+
+<div th:replace="fragments/footer :: footer"/>
+
+</body>
+</html>
