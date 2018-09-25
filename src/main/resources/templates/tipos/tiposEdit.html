@@ -14,28 +14,24 @@
 
 <div class="container">
 
-    <h1>Pessoas</h1>
+    <h1>Tipo</h1>
 
-    <form class="form-group" action="/pessoas/pessoasEdit" th:action="@{/pessoas/pessoasEdit}" method="post">
-        <input th:type="hidden" name="id" th:field="${pessoas.id}" />
+    <form class="form-group" action="/tipos/tiposEdit" th:action="@{/tipos/tiposEdit}" method="post">
+        <input th:type="hidden" name="id" th:field="${tipos.id}" />
         <div class="form-group">
             <label for="title">Nome</label>
-            <input type="text" class="form-control" id="title" th:field="${pessoas.nome}" />
+            <input type="text" class="form-control" id="title" th:field="${tipos.nome}" />
         </div>
         <div class="form-group">
-            <label for="title">E-mail</label>
-            <input type="email" class="form-control" id="title" th:field="${pessoas.email}" />
+            <label for="title">Descricao</label>
+            <input type="text" class="form-control" id="title" th:field="${tipos.descricao}" />
         </div>
         <div class="form-group">
-            <label for="title">Telefone</label>
-            <input type="text" class="form-control" id="title" th:field="${pessoas.telefone}" />
-        </div>
-        <div class="form-group">
-            <label for="title">Celular</label>
-            <input type="text" class="form-control" id="title" th:field="${pessoas.celular}" />
-        </div>
+            <label for="title">Debate?</label>
+            <input type="checkbox" name="debate" th:field="${tipos.debate}" />            
+        </div>        
         <button type="submit" class="btn btn-primary">Salvar</button>
-        <a href="#" th:href="@{/pessoas}" class="btn btn-danger" role="button">Cancelar</a>
+        <a href="#" th:href="@{/tipos}" class="btn btn-danger" role="button">Cancelar</a>
     </form>
 
 </div>

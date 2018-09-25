@@ -13,32 +13,47 @@
 <div th:replace="fragments/header :: header"/>
 
 <div class="container">
+		<br>        
+		<div id="top" class="row">
+		    <div class="col-md-3">
+		        <h2>Tipos</h2>
+		    </div>
+		 
+		    <div class="col-md-6">
+		        <div class="input-group h2">
+		            <input name="data[search]" class="form-control" id="search" type="text" placeholder="Pesquisar tipos">
+		            <span class="input-group-btn">
+		                <button class="btn btn-primary" type="submit">
+		                    <span class="glyphicon glyphicon-search">Buscar</span>
+		                </button>
+		            </span>
+		        </div>
+		    </div>
+		 
+		    <div class="col-md-3">
+		        <a class="btn btn-success" href="/tipos/tiposEdit" th:href="@{/tipos/tiposEdit}">Novo</a>
+		    </div>
+		</div>
 
-        <h1>Pessoas</h1>
-
-        <p>
-            <a href="/pessoas/pessoasEdit" th:href="@{/pessoas/pessoasEdit}">Novo</a>
-        </p>
-
-        <table class="table">
+        <table class="table table-bordred table-striped">
             <thead>
                 <tr>
                     <th>Código</th>
                     <th>Nome</th>
-                    <th>E-mail</th>
-                    <th>Telefone</th>
+                    <th>Descrição</th>
+                    <th>Debate?</th>
                     <th>Ações</th>
                 </tr>
             </thead>
             <tbody>
-                <tr th:each="pessoa : ${pessoasList}">
-                    <td th:text="${pessoa.id}">1</td>
-                    <td th:text="${pessoa.nome}">Admin</td>
-                    <td th:text="${pessoa.email}">admin@admin.com</td>
-                    <td th:text="${pessoa.telefone}">(55)5555-5555</td>
+                <tr th:each="tipo : ${tiposList}">
+                    <td th:text="${tipo.id}">1</td>
+                    <td th:text="${tipo.nome}">Tipo</td>
+                    <td th:text="${tipo.descricao}">admin@admin.com</td>
+                    <td th:text="${tipo.debate}">false</td>
                     <td>
-                        <a href="/pessoas/pessoasEdit/1" th:href="@{/pessoas/pessoasEdit/__${pessoa.id}__}">Editar</a>
-                        <a href="/pessoas/pessoasDelete/1" th:href="@{/pessoas/pessoasDelete/__${pessoa.id}__}">Excluir</a>
+                        <a class="btn btn-info" href="/tipos/tiposEdit/1" th:href="@{/tipos/tiposEdit/__${tipo.id}__}">Editar</a>
+                        <a class="btn btn-danger" href="/tipos/tiposDelete/1" th:href="@{/tipos/tiposDelete/__${tipo.id}__}"> Excluir</a>                        
                     </td>
                 </tr>
             </tbody>
