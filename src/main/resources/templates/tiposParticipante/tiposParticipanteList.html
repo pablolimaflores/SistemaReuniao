@@ -16,7 +16,7 @@
 		<br>        
 		<div id="top" class="row">
 		    <div class="col-md-3">
-		        <h2>Pessoas</h2>
+		        <h2>Tipos de Participante</h2>
 		    </div>
 		 
 		    <div class="col-md-6">
@@ -31,7 +31,7 @@
 		    </div>
 		 
 		    <div class="col-md-3">
-		        <a class="btn btn-success" href="/pessoas/pessoasEdit" th:href="@{/pessoas/pessoasEdit}">Novo</a>
+		        <a class="btn btn-success" href="/tiposParticipante/tiposParticipanteEdit" th:href="@{/tiposParticipante/tiposParticipanteEdit}">Novo</a>
 		    </div>
 		</div>
 
@@ -40,22 +40,18 @@
                 <tr>
                     <th>Código</th>
                     <th>Nome</th>
-                    <th>E-mail</th>
-                    <th>Telefone</th>
-                    <th>Celular</th>
+                    <th>Descrição</th>                    
                     <th>Ações</th>
                 </tr>
             </thead>
             <tbody>
-                <tr th:each="pessoa : ${pessoasList}">
-                    <td th:text="${pessoa.id}">1</td>
-                    <td th:text="${pessoa.nome}">Admin</td>
-                    <td th:text="${pessoa.email}">admin@admin.com</td>
-                    <td th:text="${pessoa.telefone}">(55)5555-5555</td>
-                    <td th:text="${pessoa.celular}">(55)99999-9999</td>
+                <tr th:each="tipoParticipante : ${tiposParticipanteList}">
+                    <td th:text="${tipoParticipante.id}">1</td>
+                    <td th:text="${tipoParticipante.nome}">TipoParticipante</td>
+                    <td th:text="${tipoParticipante.descricao}">...</td>                    
                     <td>
-                        <a class="btn btn-info" href="/pessoas/pessoasEdit/1" th:href="@{/pessoas/pessoasEdit/__${pessoa.id}__}">Editar</a>
-                        <a class="btn btn-danger" href="/pessoas/pessoasDelete/1" th:href="@{/pessoas/pessoasDelete/__${pessoa.id}__}"> Excluir</a>                        
+                        <a class="btn btn-info" href="/tiposParticipante/tiposParticipanteEdit/1" th:href="@{/tiposParticipante/tiposParticipanteEdit/__${tipoParticipante.id}__}">Editar</a>
+                        <a class="btn btn-danger" href="/tiposParticipante/tiposParticipanteDelete/1" th:href="@{/tiposParticipante/tiposParticipanteDelete/__${tipoParticipante.id}__}"> Excluir</a>                        
                     </td>
                 </tr>
             </tbody>
