@@ -17,18 +17,18 @@
     <h1>Tipo</h1>
 
     <form class="form-group" action="/tipos/tiposEdit" th:action="@{/tipos/tiposEdit}" method="post">
-        <input th:type="hidden" name="id" th:field="${tipos.id}" />
+        <input th:type="hidden" name="id" th:field="${tipo.id}" />
         <div class="form-group">
             <label for="title">Nome</label>
-            <input type="text" class="form-control" id="title" th:field="${tipos.nome}" />
+            <input type="text" class="form-control" id="title" th:field="${tipo.nome}" />
         </div>
         <div class="form-group">
             <label for="title">Descricao</label>
-            <input type="text" class="form-control" id="title" th:field="${tipos.descricao}" />
+            <input type="text" class="form-control" id="title" th:field="${tipo.descricao}" />
         </div>
         <div class="form-group">
             <label for="title">Debate?</label>
-            <input type="checkbox" name="debate" th:field="${tipos.debate}" />            
+            <input type="checkbox" name="debate" th:field="${tipo.debate}" />            
         </div>        
         <button type="submit" class="btn btn-primary">Salvar</button>
         <a href="#" th:href="@{/tipos}" class="btn btn-danger" role="button">Cancelar</a>

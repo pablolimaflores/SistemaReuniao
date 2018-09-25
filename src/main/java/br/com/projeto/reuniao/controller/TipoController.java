@@ -27,9 +27,9 @@ public class TipoController {
     @GetMapping(value={"/tiposEdit","/tiposEdit/{id}"})
     public String findTipoById(Model model, @PathVariable(required = false, name = "id") Long id) {
         if (null != id) {
-            model.addAttribute("tipos", this.tipoService.findTipoById(id));
+            model.addAttribute("tipo", this.tipoService.findTipoById(id));
         } else {
-            model.addAttribute("tipos", new Tipo());
+            model.addAttribute("tipo", new Tipo());
         }
         return "tipos/tiposEdit";
     }

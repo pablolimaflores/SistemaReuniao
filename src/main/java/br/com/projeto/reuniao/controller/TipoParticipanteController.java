@@ -27,9 +27,9 @@ public class TipoParticipanteController {
     @GetMapping(value={"/tiposParticipanteEdit","/tiposParticipanteEdit/{id}"})
     public String findTipoParticipanteById(Model model, @PathVariable(required = false, name = "id") Long id) {
         if (null != id) {
-            model.addAttribute("tiposParticipante", this.tipoParticipanteService.findTipoParticipanteById(id));
+            model.addAttribute("tipoParticipante", this.tipoParticipanteService.findTipoParticipanteById(id));
         } else {
-            model.addAttribute("tiposParticipante", new TipoParticipante());
+            model.addAttribute("tipoParticipante", new TipoParticipante());
         }
         return "tiposParticipante/tiposParticipanteEdit";
     }

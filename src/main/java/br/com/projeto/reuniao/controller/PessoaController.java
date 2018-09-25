@@ -27,9 +27,9 @@ public class PessoaController {
     @GetMapping(value={"/pessoasEdit","/pessoasEdit/{id}"})
     public String findPessoaById(Model model, @PathVariable(required = false, name = "id") Long id) {
         if (null != id) {
-            model.addAttribute("pessoas", this.pessoaService.findPessoaById(id));
+            model.addAttribute("pessoa", this.pessoaService.findPessoaById(id));
         } else {
-            model.addAttribute("pessoas", new Pessoa());
+            model.addAttribute("pessoa", new Pessoa());
         }
         return "pessoas/pessoasEdit";
     }

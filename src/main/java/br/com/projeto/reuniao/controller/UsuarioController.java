@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 import br.com.projeto.reuniao.domain.entity.Usuario;
 import br.com.projeto.reuniao.service.UsuarioService;
@@ -29,9 +28,9 @@ public class UsuarioController {
     @GetMapping(value={"/usuariosEdit","/usuariosEdit/{id}"})
     public String findUsuarioById(Model model, @PathVariable(required = false, name = "id") Long id) {
         if (null != id) {
-            model.addAttribute("usuarios", this.usuarioService.findUsuarioById(id));
+            model.addAttribute("usuario", this.usuarioService.findUsuarioById(id));
         } else {
-            model.addAttribute("usuarios", new Usuario());
+            model.addAttribute("usuario", new Usuario());
         }
         return "usuarios/usuariosEdit";
     }
@@ -53,59 +52,5 @@ public class UsuarioController {
         model.addAttribute("usuariosList", this.usuarioService.findAllUsuarios());
         return "usuarios/usuariosList";
     }
-			
-	
-//	@Autowired
-//    private UsuarioService usuarioService;
-//
-//	/**
-//	 * 
-//	 * @return
-//	 */
-//    @GetMapping
-//    public List<Usuario> findAllUsuarios() {
-//        return this.usuarioService.findAllUsuarios();
-//    }
-//    
-//    /**
-//     * 
-//     * @param id
-//     * @return
-//     */
-//    @GetMapping("/{id}")
-//    public Usuario findUsuarioById( @PathVariable long id ) {
-//        return this.usuarioService.findUsuarioById( id );
-//    }
-//    
-//    /**
-//     * 
-//     * @param usuario
-//     * @return
-//     */
-//    @PostMapping
-//    public Usuario insertUsuario( @RequestBody Usuario usuario ) {
-//    	return this.usuarioService.insertUsuario( usuario );
-//    }
-//
-//    /**
-//     * 
-//     * @param id
-//     * @param usuario
-//     * @return
-//     */
-//    @PutMapping("/{id}")
-//    public Usuario updateUsuario( @RequestBody Usuario usuario ) {
-//        return this.usuarioService.updateUsuario( usuario );
-//    }
-//    
-//    /**
-//	 * 
-//	 * @param id
-//	 * @param projetoId
-//	 */
-//	@DeleteMapping("/{id}")
-//	public void deleteLicaoAprendida( @PathVariable long id ) {
-//		this.usuarioService.deleteUsuario( id );
-//	}
     
 }

@@ -17,14 +17,14 @@
     <h1>Tipo</h1>
 
     <form class="form-group" action="/tiposParticipante/tiposParticipanteEdit" th:action="@{/tiposParticipante/tiposParticipanteEdit}" method="post">
-        <input th:type="hidden" name="id" th:field="${tiposParticipante.id}" />
+        <input th:type="hidden" name="id" th:field="${tipoParticipante.id}" />
         <div class="form-group">
             <label for="title">Nome</label>
-            <input type="text" class="form-control" id="title" th:field="${tiposParticipante.nome}" />
+            <input type="text" class="form-control" id="title" th:field="${tipoParticipante.nome}" />
         </div>
         <div class="form-group">
             <label for="title">Descricao</label>
-            <input type="text" class="form-control" id="title" th:field="${tiposParticipante.descricao}" />
+            <input type="text" class="form-control" id="title" th:field="${tipoParticipante.descricao}" />
         </div>        
         <button type="submit" class="btn btn-primary">Salvar</button>
         <a href="#" th:href="@{/tiposParticipante}" class="btn btn-danger" role="button">Cancelar</a>

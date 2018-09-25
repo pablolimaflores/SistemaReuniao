@@ -17,18 +17,18 @@
     <h1>Usuario</h1>
 
     <form class="form-group" action="/usuarios/usuariosEdit" th:action="@{/usuarios/usuariosEdit}" method="post">
-        <input th:type="hidden" name="id" th:field="${usuarios.id}" />
+        <input th:type="hidden" name="id" th:field="${usuario.id}" />
         <div class="form-group">
             <label for="title">Login</label>
-            <input type="text" class="form-control" id="title" th:field="${usuarios.login}" />
+            <input type="text" class="form-control" id="title" th:field="${usuario.login}" />
         </div>
         <div class="form-group">
             <label for="title">Senha</label>
-            <input type="password" class="form-control" id="title" th:field="${usuarios.senha}" />
+            <input type="password" class="form-control" id="title" th:field="${usuario.senha}" />
         </div>
         <div class="form-group">
             <label for="title">Administrador?</label>
-            <input type="checkbox" name="admin" th:field="${usuarios.admin}" />            
+            <input type="checkbox" name="admin" th:field="${usuario.admin}" />            
         </div>        
         <button type="submit" class="btn btn-primary">Salvar</button>
         <a href="#" th:href="@{/usuarios}" class="btn btn-danger" role="button">Cancelar</a>
