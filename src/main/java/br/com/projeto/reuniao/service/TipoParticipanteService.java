@@ -42,9 +42,9 @@ public class TipoParticipanteService {
 	 * @return
 	 */
 	public TipoParticipante insertTipoParticipante( TipoParticipante tipoParticipante ) {
-    	tipoParticipante.refreshCreatedAndUpdated();		
-		final TipoParticipante tipoParticipanteSaved = this.tipoParticipanteRepository.save( tipoParticipante );
-		return tipoParticipanteSaved;
+    	
+		tipoParticipante.refreshCreatedAndUpdated();		
+		return this.tipoParticipanteRepository.save( tipoParticipante );		
 	}
 	
 	/**
@@ -54,11 +54,12 @@ public class TipoParticipanteService {
 	 */
 	public TipoParticipante updateTipoParticipante( TipoParticipante tipoParticipante ) {
 		
-		TipoParticipante tipoParticipanteSaved = this.tipoParticipanteRepository.findById(tipoParticipante.getId())
+		this.tipoParticipanteRepository.findById(tipoParticipante.getId())
 				.orElseThrow(() -> new IllegalArgumentException( "Não foi possível atualizar o registro. "
 							+"Registro de TipoParticipante com id "+tipoParticipante.getId() + " não encontrado." ) );
-		tipoParticipanteSaved.refreshUpdated();
-		return tipoParticipanteSaved;
+		
+		tipoParticipante.refreshUpdated();
+		return this.tipoParticipanteRepository.saveAndFlush( tipoParticipante );
 	}
 	
 	/**

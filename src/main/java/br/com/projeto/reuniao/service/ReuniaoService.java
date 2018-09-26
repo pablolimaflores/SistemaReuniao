@@ -20,7 +20,7 @@ public class ReuniaoService {
 	 * @return
 	 */
 	@Transactional(readOnly = true)
-	public List<Reuniao> findAllReuniaos() {
+	public List<Reuniao> findAllReunioes() {
         return this.reuniaoRepository.findAll();
     }
 	
@@ -43,8 +43,8 @@ public class ReuniaoService {
 	 */
 	public Reuniao insertReuniao( Reuniao reuniao ) {
     	reuniao.refreshCreatedAndUpdated();		
-		final Reuniao reuniaoSaved = this.reuniaoRepository.save( reuniao );
-		return reuniaoSaved;
+		return this.reuniaoRepository.save( reuniao );
+		
 	}
 	
 	/**
@@ -54,11 +54,11 @@ public class ReuniaoService {
 	 */
 	public Reuniao updateReuniao( Reuniao reuniao ) {
 		
-		Reuniao reuniaoSaved = this.reuniaoRepository.findById(reuniao.getId())
+		this.reuniaoRepository.findById(reuniao.getId())
 				.orElseThrow(() -> new IllegalArgumentException( "Não foi possível atualizar o registro. "
 							+"Registro de Reuniao com id "+reuniao.getId() + " não encontrado." ) );
-		reuniaoSaved.refreshUpdated();
-		return reuniaoSaved;
+		reuniao.refreshUpdated();
+		return this.reuniaoRepository.saveAndFlush( reuniao );
 	}
 	
 	/**

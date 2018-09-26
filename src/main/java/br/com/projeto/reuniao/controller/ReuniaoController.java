@@ -26,8 +26,8 @@ public class ReuniaoController {
     private static final Logger LOGGER = LoggerFactory.getLogger(ReuniaoController.class);
     
     @GetMapping("")    
-    public String findAllReuniaos(Model model) {
-        model.addAttribute("reunioesList", this.reuniaoService.findAllReuniaos());
+    public String findAllReunioes(Model model) {
+        model.addAttribute("reunioesList", this.reuniaoService.findAllReunioes());
         return "reunioes/reunioesList";
     }
     
@@ -48,7 +48,7 @@ public class ReuniaoController {
 //    	} else {
 //    		this.reuniaoService.insertReuniao(reuniao);
 //    	}    	
-//        model.addAttribute("reunioesList", this.reuniaoService.findAllReuniaos());
+//        model.addAttribute("reunioesList", this.reuniaoService.findAllReunioes());
 //        return "reunioes/reunioesList";
 //    }
     
@@ -68,14 +68,14 @@ public class ReuniaoController {
     	} else {
     		this.reuniaoService.insertReuniao(reuniao);
     	}    	
-        model.addAttribute("reunioesList", this.reuniaoService.findAllReuniaos());
+        model.addAttribute("reunioesList", this.reuniaoService.findAllReunioes());
         return "reunioes/reunioesList";
     }
 
     @GetMapping("/reunioesDelete/{id}")
     public String reunioesDelete(Model model, @PathVariable(required = true, name = "id") Long id) {
         this.reuniaoService.deleteReuniao(id);
-        model.addAttribute("reunioesList", this.reuniaoService.findAllReuniaos());
+        model.addAttribute("reunioesList", this.reuniaoService.findAllReunioes());
         return "reunioes/reunioesList";
     }
 }

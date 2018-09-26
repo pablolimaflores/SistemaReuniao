@@ -42,9 +42,9 @@ public class PontoPautaService {
 	 * @return
 	 */
 	public PontoPauta insertPontoPauta( PontoPauta pontoPauta ) {
-    	pontoPauta.refreshCreatedAndUpdated();		
-		final PontoPauta pontoPautaSaved = this.pontoPautaRepository.save( pontoPauta );
-		return pontoPautaSaved;
+    	
+		pontoPauta.refreshCreatedAndUpdated();		
+		return this.pontoPautaRepository.save( pontoPauta );
 	}
 	
 	/**
@@ -54,11 +54,11 @@ public class PontoPautaService {
 	 */
 	public PontoPauta updatePontoPauta( PontoPauta pontoPauta ) {
 		
-		PontoPauta pontoPautaSaved = this.pontoPautaRepository.findById(pontoPauta.getId())
+		this.pontoPautaRepository.findById(pontoPauta.getId())
 				.orElseThrow(() -> new IllegalArgumentException( "Não foi possível atualizar o registro. "
 							+"Registro de PontoPauta com id "+pontoPauta.getId() + " não encontrado." ) );
-		pontoPautaSaved.refreshUpdated();
-		return pontoPautaSaved;
+		pontoPauta.refreshUpdated();
+		return this.pontoPautaRepository.saveAndFlush( pontoPauta );
 	}
 	
 	/**

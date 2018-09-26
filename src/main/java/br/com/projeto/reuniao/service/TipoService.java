@@ -42,9 +42,9 @@ public class TipoService {
 	 * @return
 	 */
 	public Tipo insertTipo( Tipo tipo ) {
+		
     	tipo.refreshCreatedAndUpdated();		
-		final Tipo tipoSaved = this.tipoRepository.save( tipo );
-		return tipoSaved;
+		return this.tipoRepository.save( tipo );
 	}
 	
 	/**
@@ -54,11 +54,11 @@ public class TipoService {
 	 */
 	public Tipo updateTipo( Tipo tipo ) {
 		
-		Tipo tipoSaved = this.tipoRepository.findById(tipo.getId())
+		this.tipoRepository.findById(tipo.getId())
 				.orElseThrow(() -> new IllegalArgumentException( "Não foi possível atualizar o registro. "
 							+"Registro de Tipo com id "+tipo.getId() + " não encontrado." ) );
-		tipoSaved.refreshUpdated();
-		return tipoSaved;
+		tipo.refreshUpdated();
+		return this.tipoRepository.saveAndFlush( tipo );
 	}
 	
 	/**

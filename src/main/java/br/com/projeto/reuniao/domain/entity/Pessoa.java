@@ -50,5 +50,45 @@ public class Pessoa extends AbstractEntity{
     @Column(length = 20)
     @Size(min=8, max=20)
     private String celular;
+
+    /**
+     *  
+     * @param nome
+     * @param email
+     */
+	public Pessoa(String nome, String email) {		
+		this.nome = nome;
+		this.email = email;
+	}
+	
+	/**
+	 *  
+	 * @param nome
+	 * @param email
+	 * @param telefone
+	 * @param celular
+	 */
+	public Pessoa(String nome, String email, String telefone, String celular) {		
+		this.nome = nome;
+		this.email = email;
+		this.telefone = telefone;
+		this.celular = celular;
+	}
+	
+    /**
+     * 
+     * @param id
+     * @param nome
+     * @param email
+     * @param telefone
+     * @param celular
+     */
+	public Pessoa(Long id, String nome, String email, String telefone, String celular) {
+		super(id);
+		this.nome = nome;
+		this.email = email;
+		this.telefone = telefone;
+		this.celular = celular;
+	}
     
 }

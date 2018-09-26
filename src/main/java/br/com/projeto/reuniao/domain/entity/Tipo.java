@@ -31,8 +31,8 @@ public class Tipo extends AbstractEntity {
 	/**
 	 * 
 	 */
-	@Column(length=100)
-	@Size(min=3, max=100)
+	@Column(length=300)
+	@Size(min=3, max=300)
 	private String descricao;
 	
 	/**
@@ -40,5 +40,31 @@ public class Tipo extends AbstractEntity {
      */
     @Column
     private Boolean debate;
-		
+
+    /**
+     *  
+     * @param nome
+     * @param descricao
+     * @param debate
+     */
+	public Tipo(String nome, String descricao, Boolean debate) {			
+		this.nome = nome;
+		this.descricao = descricao;
+		this.debate = debate;
+	}
+    
+    /**
+     * 
+     * @param id
+     * @param nome
+     * @param descricao
+     * @param debate
+     */
+	public Tipo(Long id, String nome, String descricao, Boolean debate) {
+		super(id);		
+		this.nome = nome;
+		this.descricao = descricao;
+		this.debate = debate;
+	}
+        		
 }

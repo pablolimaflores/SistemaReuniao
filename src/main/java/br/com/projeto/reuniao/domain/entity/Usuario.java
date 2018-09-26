@@ -57,4 +57,51 @@ public class Usuario extends AbstractEntity {
     @OneToOne(fetch = FetchType.EAGER/*, optional = false*/)
     @JoinColumn(name = "pessoa_id")
     private Pessoa pessoa;
+
+	
+    /**
+	 * 
+	 * @param id
+	 * @param login
+	 * @param senha
+	 * @param admin
+	 * @param pessoa
+	 */
+    public Usuario(Long id, String login, Boolean admin, Pessoa pessoa) {
+		super(id);
+		this.login = login;		
+		this.admin = admin;
+		this.pessoa = pessoa;
+	}
+    
+    /**
+	 * 
+	 * @param login
+	 * @param senha
+	 * @param admin
+	 * @param pessoa
+	 */
+    public Usuario(String login, String senha, Boolean admin, Pessoa pessoa) {		
+		this.login = login;
+		this.senha = senha;
+		this.admin = admin;
+		this.pessoa = pessoa;
+	}
+    
+    /**
+	 * 
+	 * @param id
+	 * @param login
+	 * @param senha
+	 * @param admin
+	 * @param pessoa
+	 */
+    public Usuario(Long id, String login, String senha, Boolean admin, Pessoa pessoa) {
+		super(id);
+		this.login = login;
+		this.senha = senha;
+		this.admin = admin;
+		this.pessoa = pessoa;
+	}
+        
 }

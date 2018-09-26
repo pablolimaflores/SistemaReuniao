@@ -7,7 +7,10 @@ import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Service;
 
-import br.com.projeto.reuniao.domain.entity.Notes;
+import br.com.projeto.reuniao.domain.entity.Pessoa;
+import br.com.projeto.reuniao.domain.entity.Tipo;
+import br.com.projeto.reuniao.domain.entity.TipoParticipante;
+import br.com.projeto.reuniao.domain.entity.Usuario;
 
 /**
  * 
@@ -20,27 +23,54 @@ public class InitApplicationService {
     private static final Logger LOGGER = LoggerFactory.getLogger(InitApplicationService.class);
 
     @Autowired
-    NotesService notesService;
+    PessoaService pessoaService;
+    
+    @Autowired
+    UsuarioService usuarioService;
+    
+    @Autowired
+    TipoService tipoService;
+    
+    @Autowired
+    TipoParticipanteService tipoParticipanteService;
 
     /**
      * Initialize the test data
      */
     @EventListener(ApplicationReadyEvent.class)
     public void initializeTestData() {
-//        LOGGER.info("Initialize test data");
-//
-//        notesService.saveNotes(new Notes("Test 1", "Content 1"));
-//        notesService.saveNotes(new Notes("Test 2", "Content 2"));
-//        notesService.saveNotes(new Notes("Test 3", "Content 3"));
-//        notesService.saveNotes(new Notes("Test 4", "Content 4"));
-//        notesService.saveNotes(new Notes("Test 5", "Content 5"));
-//        notesService.saveNotes(new Notes("Test 6", "Content 6"));
-//        notesService.saveNotes(new Notes("Test 7", "Content 7"));
-//        notesService.saveNotes(new Notes("Test 8", "Content 8"));
-//        notesService.saveNotes(new Notes("Test 9", "Content 9"));
-//        notesService.saveNotes(new Notes("Test 10", "Content 10"));
-//
-//        LOGGER.info("Initialization completed");
+    	LOGGER.info("Initialize test data");
+    	
+    	Pessoa administrador = new Pessoa("Administrador do Sistema", "pablolimaflores@gmail.com");
+    	
+    	if (!pessoaService.findAllPessoas().contains(administrador)) {	        	       
+	        pessoaService.insertPessoa(administrador);	        		       
+    	}
+    	
+    	Usuario admin = new Usuario("admin", "1234", true, administrador);
+    	
+    	if (!usuarioService.findAllUsuarios().contains(admin)) {	        	       
+    		usuarioService.insertUsuario(admin);	        		       
+    	}
+    	
+    	Tipo informativo = new Tipo("Informativo", "Deve apresentar tema relativo a decisão em outras instâncias e que afetam direta ou indiretamente os envolvidos.", false);
+    	
+    	if (!tipoService.findAllTipos().contains(informativo)) {	        	       
+	        tipoService.insertTipo(informativo);
+	        tipoService.insertTipo(new Tipo("Deliberativo", "Deve apresentar o tema de consulta aos integrantes, devendo considerar tempo extra para debate, para que todos os integrantes possam tenham o mesmo tempo para se pronunciar.", true));
+	        tipoService.insertTipo(new Tipo("Brainstorm", "Idealmente deve ser uma reunião com poucos ou apenas um tema de pauta, dividido em duas partes, apresentação de ideias (todas as ideias são válidas, até as mais absurdas e devem ser anotadas pelo secretario) e debate das ideiais, onde as devem ser aprimoradas ou descartadas.", true));
+	        tipoService.insertTipo(new Tipo("Trabalho", "Focada na realização de uma atividade ou demanda em tempo determinado, idealmente 2hs.", true));		        
+    	}
+    	
+    	TipoParticipante solicitante = new TipoParticipante("Solicitante", "Pessoa responsável por agendar e informar todos os dados necessários para marcar a reunião.");
+    	if (!tipoParticipanteService.findAllTipoParticipantes().contains(solicitante)) {	        
+	        tipoParticipanteService.insertTipoParticipante(solicitante);
+	        tipoParticipanteService.insertTipoParticipante(new TipoParticipante("Mediador", "Quem conduzirá a reunião (poderá ser a mesma pessoa que solicitou a reunião ou não). Engloba a funções de facilitador e colaborador."));
+	        tipoParticipanteService.insertTipoParticipante(new TipoParticipante("Secretário", "Possui a função de anotador e é responsável por registrar sobre o andamento da reunião e fazer a ata de reunião."));
+	        tipoParticipanteService.insertTipoParticipante(new TipoParticipante("Integrante", "Demais pessoas que irão compor a reunião e discutir sobre a mesma."));
+    	}
+    	
+    	LOGGER.info("Initialization completed");
     }
 
 }

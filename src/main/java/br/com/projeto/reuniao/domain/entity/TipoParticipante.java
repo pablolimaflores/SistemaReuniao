@@ -31,8 +31,32 @@ public class TipoParticipante extends AbstractEntity {
 	/**
 	 * 
 	 */
-	@Column(length=100)
-	@Size(min=3, max=100)
+	@Column(length=300)
+	@Size(min=3, max=300)
 	private String descricao;
+
+	/**
+	 * 
+	 * @param id
+	 * @param nome
+	 * @param descricao
+	 */
+	public TipoParticipante(String nome, String descricao) {		
+		this.nome = nome;
+		this.descricao = descricao;
+	}
+	
+	/**
+	 * 
+	 * @param id
+	 * @param nome
+	 * @param descricao
+	 */
+	public TipoParticipante(Long id, String nome, String descricao) {
+		super(id);
+		this.nome = nome;
+		this.descricao = descricao;
+	}
+	
 		
 }
