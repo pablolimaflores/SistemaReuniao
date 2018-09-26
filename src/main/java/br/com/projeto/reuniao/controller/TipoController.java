@@ -1,8 +1,13 @@
 package br.com.projeto.reuniao.controller;
 
+import javax.validation.Valid;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,6 +22,8 @@ public class TipoController {
 
     @Autowired
     TipoService tipoService;
+    
+    private static final Logger LOGGER = LoggerFactory.getLogger(TipoController.class);
     
     @GetMapping("")    
     public String findAllTipos(Model model) {
@@ -34,8 +41,28 @@ public class TipoController {
         return "tipos/tiposEdit";
     }
 
+//    @PostMapping(value={"/tiposEdit","/tiposEdit/{id}"})
+//    public String updateTipo(Model model, Tipo tipo, @PathVariable(required = false, name = "id") Long id) {
+//    	if (null != id) {
+//    		this.tipoService.updateTipo(tipo);
+//    	} else {
+//    		this.tipoService.insertTipo(tipo);
+//    	}    	
+//        model.addAttribute("tiposList", this.tipoService.findAllTipos());
+//        return "tipos/tiposList";
+//    }
+    
     @PostMapping(value={"/tiposEdit","/tiposEdit/{id}"})
-    public String updateTipo(Model model, Tipo tipo, @PathVariable(required = false, name = "id") Long id) {
+    public String updateTipo(Model model, @Valid Tipo tipo, BindingResult bindingResult, @PathVariable(required = false, name = "id") Long id) {
+    	
+    	if(bindingResult.hasErrors()) {
+            bindingResult.getAllErrors().forEach(err -> {
+                LOGGER.info("ERROR {}", err.getDefaultMessage());
+            });
+            model.addAttribute("tipo", tipo);
+            return "tipos/tiposEdit";
+        }
+    	
     	if (null != id) {
     		this.tipoService.updateTipo(tipo);
     	} else {

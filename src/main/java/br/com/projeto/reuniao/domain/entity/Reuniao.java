@@ -1,6 +1,6 @@
 package br.com.projeto.reuniao.domain.entity;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
 
@@ -40,9 +40,9 @@ public class Reuniao extends AbstractEntity {
 	/**
 	 * 
 	 */
-	@NotNull
+//	@NotNull
 	@Column
-	private LocalDateTime data;
+	private LocalDate data;
 	
 	/**
 	 * 
@@ -79,7 +79,7 @@ public class Reuniao extends AbstractEntity {
 	 * 
 	 */
 	@NotNull
-	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+	@ManyToOne(fetch = FetchType.LAZY/*, optional = false*/)
 	private Tipo tipo;
 	
 	/**

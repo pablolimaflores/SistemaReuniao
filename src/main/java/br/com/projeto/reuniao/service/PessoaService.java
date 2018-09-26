@@ -42,9 +42,9 @@ public class PessoaService {
 	 * @return
 	 */
 	public Pessoa insertPessoa( Pessoa pessoa ) {
-    	pessoa.refreshCreatedAndUpdated();		
-		final Pessoa pessoaSaved = this.pessoaRepository.save( pessoa );
-		return pessoaSaved;
+    	
+		pessoa.refreshCreatedAndUpdated();		
+		return this.pessoaRepository.save( pessoa );		
 	}
 	
 	/**
@@ -54,11 +54,12 @@ public class PessoaService {
 	 */
 	public Pessoa updatePessoa( Pessoa pessoa ) {
 		
-		Pessoa pessoaSaved = this.pessoaRepository.findById(pessoa.getId())
+		this.pessoaRepository.findById(pessoa.getId())
 				.orElseThrow(() -> new IllegalArgumentException( "Não foi possível atualizar o registro. "
 							+"Registro de Pessoa com id "+pessoa.getId() + " não encontrado." ) );
-		pessoaSaved.refreshUpdated();
-		return pessoaSaved;
+		pessoa.refreshUpdated();
+		
+		return this.pessoaRepository.saveAndFlush( pessoa );
 	}
 	
 	/**

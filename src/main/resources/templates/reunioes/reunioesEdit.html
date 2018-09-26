@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8" />
+    <title>Cadastro</title>
+
+    <div th:replace="fragments/header :: header-css"/>
+
+</head>
+<body>
+
+<div th:replace="fragments/header :: header"/>
+
+<div class="container">
+
+    <h1>Reuniões</h1>
+
+    <form class="form-group" action="/reunioes/reunioesEdit" th:action="@{/reunioes/reunioesEdit}" method="post">
+        <input th:type="hidden" name="id" th:field="${reuniao.id}" />
+        <div class="form-group"  th:classappend="${#fields.hasErrors('reuniao.titulo')} ? 'has-error'">
+            <label for="titulo">Título</label>
+            <input type="text" class="form-control" id="titulo" th:field="${reuniao.titulo}" />
+            <span th:if="${#fields.hasErrors('reuniao.titulo')}" th:errors="*{reuniao.titulo}" id="errorTitulo" class="help-block"></span>
+        </div>
+        <button type="submit" class="btn btn-primary">Salvar</button>
+        <a href="#" th:href="@{/reunioes}" class="btn btn-danger" role="button">Cancelar</a>
+    </form>
+
+</div>
+
+<div th:replace="fragments/footer :: footer"/>
+
+</body>
+</html>

@@ -43,8 +43,8 @@ public class UsuarioService {
 	 */
 	public Usuario insertUsuario( Usuario usuario ) {
 		
-		final Usuario usuarioSaved = this.usuarioRepository.save( usuario );
-		return usuarioSaved;
+		usuario.refreshCreatedAndUpdated();
+		return this.usuarioRepository.save( usuario );		
 	}
 	
 	/**
@@ -54,11 +54,11 @@ public class UsuarioService {
 	 */
 	public Usuario updateUsuario( Usuario usuario ) {
 		
-		final Usuario usuarioSaved = this.usuarioRepository.findById( usuario.getId() )
+		this.usuarioRepository.findById( usuario.getId() )
 				.orElseThrow(() -> new IllegalArgumentException( "Não foi possível atualizar o registro. "
 							+"Registro de Usuario com id "+usuario.getId() + " não encontrado." ) );
-		
-		return usuarioSaved;
+		usuario.refreshUpdated();
+		return this.usuarioRepository.saveAndFlush( usuario );
 	}
 	
 	/**
