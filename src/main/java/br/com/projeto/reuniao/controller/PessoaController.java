@@ -40,17 +40,6 @@ public class PessoaController {
         }
         return "pessoas/pessoasEdit";
     }
-
-//    @PostMapping(value={"/pessoasEdit","/pessoasEdit/{id}"})
-//    public String updatePessoa(Model model, Pessoa pessoa, @PathVariable(required = false, name = "id") Long id) {
-//    	if (null != id) {
-//    		this.pessoaService.updatePessoa(pessoa);
-//    	} else {
-//    		this.pessoaService.insertPessoa(pessoa);
-//    	}    	
-//        model.addAttribute("pessoasList", this.pessoaService.findAllPessoas());
-//        return "pessoas/pessoasList";
-//    }
     
     @PostMapping(value={"/pessoasEdit","/pessoasEdit/{id}"})
     public String updatePessoa(Model model, @Valid Pessoa pessoa, BindingResult bindingResult, @PathVariable(required = false, name = "id") Long id) {
