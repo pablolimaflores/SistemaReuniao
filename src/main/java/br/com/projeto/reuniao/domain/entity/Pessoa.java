@@ -47,8 +47,8 @@ public class Pessoa extends AbstractEntity{
     /**
 	 * 
 	 */	
-    @Column(length = 20)
-    @Size(max=20)
+    @Column(length = 50)
+    @Size(max=50)
     private String celular;
 
     /**
