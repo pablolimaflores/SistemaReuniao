@@ -36,8 +36,8 @@ public class PontoPauta extends AbstractEntity {
 	 * 
 	 */	
 	@NotBlank
-    @Column(nullable = false, length = 100)
-    @Size(min=3, max=100)
+    @Column(nullable = false, length = 300)
+    @Size(min=3, max=300)
 	private String descricao;
 	
 	/**
@@ -47,8 +47,8 @@ public class PontoPauta extends AbstractEntity {
 	@Column
 	private Integer tempo;
 	
-	@Column(nullable = false, length = 100)
-    @Size(min=3, max=100)
+	@Column(nullable = false, length = 300)
+    @Size(min=3, max=300)
 	private String discussao;
 	
 	/**

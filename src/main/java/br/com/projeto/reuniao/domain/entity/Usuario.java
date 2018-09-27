@@ -31,8 +31,8 @@ public class Usuario extends AbstractEntity {
 	 * 
 	 */
 	@NotBlank
-    @Column(nullable = false, length = 20)
-	@Size(min=3, max=20)
+    @Column(nullable = false, length = 50)
+	@Size(min=3, max=50)
     private String login;
 
 	/**
@@ -40,8 +40,8 @@ public class Usuario extends AbstractEntity {
      */
     @JsonProperty(access = Access.WRITE_ONLY)
     @NotBlank
-    @Column(nullable = false, length = 20)
-    @Size(min=3, max=20)
+    @Column(nullable = false, length = 50)
+    @Size(min=3, max=50)
     private String senha;
     
     /**

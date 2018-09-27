@@ -25,7 +25,7 @@ public class Pessoa extends AbstractEntity{
 	 * 
 	 */	
 	@NotBlank
-    @Column(nullable = false, length = 100)
+    @Column(nullable = false, length = 300)
     @Size(min=3, max=100)
 	private String nome;
 	
@@ -34,14 +34,14 @@ public class Pessoa extends AbstractEntity{
 	 */
     @Email(message = "Favor informar um e-mail válido.")
     @NotBlank
-    @Column(nullable = false, length = 100, unique = true)
+    @Column(nullable = false, length = 300, unique = true)
     private String email;	
     
     /**
 	 * 
 	 */	
-    @Column(length = 20)
-    @Size(min=8, max=20)
+    @Column(length = 50)
+    @Size(min=8, max=50)
     private String telefone;
     
     /**

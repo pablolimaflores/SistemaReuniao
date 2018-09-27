@@ -24,8 +24,8 @@ public class TipoParticipante extends AbstractEntity {
 	 * 
 	 */
 	@NotBlank
-	@Column(nullable = false, length = 20)
-	@Size(min=3, max=20)
+	@Column(nullable = false, length = 50)
+	@Size(min=3, max=50)
 	private String nome;
 	
 	/**
