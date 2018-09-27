@@ -41,14 +41,14 @@ public class Pessoa extends AbstractEntity{
 	 * 
 	 */	
     @Column(length = 50)
-    @Size(min=8, max=50)
+    @Size(max=50)
     private String telefone;
     
     /**
 	 * 
 	 */	
     @Column(length = 20)
-    @Size(min=8, max=20)
+    @Size(max=20)
     private String celular;
 
     /**

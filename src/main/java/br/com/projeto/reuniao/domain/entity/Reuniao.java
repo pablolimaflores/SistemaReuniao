@@ -33,8 +33,8 @@ public class Reuniao extends AbstractEntity {
 	 * 
 	 */	
 	@NotBlank
-    @Column(nullable = false, length = 20)
-	@Size(min=3, max=20)
+    @Column(nullable = false, length = 50)
+	@Size(min=3, max=50)
     private String titulo;
 
 	/**
@@ -47,7 +47,7 @@ public class Reuniao extends AbstractEntity {
 	/**
 	 * 
 	 */
-	@Column(length=100) 
+	@Column(length=300) 
 	private String local;
 	
 	/**
@@ -65,14 +65,14 @@ public class Reuniao extends AbstractEntity {
 	/**
 	 * 
 	 */
-	@Column(name="pre_requisito", length=100) 
+	@Column(name="pre_requisito", length=300) 
 	private String preRequisito;
 	
 	/**
 	 * 
 	 */	
-	@Column(length=100)
-	@Size(max=100)
+	@Column(length=300)
+	@Size(max=300)
 	private String objetivo;
 		
 	/**

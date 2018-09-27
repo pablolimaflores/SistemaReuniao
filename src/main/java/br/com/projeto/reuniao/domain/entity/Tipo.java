@@ -32,7 +32,7 @@ public class Tipo extends AbstractEntity {
 	 * 
 	 */
 	@Column(length=300)
-	@Size(min=3, max=300)
+	@Size(max=300)
 	private String descricao;
 	
 	/**
