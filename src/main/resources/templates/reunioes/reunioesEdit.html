@@ -15,112 +15,109 @@
 <div class="container">
 	
 	<form class="form-horizontal" action="/reunioes/reunioesEdit" th:action="@{/reunioes/reunioesEdit}" method="post">
-
-
-<!-- Form Name -->
-<legend>Reunião</legend>
-
-<div class="form-group">
-  <label class="col-md-4 control-label">Título da reunião</label>  
-  <div class="col-md-5">
-  <input type="text" placeholder="Tipo..." class="form-control input-md" th:field="${reuniao.titulo}">
-    
-  </div>
-</div>
-
-<div class="form-group">
-  <label class="col-md-4 control-label">Data de realização</label>
-  <div class="col-md-5">
-    <input type="date" class="form-control input-md">
-  </div>
-</div>
-
-<div class="form-group">
-  <label class="col-md-4 control-label">Local da Reunião</label>
-  <div class="col-md-5">
-    <input type="text" placeholder="local..." class="form-control input-md">
-  </div>
-</div>
-
-<div class="form-group">
-  <label class="col-md-4 control-label">Horário de Início</label>  
-  <div class="col-md-5">
-  <input type="time" class="form-control input-md">
-  </div>
-</div>
-
-<div class="form-group">
-  <label class="col-md-4 control-label">Horario de Término</label>  
-  <div class="col-md-5">
-  <input type="time" class="form-control input-md">
-  </div>
-</div>
-
-<div class="form-group">
-  <label class="col-md-4 control-label" for="check_critiria">Pré-requisito</label>
-  <div class="col-md-5">
-    <div class="input-group">
-      <span class="input-group-addon">     
-          <input type="radio" name="dependencia"> Sim    
-          <input type="radio" name="dependencia"> Não
-      </span>
-    </div>
-</div>  
-</div>
-
-<div class="form-group">
-  <label class="col-md-6 control-label"></label>
-	  <div class="col-md-3">
-	    <input type="text" placeholder="Informar a depêndencia da reunião" class="form-control input-md">
-	  </div>
-</div>
-
-<div class="form-group">
-  <label class="col-md-4 control-label">Objetivo</label>
-  <div class="col-md-5">
-    <input type="text" placeholder="Objetivo..." class="form-control input-md">
-  </div>
-</div>
-
-<!-- <div class="form-group">
-  <label class="col-md-4 control-label" for="check_critiria">Tipo de Reunião</label>
-  <div class="col-md-5">
-    <div class="input-group">
-      <span class="input-group-addon">     
-          <input type="checkbox"> Brainstorm    
-          <input type="checkbox"> Consultiva
-          <input type="checkbox"> Deliberativa
-          <input type="checkbox"> Trabalho
-          <input type="checkbox"> Mista
-      </span>
-    </div>
-</div>  
-</div>
-      
-<div class="form-group">
-  <label class="col-md-6 control-label"></label>
-	  <div class="col-md-3">
-	    <input type="text" placeholder="Se mista, informar os tipos" class="form-control input-md">
-	  </div>
-</div>
-
-<div class="form-group">
-  <label class="col-md-4 control-label">Participantes</label>
-  <div class="col-md-4">                     
-    <input type="text" class="form-control" placeholder="Informar todos os integrantes separados por virgula..."></textarea>
-  </div>
-</div>
- -->
-<div class="form-group">
-  <label class="col-md-4 control-label" for="submit"></label>
-  <div class="col-md-4">
-    <button id="submit" name="submit" class="btn btn-success">
-    	<span class="glyphicon glyphicon-ok"></span>Cadastrar
-    </button>
-  </div>
-</div>
-
-</fieldset>
+		<legend align="center">Reunião</legend>	
+		<div class="form-group">
+		  <label class="col-md-4 control-label">Título da reunião</label>  
+		  <div class="col-md-5">
+		  <input type="text" placeholder="Tipo..." class="form-control input-md" th:field="${reuniao.titulo}">
+		    
+		  </div>
+		</div>
+		
+		<div class="form-group">
+		  <label class="col-md-4 control-label">Data de realização</label>
+		  <div class="col-md-5">
+		    <input type="date" class="form-control input-md">
+		  </div>
+		</div>
+		
+		<div class="form-group">
+		  <label class="col-md-4 control-label">Local da Reunião</label>
+		  <div class="col-md-5">
+		    <input type="text" placeholder="local..." class="form-control input-md">
+		  </div>
+		</div>
+		
+		<div class="form-group">
+		  <label class="col-md-4 control-label">Horário de Início</label>  
+		  <div class="col-md-5">
+		  <input type="time" class="form-control input-md">
+		  </div>
+		</div>
+		
+		<div class="form-group">
+		  <label class="col-md-4 control-label">Horario de Término</label>  
+		  <div class="col-md-5">
+		  <input type="time" class="form-control input-md">
+		  </div>
+		</div>
+		
+		<div class="form-group">
+		  <label class="col-md-4 control-label">Pré-requisito</label>
+		  <div class="col-md-5">
+		    <div class="input-group">
+		      <span class="input-group-addon">     
+		          <input type="radio" name="dependencia"> Sim    
+		          <input type="radio" name="dependencia"> Não
+		      </span>
+		    </div>
+		</div>  
+		</div>
+		
+		<div class="form-group">
+		  <label class="col-md-6 control-label"></label>
+			  <div class="col-md-3">
+			    <input type="text" placeholder="Informar a depêndencia da reunião" class="form-control input-md">
+			  </div>
+		</div>
+		
+		<div class="form-group">
+		  <label class="col-md-4 control-label">Objetivo</label>
+		  <div class="col-md-5">
+		    <input type="text" placeholder="Objetivo..." class="form-control input-md">
+		  </div>
+		</div>
+		
+		<!-- <div class="form-group">
+		  <label class="col-md-4 control-label" for="check_critiria">Tipo de Reunião</label>
+		  <div class="col-md-5">
+		    <div class="input-group">
+		      <span class="input-group-addon">     
+		          <input type="checkbox"> Brainstorm    
+		          <input type="checkbox"> Consultiva
+		          <input type="checkbox"> Deliberativa
+		          <input type="checkbox"> Trabalho
+		          <input type="checkbox"> Mista
+		      </span>
+		    </div>
+		</div>  
+		</div>
+		      
+		<div class="form-group">
+		  <label class="col-md-6 control-label"></label>
+			  <div class="col-md-3">
+			    <input type="text" placeholder="Se mista, informar os tipos" class="form-control input-md">
+			  </div>
+		</div>
+		
+		<div class="form-group">
+		  <label class="col-md-4 control-label">Participantes</label>
+		  <div class="col-md-4">                     
+		    <input type="text" class="form-control" placeholder="Informar todos os integrantes separados por virgula..."></textarea>
+		  </div>
+		</div>
+		 -->
+		<div class="form-group">
+		  <label class="col-md-4 control-label" ></label>
+		  <div class="col-md-4">
+		    <button type="submit" class="btn btn-success">
+		    	<span class="glyphicon glyphicon-ok"></span>Cadastrar
+		    </button>
+		    <button type="reset" class="btn btn-danger">
+		    	<span class="glyphicon glyphicon-remove"></span>Cancelar
+		    </button>
+		  </div>
+		</div>
 </form>
 	
 </div>

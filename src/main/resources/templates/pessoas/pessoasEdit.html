@@ -14,32 +14,43 @@
 
 <div class="container">
 
-    <h1>Pessoas</h1>
+    <h1 align="center">Pessoas</h1>
 
     <form class="form-group" action="/pessoas/pessoasEdit" th:action="@{/pessoas/pessoasEdit}" method="post">
         <input th:type="hidden" name="id" th:field="${pessoa.id}" />
         <div class="form-group" th:classappend="${#fields.hasErrors('pessoa.nome')} ? 'has-error'">
+            <div class="col-md-6 offset-md-3">
             <label for="title">Nome</label>
             <input type="text" class="form-control" id="title" th:field="${pessoa.nome}" />
+            </div>
             <span th:if="${#fields.hasErrors('pessoa.nome')}" th:errors="*{pessoa.nome}" id="errorNome" class="help-block"></span>
         </div>
         <div class="form-group" th:classappend="${#fields.hasErrors('pessoa.email')} ? 'has-error'">
+            <div class="   col-md-6 offset-md-3">
             <label for="email">E-mail</label>
             <input type="email" class="form-control" id="email" th:field="${pessoa.email}" />
+            </div>
             <span th:if="${#fields.hasErrors('pessoa.email')}" th:errors="*{pessoa.email}" id="errorEmail" class="help-block"></span>
         </div>
         <div class="form-group" th:classappend="${#fields.hasErrors('pessoa.telefone')} ? 'has-error'">
+            <div class="   col-md-6 offset-md-3">
             <label for="telefone">Telefone</label>
             <input type="text" class="form-control" id="telefone" th:field="${pessoa.telefone}" />
+            </div>
             <span th:if="${#fields.hasErrors('pessoa.telefone')}" th:errors="*{pessoa.telefone}" id="errorTelefone" class="help-block"></span>
         </div>
         <div class="form-group" th:classappend="${#fields.hasErrors('pessoa.celular')} ? 'has-error'">
+            <div class="   col-md-6 offset-md-3">
             <label for="celular">Celular</label>
             <input type="text" class="form-control" id="celular" th:field="${pessoa.celular}" />
+            <div class="   col-md-6 offset-md-3">
             <span th:if="${#fields.hasErrors('pessoa.celular')}" th:errors="*{pessoa.celular}" id="errorCelular" class="help-block"></span>
         </div>
-        <button type="submit" class="btn btn-primary">Salvar</button>
-        <a href="#" th:href="@{/pessoas}" class="btn btn-danger" role="button">Cancelar</a>
+        <br>
+        <div align="center">
+        <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-ok"></span>Cadastrar</button>
+        <a href="#" th:href="@{/pessoas}" class="btn btn-danger" role="button"><span class="glyphicon glyphicon-remove"></span> Cancelar</a>
+    	</div>
     </form>
 
 </div>

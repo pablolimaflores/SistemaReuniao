@@ -21,17 +21,13 @@
 		 
 		    <div class="col-md-6">
 		        <div class="input-group h2">
-		            <input name="data[search]" class="form-control" id="search" type="text" placeholder="Pesquisar itens">
+		            <input name="data[search]" class="form-control" id="search" type="text" placeholder="Pesquisar pessoas por nome">
 		            <span class="input-group-btn">
 		                <button class="btn btn-primary" type="submit">
 		                    <span class="glyphicon glyphicon-search">Buscar</span>
 		                </button>
 		            </span>
 		        </div>
-		    </div>
-		 
-		    <div class="col-md-3">
-		        <a class="btn btn-success" href="/pessoas/pessoasEdit" th:href="@{/pessoas/pessoasEdit}">Novo</a>
 		    </div>
 		</div>
 
@@ -60,6 +56,9 @@
                 </tr>
             </tbody>
         </table>
+        <div class="col-md-3">
+			<a class="btn btn-success" href="/pessoas/pessoasEdit" th:href="@{/pessoas/pessoasEdit}">Novo</a>
+		</div>
     </div>
 
 <div th:replace="fragments/footer :: footer"/>
