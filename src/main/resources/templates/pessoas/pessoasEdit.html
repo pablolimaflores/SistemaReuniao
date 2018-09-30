@@ -6,9 +6,17 @@
     <title>Cadastro</title>
 
     <div th:replace="fragments/header :: header-css"/>
-
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js"></script>
+	
 </head>
 <body>
+
+	<script type="text/javascript">
+    	$("#telefone").mask("(00) 0000-0000");
+    	$("#celular").mask("(00) 0 0000-0000");
+    </script>
 
 <div th:replace="fragments/header :: header"/>
 
@@ -20,39 +28,38 @@
         <input th:type="hidden" name="id" th:field="${pessoa.id}" />
         <div class="form-group" th:classappend="${#fields.hasErrors('pessoa.nome')} ? 'has-error'">
             <div class="col-md-6 offset-md-3">
-            <label for="title">Nome</label>
+            <label >Nome</label>
             <input type="text" class="form-control" id="title" th:field="${pessoa.nome}" />
             </div>
             <span th:if="${#fields.hasErrors('pessoa.nome')}" th:errors="*{pessoa.nome}" id="errorNome" class="help-block"></span>
         </div>
         <div class="form-group" th:classappend="${#fields.hasErrors('pessoa.email')} ? 'has-error'">
-            <div class="   col-md-6 offset-md-3">
-            <label for="email">E-mail</label>
-            <input type="email" class="form-control" id="email" th:field="${pessoa.email}" />
+            <div class="col-md-6 offset-md-3">
+            <label>E-mail</label>
+            <input type="email" class="form-control" id="email" th:field="${pessoa.email}" placeholder="exemplo@exemplo"/>
             </div>
             <span th:if="${#fields.hasErrors('pessoa.email')}" th:errors="*{pessoa.email}" id="errorEmail" class="help-block"></span>
         </div>
         <div class="form-group" th:classappend="${#fields.hasErrors('pessoa.telefone')} ? 'has-error'">
             <div class="   col-md-6 offset-md-3">
-            <label for="telefone">Telefone</label>
-            <input type="text" class="form-control" id="telefone" th:field="${pessoa.telefone}" />
+            <label>Telefone</label>
+            <input type="text" class="form-control" id="telefone"  th:field="${pessoa.telefone}" placeholder="(00) 0000-0000"/>
             </div>
             <span th:if="${#fields.hasErrors('pessoa.telefone')}" th:errors="*{pessoa.telefone}" id="errorTelefone" class="help-block"></span>
         </div>
         <div class="form-group" th:classappend="${#fields.hasErrors('pessoa.celular')} ? 'has-error'">
-            <div class="   col-md-6 offset-md-3">
-            <label for="celular">Celular</label>
-            <input type="text" class="form-control" id="celular" th:field="${pessoa.celular}" />
-            <div class="   col-md-6 offset-md-3">
-            <span th:if="${#fields.hasErrors('pessoa.celular')}" th:errors="*{pessoa.celular}" id="errorCelular" class="help-block"></span>
-        </div>
-        <br>
-        <div align="center">
-        <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-ok"></span>Cadastrar</button>
-        <a href="#" th:href="@{/pessoas}" class="btn btn-danger" role="button"><span class="glyphicon glyphicon-remove"></span> Cancelar</a>
-    	</div>
-    </form>
-
+            <div class="col-md-6 offset-md-3">
+            	<label for="celular">Celular</label>
+            		<input type="text" class="form-control" id="celular" th:field="${pessoa.celular}" placeholder="(00) 0000-0000" />
+            	<div class="   col-md-6 offset-md-3">
+            		<span th:if="${#fields.hasErrors('pessoa.celular')}" th:errors="*{pessoa.celular}" id="errorCelular" class="help-block"></span>
+        				<br>
+	        			<button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-ok"></span>Cadastrar</button>
+	        			<a href="#" th:href="@{/pessoas}" class="btn btn-danger" role="button"><span class="glyphicon glyphicon-remove"></span> Cancelar</a>
+	    			</div>
+        		</div>
+        	</div>
+    </form>	
 </div>
 
 <div th:replace="fragments/footer :: footer"/>
