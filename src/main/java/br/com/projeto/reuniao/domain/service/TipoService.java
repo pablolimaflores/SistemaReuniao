@@ -1,4 +1,4 @@
-package br.com.projeto.reuniao.service;
+package br.com.projeto.reuniao.domain.service;
 
 import java.util.List;
 
@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import br.com.projeto.reuniao.domain.entity.Tipo;
-import br.com.projeto.reuniao.repository.ITipoRepository;
+import br.com.projeto.reuniao.domain.repository.ITipoRepository;
 
 @Service
 public class TipoService {

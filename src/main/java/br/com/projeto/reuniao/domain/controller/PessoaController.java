@@ -1,4 +1,4 @@
-package br.com.projeto.reuniao.controller;
+package br.com.projeto.reuniao.domain.controller;
 
 import javax.validation.Valid;
 
@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import br.com.projeto.reuniao.domain.entity.Pessoa;
-import br.com.projeto.reuniao.service.PessoaService;
+import br.com.projeto.reuniao.domain.service.PessoaService;
 
 @Controller
 @RequestMapping(value = "/pessoas")

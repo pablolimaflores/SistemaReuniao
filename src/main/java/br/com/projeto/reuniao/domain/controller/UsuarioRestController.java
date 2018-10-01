@@ -1,4 +1,4 @@
-package br.com.projeto.reuniao.controller;
+package br.com.projeto.reuniao.domain.controller;
 
 import java.util.List;
 
@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.projeto.reuniao.domain.entity.Usuario;
-import br.com.projeto.reuniao.service.UsuarioService;
+import br.com.projeto.reuniao.domain.service.UsuarioService;
 
 @RestController
 @RequestMapping(value = "/api/usuarios")

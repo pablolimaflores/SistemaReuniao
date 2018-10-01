@@ -24,7 +24,7 @@ public class Pessoa extends AbstractEntity{
 	/**
 	 * 
 	 */	
-	@NotBlank
+	@NotBlank(message ="O campo Nome é de preenchimento obrigatório.")
     @Column(nullable = false, length = 300)
     @Size(min=3, max=100)
 	private String nome;
@@ -33,7 +33,7 @@ public class Pessoa extends AbstractEntity{
 	 * 
 	 */
     @Email(message = "Favor informar um e-mail válido.")
-    @NotBlank
+    @NotBlank(message ="O campo E-mail é de preenchimento obrigatório.")
     @Column(nullable = false, length = 300, unique = true)
     private String email;	
     

@@ -48,12 +48,24 @@ public abstract class AbstractEntity implements Serializable {
 	@Column(nullable = false)
 	protected LocalDateTime updated;
 	
+	@Column()
+	private Boolean ativo;
+	
 	/**
 	 * 
 	 * @param id
 	 */
 	public AbstractEntity( Long id ) {
 		this.id = id;
+	}
+	
+	/**
+	 * 
+	 * @param id
+	 */
+	public AbstractEntity( Long id, Boolean ativo ) {
+		this.id = id;
+		this.ativo = ativo;
 	}
 
 	/**
@@ -72,6 +84,20 @@ public abstract class AbstractEntity implements Serializable {
 	@PreUpdate
 	public void refreshUpdated() {
 		this.updated = LocalDateTime.now();
+	}
+	
+	/**
+	 * 
+	 */
+	public void activate() {
+		this.ativo = true;
+	}
+	
+	/**
+	 * 
+	 */
+	public void inactivate() {
+		this.ativo = false;
 	}
 
 }

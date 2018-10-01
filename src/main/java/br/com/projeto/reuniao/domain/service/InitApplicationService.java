@@ -1,4 +1,4 @@
-package br.com.projeto.reuniao.service;
+package br.com.projeto.reuniao.domain.service;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -41,7 +41,7 @@ public class InitApplicationService {
     public void initializeTestData() {
     	LOGGER.info("Initialize test data");
     	    	
-//        Pessoa administrador = pessoaService.insertPessoa(new Pessoa("Administrador do Sistema", "pablolimaflores@gmail.com", "(45) 3030-3030", "(45) 99999-9999"));	        		           	       	
+//        Pessoa administrador = pessoaService.insertPessoa(new Pessoa("Administrador do Sistema", "pablolimaflores@hotmail.com", "(45) 3030-3030", "(45) 99999-9999"));	        		           	       	
 //		  usuarioService.insertUsuario(new Usuario("admin", "1234", true, administrador));	        		           	
 //    	    	   
 //        tipoService.insertTipo(new Tipo("Informativo", "Deve apresentar tema relativo a decisão em outras instâncias e que afetam direta ou indiretamente os envolvidos.", false));
