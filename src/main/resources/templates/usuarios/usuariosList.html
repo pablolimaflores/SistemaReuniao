@@ -45,14 +45,14 @@
                     <td th:text="${usuario.login}">Admin</td>                    
                     <td th:text="${usuario.admin}">false</td>
                     <td>
-                        <a class="btn btn-info" href="/usuarios/usuariosEdit/1" th:href="@{/usuarios/usuariosEdit/__${usuario.id}__}">Editar</a>
-                        <a class="btn btn-danger" href="/usuarios/usuariosDelete/1" th:href="@{/usuarios/usuariosDelete/__${usuario.id}__}"> Excluir</a>                        
+                        <a class="btn btn-info" href="/usuarios/usuariosEdit/1" th:href="@{/usuarios/usuariosEdit/__${usuario.id}__}"><span class="glyphicon glyphicon-pencil"></span>Editar</a>
+                        <a class="btn btn-danger" href="/usuarios/usuariosDelete/1" th:href="@{/usuarios/usuariosDelete/__${usuario.id}__}"><span class="glyphicon glyphicon-remove"></span>Excluir</a>                        
                     </td>
                 </tr>
             </tbody>
         </table>
         	<div class="col-md-3">
-		       <a class="btn btn-success" href="/usuarios/usuariosEdit" th:href="@{/usuarios/usuariosEdit}">Novo</a>
+		       <a class="btn btn-success" href="/usuarios/usuariosEdit" th:href="@{/usuarios/usuariosEdit}"><span class="glyphicon glyphicon-plus"></span>Novo</a>
 		  </div>
     </div>
 

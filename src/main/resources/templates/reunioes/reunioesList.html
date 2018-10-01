@@ -29,10 +29,6 @@
 		            </span>
 		        </div>
 		    </div>
-		 
-		    <div class="col-md-3">
-		        <a class="btn btn-success" href="/reunioes/reunioesEdit" th:href="@{/reunioes/reunioesEdit}">Novo</a>
-		    </div>
 		</div>
 
         <table class="table table-bordred table-striped">
@@ -56,6 +52,9 @@
                 </tr>
             </tbody>
         </table>
+        <div class="col-md-3">
+		    <a class="btn btn-success" href="/reunioes/reunioesEdit" th:href="@{/reunioes/reunioesEdit}"><span class="glyphicon glyphicon-plus"></span>Novo</a>
+		</div>
     </div>
 
 <div th:replace="fragments/footer :: footer"/>

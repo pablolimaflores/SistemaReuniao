@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import br.com.projeto.reuniao.domain.entity.Reuniao;
 import br.com.projeto.reuniao.service.ReuniaoService;
+import br.com.projeto.reuniao.service.TipoParticipanteService;
+import br.com.projeto.reuniao.service.TipoService;
 
 @Controller
 @RequestMapping(value = "/reunioes")
@@ -22,6 +24,9 @@ public class ReuniaoController {
 
     @Autowired
     ReuniaoService reuniaoService;
+    
+    @Autowired
+    TipoService tipoService;
     
     private static final Logger LOGGER = LoggerFactory.getLogger(ReuniaoController.class);
     
@@ -37,6 +42,7 @@ public class ReuniaoController {
             model.addAttribute("reuniao", this.reuniaoService.findReuniaoById(id));
         } else {
             model.addAttribute("reuniao", new Reuniao());
+            model.addAttribute("tipos", this.tipoService.findAllTipos());
         }
         return "reunioes/reunioesEdit";
     }

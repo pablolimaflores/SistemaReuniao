@@ -50,14 +50,14 @@
                     <td th:text="${pessoa.telefone}">(55)5555-5555</td>
                     <td th:text="${pessoa.celular}">(55)99999-9999</td>
                     <td>
-                        <a class="btn btn-info" href="/pessoas/pessoasEdit/1" th:href="@{/pessoas/pessoasEdit/__${pessoa.id}__}">Editar</a>
-                        <a class="btn btn-danger" href="/pessoas/pessoasDelete/1" th:href="@{/pessoas/pessoasDelete/__${pessoa.id}__}"> Excluir</a>                        
+                        <a class="btn btn-info" href="/pessoas/pessoasEdit/1" th:href="@{/pessoas/pessoasEdit/__${pessoa.id}__}"><span class="glyphicon glyphicon-pencil"></span>Editar</a>
+                        <a class="btn btn-danger" href="/pessoas/pessoasDelete/1" th:href="@{/pessoas/pessoasDelete/__${pessoa.id}__}"><span class="glyphicon glyphicon-remove"></span>Excluir</a>                        
                     </td>
                 </tr>
             </tbody>
         </table>
         <div class="col-md-3">
-			<a class="btn btn-success" href="/pessoas/pessoasEdit" th:href="@{/pessoas/pessoasEdit}">Novo</a>
+			<a class="btn btn-success" href="/pessoas/pessoasEdit" th:href="@{/pessoas/pessoasEdit}"><span class="glyphicon glyphicon-plus"></span>Novo</a>
 		</div>
     </div>
 

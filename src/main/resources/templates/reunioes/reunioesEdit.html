@@ -19,36 +19,40 @@
 		<div class="form-group">
 		  <label class="col-md-4 control-label">Título da reunião</label>  
 		  <div class="col-md-5">
-		  <input type="text" placeholder="Tipo..." class="form-control input-md" th:field="${reuniao.titulo}">
-		    
+		  <input type="text" placeholder="Título" class="form-control input-md" th:field="${reuniao.titulo}">
+		  <span th:if="${#fields.hasErrors('reuniao.titulo')}" th:errors="*{reuniao.titulo}" id="errorTitulo" class="help-block"></span>
 		  </div>
 		</div>
 		
 		<div class="form-group">
 		  <label class="col-md-4 control-label">Data de realização</label>
 		  <div class="col-md-5">
-		    <input type="date" class="form-control input-md">
+		    <input type="date" class="form-control input-md" th:field="${reuniao.data}">
+		    <span th:if="${#fields.hasErrors('reuniao.data')}" th:errors="*{reuniao.data}" id="errorData" class="help-block"></span>
 		  </div>
 		</div>
 		
 		<div class="form-group">
 		  <label class="col-md-4 control-label">Local da Reunião</label>
 		  <div class="col-md-5">
-		    <input type="text" placeholder="local..." class="form-control input-md">
+		    <input type="text" placeholder="local..." class="form-control input-md" th:field="${reuniao.local}">
+		    <span th:if="${#fields.hasErrors('reuniao.local')}" th:errors="*{reuniao.local}" id="errorLocal" class="help-block"></span>
 		  </div>
 		</div>
 		
 		<div class="form-group">
 		  <label class="col-md-4 control-label">Horário de Início</label>  
 		  <div class="col-md-5">
-		  <input type="time" class="form-control input-md">
+		  <input type="time" class="form-control input-md" th:field="${reuniao.horaInicio}">
+		  <span th:if="${#fields.hasErrors('reuniao.horaInicio')}" th:errors="*{reuniao.horaInicio}" id="errorHoraInicio" class="help-block"></span>
 		  </div>
 		</div>
 		
 		<div class="form-group">
 		  <label class="col-md-4 control-label">Horario de Término</label>  
 		  <div class="col-md-5">
-		  <input type="time" class="form-control input-md">
+		  <input type="time" class="form-control input-md" th:field="${reuniao.horaFim}">
+		  <span th:if="${#fields.hasErrors('reuniao.horaFim')}" th:errors="*{reuniao.horaFim}" id="errorHoraFim" class="help-block"></span>
 		  </div>
 		</div>
 		
@@ -67,14 +71,26 @@
 		<div class="form-group">
 		  <label class="col-md-6 control-label"></label>
 			  <div class="col-md-3">
-			    <input type="text" placeholder="Informar o pré-requisito da reunião" class="form-control input-md">
+			    <input type="text" placeholder="Informar o pré-requisito da reunião" class="form-control input-md" th:field="${reuniao.preRequisito}">
+			    <span th:if="${#fields.hasErrors('reuniao.preRequisito')}" th:errors="*{reuniao.preRequisito}" id="errorPreRequisito" class="help-block"></span>
 			  </div>
 		</div>
 		
 		<div class="form-group">
+			<label class="col-md-4 control-label">Tipo</label>
+			<div class="col-md-5">
+	        	<select id="tipo" name="tipo" th:field="${reuniao.tipo}">
+	        		<option value="">Selecione o tipo de reunião</option>
+	        		<option th:each="tipo : ${tipos}" th:value="${tipo.id}" th:text="${tipo.nome}"></option>
+	        		<span th:if="${#fields.hasErrors('reuniao.tipo')}" th:errors="*{reuniao.tipo}" id="errorTipo" class="help-block"></span>
+	        	</select>
+        	</div>
+		</div>
+		<div class="form-group">
 		  <label class="col-md-4 control-label">Objetivo</label>
 		  <div class="col-md-5">
-		    <input type="text" placeholder="Objetivo..." class="form-control input-md">
+		    <input type="text" placeholder="Objetivo..." class="form-control input-md" th:field="${reuniao.objetivo}">
+		    <span th:if="${#fields.hasErrors('reuniao.objetivo')}" th:errors="*{reuniao.objetivo}" id="errorObjetivo" class="help-block"></span>
 		  </div>
 		</div>
 		

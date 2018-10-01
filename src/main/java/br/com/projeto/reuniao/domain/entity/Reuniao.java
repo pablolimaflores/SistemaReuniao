@@ -14,6 +14,8 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -42,6 +44,7 @@ public class Reuniao extends AbstractEntity {
 	 */
 //	@NotNull
 	@Column
+	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private LocalDate data;
 	
 	/**

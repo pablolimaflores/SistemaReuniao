@@ -29,10 +29,6 @@
 		            </span>
 		        </div>
 		    </div>
-		 
-		    <div class="col-md-3">
-		        <a class="btn btn-success" href="/tiposParticipante/tiposParticipanteEdit" th:href="@{/tiposParticipante/tiposParticipanteEdit}">Novo</a>
-		    </div>
 		</div>
 
         <table class="table table-bordred table-striped">
@@ -50,12 +46,15 @@
                     <td th:text="${tipoParticipante.nome}">TipoParticipante</td>
                     <td th:text="${tipoParticipante.descricao}">...</td>                    
                     <td>
-                        <a class="btn btn-info" href="/tiposParticipante/tiposParticipanteEdit/1" th:href="@{/tiposParticipante/tiposParticipanteEdit/__${tipoParticipante.id}__}">Editar</a>
-                        <a class="btn btn-danger" href="/tiposParticipante/tiposParticipanteDelete/1" th:href="@{/tiposParticipante/tiposParticipanteDelete/__${tipoParticipante.id}__}"> Excluir</a>                        
+                        <a class="btn btn-info" href="/tiposParticipante/tiposParticipanteEdit/1" th:href="@{/tiposParticipante/tiposParticipanteEdit/__${tipoParticipante.id}__}"><span class="glyphicon glyphicon-pencil"></span>Editar</a>
+                        <a class="btn btn-danger" href="/tiposParticipante/tiposParticipanteDelete/1" th:href="@{/tiposParticipante/tiposParticipanteDelete/__${tipoParticipante.id}__}"><span class="glyphicon glyphicon-remove"></span>Excluir</a>                        
                     </td>
                 </tr>
             </tbody>
         </table>
+        <div class="col-md-3">
+		    <a class="btn btn-success" href="/tiposParticipante/tiposParticipanteEdit" th:href="@{/tiposParticipante/tiposParticipanteEdit}"><span class="glyphicon glyphicon-plus"></span>Novo</a>
+		</div>
     </div>
 
 <div th:replace="fragments/footer :: footer"/>

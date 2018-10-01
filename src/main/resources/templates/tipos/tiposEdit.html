@@ -14,24 +14,38 @@
 
 <div class="container">
 
-    <h1>Tipo</h1>
+    <h1 align="center">Tipo<hr></h1>
 
     <form class="form-group" action="/tipos/tiposEdit" th:action="@{/tipos/tiposEdit}" method="post">
         <input th:type="hidden" name="id" th:field="${tipo.id}" />
         <div class="form-group">
-            <label for="title">Nome</label>
-            <input type="text" class="form-control" id="title" th:field="${tipo.nome}" />
+        	<div class="col-md-6 offset-md-3">
+	            <label >Nome</label>
+	            <input type="text" class="form-control" id="title" th:field="${tipo.nome}" />
+        	</div>
         </div>
         <div class="form-group">
-            <label for="title">Descricao</label>
-            <input type="text" class="form-control" id="title" th:field="${tipo.descricao}" />
+        	<div class="col-md-6 offset-md-3">
+	            <label for="title">Descricao</label>
+	            <input type="text" class="form-control" id="title" th:field="${tipo.descricao}" />
+       		</div>
         </div>
         <div class="form-group">
+        <div class="col-md-6 offset-md-3">
             <label for="title">Debate?</label>
-            <input type="checkbox" name="debate" th:field="${tipo.debate}" />            
-        </div>        
-        <button type="submit" class="btn btn-primary">Salvar</button>
-        <a href="#" th:href="@{/tipos}" class="btn btn-danger" role="button">Cancelar</a>
+            <input type="checkbox" name="debate" th:field="${tipo.debate}" />  
+        </div>              
+        </div>  
+        <div class="form-group">
+        	<div class="col-md-6 offset-md-3">
+        	<br>
+        	<br>
+        		<div align="center"> 
+        			<button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-ok">Salvar</button>
+        			<a href="#" th:href="@{/tipos}" class="btn btn-danger" role="button"><span class="glyphicon glyphicon-remove">Cancelar</a>
+    			</div>
+    		</div>
+    	</div>
     </form>
 
 </div>

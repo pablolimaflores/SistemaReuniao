@@ -29,10 +29,6 @@
 		            </span>
 		        </div>
 		    </div>
-		 
-		    <div class="col-md-3">
-		        <a class="btn btn-success" href="/tipos/tiposEdit" th:href="@{/tipos/tiposEdit}">Novo</a>
-		    </div>
 		</div>
 
         <table class="table table-bordred table-striped">
@@ -52,12 +48,15 @@
                     <td th:text="${tipo.descricao}">admin@admin.com</td>
                     <td th:text="${tipo.debate}">false</td>
                     <td>
-                        <a class="btn btn-info" href="/tipos/tiposEdit/1" th:href="@{/tipos/tiposEdit/__${tipo.id}__}">Editar</a>
-                        <a class="btn btn-danger" href="/tipos/tiposDelete/1" th:href="@{/tipos/tiposDelete/__${tipo.id}__}"> Excluir</a>                        
+                        <a class="btn btn-info" href="/tipos/tiposEdit/1" th:href="@{/tipos/tiposEdit/__${tipo.id}__}"><span class="glyphicon glyphicon-pencil"></span>Editar</a>
+                        <a class="btn btn-danger" href="/tipos/tiposDelete/1" th:href="@{/tipos/tiposDelete/__${tipo.id}__}"><span class="glyphicon glyphicon-remove"></span>Excluir</a>                        
                     </td>
                 </tr>
             </tbody>
         </table>
+         <div class="col-md-3">
+		     <a class="btn btn-success" href="/tipos/tiposEdit" th:href="@{/tipos/tiposEdit}"><span class="glyphicon glyphicon-plus"></span>Novo</a>
+		 </div>
     </div>
 
 <div th:replace="fragments/footer :: footer"/>
