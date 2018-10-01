@@ -72,4 +72,12 @@ public class TipoService {
 		
 		this.tipoRepository.deleteById( tipoSaved.getId() );
     }
+	
+	/**
+	 * Médodo utilizado apenas para verificação de existência de registros.
+	 * @return
+	 */
+	public long countTipos() {
+		return this.tipoRepository.count();
+	}
 }

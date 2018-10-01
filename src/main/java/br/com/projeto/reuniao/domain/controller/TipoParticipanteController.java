@@ -27,7 +27,7 @@ public class TipoParticipanteController {
     
     @GetMapping("")    
     public String findAllTipoParticipantes(Model model) {
-        model.addAttribute("tiposParticipanteList", this.tipoParticipanteService.findAllTipoParticipantes());
+        model.addAttribute("tiposParticipanteList", this.tipoParticipanteService.findAllTiposParticipante());
         return "tiposParticipante/tiposParticipanteList";
     }
     
@@ -68,14 +68,14 @@ public class TipoParticipanteController {
     	} else {
     		this.tipoParticipanteService.insertTipoParticipante(tipoParticipante);
     	}    	
-        model.addAttribute("tiposParticipanteList", this.tipoParticipanteService.findAllTipoParticipantes());
+        model.addAttribute("tiposParticipanteList", this.tipoParticipanteService.findAllTiposParticipante());
         return "tiposParticipante/tiposParticipanteList";
     }
 
     @GetMapping("/tiposParticipanteDelete/{id}")
     public String tiposParticipanteDelete(Model model, @PathVariable(required = true, name = "id") Long id) {
         this.tipoParticipanteService.deleteTipoParticipante(id);
-        model.addAttribute("tiposParticipanteList", this.tipoParticipanteService.findAllTipoParticipantes());
+        model.addAttribute("tiposParticipanteList", this.tipoParticipanteService.findAllTiposParticipante());
         return "tiposParticipante/tiposParticipanteList";
     }
 }

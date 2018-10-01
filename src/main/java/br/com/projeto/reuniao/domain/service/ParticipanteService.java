@@ -72,4 +72,12 @@ public class ParticipanteService {
 		
 		this.participanteRepository.deleteById( participanteSaved.getId() );
     }
+	
+	/**
+	 * Médodo utilizado apenas para verificação de existência de registros.
+	 * @return
+	 */
+	public long countParticipantes() {
+		return this.participanteRepository.count();
+	}
 }

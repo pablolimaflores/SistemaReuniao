@@ -72,4 +72,12 @@ public class PontoPautaService {
 		
 		this.pontoPautaRepository.deleteById( pontoPautaSaved.getId() );
     }
+	
+	/**
+	 * Médodo utilizado apenas para verificação de existência de registros.
+	 * @return
+	 */
+	public long countPontoPauta() {
+		return this.pontoPautaRepository.count();
+	}
 }

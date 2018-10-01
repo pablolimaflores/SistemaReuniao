@@ -72,4 +72,12 @@ public class ReuniaoService {
 		
 		this.reuniaoRepository.deleteById( reuniaoSaved.getId() );
     }
+	
+	/**
+	 * Médodo utilizado apenas para verificação de existência de registros.
+	 * @return
+	 */
+	public long countReunioes() {
+		return this.reuniaoRepository.count();
+	}
 }

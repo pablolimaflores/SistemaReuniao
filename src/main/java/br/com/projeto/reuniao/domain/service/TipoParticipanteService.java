@@ -20,7 +20,7 @@ public class TipoParticipanteService {
 	 * @return
 	 */
 	@Transactional(readOnly = true)
-	public List<TipoParticipante> findAllTipoParticipantes() {
+	public List<TipoParticipante> findAllTiposParticipante() {
         return this.tipoParticipanteRepository.findAll();
     }
 	
@@ -73,4 +73,12 @@ public class TipoParticipanteService {
 		
 		this.tipoParticipanteRepository.deleteById( tipoParticipanteSaved.getId() );
     }
+	
+	/**
+	 * Médodo utilizado apenas para verificação de existência de registros.
+	 * @return
+	 */
+	public long countTiposParticipante() {
+		return this.tipoParticipanteRepository.count();
+	}
 }

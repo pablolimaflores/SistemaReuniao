@@ -73,4 +73,12 @@ public class PessoaService {
 		
 		this.pessoaRepository.deleteById( pessoaSaved.getId() );
     }
+	
+	/**
+	 * Médodo utilizado apenas para verificação de existência de registros.
+	 * @return
+	 */
+	public long countPessoas() {
+		return this.pessoaRepository.count();
+	}
 }

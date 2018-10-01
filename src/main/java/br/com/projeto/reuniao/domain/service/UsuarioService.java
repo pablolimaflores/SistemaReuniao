@@ -135,7 +135,7 @@ public class UsuarioService implements UserDetailsService {
 		if(usuario == null)
 			throw new BadCredentialsException("Usuário não encontrado no sistema!");
  
-		if(!usuario.getAtivo())
+		if(!usuario.isEnabled())
 			throw new DisabledException("Usuário não está ativo no sistema!");
  
 		return new UsuarioSecurity(
@@ -143,6 +143,14 @@ public class UsuarioService implements UserDetailsService {
 				usuario.getSenha(), 
 				usuario.getAtivo(), 
 				usuario.getAuthorities());
+	}
+	
+	/**
+	 * Médodo utilizado apenas para verificação de existência de registros.
+	 * @return
+	 */
+	public long countUsuarios() {
+		return this.usuarioRepository.count();
 	}
 	
 }
