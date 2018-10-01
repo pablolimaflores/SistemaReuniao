@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import br.com.projeto.reuniao.domain.entity.Usuario;
+import br.com.projeto.reuniao.service.PessoaService;
 import br.com.projeto.reuniao.service.UsuarioService;
 
 //@RestController
@@ -26,6 +27,9 @@ public class UsuarioController {
     @Autowired
     UsuarioService usuarioService;
     
+    @Autowired
+    PessoaService pessoaService;
+    
     
     @GetMapping("")    
     public String findAllUsuarios(Model model) {
@@ -37,8 +41,10 @@ public class UsuarioController {
     public String findUsuarioById(Model model, @PathVariable(required = false, name = "id") Long id) {
         if (null != id) {
             model.addAttribute("usuario", this.usuarioService.findUsuarioById(id));
+            
         } else {
             model.addAttribute("usuario", new Usuario());
+            model.addAttribute("pessoas", this.pessoaService.findAllPessoas());
         }
         return "usuarios/usuariosEdit";
     }
