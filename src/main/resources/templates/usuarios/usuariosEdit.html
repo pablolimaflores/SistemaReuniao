@@ -14,7 +14,7 @@
 
 <div class="container">
 
-    <h1 align="center">Usuário</h1>
+    <h1 align="center">Usuário<hr></h1>
 
     <form class="form-group" action="/usuarios/usuariosEdit" th:action="@{/usuarios/usuariosEdit}" method="post">
         <input th:type="hidden" name="id" th:field="${usuario.id}" />
@@ -30,33 +30,34 @@
             	<label>Senha</label>
             	<input type="password" class="form-control" id="senha" th:field="${usuario.senha}" />
             	<span th:if="${#fields.hasErrors('usuario.senha')}" th:errors="*{usuario.senha}" id="errorSenha" class="help-block"></span>
-        		<br>
-        		<legend align="center">Selecione a pessoa que será vinculada a este usuário</legend>
-        		<select class="col-md-6 offset-md-3" id="pessoa" name="pessoa" th:field="${usuario.pessoa}">
+        	</div>
+        </div>	
+        <div class="form-group" th:classappend="${#fields.hasErrors('usuario.admin')} ? 'has-error'">
+			  <div class="col-md-6 offset-md-3">
+			        <label for="title">Administrador?</label>
+			        <input type="checkbox" name="debate" th:field="${usuario.admin}" />  
+			  </div>              
+        </div> 
+        <div class="form-group" th:classappend="${#fields.hasErrors('usuario.pessoa')} ? 'has-error'">
+        	<div class="col-md-6 offset-md-3">
+        		 <legend align="center">Selecione a pessoa que será vinculada a este usuário</legend>
+        		 <select class="col-md-6 offset-md-3" id="pessoa" name="pessoa" th:field="${usuario.pessoa}">
         			<option value=""></option>
         			<option th:each="pessoa : ${pessoas}" th:value="${pessoa.id}" th:text="${pessoa.nome}"></option>
         			<span th:if="${#fields.hasErrors('usuario.pessoa')}" th:errors="*{usuario.pessoa}" id="errorPessoa" class="help-block"></span>
         		</select>
         		<br>
         		<br>
-        			<div align="center">
-        			<button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-ok">Cadastrar</button>
-        			<a href="#" th:href="@{/usuarios}" class="btn btn-danger" role="button"><span class="glyphicon glyphicon-remove">Cancelar</a>
-        			</div>
+        		<div align="center">
+        			<button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-ok" ></span>Cadastrar</button>
+        			<a href="#" th:href="@{/usuarios}" class="btn btn-danger" role="button"><span class="glyphicon glyphicon-remove"></span>Cancelar</a>
+        		</div> 
         	</div>
         </div>
         
-        <!-- 
-        <div class="form-check">
-			<div  class="col-md-6 offset-md-3">
-            <legend>Administrador?</legend>
-			  <input type="checkbox" class="form-check-input" name="admin" th:field="${usuario.admin}" />
-			</div>
-		</div> -->
-		
     </form>
 
-</div>
+</div>  
 
 <div th:replace="fragments/footer :: footer"/>
 
