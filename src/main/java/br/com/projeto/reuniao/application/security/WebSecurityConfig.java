@@ -28,24 +28,24 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
  
 		http.authorizeRequests()
 			/*DETERMINA QUE PARA REALIZAR ESSA REQUEST PRECISA TER UMA DAS PERMISSÕES ABAIXO
-		 	* EXEMPLO DA URL: http://localhost:8095/usuarios/uuariosEdit		 	
+		 	* EXEMPLO DA URL: http://localhost:8095/usuarios/usuariosEdit		 	
 		 	* QUANDO USAMOS o hasRole*/
 //			.antMatchers("/usuarios/usuariosEdit").access("hasRole('ADMINISTRADOR')")
 			/*DETERMINA QUE PARA REALIZAR ESSA REQUEST PRECISA TER UMA DAS PERMISSÕES ABAIXO
-			 * EXEMPLO DA URL: http://localhost:8095/usuarios/usuariosList */
+			 * EXEMPLO DA URL: http://localhost:8090/usuarios/usuariosList */
 //			.antMatchers("/usuarios/usuariosList").access("hasRole('ADMINISTRADOR')")
 			 /*DETERMINA QUE PARA ACESSAR A PÁGINA INICIAL DA APLICAÇÃO PRECISA ESTÁ AUTENTICADO*/
-//			.antMatchers("/index").authenticated()
-			.antMatchers("/index").permitAll()
+			.antMatchers("/index").authenticated()
+//			.antMatchers("/index").permitAll()
 			.anyRequest().authenticated()			
 			.and()			
 				.formLogin()
 				 /*INFORMANDO O CAMINHO DA PÁGINA DE LOGIN, E SE O LOGIN FOR EFETUADO COM SUCESSO
-				  *O USUÁRIO DEVE SER REDIRECIONADO PARA /home(http://localhost:8095/home)*/
+				  *O USUÁRIO DEVE SER REDIRECIONADO PARA /home(http://localhost:8090/home)*/
 				.loginPage("/").defaultSuccessUrl("/index",true)
 				.permitAll() /*AQUI ESTAMOS INFORMANDO QUE TODOS TEM ACESSO A PÁGINA DE LOGIN*/
 			.and()
-			     /*AQUI ESTAMOS INFORMANDO QUE QUANDO FOR REDIRECIONADO PARA  O LINK http://localhost:8095/logout
+			     /*AQUI ESTAMOS INFORMANDO QUE QUANDO FOR REDIRECIONADO PARA  O LINK http://localhost:8090/logout
 			      *O USUÁRIO DEVE TER SUA SESSÃO FINALIZADA E REDIRECIONADO PARA A PÁGINA DE LOGIN */
 				.logout()
 				.logoutSuccessUrl("/")

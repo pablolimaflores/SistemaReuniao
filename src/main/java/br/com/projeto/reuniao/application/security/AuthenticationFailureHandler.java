@@ -33,7 +33,8 @@ public class AuthenticationFailureHandler implements org.springframework.securit
 
 		if ( exception instanceof BadCredentialsException || exception instanceof InternalAuthenticationServiceException)
 		{
-			String username = (String) request.getParameter("email");
+//			String username = (String) request.getParameter("email");
+			String username = (String) request.getParameter("username");
 			Usuario usuario = (Usuario) usuarioRepository.findByLogin(username);
 			
 //			if (usuario != null) {

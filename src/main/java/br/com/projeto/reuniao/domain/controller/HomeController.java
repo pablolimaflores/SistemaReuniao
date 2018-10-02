@@ -1,34 +1,39 @@
 package br.com.projeto.reuniao.domain.controller;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class HomeController {
 	
-    @RequestMapping("/")
+	@GetMapping("/")
     public String indice() {        
         return "login";
     }
     
-    @RequestMapping("/index")
+	@GetMapping("/index")
     public String index() {        
         return "index";
     }
     
-    @RequestMapping("/home")
+    @GetMapping("/home")
     public String home() {        
         return "home";
     }
     
-    @RequestMapping("/login")
+    @GetMapping("/login")
     public String login() {        
         return "login";
     }
     
-    @RequestMapping("/logout")
-    public String logout() {        
-        return "logout";
-    }
+	/***
+	 * MOSTRA UM PÁGINA COM A MENSAGEM DE ACESSO NEGADO QUANDO O 
+	 * USUÁRIO NÃO TIVER PERMISSÃO DE ACESSAR UMA DETERMINADA FUNÇÃO DO SISTEMA
+	 * @return
+	 */
+	@GetMapping("/acessoNegado")
+	public String acessoNegado(){		
+		return "acessoNegado";
+	}
 	
 }
