@@ -8,6 +8,7 @@ import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Service;
 
 import br.com.projeto.reuniao.domain.entity.Pessoa;
+import br.com.projeto.reuniao.domain.entity.Role;
 import br.com.projeto.reuniao.domain.entity.Tipo;
 import br.com.projeto.reuniao.domain.entity.TipoParticipante;
 import br.com.projeto.reuniao.domain.entity.Usuario;
@@ -42,8 +43,11 @@ public class InitApplicationService {
     	LOGGER.info("Initialize test data");
     	
     	if(usuarioService.countUsuarios() == 0) {    		
-	        Pessoa administrador = pessoaService.insertPessoa(new Pessoa("Administrador do Sistema", "pablolimaflores@hotmail.com", "(45) 3030-3030", "(45) 99999-9999"));	        		           	       	
-			  usuarioService.insertUsuario(new Usuario("admin", "1234", true, administrador));	        		           		    	    	   	        	    		       	           
+			Pessoa administrador = pessoaService.insertPessoa(new Pessoa("Administrador do Sistema", "admin@email.com", "(45) 3030-3030", "(45) 99999-9999"));	        		           	       	
+			usuarioService.insertUsuario(new Usuario("admin", "1234", true, Role.ADMIN, administrador));
+			  
+			Pessoa usuario = pessoaService.insertPessoa(new Pessoa("Usuario padrão do sistema", "user@email.com", "(45) 3030-3030", "(45) 99999-9999"));	        		           	       	
+			usuarioService.insertUsuario(new Usuario("user", "1234", false, Role.USER, usuario));
     	}
     	
     	if (tipoService.countTipos() == 0) {

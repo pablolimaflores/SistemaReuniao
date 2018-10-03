@@ -2,14 +2,14 @@ package br.com.projeto.reuniao.domain.entity;
 
 import org.springframework.security.core.GrantedAuthority;
 
-public enum Perfil implements GrantedAuthority {
+public enum Role implements GrantedAuthority {
 
-    ADMINISTRADOR("Administrador"), 	// 0
-    USUARIO("Usuário");					// 1    
+    ADMIN("Administrador"), 	// 0
+    USER("Usuário");					// 1    
     
     private String texto;
     
-    Perfil(String texto) {
+    Role(String texto) {
     	this.setTexto(texto);
     }    
     

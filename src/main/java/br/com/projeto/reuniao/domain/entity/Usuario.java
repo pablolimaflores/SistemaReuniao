@@ -7,6 +7,8 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
@@ -62,6 +64,14 @@ public class Usuario extends AbstractEntity implements UserDetails, Serializable
      * 
      */
 //    @NotNull
+	@Column(nullable = false)
+	@Enumerated(EnumType.STRING)
+    private Role role;
+    
+    /**
+     * 
+     */
+//    @NotNull
     @OneToOne(fetch = FetchType.EAGER/*, optional = false*/)
     @JoinColumn(name = "pessoa_id")
     private Pessoa pessoa;        
@@ -75,7 +85,7 @@ public class Usuario extends AbstractEntity implements UserDetails, Serializable
 	 * @param admin
 	 * @param pessoa
 	 */
-    public Usuario(Long id, String login, Boolean admin, Pessoa pessoa) {
+    public Usuario(Long id, String login, Boolean admin, Role role, Pessoa pessoa) {
 		super(id);
 		this.login = login;		
 		this.admin = admin;
@@ -89,10 +99,11 @@ public class Usuario extends AbstractEntity implements UserDetails, Serializable
 	 * @param admin
 	 * @param pessoa
 	 */
-    public Usuario(String login, String senha, Boolean admin, Pessoa pessoa) {		
+    public Usuario(String login, String senha, Boolean admin, Role role, Pessoa pessoa) {		
 		this.login = login;
 		this.senha = senha;
 		this.admin = admin;
+		this.role = role;
 		this.pessoa = pessoa;
 	}
     
@@ -104,11 +115,12 @@ public class Usuario extends AbstractEntity implements UserDetails, Serializable
 	 * @param admin
 	 * @param pessoa
 	 */
-    public Usuario(Long id, String login, String senha, Boolean admin, Pessoa pessoa) {
+    public Usuario(Long id, String login, String senha, Boolean admin, Role role, Pessoa pessoa) {
 		super(id);
 		this.login = login;
 		this.senha = senha;
 		this.admin = admin;
+		this.role = role;
 		this.pessoa = pessoa;
 	}
     
@@ -121,11 +133,12 @@ public class Usuario extends AbstractEntity implements UserDetails, Serializable
      * @param admin
      * @param pessoa
      */
-    public Usuario(Long id, Boolean ativo, String login, String senha, Boolean admin, Pessoa pessoa) {
+    public Usuario(Long id, Boolean ativo, String login, String senha, Boolean admin, Role role, Pessoa pessoa) {
 		super(id, ativo);
 		this.login = login;
 		this.senha = senha;
 		this.admin = admin;
+		this.role = role;
 		this.pessoa = pessoa;
 	}
     
@@ -133,11 +146,11 @@ public class Usuario extends AbstractEntity implements UserDetails, Serializable
      * 
      * @return
      */
-    public Perfil getPerfil() {
+    public Role getPerfil() {
     	if (this.admin) {
-    		return Perfil.ADMINISTRADOR; 
+    		return Role.ADMIN; 
     	} else {
-    		return Perfil.USUARIO;
+    		return Role.USER;
     	}
     }
 
@@ -145,8 +158,8 @@ public class Usuario extends AbstractEntity implements UserDetails, Serializable
 	public Collection<? extends GrantedAuthority> getAuthorities() {		
 		final Set<GrantedAuthority> authorities = new HashSet<>();        
 		
-        authorities.add(Perfil.ADMINISTRADOR);
-        authorities.add(Perfil.USUARIO);
+        authorities.add(Role.ADMIN);
+        authorities.add(Role.USER);
         
         return authorities;
 	}
