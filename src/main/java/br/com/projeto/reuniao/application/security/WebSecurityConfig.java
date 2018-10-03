@@ -23,25 +23,37 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	 * REALIZA AS CONFIGURAÇÕES DE ACESSO
 	 * */
 	@Override
-	protected void configure(HttpSecurity http) throws Exception {
- 
+	protected void configure(HttpSecurity http) throws Exception { 
  
 		http.authorizeRequests()
 			/*DETERMINA QUE PARA REALIZAR ESSA REQUEST PRECISA TER UMA DAS PERMISSÕES ABAIXO
 		 	* EXEMPLO DA URL: http://localhost:8095/usuarios/usuariosEdit		 	
 		 	* QUANDO USAMOS o hasRole*/
-//			.antMatchers("/usuarios/usuariosEdit").access("hasRole('ADMINISTRADOR')")
+			.antMatchers("/usuarios").access("hasRole('ADMINISTRADOR')")
 			/*DETERMINA QUE PARA REALIZAR ESSA REQUEST PRECISA TER UMA DAS PERMISSÕES ABAIXO
 			 * EXEMPLO DA URL: http://localhost:8090/usuarios/usuariosList */
-//			.antMatchers("/usuarios/usuariosList").access("hasRole('ADMINISTRADOR')")
+			.antMatchers("/usuarios/*").access("hasRole('ADMINISTRADOR')")
 			 /*DETERMINA QUE PARA ACESSAR A PÁGINA INICIAL DA APLICAÇÃO PRECISA ESTÁ AUTENTICADO*/
 			.antMatchers("/index").authenticated()
-//			.antMatchers("/index").permitAll()
+			.antMatchers("/pessoas").authenticated()
+			.antMatchers("/pessoas/*").authenticated()
+			.antMatchers("/usuarios").authenticated()
+			.antMatchers("/usuarios/*").authenticated()
+			.antMatchers("/tipos").authenticated()
+			.antMatchers("/tipos/*").authenticated()
+			.antMatchers("/tiposParticipante").authenticated()
+			.antMatchers("/tiposParticipante/*").authenticated()
+			.antMatchers("/participantes").authenticated()
+			.antMatchers("/participantes/*").authenticated()
+			.antMatchers("/pontosPauta").authenticated()
+			.antMatchers("/pontosPauta/*").authenticated()
+			.antMatchers("/reunioes").authenticated()
+			.antMatchers("/reunioes/*").authenticated()
 			.anyRequest().authenticated()			
 			.and()			
 				.formLogin()
 				 /*INFORMANDO O CAMINHO DA PÁGINA DE LOGIN, E SE O LOGIN FOR EFETUADO COM SUCESSO
-				  *O USUÁRIO DEVE SER REDIRECIONADO PARA /home(http://localhost:8090/home)*/
+				  *O USUÁRIO DEVE SER REDIRECIONADO PARA /index(http://localhost:8090/index)*/
 				.loginPage("/").defaultSuccessUrl("/index",true)
 				.permitAll() /*AQUI ESTAMOS INFORMANDO QUE TODOS TEM ACESSO A PÁGINA DE LOGIN*/
 			.and()
@@ -63,7 +75,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
  
 	}
  
- 
 	@Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
  
@@ -71,12 +82,4 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		auth.userDetailsService(usuarioRepositoryImpl).passwordEncoder(new BCryptPasswordEncoder());
  
     }
-	
-	/*
-	 * CRIPTOGRAFANDO A SENHA PARA TESTE
-	public static void main(String[] args) {
- 
-		System.out.println(new BCryptPasswordEncoder().encode("123456"));
-	}
-	*/
 }

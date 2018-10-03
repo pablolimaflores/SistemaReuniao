@@ -74,6 +74,21 @@ public class ReuniaoService {
     }
 	
 	/**
+	 * 
+	 * @param id
+	 * @return
+	 */
+	public Reuniao updateStatusReuniao( long id ) {
+		
+		Reuniao reuniaoSaved = this.reuniaoRepository.findById( id )
+				.orElseThrow(() -> new IllegalArgumentException( "Reuniao não encontrado." ));		 
+		
+		reuniaoSaved.setAtivo( !reuniaoSaved.getAtivo() );
+		
+		return this.reuniaoRepository.saveAndFlush( reuniaoSaved );
+	}
+	
+	/**
 	 * Médodo utilizado apenas para verificação de existência de registros.
 	 * @return
 	 */

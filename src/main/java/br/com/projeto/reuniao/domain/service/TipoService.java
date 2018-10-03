@@ -74,6 +74,21 @@ public class TipoService {
     }
 	
 	/**
+	 * 
+	 * @param id
+	 * @return
+	 */
+	public Tipo updateStatusTipo( long id ) {
+		
+		Tipo tipoSaved = this.tipoRepository.findById( id )
+				.orElseThrow(() -> new IllegalArgumentException( "Tipo não encontrado." ));		 
+		
+		tipoSaved.setAtivo( !tipoSaved.getAtivo() );
+		
+		return this.tipoRepository.saveAndFlush( tipoSaved );
+	}
+	
+	/**
 	 * Médodo utilizado apenas para verificação de existência de registros.
 	 * @return
 	 */

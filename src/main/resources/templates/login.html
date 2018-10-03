@@ -42,8 +42,12 @@
                         <div class="card-body">
                             <form class="form" role="form" autocomplete="off" id="formLogin" novalidate="" action="#" th:action="@{/}" method="POST">
                             
-                            	<span th:if="${param.error}">						
-								    <span style='color:red' th:text="${session.SPRING_SECURITY_LAST_EXCEPTION.message}"></span>
+                            	<span th:if="${param.error}" class="alert alert-danger">						
+								    <span th:text="${session.SPRING_SECURITY_LAST_EXCEPTION.message}"></span>
+								</span>
+								
+								<span th:if="${param.logout}" class="alert alert-succes">						
+								    <span th:text="Usuário efetuou log out do sistema."></span>
 								</span>
                             
                                 <div class="form-group">

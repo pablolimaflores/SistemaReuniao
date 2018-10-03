@@ -43,6 +43,7 @@ public class PessoaService {
 	 */
 	public Pessoa insertPessoa( Pessoa pessoa ) {
     	
+		pessoa.setAtivo(true);
 		pessoa.refreshCreatedAndUpdated();		
 		return this.pessoaRepository.save( pessoa );		
 	}
@@ -73,6 +74,21 @@ public class PessoaService {
 		
 		this.pessoaRepository.deleteById( pessoaSaved.getId() );
     }
+	
+	/**
+	 * 
+	 * @param id
+	 * @return
+	 */
+	public Pessoa updateStatusPessoa( long id ) {
+		
+		Pessoa pessoaSaved = this.pessoaRepository.findById( id )
+				.orElseThrow(() -> new IllegalArgumentException( "Pessoa não encontrado." ));		 
+		
+		pessoaSaved.setAtivo( !pessoaSaved.getAtivo() );
+		
+		return this.pessoaRepository.saveAndFlush( pessoaSaved );
+	}
 	
 	/**
 	 * Médodo utilizado apenas para verificação de existência de registros.

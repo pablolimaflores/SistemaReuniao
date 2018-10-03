@@ -51,8 +51,8 @@ public class UsuarioService implements UserDetailsService {
 	 */
 	public Usuario insertUsuario( Usuario usuario ) {
 		
+		usuario.setAtivo(true);
 		usuario.refreshCreatedAndUpdated();
-		usuario.activate();
 		/*CRIPTOGRAMA E INFORMA A SENHA*/
 		usuario.setSenha(new BCryptPasswordEncoder().encode(usuario.getSenha()));
 		
@@ -109,7 +109,6 @@ public class UsuarioService implements UserDetailsService {
 	 * @param id
 	 * @return
 	 */
-//	@PreAuthorize("hasAnyAuthority('"+ Perfil.ADMINISTRADOR_VALUE +"')")
 	public Usuario updateStatusUsuario( long id ) {
 		
 		Usuario usuarioSaved = this.usuarioRepository.findById( id )

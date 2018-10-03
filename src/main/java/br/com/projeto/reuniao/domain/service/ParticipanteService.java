@@ -74,6 +74,21 @@ public class ParticipanteService {
     }
 	
 	/**
+	 * 
+	 * @param id
+	 * @return
+	 */
+	public Participante updateStatusParticipante( long id ) {
+		
+		Participante participanteSaved = this.participanteRepository.findById( id )
+				.orElseThrow(() -> new IllegalArgumentException( "Participante não encontrado." ));		 
+		
+		participanteSaved.setAtivo( !participanteSaved.getAtivo() );
+		
+		return this.participanteRepository.saveAndFlush( participanteSaved );
+	}
+	
+	/**
 	 * Médodo utilizado apenas para verificação de existência de registros.
 	 * @return
 	 */

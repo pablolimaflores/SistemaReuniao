@@ -74,6 +74,21 @@ public class PontoPautaService {
     }
 	
 	/**
+	 * 
+	 * @param id
+	 * @return
+	 */
+	public PontoPauta updateStatusPontoPauta( long id ) {
+		
+		PontoPauta pontoPautaSaved = this.pontoPautaRepository.findById( id )
+				.orElseThrow(() -> new IllegalArgumentException( "PontoPauta não encontrado." ));		 
+		
+		pontoPautaSaved.setAtivo( !pontoPautaSaved.getAtivo() );
+		
+		return this.pontoPautaRepository.saveAndFlush( pontoPautaSaved );
+	}
+	
+	/**
 	 * Médodo utilizado apenas para verificação de existência de registros.
 	 * @return
 	 */

@@ -75,6 +75,21 @@ public class TipoParticipanteService {
     }
 	
 	/**
+	 * 
+	 * @param id
+	 * @return
+	 */
+	public TipoParticipante updateStatusTipoParticipante( long id ) {
+		
+		TipoParticipante tipoParticipanteSaved = this.tipoParticipanteRepository.findById( id )
+				.orElseThrow(() -> new IllegalArgumentException( "TipoParticipante não encontrado." ));		 
+		
+		tipoParticipanteSaved.setAtivo( !tipoParticipanteSaved.getAtivo() );
+		
+		return this.tipoParticipanteRepository.saveAndFlush( tipoParticipanteSaved );
+	}
+	
+	/**
 	 * Médodo utilizado apenas para verificação de existência de registros.
 	 * @return
 	 */
