@@ -46,8 +46,9 @@
                     <td th:text="${reuniao.titulo}">Admin</td>
                     <td th:text="${reuniao.data}">2018-09-25</td>
                     <td>
-                        <a class="btn btn-info" href="/reunioes/reunioesEdit/1" th:href="@{/reunioes/reunioesEdit/__${reuniao.id}__}"><span class="glyphicon glyphicon-pencil"></span>Editar</a>
-                        <a class="btn btn-danger" href="/reunioes/reunioesDelete/1" th:href="@{/reunioes/reunioesDelete/__${reuniao.id}__}"><span class="glyphicon glyphicon-remove"></span> Excluir</a>                        
+                        <a class="btn btn-info" href="/reunioes/reunioesEdit/1" th:href="@{/reunioes/reunioesEdit/__${reuniao.id}__}"><span class="glyphicon glyphicon-edit"></span>Editar</a>
+                        <a class="btn btn-danger" href="/reunioes/reunioesDelete/1" th:href="@{/reunioes/reunioesDelete/__${reuniao.id}__}"><span class="glyphicon glyphicon-remove"></span> Excluir</a>  
+                        <a class="btn btn-danger" href="/reunioes/reunioesDelete/1" th:href="@{/reunioes/reunioesDelete/__${reuniao.id}__}"><span class="glyphicon glyphicon-pencil"></span> Criar Pauta</a>                       
                     </td>
                 </tr>
             </tbody>
