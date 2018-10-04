@@ -44,10 +44,12 @@ public class InitApplicationService {
     	
     	if(usuarioService.countUsuarios() == 0) {    		
 			Pessoa administrador = pessoaService.insertPessoa(new Pessoa("Administrador do Sistema", "admin@email.com", "(45) 3030-3030", "(45) 99999-9999"));	        		           	       	
-			usuarioService.insertUsuario(new Usuario("admin", "1234", true, Role.ADMIN, administrador));
+			usuarioService.insertUsuario(new Usuario("admin", "1234", Role.ADMIN, administrador));
 			  
 			Pessoa usuario = pessoaService.insertPessoa(new Pessoa("Usuario padrão do sistema", "user@email.com", "(45) 3030-3030", "(45) 99999-9999"));	        		           	       	
-			usuarioService.insertUsuario(new Usuario("user", "1234", false, Role.USER, usuario));
+			usuarioService.insertUsuario(new Usuario("user", "1234", Role.USER, usuario));
+			
+			
     	}
     	
     	if (tipoService.countTipos() == 0) {

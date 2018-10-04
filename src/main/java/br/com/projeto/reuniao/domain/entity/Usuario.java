@@ -52,13 +52,7 @@ public class Usuario extends AbstractEntity implements UserDetails, Serializable
 //    @NotBlank
     @Column(nullable = false, length = 50)
     @Size(min=3, max=256)
-    private String senha;
-    
-    /**
-     * 
-     */
-    @Column
-    private Boolean admin;
+    private String senha;        
     
     /**
      * 
@@ -85,10 +79,9 @@ public class Usuario extends AbstractEntity implements UserDetails, Serializable
 	 * @param admin
 	 * @param pessoa
 	 */
-    public Usuario(Long id, String login, Boolean admin, Role role, Pessoa pessoa) {
+    public Usuario(Long id, String login, Role role, Pessoa pessoa) {
 		super(id);
-		this.login = login;		
-		this.admin = admin;
+		this.login = login;				
 		this.pessoa = pessoa;
 	}
     
@@ -99,10 +92,9 @@ public class Usuario extends AbstractEntity implements UserDetails, Serializable
 	 * @param admin
 	 * @param pessoa
 	 */
-    public Usuario(String login, String senha, Boolean admin, Role role, Pessoa pessoa) {		
+    public Usuario(String login, String senha, Role role, Pessoa pessoa) {		
 		this.login = login;
-		this.senha = senha;
-		this.admin = admin;
+		this.senha = senha;		
 		this.role = role;
 		this.pessoa = pessoa;
 	}
@@ -115,11 +107,10 @@ public class Usuario extends AbstractEntity implements UserDetails, Serializable
 	 * @param admin
 	 * @param pessoa
 	 */
-    public Usuario(Long id, String login, String senha, Boolean admin, Role role, Pessoa pessoa) {
+    public Usuario(Long id, String login, String senha, Role role, Pessoa pessoa) {
 		super(id);
 		this.login = login;
-		this.senha = senha;
-		this.admin = admin;
+		this.senha = senha;		
 		this.role = role;
 		this.pessoa = pessoa;
 	}
@@ -136,23 +127,10 @@ public class Usuario extends AbstractEntity implements UserDetails, Serializable
     public Usuario(Long id, Boolean ativo, String login, String senha, Boolean admin, Role role, Pessoa pessoa) {
 		super(id, ativo);
 		this.login = login;
-		this.senha = senha;
-		this.admin = admin;
+		this.senha = senha;		
 		this.role = role;
 		this.pessoa = pessoa;
-	}
-    
-    /**
-     * 
-     * @return
-     */
-    public Role getPerfil() {
-    	if (this.admin) {
-    		return Role.ADMIN; 
-    	} else {
-    		return Role.USER;
-    	}
-    }
+	}   
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {		

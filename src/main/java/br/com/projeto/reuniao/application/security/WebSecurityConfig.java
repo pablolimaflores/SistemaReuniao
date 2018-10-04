@@ -29,10 +29,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 			/*DETERMINA QUE PARA REALIZAR ESSA REQUEST PRECISA TER UMA DAS PERMISSÕES ABAIXO
 		 	* EXEMPLO DA URL: http://localhost:8095/usuarios/usuariosEdit		 	
 		 	* QUANDO USAMOS o hasRole*/
-			.antMatchers("/usuarios").access("hasRole('ADMINISTRADOR')")
+			.antMatchers("/usuarios").access("hasRole('ADMIN')")
 			/*DETERMINA QUE PARA REALIZAR ESSA REQUEST PRECISA TER UMA DAS PERMISSÕES ABAIXO
 			 * EXEMPLO DA URL: http://localhost:8090/usuarios/usuariosList */
-			.antMatchers("/usuarios/*").access("hasRole('ADMINISTRADOR')")
+			.antMatchers("/usuarios/*").access("hasRole('ADMIN')")
 			 /*DETERMINA QUE PARA ACESSAR A PÁGINA INICIAL DA APLICAÇÃO PRECISA ESTÁ AUTENTICADO*/
 			.antMatchers("/index").authenticated()
 			.antMatchers("/pessoas").authenticated()
