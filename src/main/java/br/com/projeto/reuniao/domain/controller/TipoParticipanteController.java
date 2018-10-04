@@ -40,17 +40,6 @@ public class TipoParticipanteController {
         }
         return "tiposParticipante/tiposParticipanteEdit";
     }
-
-//    @PostMapping(value={"/tiposParticipanteEdit","/tiposParticipanteEdit/{id}"})
-//    public String updateTipoParticipante(Model model, TipoParticipante tipoParticipante, @PathVariable(required = false, name = "id") Long id) {
-//    	if (null != id) {
-//    		this.tipoParticipanteService.updateTipoParticipante(tipoParticipante);
-//    	} else {
-//    		this.tipoParticipanteService.insertTipoParticipante(tipoParticipante);
-//    	}    	
-//        model.addAttribute("tiposParticipanteList", this.tipoParticipanteService.findAllTipoParticipantes());
-//        return "tiposParticipante/tiposParticipanteList";
-//    }
     
     @PostMapping(value={"/tiposParticipanteEdit","/tiposParticipanteEdit/{id}"})
     public String updateTipoParticipante(Model model, @Valid TipoParticipante tipoParticipante, BindingResult bindingResult, @PathVariable(required = false, name = "id") Long id) {

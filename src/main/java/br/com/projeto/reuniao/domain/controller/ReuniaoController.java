@@ -45,17 +45,6 @@ public class ReuniaoController {
         }
         return "reunioes/reunioesEdit";
     }
-
-//    @PostMapping(value={"/reunioesEdit","/reunioesEdit/{id}"})
-//    public String updateReuniao(Model model, Reuniao reuniao, @PathVariable(required = false, name = "id") Long id) {
-//    	if (null != id) {
-//    		this.reuniaoService.updateReuniao(reuniao);
-//    	} else {
-//    		this.reuniaoService.insertReuniao(reuniao);
-//    	}    	
-//        model.addAttribute("reunioesList", this.reuniaoService.findAllReunioes());
-//        return "reunioes/reunioesList";
-//    }
     
     @PostMapping(value={"/reunioesEdit","/reunioesEdit/{id}"})
     public String updateReuniao(Model model, @Valid Reuniao reuniao, BindingResult bindingResult, @PathVariable(required = false, name = "id") Long id) {

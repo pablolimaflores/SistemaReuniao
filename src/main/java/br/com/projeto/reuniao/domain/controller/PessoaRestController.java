@@ -12,23 +12,23 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.projeto.reuniao.domain.entity.Usuario;
-import br.com.projeto.reuniao.domain.service.UsuarioService;
+import br.com.projeto.reuniao.domain.entity.Pessoa;
+import br.com.projeto.reuniao.domain.service.PessoaService;
 
 @RestController
-@RequestMapping(value = "/api/usuarios")
-public class UsuarioRestController {		
+@RequestMapping(value = "/api/pessoas")
+public class PessoaRestController {		
 	
 	@Autowired
-    private UsuarioService usuarioService;
+    private PessoaService pessoaService;
 
 	/**
 	 * 
 	 * @return
 	 */
     @GetMapping
-    public List<Usuario> findAllUsuarios() {
-        return this.usuarioService.findAllUsuarios();
+    public List<Pessoa> findAllPessoas() {
+        return this.pessoaService.findAllPessoas();
     }
     
     /**
@@ -37,29 +37,29 @@ public class UsuarioRestController {
      * @return
      */
     @GetMapping("/{id}")
-    public Usuario findUsuarioById( @PathVariable long id ) {
-        return this.usuarioService.findUsuarioById( id );
+    public Pessoa findPessoaById( @PathVariable long id ) {
+        return this.pessoaService.findPessoaById( id );
     }
     
     /**
      * 
-     * @param usuario
+     * @param pessoa
      * @return
      */
     @PostMapping
-    public Usuario insertUsuario( @RequestBody Usuario usuario ) {
-    	return this.usuarioService.insertUsuario( usuario );
+    public Pessoa insertPessoa( @RequestBody Pessoa pessoa ) {
+    	return this.pessoaService.insertPessoa( pessoa );
     }
 
     /**
      * 
      * @param id
-     * @param usuario
+     * @param pessoa
      * @return
      */
     @PutMapping("/{id}")
-    public Usuario updateUsuario( @RequestBody Usuario usuario ) {
-        return this.usuarioService.updateUsuario( usuario );
+    public Pessoa updatePessoa( @RequestBody Pessoa pessoa ) {
+        return this.pessoaService.updatePessoa( pessoa );
     }
     
     /**
@@ -69,7 +69,7 @@ public class UsuarioRestController {
 	 */
 	@DeleteMapping("/{id}")
 	public void deleteLicaoAprendida( @PathVariable long id ) {
-		this.usuarioService.deleteUsuario( id );
+		this.pessoaService.deletePessoa( id );
 	}
     
 }

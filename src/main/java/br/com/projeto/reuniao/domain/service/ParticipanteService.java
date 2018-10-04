@@ -42,7 +42,9 @@ public class ParticipanteService {
 	 * @return
 	 */
 	public Participante insertParticipante( Participante participante ) {
-    	participante.refreshCreatedAndUpdated();		
+    	
+		participante.setAtivo(true);
+		participante.refreshCreatedAndUpdated();		
 		final Participante participanteSaved = this.participanteRepository.save( participante );
 		return participanteSaved;
 	}

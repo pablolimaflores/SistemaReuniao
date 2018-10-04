@@ -43,6 +43,7 @@ public class TipoService {
 	 */
 	public Tipo insertTipo( Tipo tipo ) {
 		
+		tipo.setAtivo(true);
     	tipo.refreshCreatedAndUpdated();		
 		return this.tipoRepository.save( tipo );
 	}

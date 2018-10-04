@@ -5,7 +5,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 
 import br.com.projeto.reuniao.domain.entity.Pessoa;
-import br.com.projeto.reuniao.domain.entity.Usuario;
 
 public class ContextHolder {
 	
@@ -27,14 +26,14 @@ public class ContextHolder {
      * 
      * @return
      */
-    public static Usuario getAuthenticatedUserForRevision() {
+    public static Pessoa getAuthenticatedUserForRevision() {
         final Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
-        if (authentication != null && authentication.getPrincipal() instanceof Usuario) {
-            return (Usuario) authentication.getPrincipal();
+        if (authentication != null && authentication.getPrincipal() instanceof Pessoa) {
+            return (Pessoa) authentication.getPrincipal();
         }
 
-        return new Usuario();//null user
+        return new Pessoa();//null user
     }
     
     /**

@@ -40,17 +40,6 @@ public class TipoController {
         }
         return "tipos/tiposEdit";
     }
-
-//    @PostMapping(value={"/tiposEdit","/tiposEdit/{id}"})
-//    public String updateTipo(Model model, Tipo tipo, @PathVariable(required = false, name = "id") Long id) {
-//    	if (null != id) {
-//    		this.tipoService.updateTipo(tipo);
-//    	} else {
-//    		this.tipoService.insertTipo(tipo);
-//    	}    	
-//        model.addAttribute("tiposList", this.tipoService.findAllTipos());
-//        return "tipos/tiposList";
-//    }
     
     @PostMapping(value={"/tiposEdit","/tiposEdit/{id}"})
     public String updateTipo(Model model, @Valid Tipo tipo, BindingResult bindingResult, @PathVariable(required = false, name = "id") Long id) {

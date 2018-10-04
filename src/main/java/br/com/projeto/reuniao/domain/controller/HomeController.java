@@ -25,12 +25,7 @@ public class HomeController {
     public String login() {        
         return "login";
     }
-    
-	/***
-	 * MOSTRA UM PÁGINA COM A MENSAGEM DE ACESSO NEGADO QUANDO O 
-	 * USUÁRIO NÃO TIVER PERMISSÃO DE ACESSAR UMA DETERMINADA FUNÇÃO DO SISTEMA
-	 * @return
-	 */
+    	
 	@GetMapping("/acessoNegado")
 	public String acessoNegado(){		
 		return "acessoNegado";

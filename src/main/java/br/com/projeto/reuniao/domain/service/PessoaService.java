@@ -7,6 +7,7 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
@@ -51,7 +52,11 @@ public class PessoaService implements UserDetailsService {
 	public Pessoa insertPessoa( Pessoa pessoa ) {
     	
 		pessoa.setAtivo(true);
-		pessoa.refreshCreatedAndUpdated();		
+		pessoa.refreshCreatedAndUpdated();
+		/*CRIPTOGRAMA E INFORMA A SENHA*/
+		if (pessoa.getSenha() != null && !pessoa.getSenha().isEmpty()) {
+			pessoa.setSenha(new BCryptPasswordEncoder().encode(pessoa.getSenha()));
+		}
 		return this.pessoaRepository.save( pessoa );		
 	}
 	
@@ -66,7 +71,10 @@ public class PessoaService implements UserDetailsService {
 				.orElseThrow(() -> new IllegalArgumentException( "Não foi possível atualizar o registro. "
 							+"Registro de Pessoa com id "+pessoa.getId() + " não encontrado." ) );
 		pessoa.refreshUpdated();
-		
+		/*CRIPTOGRAMA E INFORMA A SENHA*/
+		if (pessoa.getSenha() != null && !pessoa.getSenha().isEmpty()) {
+			pessoa.setSenha(new BCryptPasswordEncoder().encode(pessoa.getSenha()));
+		}
 		return this.pessoaRepository.saveAndFlush( pessoa );
 	}
 	

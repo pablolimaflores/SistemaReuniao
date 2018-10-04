@@ -90,5 +90,54 @@ public class Reuniao extends AbstractEntity {
 	 */
 	@OneToMany(cascade = CascadeType.ALL , fetch = FetchType.LAZY, mappedBy = "reuniao")
 	private List<Participante> participantes;
+
+	/**
+	 * 
+	 * @param id
+	 * @param titulo
+	 * @param data
+	 * @param local
+	 * @param horaInicio
+	 * @param horaFim
+	 * @param preRequisito
+	 * @param objetivo
+	 * @param tipo
+	 */
+	public Reuniao(Long id, String titulo, LocalDate data, String local, LocalTime horaInicio, LocalTime horaFim, 
+			String preRequisito, String objetivo, Tipo tipo) {
+		super(id);
+		this.titulo = titulo;
+		this.data = data;
+		this.local = local;
+		this.horaInicio = horaInicio;
+		this.horaFim = horaFim;
+		this.preRequisito = preRequisito;
+		this.objetivo = objetivo;
+		this.tipo = tipo;
+	}
+	
+	/**
+	 * 
+	 * @param titulo
+	 * @param data
+	 * @param local
+	 * @param horaInicio
+	 * @param horaFim
+	 * @param preRequisito
+	 * @param objetivo
+	 * @param tipo
+	 */
+	public Reuniao(String titulo, LocalDate data, String local, LocalTime horaInicio, LocalTime horaFim, 
+			String preRequisito, String objetivo, Tipo tipo) {		
+		this.titulo = titulo;
+		this.data = data;
+		this.local = local;
+		this.horaInicio = horaInicio;
+		this.horaFim = horaFim;
+		this.preRequisito = preRequisito;
+		this.objetivo = objetivo;
+		this.tipo = tipo;
+	}
+	
 	
 }

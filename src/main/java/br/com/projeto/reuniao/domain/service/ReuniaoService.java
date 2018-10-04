@@ -42,7 +42,8 @@ public class ReuniaoService {
 	 * @return
 	 */
 	public Reuniao insertReuniao( Reuniao reuniao ) {
-    	reuniao.refreshCreatedAndUpdated();		
+    	reuniao.setAtivo(true);
+		reuniao.refreshCreatedAndUpdated();		
 		return this.reuniaoRepository.save( reuniao );
 		
 	}

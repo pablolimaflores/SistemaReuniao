@@ -124,6 +124,16 @@ public class Pessoa extends AbstractEntity implements UserDetails, Serializable 
 		this.celular = celular;
 	}
 	
+	public Pessoa(String nome, String email, String telefone, String celular, Boolean usuarioAtivo, String senha, Role role) {		
+		this.nome = nome;
+		this.email = email;
+		this.telefone = telefone;
+		this.celular = celular;
+		this.usuarioAtivo = usuarioAtivo;
+		this.senha = senha;
+		this.role = role;
+	}
+	
 	public Pessoa(Long id, String nome, String email, String telefone, String celular, Boolean usuarioAtivo, String senha, Role role) {
 		super(id);
 		this.nome = nome;

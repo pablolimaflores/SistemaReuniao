@@ -48,4 +48,36 @@ public class Participante extends AbstractEntity {
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)	
 	private TipoParticipante tipoParticipante;
 
+	/**
+	 * 
+	 * @param id
+	 * @param compareceu
+	 * @param pessoa
+	 * @param reuniao
+	 * @param tipoParticipante
+	 */
+	public Participante(Long id, Boolean compareceu, @NotNull Pessoa pessoa, @NotNull Reuniao reuniao,
+			@NotNull TipoParticipante tipoParticipante) {
+		super(id);
+		this.compareceu = compareceu;
+		this.pessoa = pessoa;
+		this.reuniao = reuniao;
+		this.tipoParticipante = tipoParticipante;
+	}
+	
+	/**
+	 * 	 
+	 * @param compareceu
+	 * @param pessoa
+	 * @param reuniao
+	 * @param tipoParticipante
+	 */
+	public Participante(Boolean compareceu, @NotNull Pessoa pessoa, @NotNull Reuniao reuniao,
+			@NotNull TipoParticipante tipoParticipante) {		
+		this.compareceu = compareceu;
+		this.pessoa = pessoa;
+		this.reuniao = reuniao;
+		this.tipoParticipante = tipoParticipante;
+	}	
+
 }

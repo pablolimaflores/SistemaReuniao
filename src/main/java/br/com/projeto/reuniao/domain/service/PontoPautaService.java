@@ -43,6 +43,7 @@ public class PontoPautaService {
 	 */
 	public PontoPauta insertPontoPauta( PontoPauta pontoPauta ) {
     	
+		pontoPauta.setAtivo(true);
 		pontoPauta.refreshCreatedAndUpdated();		
 		return this.pontoPautaRepository.save( pontoPauta );
 	}

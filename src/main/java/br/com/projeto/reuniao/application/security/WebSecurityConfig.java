@@ -9,7 +9,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-import br.com.projeto.reuniao.domain.service.UsuarioService; 
+import br.com.projeto.reuniao.domain.service.PessoaService; 
  
 @Configuration
 @EnableWebSecurity
@@ -17,7 +17,7 @@ import br.com.projeto.reuniao.domain.service.UsuarioService;
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
  
 	@Autowired
-	private UsuarioService usuarioRepositoryImpl;
+	private PessoaService pessoaRepositoryImpl;
  
 	/**
 	 * REALIZA AS CONFIGURAÇÕES DE ACESSO
@@ -29,16 +29,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 			/*DETERMINA QUE PARA REALIZAR ESSA REQUEST PRECISA TER UMA DAS PERMISSÕES ABAIXO
 		 	* EXEMPLO DA URL: http://localhost:8095/usuarios/usuariosEdit		 	
 		 	* QUANDO USAMOS o hasRole*/
-			.antMatchers("/usuarios").access("hasRole('ADMIN')")
+//			.antMatchers("/pessoas").access("hasRole('ADMIN')")
 			/*DETERMINA QUE PARA REALIZAR ESSA REQUEST PRECISA TER UMA DAS PERMISSÕES ABAIXO
 			 * EXEMPLO DA URL: http://localhost:8090/usuarios/usuariosList */
-			.antMatchers("/usuarios/*").access("hasRole('ADMIN')")
+//			.antMatchers("/pessoas/*").access("hasRole('ADMIN')")
 			 /*DETERMINA QUE PARA ACESSAR A PÁGINA INICIAL DA APLICAÇÃO PRECISA ESTÁ AUTENTICADO*/
 			.antMatchers("/index").authenticated()
 			.antMatchers("/pessoas").authenticated()
 			.antMatchers("/pessoas/*").authenticated()
-			.antMatchers("/usuarios").authenticated()
-			.antMatchers("/usuarios/*").authenticated()
 			.antMatchers("/tipos").authenticated()
 			.antMatchers("/tipos/*").authenticated()
 			.antMatchers("/tiposParticipante").authenticated()
@@ -79,7 +77,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
  
         /*INFORMA A CRIPTOGRAFIA QUE DEVE SER USADA PARA A SENHA DO USUÁRIO*/				
-		auth.userDetailsService(usuarioRepositoryImpl).passwordEncoder(new BCryptPasswordEncoder());
+		auth.userDetailsService(pessoaRepositoryImpl).passwordEncoder(new BCryptPasswordEncoder());
  
     }
 }

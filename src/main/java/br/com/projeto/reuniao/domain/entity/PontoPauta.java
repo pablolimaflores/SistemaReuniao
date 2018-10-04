@@ -65,5 +65,43 @@ public class PontoPauta extends AbstractEntity {
 	@NotNull
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
 	private Tipo tipo;
+
+	/**
+	 * 
+	 * @param id
+	 * @param ordem
+	 * @param descricao
+	 * @param tempo
+	 * @param discussao
+	 * @param responsavel
+	 * @param tipo
+	 */
+	public PontoPauta(Long id, Integer ordem, String descricao, Integer tempo, String discussao, Pessoa responsavel, Tipo tipo) {
+		super(id);
+		this.ordem = ordem;
+		this.descricao = descricao;
+		this.tempo = tempo;
+		this.discussao = discussao;
+		this.responsavel = responsavel;
+		this.tipo = tipo;
+	}
 	
+	/**
+	 * 	
+	 * @param ordem
+	 * @param descricao
+	 * @param tempo
+	 * @param discussao
+	 * @param responsavel
+	 * @param tipo
+	 */
+	public PontoPauta(Integer ordem, String descricao, Integer tempo, String discussao, Pessoa responsavel, Tipo tipo) {		
+		this.ordem = ordem;
+		this.descricao = descricao;
+		this.tempo = tempo;
+		this.discussao = discussao;
+		this.responsavel = responsavel;
+		this.tipo = tipo;
+	}
+				
 }

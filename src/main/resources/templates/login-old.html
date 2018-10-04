@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    
+    <title>Sistema de Reuniao</title>
+	
+	<div th:replace="fragments/header :: header-css"/>
+	
+	<script js>
+	  $("#btnLogin").click(function(event) {
+
+	    //Fetch form to apply custom Bootstrap validation
+	    var form = $("#formLogin")
+
+	    if (form[0].checkValidity() === false) {
+	      event.preventDefault()
+	      event.stopPropagation()
+	    }
+	    
+	    form.addClass('was-validated');
+	  });
+	</script>
+		
+	<title>Login</title> 	
+</head>
+<body>
+ 
+ 
+<div class="container py-5">
+    <div class="row">
+        <div class="col-md-12">
+            <h2 class="text-center text-white mb-4">Bootstrap 4 Login Form</h2>
+            <div class="row">
+                <div class="col-md-6 mx-auto">
+
+                    <!-- form card login -->
+                    <div class="card rounded-0">
+                        <div class="card-header">
+                            <h3 class="mb-0">Login</h3>
+                        </div>
+                        <div class="card-body">
+                            <form class="form" role="form" autocomplete="off" id="formLogin" novalidate="" action="#" th:action="@{/}" method="POST">
+                            
+                            	<span th:if="${param.error}" class="alert alert-danger">						
+								    <span th:text="${session.SPRING_SECURITY_LAST_EXCEPTION.message}"></span>
+								</span>
+								
+								<span th:if="${param.logout}" class="alert alert-succes">						
+								    <span th:text="Usuário efetuou log out do sistema."></span>
+								</span>
+                            
+                                <div class="form-group">
+                                    <label for="input-usuario">Login</label>
+                                    <input type="text" class="form-control form-control-lg rounded-0" name="username" id="input-usuario" required="">
+                                    <div class="invalid-feedback">Login inválido.</div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="input-senha">Senha</label>
+                                    <input type="password" class="form-control form-control-lg rounded-0" name="password" id="input-senha" required="" autocomplete="new-password">
+                                    <div class="invalid-feedback">Senha inválida!</div>
+                                </div>
+                                <div>
+                                    <label class="custom-control custom-checkbox">
+                                      <input type="checkbox">
+                                      <span class="custom-control-indicator"></span>
+                                      <span class="custom-control-description small text-dark">  Lembre-me neste computador</span>
+                                    </label>
+                                </div>
+                                <button type="submit" class="btn btn-success btn-lg float-right" id="btnLogin">Login</button>
+                                <!-- LEIA SOBRE CSRF AQUI
+				 			  	https://docs.spring.io/spring-security/site/docs/current/reference/html/csrf.html
+				 			   	-->
+				 			  	<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+                            </form>
+                        </div>
+                        <!--/card-block-->
+                    </div>
+                    <!-- /form card login -->
+
+                </div>
+
+
+            </div>
+            <!--/row-->
+
+        </div>
+        <!--/col-->
+    </div>
+    <!--/row-->
+</div>
+<!--/container-->
+ 
+</body>
+</html>

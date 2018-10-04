@@ -43,6 +43,7 @@ public class TipoParticipanteService {
 	 */
 	public TipoParticipante insertTipoParticipante( TipoParticipante tipoParticipante ) {
     	
+		tipoParticipante.setAtivo(true);
 		tipoParticipante.refreshCreatedAndUpdated();		
 		return this.tipoParticipanteRepository.save( tipoParticipante );		
 	}
