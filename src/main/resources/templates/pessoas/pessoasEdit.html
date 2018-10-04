@@ -29,7 +29,7 @@
         <div class="form-group" th:classappend="${#fields.hasErrors('pessoa.nome')} ? 'has-error'">
             <div class="col-md-6 offset-md-3">
             <label >Nome</label>
-            <input type="text" class="form-control" id="title" th:field="${pessoa.nome}" />
+            <input type="text" class="form-control" id="title" th:field="${pessoa.nome}" placeholder="Digite o nome"/>
             </div>
             <span th:if="${#fields.hasErrors('pessoa.nome')}" th:errors="*{pessoa.nome}" id="errorNome" class="help-block"></span>
         </div>
@@ -52,13 +52,23 @@
             	<label for="celular">Celular</label>
             		<input type="text" class="form-control" id="celular" th:field="${pessoa.celular}" placeholder="(00) 0000-0000" />
             	<div class="   col-md-6 offset-md-3">
-            		<span th:if="${#fields.hasErrors('pessoa.celular')}" th:errors="*{pessoa.celular}" id="errorCelular" class="help-block"></span>
-        				<br>
-	        			<button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-ok"></span>Cadastrar</button>
-	        			<a href="#" th:href="@{/pessoas}" class="btn btn-danger" role="button"><span class="glyphicon glyphicon-remove"></span> Cancelar</a>
-	    			</div>
-        		</div>
+            	<span th:if="${#fields.hasErrors('pessoa.celular')}" th:errors="*{pessoa.celular}" id="errorCelular" class="help-block"></span>
+        				
+	    		</div>
         	</div>
+        </div>
+        <div class="form-group" th:classappend="${#fields.hasErrors('pessoa.senha')} ? 'has-error'">
+            <div class="col-md-6 offset-md-3">
+            	<label for="celular">Senha</label>
+            		<input type="text" class="form-control" id="senha" th:field="${pessoa.senha}" placeholder="Digite a senha" />
+            	<div class="   col-md-6 offset-md-3">
+            	<span th:if="${#fields.hasErrors('pessoa.senha')}" th:errors="*{pessoa.senha}" id="errorSenha" class="help-block"></span>
+        		<br>
+	        		<button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-ok"></span>Cadastrar</button>
+	        		<a href="#" th:href="@{/pessoas}" class="btn btn-danger" role="button"><span class="glyphicon glyphicon-remove"></span> Cancelar</a>
+	    		</div>
+        	</div>
+        </div>
     </form>	
 </div>
 
