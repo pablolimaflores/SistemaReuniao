@@ -10,9 +10,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.Assert;
 
-import br.com.projeto.reuniao.application.security.ContextHolder;
 import br.com.projeto.reuniao.application.security.UsuarioSecurity;
 import br.com.projeto.reuniao.domain.entity.Usuario;
 import br.com.projeto.reuniao.domain.repository.IUsuarioRepository;
@@ -114,9 +112,9 @@ public class UsuarioService implements UserDetailsService {
 		Usuario usuarioSaved = this.usuarioRepository.findById( id )
 				.orElseThrow(() -> new IllegalArgumentException( "Usuario não encontrado." ));
 		
-		Usuario authenticatedUser = ContextHolder.getAuthenticatedUser();
+//		Usuario authenticatedUser = ContextHolder.getAuthenticatedUser();
 		
-		Assert.isTrue( !authenticatedUser.getId().equals( usuarioSaved.getId() ), "Acesso negado ao tentar realizar esta operação.");    	
+//		Assert.isTrue( !authenticatedUser.getId().equals( usuarioSaved.getId() ), "Acesso negado ao tentar realizar esta operação.");    	
 		
 		usuarioSaved.setAtivo( !usuarioSaved.getAtivo() );
 		

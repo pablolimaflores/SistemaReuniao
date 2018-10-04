@@ -3,14 +3,21 @@ package br.com.projeto.reuniao.domain.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.authentication.DisabledException;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.Assert;
 
+import br.com.projeto.reuniao.application.security.ContextHolder;
+import br.com.projeto.reuniao.application.security.UsuarioSecurity;
 import br.com.projeto.reuniao.domain.entity.Pessoa;
 import br.com.projeto.reuniao.domain.repository.IPessoaRepository;
 
 @Service
-public class PessoaService {
+public class PessoaService implements UserDetailsService {
 	
 	@Autowired
 	private IPessoaRepository pessoaRepository;
@@ -85,9 +92,34 @@ public class PessoaService {
 		Pessoa pessoaSaved = this.pessoaRepository.findById( id )
 				.orElseThrow(() -> new IllegalArgumentException( "Pessoa não encontrado." ));		 
 		
+		Pessoa authenticatedUser = ContextHolder.getAuthenticatedUser();
+		
+		Assert.isTrue( !authenticatedUser.getId().equals( pessoaSaved.getId() ), "Acesso negado ao tentar realizar esta operação.");  
+		
 		pessoaSaved.setAtivo( !pessoaSaved.getAtivo() );
 		
 		return this.pessoaRepository.saveAndFlush( pessoaSaved );
+	}
+	
+	/***
+	 * CONSULTA UM USUÁRIO POR LOGIN
+	 */
+	@Override
+	public UserDetails loadUserByUsername(String email) throws BadCredentialsException,DisabledException {
+ 
+		Pessoa usuario = pessoaRepository.findByEmail(email);
+ 
+		if(usuario == null)
+			throw new BadCredentialsException("Usuário não encontrado no sistema!");
+ 
+		if(!usuario.isEnabled())
+			throw new DisabledException("Usuário não está ativo no sistema!");
+ 
+		return new UsuarioSecurity(
+				usuario.getEmail(), 
+				usuario.getSenha(), 
+				usuario.getAtivo(), 
+				usuario.getAuthorities());
 	}
 	
 	/**

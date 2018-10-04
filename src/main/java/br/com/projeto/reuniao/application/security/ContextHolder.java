@@ -4,6 +4,7 @@ import org.springframework.security.authentication.AuthenticationCredentialsNotF
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 
+import br.com.projeto.reuniao.domain.entity.Pessoa;
 import br.com.projeto.reuniao.domain.entity.Usuario;
 
 public class ContextHolder {
@@ -12,11 +13,11 @@ public class ContextHolder {
      * 
      * @return
      */
-    public static Usuario getAuthenticatedUser() {
+    public static Pessoa getAuthenticatedUser() {
         final Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
-        if (authentication != null && authentication.getPrincipal() instanceof Usuario) {
-            return (Usuario) authentication.getPrincipal();
+        if (authentication != null && authentication.getPrincipal() instanceof Pessoa) {
+            return (Pessoa) authentication.getPrincipal();
         }
 
         throw new AuthenticationCredentialsNotFoundException("O usuário não está autenticado");

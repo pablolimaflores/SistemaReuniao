@@ -1,10 +1,23 @@
 package br.com.projeto.reuniao.domain.entity;
 
+import java.io.Serializable;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -14,7 +27,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
-public class Pessoa extends AbstractEntity{
+public class Pessoa extends AbstractEntity implements UserDetails, Serializable {
 	
 	/**
 	 * 
@@ -50,6 +63,26 @@ public class Pessoa extends AbstractEntity{
     @Column(length = 50)
     @Size(max=50)
     private String celular;
+        
+    @Column()
+	private Boolean usuarioAtivo;
+    
+    /**
+     * 
+     */
+    @JsonProperty(access = Access.WRITE_ONLY)
+//    @NotBlank
+    @Column(nullable = false, length = 50)
+    @Size(min=3, max=256)
+    private String senha;        
+    
+    /**
+     * 
+     */
+//    @NotNull
+	@Column(nullable = false)
+	@Enumerated(EnumType.STRING)
+    private Role role;    
 
     /**
      *  
@@ -89,6 +122,57 @@ public class Pessoa extends AbstractEntity{
 		this.email = email;
 		this.telefone = telefone;
 		this.celular = celular;
+	}
+	
+	public Pessoa(Long id, String nome, String email, String telefone, String celular, Boolean usuarioAtivo, String senha, Role role) {
+		super(id);
+		this.nome = nome;
+		this.email = email;
+		this.telefone = telefone;
+		this.celular = celular;
+		this.usuarioAtivo = usuarioAtivo;
+		this.senha = senha;
+		this.role = role;
+	}
+	
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {		
+		final Set<GrantedAuthority> authorities = new HashSet<>();        
+		
+        authorities.add(Role.ADMIN);
+        authorities.add(Role.USER);
+        
+        return authorities;
+	}
+
+	@Override
+	public String getPassword() {
+		return this.senha;
+	}
+
+	@Override
+	public String getUsername() {		
+		return this.email;
+	}
+
+	@Override
+	public boolean isAccountNonExpired() {
+		return true;
+	}
+
+	@Override
+	public boolean isAccountNonLocked() {
+		return true;
+	}
+
+	@Override
+	public boolean isCredentialsNonExpired() { 
+		return true;
+	}
+
+	@Override
+	public boolean isEnabled() {
+		return this.getAtivo();
 	}
     
 }

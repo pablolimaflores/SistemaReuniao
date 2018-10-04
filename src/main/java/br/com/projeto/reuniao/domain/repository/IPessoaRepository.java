@@ -8,4 +8,6 @@ import br.com.projeto.reuniao.domain.entity.Pessoa;
 @Repository
 public interface IPessoaRepository extends JpaRepository<Pessoa, Long>{
 
+	Pessoa findByEmail(String email);
+	
 }

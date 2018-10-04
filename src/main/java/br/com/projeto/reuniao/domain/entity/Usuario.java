@@ -48,9 +48,8 @@ public class Usuario extends AbstractEntity implements UserDetails, Serializable
 	/**
      * 
      */
-    @JsonProperty(access = Access.WRITE_ONLY)
-//    @NotBlank
-    @Column(nullable = false, length = 50)
+    @JsonProperty(access = Access.WRITE_ONLY)   
+    @Column(length = 256)
     @Size(min=3, max=256)
     private String senha;        
     
