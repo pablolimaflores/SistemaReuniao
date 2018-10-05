@@ -26,39 +26,32 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception { 
  
 		http.authorizeRequests()
-			.antMatchers("/", "/home", "/about").permitAll()
-			/*DETERMINA QUE PARA REALIZAR ESSA REQUEST PRECISA TER UMA DAS PERMISSÕES ABAIXO
-		 	* EXEMPLO DA URL: http://localhost:8095/usuarios/usuariosEdit		 	
-		 	* QUANDO USAMOS o hasRole*/
-//			.antMatchers("/pessoas").access("hasRole('ADMIN')")
-			.antMatchers("/pessoas/**").hasAnyRole("ADMIN")
-			/*DETERMINA QUE PARA REALIZAR ESSA REQUEST PRECISA TER UMA DAS PERMISSÕES ABAIXO
-			 * EXEMPLO DA URL: http://localhost:8090/usuarios/usuariosList */
-//			.antMatchers("/pessoas/*").access("hasRole('ADMIN')")
-			 /*DETERMINA QUE PARA ACESSAR A PÁGINA INICIAL DA APLICAÇÃO PRECISA ESTÁ AUTENTICADO*/
+			.antMatchers("/", "/home", "/about").permitAll()			
+			
+//			.antMatchers("/pessoas/**").access("hasRole('ADMIN')")
+//			.antMatchers("/tipos/**").access("hasRole('USER')")
+//			.antMatchers("/pessoas/**").hasAnyRole("ADMIN")
+//			.antMatchers("/tipos/**").hasAnyRole("USER")					
+			
 			.antMatchers("/index").authenticated()
-			.antMatchers("/pessoas").authenticated()
-			.antMatchers("/pessoas/*").authenticated()
-			.antMatchers("/tipos").authenticated()
-			.antMatchers("/tipos/*").authenticated()
-			.antMatchers("/tiposParticipante").authenticated()
-			.antMatchers("/tiposParticipante/*").authenticated()
-			.antMatchers("/participantes").authenticated()
-			.antMatchers("/participantes/*").authenticated()
-			.antMatchers("/pontosPauta").authenticated()
-			.antMatchers("/pontosPauta/*").authenticated()
-			.antMatchers("/reunioes").authenticated()
-			.antMatchers("/reunioes/*").authenticated()
+//			.antMatchers("/pessoas").authenticated()
+			.antMatchers("/pessoas/**").authenticated()
+//			.antMatchers("/tipos").authenticated()
+			.antMatchers("/tipos/**").authenticated()
+//			.antMatchers("/tiposParticipante").authenticated()
+			.antMatchers("/tiposParticipante/**").authenticated()
+//			.antMatchers("/participantes").authenticated()
+			.antMatchers("/participantes/**").authenticated()
+//			.antMatchers("/pontosPauta").authenticated()
+			.antMatchers("/pontosPauta/**").authenticated()
+//			.antMatchers("/reunioes").authenticated()
+			.antMatchers("/reunioes/**").authenticated()
 			.anyRequest().authenticated()			
 			.and()			
-				.formLogin()
-				 /*INFORMANDO O CAMINHO DA PÁGINA DE LOGIN, E SE O LOGIN FOR EFETUADO COM SUCESSO
-				  *O USUÁRIO DEVE SER REDIRECIONADO PARA /index(http://localhost:8090/index)*/
+				.formLogin()				 
 				.loginPage("/").defaultSuccessUrl("/index",true)
-				.permitAll() /*AQUI ESTAMOS INFORMANDO QUE TODOS TEM ACESSO A PÁGINA DE LOGIN*/
-			.and()
-			     /*AQUI ESTAMOS INFORMANDO QUE QUANDO FOR REDIRECIONADO PARA  O LINK http://localhost:8090/logout
-			      *O USUÁRIO DEVE TER SUA SESSÃO FINALIZADA E REDIRECIONADO PARA A PÁGINA DE LOGIN */
+				.permitAll()
+			.and()			     
 				.logout()
 				.logoutSuccessUrl("/")
 				.logoutUrl("/logout") 

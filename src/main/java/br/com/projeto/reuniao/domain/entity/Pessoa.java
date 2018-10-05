@@ -14,6 +14,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -147,8 +148,11 @@ public class Pessoa extends AbstractEntity implements UserDetails, Serializable 
 	public Collection<? extends GrantedAuthority> getAuthorities() {		
 		final Set<GrantedAuthority> authorities = new HashSet<>();        
 		
-        authorities.add(Role.ADMIN);
-        authorities.add(Role.USER);
+//        authorities.add(new SimpleGrantedAuthority(Role.ADMIN.name()));
+//        authorities.add(new SimpleGrantedAuthority(Role.USER.name()));
+        
+        authorities.add(new SimpleGrantedAuthority("ADMIN"));
+        authorities.add(new SimpleGrantedAuthority("USER"));
         
         return authorities;
 	}
