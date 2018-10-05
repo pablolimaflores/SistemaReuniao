@@ -26,10 +26,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception { 
  
 		http.authorizeRequests()
+			.antMatchers("/", "/home", "/about").permitAll()
 			/*DETERMINA QUE PARA REALIZAR ESSA REQUEST PRECISA TER UMA DAS PERMISSÕES ABAIXO
 		 	* EXEMPLO DA URL: http://localhost:8095/usuarios/usuariosEdit		 	
 		 	* QUANDO USAMOS o hasRole*/
 //			.antMatchers("/pessoas").access("hasRole('ADMIN')")
+			.antMatchers("/pessoas/**").hasAnyRole("ADMIN")
 			/*DETERMINA QUE PARA REALIZAR ESSA REQUEST PRECISA TER UMA DAS PERMISSÕES ABAIXO
 			 * EXEMPLO DA URL: http://localhost:8090/usuarios/usuariosList */
 //			.antMatchers("/pessoas/*").access("hasRole('ADMIN')")
