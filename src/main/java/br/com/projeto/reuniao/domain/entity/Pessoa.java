@@ -71,16 +71,14 @@ public class Pessoa extends AbstractEntity implements UserDetails, Serializable 
      * 
      */
     @JsonProperty(access = Access.WRITE_ONLY)
-//    @NotBlank
-    @Column(nullable = false, length = 50)
+    @Column(length = 256)
     @Size(min=3, max=256)
     private String senha;        
     
     /**
      * 
      */
-//    @NotNull
-	@Column(nullable = false)
+	@Column(nullable = false, length = 20)
 	@Enumerated(EnumType.STRING)
     private Role role;    
 

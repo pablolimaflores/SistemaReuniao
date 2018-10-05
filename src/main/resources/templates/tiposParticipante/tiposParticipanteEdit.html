@@ -20,14 +20,14 @@
         <input th:type="hidden" name="id" th:field="${tipoParticipante.id}" />
         <div class="form-group">
         	<div class="col-md-6 offset-md-3">
-	            <label for="title">Nome</label>
-	            <input type="text" class="form-control" id="title" th:field="${tipoParticipante.nome}" />
+	            <label for="nome">Nome</label>
+	            <input type="text" class="form-control" id="nome" name="nome" th:field="${tipoParticipante.nome}" />
         	</div>
         </div>
         <div class="form-group">
         	<div class="col-md-6 offset-md-3">
-	            <label for="title">Descricao</label>
-	            <input type="text" class="form-control" id="title" th:field="${tipoParticipante.descricao}" />
+        		<label for="descricao">Descricao</label>
+	            <textarea class="form-control" id="descricao" name="descricao" th:field="${tipoParticipante.descricao}"></textarea>        	
 	            <br>
 	            <div align="center">
 		            <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-ok" ></span>Salvar</button>
