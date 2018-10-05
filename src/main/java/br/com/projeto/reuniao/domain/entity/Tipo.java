@@ -24,7 +24,7 @@ public class Tipo extends AbstractEntity {
 	 * 
 	 */
 	@NotBlank(message ="O campo Nome é de preenchimento obrigatório.")
-	@Column(nullable = false, length = 50)
+	@Column(nullable = false, length = 50, unique = true)
 	@Size(min=3, max=50)
 	private String nome;
 	

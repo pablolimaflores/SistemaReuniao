@@ -34,17 +34,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 //			.antMatchers("/tipos/**").hasAnyRole("USER")					
 			
 			.antMatchers("/index").authenticated()
-//			.antMatchers("/pessoas").authenticated()
 			.antMatchers("/pessoas/**").authenticated()
-//			.antMatchers("/tipos").authenticated()
-			.antMatchers("/tipos/**").authenticated()
-//			.antMatchers("/tiposParticipante").authenticated()
+			.antMatchers("/tipos/**").authenticated()			
 			.antMatchers("/tiposParticipante/**").authenticated()
-//			.antMatchers("/participantes").authenticated()
-			.antMatchers("/participantes/**").authenticated()
-//			.antMatchers("/pontosPauta").authenticated()
-			.antMatchers("/pontosPauta/**").authenticated()
-//			.antMatchers("/reunioes").authenticated()
+			.antMatchers("/participantes/**").authenticated()			
+			.antMatchers("/pontosPauta/**").authenticated()			
 			.antMatchers("/reunioes/**").authenticated()
 			.anyRequest().authenticated()			
 			.and()			
@@ -58,12 +52,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.permitAll();
  
  
-		/*PÁGINA COM A MENSAGEM DE ACESSO NEGADO
-		 *QUANDO O USUÁRIO NÃO TER UMA DETERMINADA PERMISSÃO DE ACESSO AO SISTEMA ELE VAI SER REDIRECIONADO
-		 *PARA A URL ABAIXO */
+		/*QUANDO O USUÁRIO NÃO TER UMA DETERMINADA PERMISSÃO DE ACESSO AO SISTEMA ELE VAI SER REDIRECIONADO*/
 		http.exceptionHandling().accessDeniedPage("/acessoNegado");
  
-		/*AQUI ESTOU INFORMANDO QUE QUALQUER REQUEST TEM ACESSO AO DIRETÓRIO src/main/resources */
+		/*QUALQUER REQUEST TEM ACESSO AO DIRETÓRIO src/main/resources */
 		http.authorizeRequests().antMatchers("/resources/**").permitAll().anyRequest().permitAll();
  
 	}

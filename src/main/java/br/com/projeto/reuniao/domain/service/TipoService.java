@@ -38,6 +38,18 @@ public class TipoService {
 	
 	/**
 	 * 
+	 * @return
+	 */
+	@Transactional(readOnly = true)
+	public Tipo findTipoByNome( String nome ) {
+		
+		final Tipo tipoSaved = this.tipoRepository.findByNome( nome )
+				.orElseThrow(() -> new IllegalArgumentException( "Registro de Tipo com nome "+ nome + " não encontrado." ) );
+		return tipoSaved;
+    }
+	
+	/**
+	 * 
 	 * @param tipo
 	 * @return
 	 */
