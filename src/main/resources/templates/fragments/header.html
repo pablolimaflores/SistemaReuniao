@@ -60,11 +60,11 @@
 		    </ul>
 		    <ul>
 		    <!-- FORM QUE VAI SER USADO PARA REALIZAR O LOGOUT -->
-			<form th:action="@{/logout}" id="form_logou"	th:method="post">
+			<form th:action="@{/logout}" id="form_logou" th:method="post">
 				<li class="nav navbar-nav navbar-right">
 			       <div align="center"><a class="nav-link" href="#" onclick="document.getElementById('form_logou').submit();"><span class="glyphicon glyphicon-log-out"><br>Logout</a></div> 
 			    </li>
-				<input type="hidden"	th:name="${_csrf.parameterName}"	th:value="${_csrf.token}"/>
+				<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
 			</form>
 		    </ul>
 		  </div>

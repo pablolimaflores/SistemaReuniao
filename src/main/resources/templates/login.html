@@ -31,7 +31,8 @@
 			<div class="col-md-4 login-sec">
 				<div class="sgr">Sistema de Gerenciamento de Reuniões</div>
 		    	<img src="/imagens/logo4.png">
-		    		<form role="form" autocomplete="off" id="formLogin" novalidate="" action="#" th:action="@{/}" method="POST">
+		    		<!-- <form role="form" autocomplete="off" id="formLogin" novalidate="" action="#" th:action="@{/}" method="POST">  -->
+		    		<form role="form" id="formLogin" novalidate="" action="#" th:action="@{/}" method="POST">
   
 			  			  <span th:if="${param.error}" class="alert alert-danger">						
 							<span th:text="${session.SPRING_SECURITY_LAST_EXCEPTION.message}"></span>
@@ -53,7 +54,7 @@
 						  </div>
 						  <div align="center">
 			                  <label class="custom-control custom-checkbox">
-			                  <input type="checkbox">
+			                  <input type="checkbox" checked="checked">
 			                  <span class="custom-control-indicator"></span>
 			                  <span class="custom-control-description small text-dark">  Lembre-me neste computador</span>
 			                </label>

@@ -148,11 +148,8 @@ public class Pessoa extends AbstractEntity implements UserDetails, Serializable 
 	public Collection<? extends GrantedAuthority> getAuthorities() {		
 		final Set<GrantedAuthority> authorities = new HashSet<>();        
 		
-//        authorities.add(new SimpleGrantedAuthority(Role.ADMIN.name()));
-//        authorities.add(new SimpleGrantedAuthority(Role.USER.name()));
-        
-        authorities.add(new SimpleGrantedAuthority("ADMIN"));
-        authorities.add(new SimpleGrantedAuthority("USER"));
+        authorities.add(new SimpleGrantedAuthority(Role.ROLE_ADMIN.name()));
+        authorities.add(new SimpleGrantedAuthority(Role.ROLE_USER.name()));
         
         return authorities;
 	}

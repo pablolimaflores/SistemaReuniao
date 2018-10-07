@@ -40,4 +40,9 @@ public class HomeController {
 		return "acessoNegado";
 	}
 	
+	@GetMapping("/403")
+    public String Error403(){
+        return "403";
+    }
+	
 }

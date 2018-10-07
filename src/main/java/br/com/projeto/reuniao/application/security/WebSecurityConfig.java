@@ -17,7 +17,7 @@ import br.com.projeto.reuniao.domain.service.PessoaService;
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
  
 	@Autowired
-	private PessoaService pessoaRepositoryImpl;
+	private PessoaService pessoaService;
  
 	/**
 	 * REALIZA AS CONFIGURAÇÕES DE ACESSO
@@ -28,13 +28,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		http.authorizeRequests()
 			.antMatchers("/", "/home", "/about").permitAll()			
 			
+			.antMatchers("/pessoas/**").hasAuthority("ROLE_ADMIN")
+//			.antMatchers("/pessoas/**").access("hasAnyAuthority('ROLE_ADMIN')")
+//			.antMatchers("/pessoas/**").hasAnyRole("ADMIN")
 //			.antMatchers("/pessoas/**").access("hasRole('ADMIN')")
 //			.antMatchers("/tipos/**").access("hasRole('USER')")
 //			.antMatchers("/pessoas/**").hasAnyRole("ADMIN")
 //			.antMatchers("/tipos/**").hasAnyRole("USER")					
 			
 			.antMatchers("/index").authenticated()
-			.antMatchers("/pessoas/**").authenticated()
+//			.antMatchers("/pessoas/**").authenticated()
 			.antMatchers("/tipos/**").authenticated()			
 			.antMatchers("/tiposParticipante/**").authenticated()
 			.antMatchers("/participantes/**").authenticated()			
@@ -64,7 +67,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
  
         /*INFORMA A CRIPTOGRAFIA QUE DEVE SER USADA PARA A SENHA DO USUÁRIO*/				
-		auth.userDetailsService(pessoaRepositoryImpl).passwordEncoder(new BCryptPasswordEncoder());
+		auth.userDetailsService(pessoaService).passwordEncoder(new BCryptPasswordEncoder());
  
     }
 }

@@ -13,7 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 import br.com.projeto.reuniao.application.security.ContextHolder;
-import br.com.projeto.reuniao.application.security.UsuarioSecurity;
+import br.com.projeto.reuniao.application.security.PessoaUsuarioSecurity;
 import br.com.projeto.reuniao.domain.entity.Pessoa;
 import br.com.projeto.reuniao.domain.repository.IPessoaRepository;
 
@@ -123,7 +123,7 @@ public class PessoaService implements UserDetailsService {
 		if(!usuario.isEnabled())
 			throw new DisabledException("Usuário não está ativo no sistema!");
  
-		return new UsuarioSecurity(
+		return new PessoaUsuarioSecurity(
 				usuario.getEmail(), 
 				usuario.getSenha(), 
 				usuario.getAtivo(), 

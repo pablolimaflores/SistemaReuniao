@@ -5,11 +5,11 @@ import java.util.Collection;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 
-public class UsuarioSecurity extends User {
+public class PessoaUsuarioSecurity extends User {
 
 	private static final long serialVersionUID = 1L;
 	 
-	public UsuarioSecurity(String login, String senha, Boolean ativo, Collection<? extends GrantedAuthority> authorities) {		
+	public PessoaUsuarioSecurity(String login, String senha, Boolean ativo, Collection<? extends GrantedAuthority> authorities) {		
 		super(login, senha, ativo,	true, true,true, authorities);
 	}
 	

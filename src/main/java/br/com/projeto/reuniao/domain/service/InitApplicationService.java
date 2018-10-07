@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 
 import br.com.projeto.reuniao.domain.entity.Participante;
 import br.com.projeto.reuniao.domain.entity.Pessoa;
-import br.com.projeto.reuniao.domain.entity.PontoPauta;
 import br.com.projeto.reuniao.domain.entity.Reuniao;
 import br.com.projeto.reuniao.domain.entity.Role;
 import br.com.projeto.reuniao.domain.entity.Tipo;
@@ -53,10 +52,10 @@ public class InitApplicationService {
     public void initializeTestData() {
     	LOGGER.info("Initialize test data");
     	
-    	Pessoa admin = new Pessoa("Administrador do Sistema", "admin@admin.com", "(45) 3030-3030", "(45) 99999-9999", true, "admin", Role.ADMIN);
-    	Pessoa user = new Pessoa("Usuario padrão do sistema", "user@user.com", "(45) 2020-2020", "(45) 98888-8888", true, "user", Role.USER);
-    	Pessoa joao = new Pessoa("João da Silva", "joao@joao.com", "(51) 3210-3210", "(51) 98765-4321", true, "user", Role.USER);
-    	Pessoa maria = new Pessoa("Maria dos Santos", "maria@maria.com", "(11) 2345-5432", "(45) 91234-5678", true, "user", Role.USER);
+    	Pessoa admin = new Pessoa("Administrador do Sistema", "admin@admin.com", "(45) 3030-3030", "(45) 99999-9999", true, "admin", Role.ROLE_ADMIN);
+    	Pessoa user = new Pessoa("Usuario padrão do sistema", "user@user.com", "(45) 2020-2020", "(45) 98888-8888", true, "user", Role.ROLE_USER);
+    	Pessoa joao = new Pessoa("João da Silva", "joao@joao.com", "(51) 3210-3210", "(51) 98765-4321", true, "user", Role.ROLE_USER);
+    	Pessoa maria = new Pessoa("Maria dos Santos", "maria@maria.com", "(11) 2345-5432", "(45) 91234-5678", true, "user", Role.ROLE_USER);
     	
     	if(pessoaService.countPessoas() == 0) {    		
 			pessoaService.insertPessoa(admin);						  
@@ -107,13 +106,13 @@ public class InitApplicationService {
     		participanteService.insertParticipante(participanteUser);
     	}
     	
-    	PontoPauta pontoPauta1 = new PontoPauta(1, "Pauta 01", 30, "", joao, informativo);
-    	PontoPauta pontoPauta2 = new PontoPauta(2, "Pauta 02", 60, "", joao, informativo);
-    	
-    	if (pontoPautaService.countPontoPauta() == 0) {
+//    	PontoPauta pontoPauta1 = new PontoPauta(1, "Pauta 01", 30, "", joao, informativo);
+//    	PontoPauta pontoPauta2 = new PontoPauta(2, "Pauta 02", 60, "", joao, informativo);
+//    	
+//    	if (pontoPautaService.countPontoPauta() == 0) {
 //    		pontoPautaService.insertPontoPauta(pontoPauta1);
 //    		pontoPautaService.insertPontoPauta(pontoPauta2);
-    	}
+//    	}
     	    	
     	LOGGER.info("Initialization completed");
     }
