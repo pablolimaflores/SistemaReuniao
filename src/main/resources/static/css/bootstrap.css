@@ -41,8 +41,9 @@
   box-sizing: border-box;
 }
 
+/*Inicio Navbar css*/
 .navbar {
-  background-color: #5cd05a;
+  background-color: #0af5b3;
 }
 .navbar .navbar-brand {
   color: #040404;
@@ -167,6 +168,7 @@
   color: #060606;
   background-color: #ffffff;
 }
+/*Fim navbar css*/
 
 html {
   font-family: sans-serif;
