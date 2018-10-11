@@ -1,5 +1,7 @@
 package br.com.projeto.reuniao.domain.service;
 
+import static org.mockito.Mockito.RETURNS_DEEP_STUBS;
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -95,5 +97,17 @@ public class ReuniaoService {
 	 */
 	public long countReunioes() {
 		return this.reuniaoRepository.count();
+	}
+	
+	/**
+	 * Método para listar as informações da reuniao
+	 * @return
+	 */
+	public List<Reuniao> findAllReuniaoExecutedByData(){
+		return this.reuniaoRepository.findAllExecutedByData();
+	}
+	
+	public List<Reuniao> findAllReuniaoScheduledByData(){
+		return this.reuniaoRepository.findAllScheduledByData();
 	}
 }

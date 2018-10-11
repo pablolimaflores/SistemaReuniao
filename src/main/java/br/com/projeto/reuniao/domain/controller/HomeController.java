@@ -18,13 +18,6 @@ public class HomeController {
         return "login";
     }
     
-	@GetMapping("/index")
-	//Gambiarra temporaria
-    public String index(Model model) {      
-		model.addAttribute("reunioesList", this.reuniaoService.findAllReunioes());
-        return "index";
-    }
-    
     @GetMapping("/home")
     public String home() {        
         return "home";

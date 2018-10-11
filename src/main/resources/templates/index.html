@@ -20,19 +20,19 @@
             <div class="col-md-6" style="padding=0.5em;">
                 <div class="card">
                     <div class="card-body">
-                        <h2 class="card-title" align="center">Reuniões Atuais</h2>
+                        <h2 class="card-title" align="center">Reuniões Finalizadas</h2>
                         <table class="table table-bordred table-striped">
 				            <thead>
 				                <tr>
-				                    <th>Titulo</th>
 				                    <th>Data</th>
+				                    <th>Titulo</th>
 				                    <th>Ações</th>
 				                </tr>
 				            </thead>
 				            <tbody>
-				                <tr th:each="reuniao : ${reunioesList}">
-				                    <td th:text="${reuniao.titulo}">Admin</td>
+				                <tr th:each="reuniao : ${reuniaoFinalizada}">
 				                    <td th:text="${reuniao.data}">2018-09-25</td>
+				                    <td th:text="${reuniao.titulo}">Admin</td>
 				                    <td>
 				                    	<a class="btn btn-info" href="/reunioes/reunioesEdit/1" th:href="@{/reunioes/reunioesEdit/__${reuniao.id}__}"><span class="glyphicon glyphicon-info-sign"></span>   Detalhes</a>
 				                    </td>
@@ -45,19 +45,19 @@
             <div class="col-md-6">
                 <div class="card"> 
                     <div class="card-body">
-                        <h2 class="card-title" align="center">Reuniões finalizadas</h2>
+                        <h2 class="card-title" align="center">Reuniões Atuais</h2>
                         <table class="table table-bordred table-striped">
 				            <thead>
 				                <tr>
+				                	<th>Data</th>
 				                    <th>Titulo</th>
-				                    <th>Data</th>
 				                    <th>Ações</th>
 				                </tr>
 				            </thead>
 				            <tbody>
-				                <tr th:each="reuniao : ${reunioesList}">
-				                    <td th:text="${reuniao.titulo}">Admin</td>
+				                <tr th:each="reuniao : ${reuniaoAgendada}">
 				                    <td th:text="${reuniao.data}">2018-09-25</td>
+				                     <td th:text="${reuniao.titulo}">Admin</td>
 				                    <td>
 				                    	<a class="btn btn-info" href="/reunioes/reunioesEdit/1" th:href="@{/reunioes/reunioesEdit/__${reuniao.id}__}"><span class="glyphicon glyphicon-info-sign"></span>   Detalhes</a>
 				                    </td>

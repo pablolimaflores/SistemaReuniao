@@ -139,5 +139,16 @@ public class Reuniao extends AbstractEntity {
 		this.tipo = tipo;
 	}
 	
+	/**
+	 * 
+	 * @param id
+	 * @param titulo
+	 * @param data
+	 */
+	public Reuniao(Long id, String titulo, LocalDate data) {
+		this.id = id;
+		this.titulo = titulo;
+		this.data = data;
+	}
 	
 }
