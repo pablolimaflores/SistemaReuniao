@@ -88,10 +88,34 @@ public class InitApplicationService {
 	        tipoParticipanteService.insertTipoParticipante(integrante);
     	}
     	
-    	Reuniao reuniao = new Reuniao("Apresentação do sistema SGR", LocalDate.of(2018, 10, 31), "Instituto Federal do Paraná - Câmpus Foz do Iguaçu", LocalTime.of(10, 30), LocalTime.of(12, 00), "", "apresentar o sistema", informativo);
+    	Reuniao reuniao = new Reuniao("Apresentação do sistema SGR", LocalDate.of(2018, 10, 2), "Instituto Federal do Paraná - Câmpus Foz do Iguaçu", LocalTime.of(10, 30), LocalTime.of(12, 00), "", "apresentar o sistema", informativo);
+    	Reuniao reuniao1 = new Reuniao("Apresentação do sistema SGR", LocalDate.of(2018, 9, 30), "Instituto Federal do Paraná - Câmpus Foz do Iguaçu", LocalTime.of(9, 30), LocalTime.of(12, 00), "", "apresentar o sistema", informativo);
+    	Reuniao reuniao2 = new Reuniao("Apresentação do sistema SGR", LocalDate.of(2018, 8, 30), "Instituto Federal do Paraná - Câmpus Foz do Iguaçu", LocalTime.of(8, 30), LocalTime.of(12, 00), "", "apresentar o sistema", informativo);
+    	Reuniao reuniao3 = new Reuniao("Apresentação do sistema SGR", LocalDate.of(2018, 7, 30), "Instituto Federal do Paraná - Câmpus Foz do Iguaçu", LocalTime.of(7, 30), LocalTime.of(12, 00), "", "apresentar o sistema", informativo);
+    	Reuniao reuniao4 = new Reuniao("Apresentação do sistema SGR", LocalDate.of(2018, 6, 30), "Instituto Federal do Paraná - Câmpus Foz do Iguaçu", LocalTime.of(6, 30), LocalTime.of(12, 00), "", "apresentar o sistema", informativo);
+    	Reuniao reuniao5 = new Reuniao("Apresentação do sistema SGR", LocalDate.of(2018, 5, 30), "Instituto Federal do Paraná - Câmpus Foz do Iguaçu", LocalTime.of(5, 30), LocalTime.of(12, 00), "", "apresentar o sistema", informativo);
+    	
+    	Reuniao reuniao6 = new Reuniao("Apresentação do sistema SGR", LocalDate.of(2018, 10, 15), "Instituto Federal do Paraná - Câmpus Foz do Iguaçu", LocalTime.of(10, 30), LocalTime.of(12, 00), "", "apresentar o sistema", informativo);
+    	Reuniao reuniao7 = new Reuniao("Apresentação do sistema SGR", LocalDate.of(2018, 10, 31), "Instituto Federal do Paraná - Câmpus Foz do Iguaçu", LocalTime.of(10, 30), LocalTime.of(12, 00), "", "apresentar o sistema", informativo);
+    	Reuniao reuniao8 = new Reuniao("Apresentação do sistema SGR", LocalDate.of(2018, 10, 25), "Instituto Federal do Paraná - Câmpus Foz do Iguaçu", LocalTime.of(10, 30), LocalTime.of(12, 00), "", "apresentar o sistema", informativo);
+    	Reuniao reuniao9 = new Reuniao("Apresentação do sistema SGR", LocalDate.of(2018, 11, 22), "Instituto Federal do Paraná - Câmpus Foz do Iguaçu", LocalTime.of(10, 30), LocalTime.of(12, 00), "", "apresentar o sistema", informativo);
+    	Reuniao reuniao10 = new Reuniao("Apresentação do sistema SGR", LocalDate.of(2018, 11, 22), "Instituto Federal do Paraná - Câmpus Foz do Iguaçu", LocalTime.of(10, 30), LocalTime.of(12, 00), "", "apresentar o sistema", informativo);
+    	Reuniao reuniao11 = new Reuniao("Apresentação do sistema SGR", LocalDate.of(2018, 12, 25), "Instituto Federal do Paraná - Câmpus Foz do Iguaçu", LocalTime.of(10, 30), LocalTime.of(12, 00), "", "apresentar o sistema", informativo);
     	
     	if (reuniaoService.countReunioes() == 0) {    		
     		reuniaoService.insertReuniao(reuniao);
+    		reuniaoService.insertReuniao(reuniao1);
+    		reuniaoService.insertReuniao(reuniao2);
+    		reuniaoService.insertReuniao(reuniao3);
+    		reuniaoService.insertReuniao(reuniao4);
+    		reuniaoService.insertReuniao(reuniao5);
+    		reuniaoService.insertReuniao(reuniao6);
+    		reuniaoService.insertReuniao(reuniao7);
+    		reuniaoService.insertReuniao(reuniao8);
+    		reuniaoService.insertReuniao(reuniao9);
+    		reuniaoService.insertReuniao(reuniao10);
+    		reuniaoService.insertReuniao(reuniao11);
+    		
     	}
     	
     	Participante participanteAdmin = new Participante(true, admin, reuniao, solicitante);
