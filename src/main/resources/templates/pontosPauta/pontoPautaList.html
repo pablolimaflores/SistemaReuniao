@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8" />
+    <title>Lista de Pautas</title>
+
+    <div th:replace="fragments/header :: header-css"/>
+
+</head>
+<body>
+
+<div th:replace="fragments/header :: header"/>
+
+<div class="container">
+		<br>        
+		<div id="top" class="row">
+		    <div class="col-md-3">
+		        <h2>Pautas</h2>
+		    </div>
+		 
+		    <div class="col-md-6">
+		        <div class="input-group h2">
+		            <input name="data[search]" class="form-control" id="search" type="text" placeholder="Pesquisar itens">
+		            <span class="input-group-btn">
+		                <button class="btn btn-primary" type="submit">
+		                    <span class="glyphicon glyphicon-search">Buscar</span>		                  
+		                </button>
+		                	<a class="btn btn-success" href="/pontosPauta/pontoPautaEdit" th:href="@{/pontosPauta/pontoPautaEdit}"><span class="glyphicon glyphicon-plus"></span>Novo</a>
+		            </span>
+		        </div>
+		        
+		    </div>
+		</div>
+
+        <table class="table table-bordred table-striped">
+            <thead>
+                <tr>
+                    <th>Ordem</th>
+                    <th>Descrição</th>
+                    <th>Tempo</th>
+                    <th>Discussão</th>
+                    <th>Responsável</th>
+                    <th>Tipo</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="pontoPauta : ${pontoPautaList}">
+                    <td th:text="${pontoPauta.ordem}">1</td>
+                    <td th:text="${pontoPauta.descricao}">pauta</td>
+                    <td th:text="${pontoPauta.tempo}">1</td>
+                    <td th:text="${pontoPauta.discussao}">pauta</td>
+                    <td th:text="${pontoPauta.responsavel.getNome()}">Adm</td>
+                    <td th:text="${pontoPauta.tipo.getNome()}">tipo pauta</td>
+                    <td>
+                        <a class="btn btn-info" href="/pontosPauta/pontoPautaEdit/1" th:href="@{/pontosPauta/pontoPautaEdit/__${pontoPauta.id}__}"><span class="glyphicon glyphicon-edit"></span>Editar</a>
+                        <a class="btn btn-danger" href="/pontosPauta/pontoPautaEdit/1" th:href="@{/pontosPauta/pontoPautaDelete/__${pontoPauta.id}__}"><span class="glyphicon glyphicon-remove"></span> Excluir</a>                         
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+<div th:replace="fragments/footer :: footer"/>
+
+</body>
+</html>

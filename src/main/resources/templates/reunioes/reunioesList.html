@@ -24,10 +24,12 @@
 		            <input name="data[search]" class="form-control" id="search" type="text" placeholder="Pesquisar itens">
 		            <span class="input-group-btn">
 		                <button class="btn btn-primary" type="submit">
-		                    <span class="glyphicon glyphicon-search">Buscar</span>
+		                    <span class="glyphicon glyphicon-search">Buscar</span>		                  
 		                </button>
+		                	<a class="btn btn-success" href="/reunioes/reunioesEdit" th:href="@{/reunioes/reunioesEdit}"><span class="glyphicon glyphicon-plus"></span>Novo</a>
 		            </span>
 		        </div>
+		        
 		    </div>
 		</div>
 
@@ -48,14 +50,11 @@
                     <td>
                         <a class="btn btn-info" href="/reunioes/reunioesEdit/1" th:href="@{/reunioes/reunioesEdit/__${reuniao.id}__}"><span class="glyphicon glyphicon-edit"></span>Editar</a>
                         <a class="btn btn-danger" href="/reunioes/reunioesDelete/1" th:href="@{/reunioes/reunioesDelete/__${reuniao.id}__}"><span class="glyphicon glyphicon-remove"></span> Excluir</a>  
-                        <a class="btn btn-danger" href="/reunioes/reunioesDelete/1" th:href="@{/reunioes/reunioesDelete/__${reuniao.id}__}"><span class="glyphicon glyphicon-pencil"></span> Criar Pauta</a>                       
+                        <a class="btn btn-danger" href="/pontosPauta/pontoPautaEdit" th:href="@{/pontosPauta/pontoPautaEdit}"><span class="glyphicon glyphicon-pencil"></span> Criar Pauta</a>                       
                     </td>
                 </tr>
             </tbody>
         </table>
-        <div class="col-md-3">
-		    <a class="btn btn-success" href="/reunioes/reunioesEdit" th:href="@{/reunioes/reunioesEdit}"><span class="glyphicon glyphicon-plus"></span>Novo</a>
-		</div>
     </div>
 
 <div th:replace="fragments/footer :: footer"/>
