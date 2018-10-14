@@ -1,10 +1,9 @@
 package br.com.projeto.reuniao.domain.service;
 
-import static org.mockito.Mockito.RETURNS_DEEP_STUBS;
-
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -103,11 +102,14 @@ public class ReuniaoService {
 	 * Método para listar as informações da reuniao
 	 * @return
 	 */
+	
 	public List<Reuniao> findAllReuniaoExecutedByData(){
+		
 		return this.reuniaoRepository.findAllExecutedByData();
 	}
 	
 	public List<Reuniao> findAllReuniaoScheduledByData(){
+		
 		return this.reuniaoRepository.findAllScheduledByData();
 	}
 }

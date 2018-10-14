@@ -3,6 +3,8 @@ package br.com.projeto.reuniao.domain.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -16,12 +18,15 @@ import br.com.projeto.reuniao.application.security.ContextHolder;
 import br.com.projeto.reuniao.application.security.PessoaUsuarioSecurity;
 import br.com.projeto.reuniao.domain.entity.Pessoa;
 import br.com.projeto.reuniao.domain.repository.IPessoaRepository;
+import br.com.projeto.reuniao.domain.repository.IPessoaRepositoryPageable;
 
 @Service
 public class PessoaService implements UserDetailsService {
 	
 	@Autowired
 	private IPessoaRepository pessoaRepository;
+	
+	@Autowired IPessoaRepositoryPageable iPessoaRepositoryPageable;
 	
 	/**
 	 * 
@@ -30,6 +35,11 @@ public class PessoaService implements UserDetailsService {
 	@Transactional(readOnly = true)
 	public List<Pessoa> findAllPessoas() {
         return this.pessoaRepository.findAll();
+    }
+	
+	@Transactional(readOnly = true)
+	public Page<Pessoa> findAllPessoasPage(Pageable pageable) {
+        return this.iPessoaRepositoryPageable.findAll(pageable);
     }
 	
 	/**

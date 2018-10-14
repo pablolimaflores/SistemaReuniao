@@ -79,7 +79,7 @@ public class Pessoa extends AbstractEntity implements UserDetails, Serializable 
     /**
      * 
      */
-	@Column(nullable = false, length = 20)
+	@Column(nullable = true, length = 20)
 	@Enumerated(EnumType.STRING)
     private Role role;    
 

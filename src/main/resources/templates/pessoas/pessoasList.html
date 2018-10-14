@@ -26,6 +26,7 @@
 		                <button class="btn btn-primary" type="submit">
 		                    <span class="glyphicon glyphicon-search">Buscar</span>
 		                </button>
+						<a class="btn btn-success" href="/pessoas/pessoasEdit" th:href="@{/pessoas/pessoasEdit}"><span class="glyphicon glyphicon-plus"></span>Novo</a>
 		            </span>
 		        </div>
 		    </div>
@@ -43,7 +44,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr th:each="pessoa : ${pessoasList}">
+                <tr th:each="pessoa : ${page}">
                     <td th:text="${pessoa.id}">1</td>
                     <td th:text="${pessoa.nome}">Admin</td>
                     <td th:text="${pessoa.email}">admin@admin.com</td>
@@ -56,8 +57,19 @@
                 </tr>
             </tbody>
         </table>
-        <div class="col-md-3">
-			<a class="btn btn-success" href="/pessoas/pessoasEdit" th:href="@{/pessoas/pessoasEdit}"><span class="glyphicon glyphicon-plus"></span>Novo</a>
+        <div class="pagination-div">
+		    <span th:if="${page.hasPrevious()}">
+		        <a th:href="@{/pessoas(page=${page.number-1},size=${page.size})}">Previous</a>
+		    </span>
+		    <th:block th:each="i: ${#numbers.sequence(0, page.totalPages - 1)}">
+		        <span th:if="${page.number == i}" class="selected">[[${i}+1]]</span>
+		        <span th:unless="${page.number == i}">
+		             <a th:href="@{/pessoas(page=${i},size=${page.size})}">[[${i}+1]]</a>
+		        </span>
+		    </th:block>
+		    <span th:if="${page.hasNext()}">
+		        <a th:href="@{/pessoas(page=${page.number+1},size=${page.size})}">Next</a>
+		    </span>
 		</div>
     </div>
 

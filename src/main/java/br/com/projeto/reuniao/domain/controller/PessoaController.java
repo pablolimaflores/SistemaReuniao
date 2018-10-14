@@ -1,10 +1,15 @@
 package br.com.projeto.reuniao.domain.controller;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -14,6 +19,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import br.com.projeto.reuniao.domain.entity.Pessoa;
+import br.com.projeto.reuniao.domain.repository.IPessoaRepositoryPageable;
 import br.com.projeto.reuniao.domain.service.PessoaService;
 
 @Controller
@@ -23,11 +29,13 @@ public class PessoaController {
     @Autowired
     PessoaService pessoaService;
     
+    
     private static final Logger LOGGER = LoggerFactory.getLogger(PessoaController.class);
     
     @GetMapping("")    
-    public String findAllPessoas(Model model) {
-        model.addAttribute("pessoasList", this.pessoaService.findAllPessoas());
+    public String findAllPessoas(@PageableDefault(size=6) Pageable pageable, Model model) {
+    	Page<Pessoa> page = pessoaService.findAllPessoasPage(pageable);
+        model.addAttribute("page", page);
         return "pessoas/pessoasList";
     }
     
