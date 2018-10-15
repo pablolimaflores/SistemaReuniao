@@ -4,7 +4,8 @@
 <head>    
 	<div th:fragment="header-css">    	
 	    <link rel="stylesheet" type="text/css" media="all" href="../../css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
-	    <link rel="stylesheet" type="text/css" media="all" href="../../css/bootstrap.css" th:href="@{/css/bootstrap.css}" />	    
+	    <link rel="stylesheet" type="text/css" media="all" href="../../css/bootstrap.css" th:href="@{/css/bootstrap.css}" />
+	    <link rel="stylesheet" type="text/css" media="all" href="../../css/estilo.css" th:href="@{/css/estilo.css}" />	    
 	    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 	    <script type="text/javascript" th:src="@{/js/jquery-3.3.1.min.js}" src="js/jquery-3.3.1.min.js"></script>
 	    <script type="text/javascript" th:src="@{/js/bootstrap.min.js}" src="js/bootstrap.min.js"></script>
@@ -56,8 +57,8 @@
 		      </li>
 		      <li class="nav-item">
 		        <a class="nav-link" href="#">Sobre</a>
-		      </li>
-		    </ul>
+		      </li>		      
+		    </ul>		    
 		    <ul>
 		    <!-- FORM QUE VAI SER USADO PARA REALIZAR O LOGOUT -->
 			<form th:action="@{/logout}" id="form_logou" th:method="post">

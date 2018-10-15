@@ -7,10 +7,13 @@
 
 <body>
 
-	<div th:fragment="footer">						
+	<div th:fragment="footer" style='justify-content: center'>						
 		<div class="card-body text-center" style="bottom: 0; position: fixed;">
 			<blockquote class="blockquote mb-0">        
-				<footer class="blockquote-footer" style="bottom: 0; position: fixed;">					
+				<footer class="blockquote-footer" style="bottom: 0; position: fixed;">
+					<div sec:authorize="isAuthenticated()">
+	                	Você está logado como <strong><em><span sec:authentication="name"></span></em></strong>
+	            	</div>					
 					<cite title="Source Title">© 2018 Desenvolvido por Pablo L. Flores e Tiago Marins</cite>          
 				</footer>        
 			</blockquote>

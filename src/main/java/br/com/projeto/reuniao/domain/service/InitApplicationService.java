@@ -54,14 +54,45 @@ public class InitApplicationService {
     	
     	Pessoa admin = new Pessoa("Administrador do Sistema", "admin@admin.com", "(45) 3030-3030", "(45) 99999-9999", true, "admin", Role.ROLE_ADMIN);
     	Pessoa user = new Pessoa("Usuario padrão do sistema", "user@user.com", "(45) 2020-2020", "(45) 98888-8888", true, "user", Role.ROLE_USER);
-    	Pessoa joao = new Pessoa("João da Silva", "joao@joao.com", "(51) 3210-3210", "(51) 98765-4321", true, "user", Role.ROLE_USER);
-    	Pessoa maria = new Pessoa("Maria dos Santos", "maria@maria.com", "(11) 2345-5432", "(45) 91234-5678", true, "user", Role.ROLE_USER);
+    	Pessoa joao = new Pessoa("João da Silva", "joao@joao.com", "(51) 3210-3210", "(51) 98765-4321", true, "1234", Role.ROLE_USER);
+    	Pessoa maria = new Pessoa("Maria dos Santos", "maria@maria.com", "(11) 2345-5432", "(45) 91234-5678", true, "1234", Role.ROLE_USER);
+    	
+    	Pessoa usuario1 = new Pessoa("Carlos Pereira", "carlos@carlos.com", "(45) 3030-3030", "(45) 99999-9999", false, null, Role.ROLE_USER);
+    	Pessoa usuario2 = new Pessoa("Atanagildo Estrovaldo", "atanagildo@atanagildo.com", "(45) 2020-2020", "(45) 98888-8888", true, "1234", Role.ROLE_USER);
+    	Pessoa usuario3 = new Pessoa("Rosigicleidy Marinalva Lima", "rosigicleidy@rosigicleidy.com", "(51) 3210-3210", "(51) 98765-4321", true, "1234", Role.ROLE_USER);
+    	Pessoa usuario4 = new Pessoa("Zena Feira Matoso", "zena@zena.com", "(11) 2345-5432", "(45) 91234-5678", false, null, Role.ROLE_USER);
+    	
+    	Pessoa usuario5 = new Pessoa("Xena Oliveira", "xena@xena.com", "(45) 3030-3030", "(45) 99999-9999", true, "1234", Role.ROLE_USER);
+    	Pessoa usuario6 = new Pessoa("Zara Santos", "zara@zara.com", "(45) 2020-2020", "(45) 98888-8888", true, "1234", Role.ROLE_USER);
+    	Pessoa usuario7 = new Pessoa("Aristrogindson Maraes Silva", "aristrogindson@aristrogindson.com", "(51) 3210-3210", "(51) 98765-4321", false, null, Role.ROLE_USER);
+    	Pessoa usuario8 = new Pessoa("Sonia Blade", "sonia@sonia.com", "(11) 2345-5432", "(45) 91234-5678", true, "1234", Role.ROLE_USER);
+    	
+    	Pessoa usuario9 = new Pessoa("Ryo Sakasaki", "ryo@ryo.com", "(45) 3030-3030", "(45) 99999-9999", true, "1234", Role.ROLE_USER);
+    	Pessoa usuario10 = new Pessoa("Didier Eribon", "didier@didier.com", "(45) 2020-2020", "(45) 98888-8888", false, "1234", Role.ROLE_USER);
+    	Pessoa usuario11 = new Pessoa("Denise Moraes", "denise@denise.com", "(51) 3210-3210", "(51) 98765-4321", true, null, Role.ROLE_USER);
+    	Pessoa usuario12 = new Pessoa("Chun Li", "chunli@chunli.com", "(11) 2345-5432", "(45) 91234-5678", true, "1234", Role.ROLE_USER);
     	
     	if(pessoaService.countPessoas() == 0) {    		
 			pessoaService.insertPessoa(admin);						  
 			pessoaService.insertPessoa(user);
 			pessoaService.insertPessoa(joao);
-			pessoaService.insertPessoa(maria);						
+			pessoaService.insertPessoa(maria);
+			
+			pessoaService.insertPessoa(usuario1);
+			pessoaService.insertPessoa(usuario2);
+			pessoaService.insertPessoa(usuario3);
+			pessoaService.insertPessoa(usuario4);
+			
+			pessoaService.insertPessoa(usuario5);
+			pessoaService.insertPessoa(usuario6);
+			pessoaService.insertPessoa(usuario7);
+			pessoaService.insertPessoa(usuario8);
+			
+			pessoaService.insertPessoa(usuario9);
+			pessoaService.insertPessoa(usuario10);
+			pessoaService.insertPessoa(usuario11);
+			pessoaService.insertPessoa(usuario12);
+			
     	}
     	
     	Tipo informativo = new Tipo("Informativo", "Deve apresentar tema relativo a decisão em outras instâncias e que afetam direta ou indiretamente os envolvidos.", false);
@@ -88,20 +119,19 @@ public class InitApplicationService {
 	        tipoParticipanteService.insertTipoParticipante(integrante);
     	}
     	
-    	Reuniao reuniao = new Reuniao("Apresentação do sistema SGR", LocalDate.of(2018, 10, 2), "Instituto Federal do Paraná - Câmpus Foz do Iguaçu", LocalTime.of(10, 30), LocalTime.of(12, 00), "", "apresentar o sistema", informativo);
-    	Reuniao reuniao1 = new Reuniao("Apresentação do sistema SGR", LocalDate.of(2018, 9, 30), "Instituto Federal do Paraná - Câmpus Foz do Iguaçu", LocalTime.of(9, 30), LocalTime.of(12, 00), "", "apresentar o sistema", informativo);
-    	Reuniao reuniao2 = new Reuniao("Apresentação do sistema SGR", LocalDate.of(2018, 8, 30), "Instituto Federal do Paraná - Câmpus Foz do Iguaçu", LocalTime.of(8, 30), LocalTime.of(12, 00), "", "apresentar o sistema", informativo);
-    	Reuniao reuniao3 = new Reuniao("Apresentação do sistema SGR", LocalDate.of(2018, 7, 30), "Instituto Federal do Paraná - Câmpus Foz do Iguaçu", LocalTime.of(7, 30), LocalTime.of(12, 00), "", "apresentar o sistema", informativo);
-    	Reuniao reuniao4 = new Reuniao("Apresentação do sistema SGR", LocalDate.of(2018, 6, 30), "Instituto Federal do Paraná - Câmpus Foz do Iguaçu", LocalTime.of(6, 30), LocalTime.of(12, 00), "", "apresentar o sistema", informativo);
-    	Reuniao reuniao5 = new Reuniao("Apresentação do sistema SGR", LocalDate.of(2018, 5, 30), "Instituto Federal do Paraná - Câmpus Foz do Iguaçu", LocalTime.of(5, 30), LocalTime.of(12, 00), "", "apresentar o sistema", informativo);
-    	
-    	Reuniao reuniao6 = new Reuniao("Apresentação do sistema SGR", LocalDate.of(2018, 10, 15), "Instituto Federal do Paraná - Câmpus Foz do Iguaçu", LocalTime.of(10, 30), LocalTime.of(12, 00), "", "apresentar o sistema", informativo);
-    	Reuniao reuniao7 = new Reuniao("Apresentação do sistema SGR", LocalDate.of(2018, 10, 31), "Instituto Federal do Paraná - Câmpus Foz do Iguaçu", LocalTime.of(10, 30), LocalTime.of(12, 00), "", "apresentar o sistema", informativo);
-    	Reuniao reuniao8 = new Reuniao("Apresentação do sistema SGR", LocalDate.of(2018, 10, 25), "Instituto Federal do Paraná - Câmpus Foz do Iguaçu", LocalTime.of(10, 30), LocalTime.of(12, 00), "", "apresentar o sistema", informativo);
-    	Reuniao reuniao9 = new Reuniao("Apresentação do sistema SGR", LocalDate.of(2018, 11, 22), "Instituto Federal do Paraná - Câmpus Foz do Iguaçu", LocalTime.of(10, 30), LocalTime.of(12, 00), "", "apresentar o sistema", informativo);
+    	Reuniao reuniao = new Reuniao("Fechamento das atividades de setembro/2018", LocalDate.of(2018, 9, 28), "Instituto Federal do Paraná - Câmpus Foz do Iguaçu", LocalTime.of(10, 30), LocalTime.of(12, 00), "", "Revisão e fechamento das atividades executada no mês", trabalho);    	
+    	Reuniao reuniao1 = new Reuniao("Reunião de planejamento de outubro/2018", LocalDate.of(2018, 10, 1), "Instituto Federal do Paraná - Câmpus Foz do Iguaçu", LocalTime.of(8, 30), LocalTime.of(9, 30), "", "Analisar junto a equipe quais serão as atividades que pretende-se executadar neste mês de outubro de 2018.", trabalho);        
+    	Reuniao reuniao2 = new Reuniao("Repassar a equipe sobre alterações na lei 1234", LocalDate.of(2018, 10, 1), "Instituto Federal do Paraná - Câmpus Foz do Iguaçu", LocalTime.of(16, 15), LocalTime.of(17, 15), "", "apresentar o sistema", informativo);        
+    	Reuniao reuniao3 = new Reuniao("Renuião para definição calendário para atividades extra", LocalDate.of(2018, 10, 2), "Instituto Federal do Paraná - Câmpus Foz do Iguaçu", LocalTime.of(7, 30), LocalTime.of(12, 00), "", "apresentar o sistema", trabalho);
+    	Reuniao reuniao4 = new Reuniao("Definição de pautas pra Evento", LocalDate.of(2018, 10, 5), "Instituto Federal do Paraná - Câmpus Foz do Iguaçu", LocalTime.of(6, 30), LocalTime.of(12, 00), "", "apresentar o sistema", deliberativo);
+    	Reuniao reuniao5 = new Reuniao("Levantamento de Ideias novo projeto", LocalDate.of(2018, 10, 8), "Instituto Federal do Paraná - Câmpus Foz do Iguaçu", LocalTime.of(5, 30), LocalTime.of(12, 00), "", "apresentar o sistema", brainstorm);
+    	Reuniao reuniao6 = new Reuniao("Informar sobre mudança na resolução 4321/18", LocalDate.of(2018, 10, 19), "Instituto Federal do Paraná - Câmpus Foz do Iguaçu", LocalTime.of(10, 30), LocalTime.of(12, 00), "", "apresentar o sistema", informativo);
+    	Reuniao reuniao7 = new Reuniao("Reunião semanal", LocalDate.of(2018, 10, 23), "Instituto Federal do Paraná - Câmpus Foz do Iguaçu", LocalTime.of(10, 30), LocalTime.of(12, 00), "", "apresentar o sistema", informativo);
+    	Reuniao reuniao8 = new Reuniao("Definir sobre visita técnica dos alunos de informátiva", LocalDate.of(2018, 10, 24), "Instituto Federal do Paraná - Câmpus Foz do Iguaçu", LocalTime.of(10, 30), LocalTime.of(12, 00), "", "apresentar o sistema", trabalho);
+    	Reuniao reuniao9 = new Reuniao("Reunião para definição das datas das apresentações", LocalDate.of(2018, 11, 5), "Instituto Federal do Paraná - Câmpus Foz do Iguaçu", LocalTime.of(10, 30), LocalTime.of(12, 00), "", "apresentar o sistema", trabalho);
     	Reuniao reuniao10 = new Reuniao("Apresentação do sistema SGR", LocalDate.of(2018, 11, 22), "Instituto Federal do Paraná - Câmpus Foz do Iguaçu", LocalTime.of(10, 30), LocalTime.of(12, 00), "", "apresentar o sistema", informativo);
-    	Reuniao reuniao11 = new Reuniao("Apresentação do sistema SGR", LocalDate.of(2018, 12, 25), "Instituto Federal do Paraná - Câmpus Foz do Iguaçu", LocalTime.of(10, 30), LocalTime.of(12, 00), "", "apresentar o sistema", informativo);
-    	
+    	Reuniao reuniao11 = new Reuniao("Balanço geral de 2018", LocalDate.of(2018, 12, 30), "Cataratas do Iguaçu", LocalTime.of(10, 30), LocalTime.of(12, 00), "", "apresentar o sistema", informativo);
+    	    
     	if (reuniaoService.countReunioes() == 0) {    		
     		reuniaoService.insertReuniao(reuniao);
     		reuniaoService.insertReuniao(reuniao1);

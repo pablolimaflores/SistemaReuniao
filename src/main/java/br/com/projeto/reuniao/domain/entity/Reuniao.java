@@ -35,8 +35,8 @@ public class Reuniao extends AbstractEntity {
 	 * 
 	 */	
 	@NotBlank
-    @Column(nullable = false, length = 50)
-	@Size(min=3, max=50)
+    @Column(nullable = false, length = 100)
+	@Size(min=3, max=100)
     private String titulo;
 
 	/**
