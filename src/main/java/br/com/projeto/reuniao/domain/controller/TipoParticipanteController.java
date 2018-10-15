@@ -5,6 +5,9 @@ import javax.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -26,8 +29,9 @@ public class TipoParticipanteController {
     private static final Logger LOGGER = LoggerFactory.getLogger(TipoParticipanteController.class);
     
     @GetMapping("")    
-    public String findAllTipoParticipantes(Model model) {
-        model.addAttribute("tiposParticipanteList", this.tipoParticipanteService.findAllTiposParticipante());
+    public String findAllTipoParticipantes(@PageableDefault(size=3) Pageable pageable, Model model) {
+        Page<TipoParticipante> page = tipoParticipanteService.findAllTiposParticipantePage(pageable);
+        model.addAttribute("page", page);
         return "tiposParticipante/tiposParticipanteList";
     }
     
@@ -42,7 +46,7 @@ public class TipoParticipanteController {
     }
     
     @PostMapping(value={"/tiposParticipanteEdit","/tiposParticipanteEdit/{id}"})
-    public String updateTipoParticipante(Model model, @Valid TipoParticipante tipoParticipante, BindingResult bindingResult, @PathVariable(required = false, name = "id") Long id) {
+    public String updateTipoParticipante(@Valid TipoParticipante tipoParticipante, BindingResult bindingResult, @PathVariable(required = false, name = "id") Long id, @PageableDefault(size=3) Pageable pageable, Model model) {
     	
     	if(bindingResult.hasErrors()) {
             bindingResult.getAllErrors().forEach(err -> {
@@ -57,7 +61,8 @@ public class TipoParticipanteController {
     	} else {
     		this.tipoParticipanteService.insertTipoParticipante(tipoParticipante);
     	}    	
-        model.addAttribute("tiposParticipanteList", this.tipoParticipanteService.findAllTiposParticipante());
+    	 Page<TipoParticipante> page = tipoParticipanteService.findAllTiposParticipantePage(pageable);
+         model.addAttribute("page", page);
         return "tiposParticipante/tiposParticipanteList";
     }
 

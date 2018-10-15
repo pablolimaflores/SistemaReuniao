@@ -4,17 +4,22 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import br.com.projeto.reuniao.domain.entity.Reuniao;
 import br.com.projeto.reuniao.domain.repository.IReuniaoRepository;
+import br.com.projeto.reuniao.domain.repository.IReuniaoRepositoryPageable;
 
 @Service
 public class ReuniaoService {
 	
 	@Autowired
 	private IReuniaoRepository reuniaoRepository;
+	
+	@Autowired
+	private IReuniaoRepositoryPageable iReuniaoRepositoryPage;
 	
 	/**
 	 * 
@@ -23,6 +28,16 @@ public class ReuniaoService {
 	@Transactional(readOnly = true)
 	public List<Reuniao> findAllReunioes() {
         return this.reuniaoRepository.findAll();
+    }
+	
+	/**
+	 * 
+	 * @param pageable
+	 * @return
+	 */
+	@Transactional(readOnly = true)
+	public Page<Reuniao> findAllReunioesPage(Pageable pageable) {
+        return this.iReuniaoRepositoryPage.findAll(pageable);
     }
 	
 	/**

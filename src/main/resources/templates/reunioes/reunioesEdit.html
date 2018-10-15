@@ -19,6 +19,7 @@
 		<div class="form-group">
 		  <label class="col-md-4 control-label">Título da reunião</label>  
 		  <div class="col-md-5">
+		  <input th:type="hidden" name="id" th:field="${reuniao.id}" />
 		  <input type="text" placeholder="Título" class="form-control input-md" th:field="${reuniao.titulo}">
 		  <span th:if="${#fields.hasErrors('reuniao.titulo')}" th:errors="*{reuniao.titulo}" id="errorTitulo" class="help-block"></span>
 		  </div>

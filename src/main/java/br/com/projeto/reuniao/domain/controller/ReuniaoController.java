@@ -5,6 +5,9 @@ import javax.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -30,8 +33,9 @@ public class ReuniaoController {
     private static final Logger LOGGER = LoggerFactory.getLogger(ReuniaoController.class);
     
     @GetMapping("")    
-    public String findAllReunioes(Model model) {
-        model.addAttribute("reunioesList", this.reuniaoService.findAllReunioes());
+    public String findAllReunioes(@PageableDefault(size=5) Pageable pageable, Model model) {
+    	Page<Reuniao> page = reuniaoService.findAllReunioesPage(pageable);
+    	model.addAttribute("page", page);
         return "reunioes/reunioesList";
     }
     
@@ -48,7 +52,7 @@ public class ReuniaoController {
     }
     
     @PostMapping(value={"/reunioesEdit","/reunioesEdit/{id}"})
-    public String updateReuniao(Model model, @Valid Reuniao reuniao, BindingResult bindingResult, @PathVariable(required = false, name = "id") Long id) {
+    public String updateReuniao(@Valid Reuniao reuniao, BindingResult bindingResult, @PathVariable(required = false, name = "id") Long id, @PageableDefault(size=5) Pageable pageable, Model model) {
     	
     	if(bindingResult.hasErrors()) {
             bindingResult.getAllErrors().forEach(err -> {
@@ -63,7 +67,8 @@ public class ReuniaoController {
     	} else {
     		this.reuniaoService.insertReuniao(reuniao);
     	}    	
-        model.addAttribute("reunioesList", this.reuniaoService.findAllReunioes());
+    	Page<Reuniao> page = reuniaoService.findAllReunioesPage(pageable);
+    	model.addAttribute("page", page);
         return "reunioes/reunioesList";
     }
 

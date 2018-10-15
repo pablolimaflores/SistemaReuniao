@@ -5,6 +5,9 @@ import javax.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -23,11 +26,13 @@ public class TipoController {
     @Autowired
     TipoService tipoService;
     
+    
     private static final Logger LOGGER = LoggerFactory.getLogger(TipoController.class);
     
     @GetMapping("")    
-    public String findAllTipos(Model model) {
-        model.addAttribute("tiposList", this.tipoService.findAllTipos());
+    public String findAllTipos(@PageableDefault(size=3) Pageable pageable, Model model) {       
+        Page<Tipo> page = tipoService.findAllTiposPage(pageable);
+        model.addAttribute("page", page);
         return "tipos/tiposList";
     }
     
@@ -42,7 +47,7 @@ public class TipoController {
     }
     
     @PostMapping(value={"/tiposEdit","/tiposEdit/{id}"})
-    public String updateTipo(Model model, @Valid Tipo tipo, BindingResult bindingResult, @PathVariable(required = false, name = "id") Long id) {
+    public String updateTipo(@Valid Tipo tipo, BindingResult bindingResult, @PathVariable(required = false, name = "id") Long id, @PageableDefault(size=3) Pageable pageable, Model model) {
     	
     	if(bindingResult.hasErrors()) {
             bindingResult.getAllErrors().forEach(err -> {
@@ -57,7 +62,8 @@ public class TipoController {
     	} else {
     		this.tipoService.insertTipo(tipo);
     	}    	
-        model.addAttribute("tiposList", this.tipoService.findAllTipos());
+    	Page<Tipo> page = tipoService.findAllTiposPage(pageable);
+        model.addAttribute("page", page);
         return "tipos/tiposList";
     }
 

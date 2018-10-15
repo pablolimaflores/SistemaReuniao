@@ -3,17 +3,23 @@ package br.com.projeto.reuniao.domain.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import br.com.projeto.reuniao.domain.entity.Tipo;
 import br.com.projeto.reuniao.domain.repository.ITipoRepository;
+import br.com.projeto.reuniao.domain.repository.ITipoRepositoryPageable;
 
 @Service
 public class TipoService {
 	
 	@Autowired
 	private ITipoRepository tipoRepository;
+	
+	@Autowired
+	private ITipoRepositoryPageable iTipoRepositoryPageable;
 	
 	/**
 	 * 
@@ -22,6 +28,16 @@ public class TipoService {
 	@Transactional(readOnly = true)
 	public List<Tipo> findAllTipos() {
         return this.tipoRepository.findAll();
+    }
+	
+	/**
+	 * Metodo para retornar as páginas
+	 * @param pageable
+	 * @return
+	 */
+	@Transactional(readOnly = true)
+	public Page<Tipo> findAllTiposPage(Pageable pageable) {
+        return this.iTipoRepositoryPageable.findAll(pageable);
     }
 	
 	/**

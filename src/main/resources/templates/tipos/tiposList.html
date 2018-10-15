@@ -43,7 +43,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr th:each="tipo : ${tiposList}">
+                <tr th:each="tipo : ${page}">
                     <td th:text="${tipo.id}">1</td>
                     <td th:text="${tipo.nome}">Tipo</td>
                     <td th:text="${tipo.descricao}">admin@admin.com</td>
@@ -55,6 +55,25 @@
                 </tr>
             </tbody>
         </table>
+        <div align="center">
+        	<ul class="pagination">
+        		<li>
+			    <span th:if="${page.hasPrevious()}">
+			      <a th:href="@{/tipos(page=${page.number-1},size=${page.size})}">Anterior</a>
+			    </span>
+			    <th:block th:each="i: ${#numbers.sequence(0, page.totalPages - 1)}">
+			        <span th:if="${page.number == i}" class="selected">[[${i}+1]]</span>
+			        <span th:unless="${page.number == i}">
+			          <a th:href="@{/tipos(page=${i},size=${page.size})}">[[${i}+1]]</a>
+			        </span>
+			        
+			    </th:block>
+			    <span th:if="${page.hasNext()}">
+			        <a th:href="@{/tipos(page=${page.number+1},size=${page.size})}">Proximo</a>
+			    </span>
+			    <li>
+			</ul>    
+		</div>
     </div>
 
 <div align="center" th:replace="fragments/footer :: footer"/>

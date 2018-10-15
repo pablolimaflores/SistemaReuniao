@@ -43,7 +43,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr th:each="reuniao : ${reunioesList}">
+                <tr th:each="reuniao : ${page}">
                     <td th:text="${reuniao.id}">1</td>
                     <td th:text="${reuniao.titulo}">Admin</td>
                     <td th:text="${reuniao.data}">2018-09-25</td>
@@ -55,6 +55,25 @@
                 </tr>
             </tbody>
         </table>
+        <div align="center">
+        	<ul class="pagination">
+        		<li class="page-item">
+			    <span th:if="${page.hasPrevious()}">
+			      <a th:href="@{/reunioes(page=${page.number-1},size=${page.size})}">Anterior</a>
+			    </span>
+			    <th:block th:each="i: ${#numbers.sequence(0, page.totalPages - 1)}">
+			        <span th:if="${page.number == i}" class="selected">[[${i}+1]]</span>
+			        <span th:unless="${page.number == i}">
+			          <a th:href="@{/reunioes(page=${i},size=${page.size})}">[[${i}+1]]</a>
+			        </span>
+			        
+			    </th:block>
+			    <span th:if="${page.hasNext()}">
+			        <a  th:href="@{/reunioes(page=${page.number+1},size=${page.size})}">Proximo</a>
+			    </span>
+			    </li>
+			</ul>    
+		</div>
     </div>
 
 <div th:replace="fragments/footer :: footer"/>
