@@ -67,9 +67,10 @@ public class PessoaController {
     }
 
     @GetMapping("/pessoasDelete/{id}")
-    public String pessoasDelete(Model model, @PathVariable(required = true, name = "id") Long id) {
+    public String pessoasDelete(@PathVariable(required = true, name = "id") Long id, @PageableDefault(size=5) Pageable pageable, Model model) {
         this.pessoaService.deletePessoa(id);
-        model.addAttribute("pessoasList", this.pessoaService.findAllPessoas());
+        Page<Pessoa> page = pessoaService.findAllPessoasPage(pageable);
+        model.addAttribute("page", page);
         return "pessoas/pessoasList";
     }
 }
