@@ -118,13 +118,13 @@ public class ReuniaoService {
 	 * @return
 	 */
 	
-	public List<Reuniao> findAllReuniaoExecutedByData(){
+	public Page<Reuniao> findAllReuniaoExecutedByData(Pageable pageable){
 		
-		return this.reuniaoRepository.findAllExecutedByData();
+		return this.reuniaoRepository.findAllExecutedByData(pageable);
 	}
 	
-	public List<Reuniao> findAllReuniaoScheduledByData(){
+	public Page<Reuniao> findAllReuniaoScheduledByData(Pageable pageable){
 		
-		return this.reuniaoRepository.findAllScheduledByData();
+		return this.reuniaoRepository.findAllScheduledByData(pageable);
 	}
 }

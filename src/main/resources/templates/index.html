@@ -30,7 +30,7 @@
 				                </tr>
 				            </thead>
 				            <tbody>
-				                <tr th:each="reuniao : ${reuniaoFinalizada}">
+				                <tr th:each="reuniao : ${pageExec}">
 				                    <td th:text="${reuniao.data}">2018-09-25</td>
 				                    <td th:text="${reuniao.titulo}">Admin</td>
 				                    <td>
@@ -38,11 +38,11 @@
 				                    </td>
 				                </tr>
 				            </tbody>
-        </table>
+        			</table>
                     </div>
                 </div>
             </div>            
-            <div class="col-md-6">
+             <div class="col-md-6">
                 <div class="card"> 
                     <div class="card-body">
                         <h2 class="card-title" align="center">Reuniões Agendadas</h2>
@@ -55,7 +55,7 @@
 				                </tr>
 				            </thead>
 				            <tbody>
-				                <tr th:each="reuniao : ${reuniaoAgendada}">
+				                <tr th:each="reuniao : ${pageSched}">
 				                    <td th:text="${reuniao.data}">2018-09-25</td>
 				                     <td th:text="${reuniao.titulo}">Admin</td>
 				                    <td>
@@ -66,9 +66,28 @@
         				</table>
                     </div>
                 </div>
-            </div>
+            </div> 
         </div>
         </form>
+        <div align="center">
+        	<ul class="pagination">
+        		<li>
+			    <span th:if="${pageExec.hasPrevious()}">
+			      <a th:href="@{/index(page=${pageExec.number-1},size=${pageExec.size})}">Anterior</a>
+			    </span>
+			    <th:block th:each="i: ${#numbers.sequence(0, pageExec.totalPages - 1)}">
+			        <span th:if="${pageExec.number == i}" class="selected">[[${i}+1]]</span>
+			        <span th:unless="${pageExec.number == i}">
+			          <a th:href="@{/index(page=${i},size=${pageExec.size})}">[[${i}+1]]</a>
+			        </span>
+			        
+			    </th:block>
+			    <span th:if="${pageExec.hasNext()}">
+			        <a th:href="@{/index(page=${pageExec.number+1},size=${pageExec.size})}">Proximo</a>
+			    </span>
+			    <li>
+			</ul>    
+		</div>    
 </div>
     
 </div>
