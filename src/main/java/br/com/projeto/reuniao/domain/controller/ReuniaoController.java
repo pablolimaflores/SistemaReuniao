@@ -73,9 +73,10 @@ public class ReuniaoController {
     }
 
     @GetMapping("/reunioesDelete/{id}")
-    public String reunioesDelete(Model model, @PathVariable(required = true, name = "id") Long id) {
+    public String reunioesDelete(@PathVariable(required = true, name = "id") Long id, @PageableDefault(size=5) Pageable pageable, Model model) {
         this.reuniaoService.deleteReuniao(id);
-        model.addAttribute("reunioesList", this.reuniaoService.findAllReunioes());
+        Page<Reuniao> page = reuniaoService.findAllReunioesPage(pageable);
+    	model.addAttribute("page", page);
         return "reunioes/reunioesList";
     }
 }
