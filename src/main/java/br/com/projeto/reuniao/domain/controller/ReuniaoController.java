@@ -42,11 +42,11 @@ public class ReuniaoController {
     
     @GetMapping(value={"/reunioesEdit","/reunioesEdit/{id}"})
     public String findReuniaoById(Model model, @PathVariable(required = false, name = "id") Long id) {
+    	model.addAttribute("tipos", this.tipoService.findAllTipos());
         if (null != id) {
             model.addAttribute("reuniao", this.reuniaoService.findReuniaoById(id));
         } else {
             model.addAttribute("reuniao", new Reuniao());
-            model.addAttribute("tipos", this.tipoService.findAllTipos());
         }
         return "reunioes/reunioesEdit";
     }
