@@ -13,6 +13,27 @@
 <div th:replace="fragments/header :: header"/>
 
 <div class="container">
+	<div class="card">
+		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+			  <div class="modal-dialog modal-dialog-centered" role="document">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <h5 align="center" class="modal-title" id="exampleModalLongTitle">Excluir Tipo de Participante</h5>
+			        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			          <span aria-hidden="true">&times;</span>
+			        </button>
+			      </div>
+			      <div class="alert alert-danger">
+			        Deseja realmente excluir este Tipo de Participante?
+			      </div>
+			      <div class="modal-footer">
+				        <button type="button" class="btn btn-success" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span>Cancelar</button>
+				        <a href="" id="delRef" class="btn btn-danger"><span class="glyphicon glyphicon-ok"></span>Excluir</a>
+			      </div>
+			    </div>
+			  </div>
+		</div>
+	</div>	
 		<br>        
 		<div id="top" class="row">
 		    <div class="col-md-3">
@@ -47,7 +68,7 @@
                     <td th:text="${tipoParticipante.descricao}">...</td>                    
                     <td>
                         <a class="btn btn-info" href="/tiposParticipante/tiposParticipanteEdit/1" th:href="@{/tiposParticipante/tiposParticipanteEdit/__${tipoParticipante.id}__}"><span class="glyphicon glyphicon-pencil"></span>Editar</a>
-                        <a class="btn btn-danger" href="/tiposParticipante/tiposParticipanteDelete/1" th:href="@{/tiposParticipante/tiposParticipanteDelete/__${tipoParticipante.id}__}"><span class="glyphicon glyphicon-remove"></span>Excluir</a>                        
+                        <a class="btn btn-danger delBtn" href="/tiposParticipante/tiposParticipanteDelete/1" th:href="@{/tiposParticipante/tiposParticipanteDelete/__${tipoParticipante.id}__}"><span class="glyphicon glyphicon-remove"></span>Excluir</a>                        
                     </td>
                 </tr>
             </tbody>

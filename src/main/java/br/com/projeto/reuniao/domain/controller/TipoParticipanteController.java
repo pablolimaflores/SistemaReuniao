@@ -67,9 +67,10 @@ public class TipoParticipanteController {
     }
 
     @GetMapping("/tiposParticipanteDelete/{id}")
-    public String tiposParticipanteDelete(Model model, @PathVariable(required = true, name = "id") Long id) {
+    public String tiposParticipanteDelete(@PathVariable(required = true, name = "id") Long id, @PageableDefault(size=3) Pageable pageable, Model model) {
         this.tipoParticipanteService.deleteTipoParticipante(id);
-        model.addAttribute("tiposParticipanteList", this.tipoParticipanteService.findAllTiposParticipante());
+        Page<TipoParticipante> page = tipoParticipanteService.findAllTiposParticipantePage(pageable);
+        model.addAttribute("page", page);
         return "tiposParticipante/tiposParticipanteList";
     }
 }

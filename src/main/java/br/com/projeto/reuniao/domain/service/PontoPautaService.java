@@ -3,17 +3,23 @@ package br.com.projeto.reuniao.domain.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import br.com.projeto.reuniao.domain.entity.PontoPauta;
 import br.com.projeto.reuniao.domain.repository.IPontoPautaRepository;
+import br.com.projeto.reuniao.domain.repository.IPontoPautaRepositoryPageable;
 
 @Service
 public class PontoPautaService {
 	
 	@Autowired
 	private IPontoPautaRepository pontoPautaRepository;
+	
+	@Autowired
+	private IPontoPautaRepositoryPageable pontoPageable;
 	
 	/**
 	 * 
@@ -23,6 +29,14 @@ public class PontoPautaService {
 	public List<PontoPauta> findAllPontoPautas() {
         return this.pontoPautaRepository.findAll();
     }
+	
+	/**
+	 * 
+	 */
+	@Transactional(readOnly = true)
+	public Page<PontoPauta> findAllPontoPautasPageable(Pageable pageable){
+		return pontoPageable.findAll(pageable);
+	}
 	
 	/**
 	 * 

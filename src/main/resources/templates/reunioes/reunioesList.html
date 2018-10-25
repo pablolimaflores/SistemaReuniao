@@ -4,21 +4,37 @@
 <head>
 	<meta charset="UTF-8" />
     <title>Lista</title>
-
     <div th:replace="fragments/header :: header-css"/>
-
 </head>
 <body>
-
 <div th:replace="fragments/header :: header"/>
-
 <div class="container">
+	<div class="card">
+		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+			  <div class="modal-dialog modal-dialog-centered" role="document">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <h5 align="center" class="modal-title" id="exampleModalLongTitle">Excluir Reunião</h5>
+			        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			          <span aria-hidden="true">&times;</span>
+			        </button>
+			      </div>
+			      <div class="alert alert-danger">
+			        Deseja realmente excluir esta Reunião?
+			      </div>
+			      <div class="modal-footer">
+				        <button type="button" class="btn btn-success" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span>Cancelar</button>
+				        <a href="" id="delRef" class="btn btn-danger"><span class="glyphicon glyphicon-ok"></span>Excluir</a>
+			      </div>
+			    </div>
+			  </div>
+		</div>
+	</div>	
 		<br>        
 		<div id="top" class="row">
 		    <div class="col-md-3">
 		        <h2>Reuniões</h2>
-		    </div>
-		 
+		    </div>	 
 		    <div class="col-md-6">
 		        <div class="input-group h2">
 		            <input name="data[search]" class="form-control" id="search" type="text" placeholder="Pesquisar itens">
@@ -32,7 +48,6 @@
 		        
 		    </div>
 		</div>
-
         <table class="table table-bordred table-striped">
             <thead>
                 <tr>
@@ -49,7 +64,7 @@
                     <td th:text="${reuniao.data}">2018-09-25</td>
                     <td>
                         <a class="btn btn-info" href="/reunioes/reunioesEdit/1" th:href="@{/reunioes/reunioesEdit/__${reuniao.id}__}"><span class="glyphicon glyphicon-edit"></span>Editar</a>
-                        <a class="btn btn-danger" href="/reunioes/reunioesDelete/1" th:href="@{/reunioes/reunioesDelete/__${reuniao.id}__}"><span class="glyphicon glyphicon-remove"></span> Excluir</a>  
+                        <a class="btn btn-danger delBtn" href="/reunioes/reunioesDelete/1" th:href="@{/reunioes/reunioesDelete/__${reuniao.id}__}"><span class="glyphicon glyphicon-remove"></span> Excluir</a>  
                         <a class="btn btn-primary" href="/pontosPauta/pontoPautaEdit" th:href="@{/pontosPauta/pontoPautaEdit}"><span class="glyphicon glyphicon-pencil"></span> Criar Pauta</a>                       
                     </td>
                 </tr>
@@ -65,8 +80,7 @@
 			        <span th:if="${page.number == i}" class="selected">[[${i}+1]]</span>
 			        <span th:unless="${page.number == i}">
 			          <a th:href="@{/reunioes(page=${i},size=${page.size})}">[[${i}+1]]</a>
-			        </span>
-			        
+			        </span>		        
 			    </th:block>
 			    <span th:if="${page.hasNext()}">
 			        <a  th:href="@{/reunioes(page=${page.number+1},size=${page.size})}">Proximo</a>
@@ -75,8 +89,6 @@
 			</ul>    
 		</div>
     </div>
-
 <div th:replace="fragments/footer :: footer"/>
-
 </body>
 </html>

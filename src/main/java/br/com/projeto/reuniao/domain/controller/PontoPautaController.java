@@ -5,6 +5,9 @@ import javax.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -34,8 +37,9 @@ public class PontoPautaController {
 	private static final Logger LOGGER = LoggerFactory.getLogger(PontoPautaController.class);
 	
 	@GetMapping("")
-	public String findAllPontoPauta(Model model) {
-		model.addAttribute("pontoPautaList", pontoPautaService.findAllPontoPautas());
+	public String findAllPontoPauta(@PageableDefault(size=5) Pageable pageable, Model model) {
+		Page<PontoPauta> page = pontoPautaService.findAllPontoPautasPageable(pageable);
+		model.addAttribute("page", page);
 		return "pontosPauta/pontosPautaList";
 	}
 	
@@ -51,7 +55,7 @@ public class PontoPautaController {
         return "pontosPauta/pontoPautaEdit";
 	}
 	@PostMapping(value={"pontoPautaEdit", "pontoPautaEdit/{id}"})
-	public String updatePontoPauta(Model model, @Valid PontoPauta pontoPauta, BindingResult bindingResult, @PathVariable(required = false, name = "id") Long id) {
+	public String updatePontoPauta(@Valid PontoPauta pontoPauta, BindingResult bindingResult, @PathVariable(required = false, name = "id") Long id, @PageableDefault(size=5) Pageable pageable, Model model) {
 		
 		if(bindingResult.hasErrors()) {
             bindingResult.getAllErrors().forEach(err -> {
@@ -66,13 +70,15 @@ public class PontoPautaController {
     	} else {
     		this.pontoPautaService.insertPontoPauta(pontoPauta);
     	}    	
-        model.addAttribute("pontoPautaList", this.pontoPautaService.findAllPontoPautas());
+    	Page<PontoPauta> page = pontoPautaService.findAllPontoPautasPageable(pageable);
+		model.addAttribute("page", page);
         return "pontosPauta/pontoPautaList";
 	}
 	@GetMapping("/pontoPautaDelete/{id}")
-	public String pontoPautaDelete(Model model, @PathVariable(required = true, name = "id") Long id) {
+	public String pontoPautaDelete(@PathVariable(required = true, name = "id") Long id, @PageableDefault(size=5) Pageable pageable, Model model) {
 		this.pontoPautaService.deletePontoPauta(id);
-		model.addAttribute("pontoPautaList", this.pontoPautaService.findAllPontoPautas());
+		Page<PontoPauta> page = pontoPautaService.findAllPontoPautasPageable(pageable);
+		model.addAttribute("page", page);
 		return "pontosPauta/pontoPautaList";
 	}
 	
