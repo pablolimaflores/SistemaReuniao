@@ -14,25 +14,26 @@
 
 <div class="container">
 	<div class="card">
-		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-			  <div class="modal-dialog modal-dialog-centered" role="document">
-			    <div class="modal-content">
-			      <div class="modal-header">
-			        <h5 align="center" class="modal-title" id="exampleModalLongTitle">Excluir Tipos</h5>
-			        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-			          <span aria-hidden="true">&times;</span>
-			        </button>
-			      </div>
-			      <div class="alert alert-danger">
-			        Deseja realmente excluir Este Tipo?
-			      </div>
-			      <div class="modal-footer">
-				        <button type="button" class="btn btn-success" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span>Cancelar</button>
-				        <a href="" id="delRef" class="btn btn-danger"><span class="glyphicon glyphicon-ok"></span>Excluir</a>
-			      </div>
-			    </div>
-			  </div>
-		</div>
+		<div id="myModal" class="modal fade">
+			<div class="modal-dialog modal-confirm">
+				<div class="modal-content">
+					<div class="modal-header">
+						<div class="icon-box" align="center">
+							<i class="material-icons">&#xE5CD;</i>
+						</div>				
+							
+		                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					</div>
+					<div class="modal-body">
+						<p class="alert alert-danger">Deseja deletar este registro? O processo não pode ser desfeito</p>
+					</div>
+					<div align="center">
+						<button id="voltar" type="button" class="btn btn-success" data-dismiss="modal"><span class="glyphicon glyphicon-menu-left">Cancelar</button>
+						<a href="" id="delRef" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span> Excluir</a>
+					</div>
+				</div>
+			</div>
+		</div> 
 	</div>	
 		<br>        
 		<div id="top" class="row">

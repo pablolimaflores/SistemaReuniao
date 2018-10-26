@@ -86,5 +86,20 @@ body {
 		display: inline-block;
 		margin: 100px auto;
 	}
+	#delRef{
+		text-align: center;
+   		justify-content: center;
+   		padding-top: 12px;
+   		top: 50%;
+   		position: relative;
+	}
+	#voltar{
+		text-align: center;
+   		justify-content: center;
+   		padding-top: 4px;
+   		top: 50%;
+   		position: relative;
+	}
+	
 	
 /* Fim config modal */	
