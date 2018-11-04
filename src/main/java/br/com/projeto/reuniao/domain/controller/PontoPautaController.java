@@ -15,10 +15,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import br.com.projeto.reuniao.domain.entity.PontoPauta;
 import br.com.projeto.reuniao.domain.service.PessoaService;
 import br.com.projeto.reuniao.domain.service.PontoPautaService;
+import br.com.projeto.reuniao.domain.service.ReuniaoService;
 import br.com.projeto.reuniao.domain.service.TipoService;
 
 @Controller
@@ -34,6 +36,9 @@ public class PontoPautaController {
 	@Autowired
 	TipoService tipoService;
 	
+	@Autowired
+	ReuniaoService reuniaoService;
+	
 	private static final Logger LOGGER = LoggerFactory.getLogger(PontoPautaController.class);
 	
 	@GetMapping("")
@@ -43,19 +48,22 @@ public class PontoPautaController {
 		return "pontosPauta/pontosPautaList";
 	}
 	
-	@GetMapping(value={"/pontoPautaEdit","/pontoPautaEdit/{id}"})
-	public String findPontoPautaById(Model model, @PathVariable(required = false, name = "id") Long id){
+	@GetMapping(value={"/pontoPautaEdit/reuniao/{idReuniao}","/pontoPautaEdit/{id}/reuniao/{idReuniao}"})
+	public String findPontoPautaById(Model model, @PathVariable(required = false, name = "id") Long id, @PathVariable(required = true, name = "idReuniao") Long idReuniao){
+		
+		model.addAttribute("reuniao", this.reuniaoService.findReuniaoById(idReuniao));
+		model.addAttribute("responsavelList", pessoaService.findAllPessoas());
+		model.addAttribute("tipoList", tipoService.findAllTipos());
+		
 		if (null != id) {
             model.addAttribute("pontoPauta", this.pontoPautaService.findPontoPautaById(id));
         } else {
             model.addAttribute("pontoPauta", new PontoPauta());
-            model.addAttribute("responsavelList", pessoaService.findAllPessoas());
-    		model.addAttribute("tipoList", tipoService.findAllTipos());
         }
         return "pontosPauta/pontoPautaEdit";
 	}
-	@PostMapping(value={"pontoPautaEdit", "pontoPautaEdit/{id}"})
-	public String updatePontoPauta(@Valid PontoPauta pontoPauta, BindingResult bindingResult, @PathVariable(required = false, name = "id") Long id, @PageableDefault(size=5) Pageable pageable, Model model) {
+	@PostMapping(value={"/pontoPautaEdit/reuniao/{idReuniao}", "/pontoPautaEdit/{id}/reuniao/{idReuniao}"})
+	public String updatePontoPauta(@Valid PontoPauta pontoPauta, BindingResult bindingResult, @PathVariable(required = false, name = "id") Long id, @PathVariable(required = true, name = "idReuniao") Long idReuniao, @PageableDefault(size=5) Pageable pageable, Model model) {
 		
 		if(bindingResult.hasErrors()) {
             bindingResult.getAllErrors().forEach(err -> {
