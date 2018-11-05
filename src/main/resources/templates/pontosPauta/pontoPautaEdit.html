@@ -13,31 +13,16 @@
 <div th:replace="fragments/header :: header"/>
 
 <div class="container">
-
-    <div class="container" style="margin-top: 1em;">
-         <div class="row">
-            <div class="col-md-6" style="padding=0.5em;">
-                <div class="card">
-                    <div class="card-body">
-                        <h2 class="card-title" align="center">Informações da Reunião</h2>
-                        <label>Título:<span th:text="${reuniao.titulo}"></span></label><br>th:text no span para mostrar as infos da reuniao
-                        <label>Data:<span th:text="${reuniao.data}"></span></label><br>
-                        <label>Local:<span th:text="${reuniao.local}"></span></label><br>
-                        <label>Início:<span th:text="${reuniao.horaInicio}"></span></label><br>
-                        <label>Fim:<span th:text="${reuniao.horaFim}"></span></label><br>
-                        <label>Pré-requisito:<span th:text="${reuniao.preRequisito}"></span></label><br>
-                        <label>Tipo de Reunião:<span th:text="${reuniao.tipo.nome}"></span></label><br>
-                        <label>Objetivo:<span th:text="${reuniao.objetivo}"></span></label><br>
-                    </div>
-                </div>
-            </div>
-                       
-            <div class="col-md-6">
-                <div class="card"> 
-                    <div class="card-body">
-                        <h2 class="card-title" align="center">Cadastrar Pauta</h2><br>
-	                        <form class="form-group" action="/pontosPauta/pontoPautaEdit/reuniao/1" th:action="@{/pontosPauta/pontoPautaEdit/reuniao/__${reuniao.id}__}" method="post">
-						        <input th:type="hidden" name="id" th:field="${pontoPauta.id}" />
+	<div class="myForm">
+	<form class="form-group" action="/pontosPauta/pontoPautaEdit/reuniao/1" th:action="@{/pontosPauta/pontoPautaEdit/reuniao/__${reuniao.id}__}" method="post">
+		<div id="exampleModal" class="modal fade">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">	
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>		
+					</div>
+					<div class="modal-body">
+							<input th:type="hidden" name="id" th:field="${pontoPauta.id}" />
 						        <div class="form-group" th:classappend="${#fields.hasErrors('pontoPauta.ordem')} ? 'has-error'">
 						            <div class="col-md-6 offset-md-3">
 						            <label >Ordem</label>
@@ -79,26 +64,75 @@
 						        		</select>
 						        	</div>
 						        </div>
-						        <div class="form-group" th:classappend="${#fields.hasErrors('pontoPauta.tipo')} ? 'has-error'">
-						        	<div class="col-md-6 offset-md-3">
-						        		 <legend align="center">Selecione o Tipo da Pauta</legend>
-						        		 <select class="col-md-6 offset-md-3" id="tipo" name="tipo" th:field="${pontoPauta.tipo}">
+						   <div class="form-group" th:classappend="${#fields.hasErrors('pontoPauta.tipo')} ? 'has-error'">
+						       <div class="col-md-6 offset-md-3">
+						        	<legend align="center">Selecione o Tipo da Pauta</legend>
+						        		<select class="col-md-6 offset-md-3" id="tipo" name="tipo" th:field="${pontoPauta.tipo}">
 						        			<option value=""></option>
 						        			<option th:each="tipo : ${tipoList}" th:value="${tipo.id}" th:text="${tipo.nome}"></option>
 						        			<span th:if="${#fields.hasErrors('pontoPauta.tipo')}" th:errors="*{pontoPauta.tipo}" id="errorTipo" class="help-block"></span>
 						        		</select>
 						        		<br><br>
 						        		<div align="center">
-							        	<button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-ok"></span>Cadastrar</button>
-							        	<a href="#" th:href="@{/reunioes}" class="btn btn-danger" role="button"><span class="glyphicon glyphicon-remove"></span> Cancelar</a> 
+							        		<button class="btn btn-success"><span class="glyphicon glyphicon-ok"></span>Cadastrar</button>
+							        		<button class="btn btn-danger" data-dismiss="modal"><span class="glyphicon glyphicon-remove">Cancelar</button> 
 						        		</div>
-						        	</div>
-						        </div>
-	    					</form>	
+						       	</div>
+						  </div>
+					</div>			
+				</div>
+			</div>
+		</div> 
+	</form>	
+	</div>	
+    <div class="container" style="margin-top: 1em;">
+    <form>
+        <div class="row">
+            <div class="col-md-6" style="padding=0.5em;">
+                <div class="card">
+                    <div class="card-body">
+                        <h2 class="card-title" align="center">Informações da Reunião</h2>
+                        <label>Título:<span th:text="${reuniao.titulo}"></span></label><br>
+                        <label>Data:<span th:text="${reuniao.data}"></span></label><br>
+                        <label>Local:<span th:text="${reuniao.local}"></span></label><br>
+                        <label>Início:<span th:text="${reuniao.horaInicio}"></span></label><br>
+                        <label>Fim:<span th:text="${reuniao.horaFim}"></span></label><br>
+                        <label>Pré-requisito:<span th:text="${reuniao.preRequisito}"></span></label><br>
+                        <label>Tipo de Reunião:<span th:text="${reuniao.tipo.nome}"></span></label><br>
+                        <label>Objetivo:<span th:text="${reuniao.objetivo}"></span></label><br>
+                        <hr>
+                        <button class="btn btn-success nBtn"><span class="glyphicon glyphicon-ok"></span>Cadastrar</button>
                     </div>
                 </div>
-            </div>  
+            </div>            
+             <div class="col-md-6">
+                <div class="card"> 
+                    <div class="card-body">
+                        <h2 class="card-title" align="center">Pautas</h2>
+                       <table class="table table-bordred table-striped">
+				          <thead>
+				              	<tr>
+				              		<th>Descrição</th>
+				                	<th>Ordem</th>
+				                    <th>Tempo</th>
+				                    <th>Responsável</th>
+				                </tr>
+				            </thead>
+				            <tbody>
+				           <!-- <tr th:each="reuniao : ${pageSched}">
+				                    <td th:text="${reuniao.data}">2018-09-25</td>
+				                    <td th:text="${reuniao.titulo}">Admin</td>
+				                    <td>
+				                    	<a class="btn btn-info" href="/reunioes/reunioesEdit/1" th:href="@{/reunioes/reunioesEdit/__${reuniao.id}__}"><span class="glyphicon glyphicon-info-sign"></span>   Detalhes</a>
+				                    </td>
+				                </tr>   -->   
+				            </tbody>
+        				</table>
+                    </div>
+                </div>
+            </div> 
         </div>
+        </form>
 </div>
     
 </div>
