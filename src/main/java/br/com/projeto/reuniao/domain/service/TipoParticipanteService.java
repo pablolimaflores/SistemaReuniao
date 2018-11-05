@@ -10,16 +10,12 @@ import org.springframework.transaction.annotation.Transactional;
 
 import br.com.projeto.reuniao.domain.entity.TipoParticipante;
 import br.com.projeto.reuniao.domain.repository.ITipoParticipanteRepository;
-import br.com.projeto.reuniao.domain.repository.ITipoParticipanteRepositoryPageable;
 
 @Service
 public class TipoParticipanteService {
 	
 	@Autowired
-	private ITipoParticipanteRepository tipoParticipanteRepository;
-	
-	@Autowired
-	private ITipoParticipanteRepositoryPageable iTipoParticipanteRepository;
+	private ITipoParticipanteRepository tipoParticipanteRepository;	
 	
 	/**
 	 * 
@@ -37,8 +33,18 @@ public class TipoParticipanteService {
 	 */
 	@Transactional(readOnly = true)
 	public Page<TipoParticipante> findAllTiposParticipantePage(Pageable pageable) {
-        return this.iTipoParticipanteRepository.findAll(pageable);
+        return this.tipoParticipanteRepository.findByFilter("", pageable);
     }
+	
+	/**
+	 * Metodo para retornar as páginas
+	 * @param pageable
+	 * @return
+	 */
+	@Transactional(readOnly = true)
+	public Page<TipoParticipante> findTiposParticipanteByFilter(String filter, Pageable pageable) {
+		return this.tipoParticipanteRepository.findByFilter(filter, pageable);
+    }	
 	
 	/**
 	 * 

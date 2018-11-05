@@ -14,11 +14,22 @@ import br.com.projeto.reuniao.domain.entity.Tipo;
 @Repository
 public interface ITipoRepository extends JpaRepository<Tipo, Long>{
 
+	/**
+	 * Método que retorna o Tipo espscífico pelo seu nome (que é único)
+	 * @param nome
+	 * @return
+	 */
 	@Query("SELECT new Tipo(tipo.id, tipo.nome, tipo.descricao, tipo.debate) "
 			+ "FROM Tipo tipo "
 			+ "WHERE tipo.nome = :nome")
 	Optional<Tipo> findByNome(@Param("nome") String nome);
 	
+	/**
+	 * Médoto que traz, paginado, todos os Tipos de acordo com o filtro passsado por parâmetro
+	 * @param filter
+	 * @param pageable
+	 * @return
+	 */
 	@Query("SELECT new Tipo(tipo.id, tipo.nome, tipo.descricao, tipo.debate) "
 			+ "FROM Tipo tipo "
 			+ "WHERE ( "

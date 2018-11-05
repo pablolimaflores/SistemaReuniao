@@ -15,7 +15,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import br.com.projeto.reuniao.domain.entity.Tipo;
 import br.com.projeto.reuniao.domain.entity.TipoParticipante;
 import br.com.projeto.reuniao.domain.service.TipoParticipanteService;
 
@@ -34,6 +36,14 @@ public class TipoParticipanteController {
         model.addAttribute("page", page);
         return "tiposParticipante/tiposParticipanteList";
     }
+    
+    @PostMapping("**/filter")    
+    public String findTiposParticipanteByFilter(@RequestParam("filter") String filter, 
+    		@PageableDefault(size=3) Pageable pageable, Model model) {       
+        Page<TipoParticipante> page = tipoParticipanteService.findTiposParticipanteByFilter(filter, pageable);
+        model.addAttribute("page", page);        
+        return "tiposParticipante/tiposParticipanteList";
+    } 
     
     @GetMapping(value={"/tiposParticipanteEdit","/tiposParticipanteEdit/{id}"})
     public String findTipoParticipanteById(Model model, @PathVariable(required = false, name = "id") Long id) {
