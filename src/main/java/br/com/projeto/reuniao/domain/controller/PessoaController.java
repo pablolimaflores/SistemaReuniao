@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import br.com.projeto.reuniao.domain.entity.Pessoa;
 import br.com.projeto.reuniao.domain.service.PessoaService;
@@ -30,8 +31,16 @@ public class PessoaController {
     
     @GetMapping("")    
     public String findAllPessoas(@PageableDefault(size=5) Pageable pageable, Model model){
-        Page<Pessoa> page = pessoaService.findAllPessoasPage(pageable);
+        Page<Pessoa> page = pessoaService.findAllPessoas(pageable);
         model.addAttribute("page", page);
+        return "pessoas/pessoasList";
+    }
+    
+    @PostMapping("**/filter")    
+    public String findPessoasByFilter(@RequestParam("filter") String filter, 
+    		@PageableDefault(size=3) Pageable pageable, Model model) {       
+        Page<Pessoa> page = pessoaService.findPessoasByFilter(filter, pageable);
+        model.addAttribute("page", page);        
         return "pessoas/pessoasList";
     }
     
@@ -61,7 +70,7 @@ public class PessoaController {
     	} else {
     		this.pessoaService.insertPessoa(pessoa);
     	}    	
-    	Page<Pessoa> page = pessoaService.findAllPessoasPage(pageable);
+    	Page<Pessoa> page = pessoaService.findAllPessoas(pageable);
         model.addAttribute("page", page);
         return "pessoas/pessoasList";
     }
@@ -69,7 +78,7 @@ public class PessoaController {
     @GetMapping("/pessoasDelete/{id}")
     public String pessoasDelete(@PathVariable(required = true, name = "id") Long id, @PageableDefault(size=5) Pageable pageable, Model model) {
         this.pessoaService.deletePessoa(id);
-        Page<Pessoa> page = pessoaService.findAllPessoasPage(pageable);
+        Page<Pessoa> page = pessoaService.findAllPessoas(pageable);
         model.addAttribute("page", page);
         return "pessoas/pessoasList";
     }

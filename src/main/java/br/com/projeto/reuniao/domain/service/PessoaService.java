@@ -18,15 +18,12 @@ import br.com.projeto.reuniao.application.security.ContextHolder;
 import br.com.projeto.reuniao.application.security.PessoaUsuarioSecurity;
 import br.com.projeto.reuniao.domain.entity.Pessoa;
 import br.com.projeto.reuniao.domain.repository.IPessoaRepository;
-import br.com.projeto.reuniao.domain.repository.IPessoaRepositoryPageable;
 
 @Service
 public class PessoaService implements UserDetailsService {
 	
 	@Autowired
-	private IPessoaRepository pessoaRepository;
-	
-	@Autowired IPessoaRepositoryPageable iPessoaRepositoryPageable;
+	private IPessoaRepository pessoaRepository;		
 	
 	/**
 	 * 
@@ -38,8 +35,13 @@ public class PessoaService implements UserDetailsService {
     }
 	
 	@Transactional(readOnly = true)
-	public Page<Pessoa> findAllPessoasPage(Pageable pageable) {
-        return this.iPessoaRepositoryPageable.findAll(pageable);
+	public Page<Pessoa> findAllPessoas(Pageable pageable) {
+        return this.pessoaRepository.findByFilter("", pageable);
+    }
+	
+	@Transactional(readOnly = true)
+	public Page<Pessoa> findPessoasByFilter(String filter, Pageable pageable) {
+		return this.pessoaRepository.findByFilter(filter, pageable);
     }
 	
 	/**
