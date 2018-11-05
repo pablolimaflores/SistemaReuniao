@@ -10,7 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import br.com.projeto.reuniao.domain.entity.Tipo;
 import br.com.projeto.reuniao.domain.repository.ITipoRepository;
-import br.com.projeto.reuniao.domain.repository.ITipoRepositoryPageable;
 
 @Service
 public class TipoService {
@@ -18,16 +17,23 @@ public class TipoService {
 	@Autowired
 	private ITipoRepository tipoRepository;
 	
-	@Autowired
-	private ITipoRepositoryPageable iTipoRepositoryPageable;
+	/**
+	 * Metodo para retornar páginas com todos os tipos cadastrados
+	 * @param pageable
+	 * @return
+	 */
+	@Transactional(readOnly = true)
+	public Page<Tipo> findAllTipos(Pageable pageable) {
+		return this.tipoRepository.findByFilter("", pageable);
+    }
 	
 	/**
-	 * 
+	 * Retorna lista com todos os itens cadastrados
 	 * @return
 	 */
 	@Transactional(readOnly = true)
 	public List<Tipo> findAllTipos() {
-        return this.tipoRepository.findAll();
+		return this.tipoRepository.findAll();
     }
 	
 	/**
@@ -36,9 +42,9 @@ public class TipoService {
 	 * @return
 	 */
 	@Transactional(readOnly = true)
-	public Page<Tipo> findAllTiposPage(Pageable pageable) {
-        return this.iTipoRepositoryPageable.findAll(pageable);
-    }
+	public Page<Tipo> findTiposByFilter(String filter, Pageable pageable) {
+		return this.tipoRepository.findByFilter(filter, pageable);
+    }	
 	
 	/**
 	 * 

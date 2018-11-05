@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import br.com.projeto.reuniao.domain.entity.Tipo;
 import br.com.projeto.reuniao.domain.service.TipoService;
@@ -24,19 +25,26 @@ import br.com.projeto.reuniao.domain.service.TipoService;
 public class TipoController {
 
     @Autowired
-    TipoService tipoService;
-    
+    TipoService tipoService;    
     
     private static final Logger LOGGER = LoggerFactory.getLogger(TipoController.class);
     
-    @GetMapping("")    
+    @GetMapping("")
     public String findAllTipos(@PageableDefault(size=3) Pageable pageable, Model model) {       
-        Page<Tipo> page = tipoService.findAllTiposPage(pageable);
+        Page<Tipo> page = tipoService.findAllTipos(pageable);
         model.addAttribute("page", page);
         return "tipos/tiposList";
     }
     
-    @GetMapping(value={"/tiposEdit","/tiposEdit/{id}"})
+    @PostMapping("**/filter")    
+    public String findTiposByFilter(@RequestParam("filter") String filter, 
+    		@PageableDefault(size=3) Pageable pageable, Model model) {       
+        Page<Tipo> page = tipoService.findTiposByFilter(filter, pageable);
+        model.addAttribute("page", page);        
+        return "tipos/tiposList";
+    }  
+    
+    @GetMapping(value={"/tiposEdit","/tiposEdit/{id}"})	
     public String findTipoById(Model model, @PathVariable(required = false, name = "id") Long id) {
         if (null != id) {
             model.addAttribute("tipo", this.tipoService.findTipoById(id));
@@ -47,7 +55,8 @@ public class TipoController {
     }
     
     @PostMapping(value={"/tiposEdit","/tiposEdit/{id}"})
-    public String updateTipo(@Valid Tipo tipo, BindingResult bindingResult, @PathVariable(required = false, name = "id") Long id, @PageableDefault(size=3) Pageable pageable, Model model) {
+    public String updateTipo(@Valid Tipo tipo, BindingResult bindingResult, @PathVariable(required = false, name = "id") Long id, 
+    		@PageableDefault(size=3) Pageable pageable, Model model) {
     	
     	if(bindingResult.hasErrors()) {
             bindingResult.getAllErrors().forEach(err -> {
@@ -62,15 +71,16 @@ public class TipoController {
     	} else {
     		this.tipoService.insertTipo(tipo);
     	}    	
-    	Page<Tipo> page = tipoService.findAllTiposPage(pageable);
+    	Page<Tipo> page = tipoService.findAllTipos(pageable);
         model.addAttribute("page", page);
         return "tipos/tiposList";
     }
 
     @GetMapping("/tiposDelete/{id}")
-    public String tiposDelete(@PathVariable(required = true, name = "id") Long id, @PageableDefault(size=3) Pageable pageable, Model model) {
+    public String tiposDelete(@PathVariable(required = true, name = "id") Long id, @PageableDefault(size=3) Pageable pageable, 
+    		Model model) {
         this.tipoService.deleteTipo(id);
-        Page<Tipo> page = tipoService.findAllTiposPage(pageable);
+        Page<Tipo> page = tipoService.findAllTipos(pageable);
         model.addAttribute("page", page);
         return "tipos/tiposList";
     }
