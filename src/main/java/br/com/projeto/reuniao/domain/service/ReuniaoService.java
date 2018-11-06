@@ -10,16 +10,12 @@ import org.springframework.transaction.annotation.Transactional;
 
 import br.com.projeto.reuniao.domain.entity.Reuniao;
 import br.com.projeto.reuniao.domain.repository.IReuniaoRepository;
-import br.com.projeto.reuniao.domain.repository.IReuniaoRepositoryPageable;
 
 @Service
 public class ReuniaoService {
 	
 	@Autowired
-	private IReuniaoRepository reuniaoRepository;
-	
-	@Autowired
-	private IReuniaoRepositoryPageable iReuniaoRepositoryPage;
+	private IReuniaoRepository reuniaoRepository;	
 	
 	/**
 	 * 
@@ -37,7 +33,17 @@ public class ReuniaoService {
 	 */
 	@Transactional(readOnly = true)
 	public Page<Reuniao> findAllReunioesPage(Pageable pageable) {
-        return this.iReuniaoRepositoryPage.findAll(pageable);
+        return this.reuniaoRepository.findByFilter("", pageable);
+    }
+	
+	/**
+	 * Metodo para retornar as páginas
+	 * @param pageable
+	 * @return
+	 */
+	@Transactional(readOnly = true)
+	public Page<Reuniao> findReunioesByFilter(String filter, Pageable pageable) {
+		return this.reuniaoRepository.findByFilter(filter, pageable);
     }
 	
 	/**

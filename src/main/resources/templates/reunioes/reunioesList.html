@@ -31,38 +31,38 @@
 			</div>
 		</div> 
 	</div>	
-		<br>        
-		<div id="top" class="row">
-		    <div class="col-md-3">
-		        <h2>Reuniões</h2>
-		    </div>	 
-		    <div class="col-md-6">
-		        <div class="input-group h2">
-		            <input name="data[search]" class="form-control" id="search" type="text" placeholder="Pesquisar itens">
-		            <span class="input-group-btn">
-		                <button class="btn btn-primary" type="submit">
-		                    <span class="glyphicon glyphicon-search">Buscar</span>		                  
-		                </button>
-		                	<a class="btn btn-success" href="/reunioes/reunioesEdit" th:href="@{/reunioes/reunioesEdit}"><span class="glyphicon glyphicon-plus"></span>Novo</a>
-		            </span>
-		        </div>
-		        
+		<br>
+        
+        <div id="top" class="row align-items-center">
+		
+		    <div class="col-md-3 align-self-center">
+		        <h2>Reuniões</h2>	        
 		    </div>
+			<div class="col-md-6 ">				
+				<form class="form-group d-flex justify-content-center h2" action="/reunioes/reunioesList/filter" th:action="@{/reunioes/reunioesList/filter}" method="post">					 	
+					<input name="filter" class="form-control" id="filter" type="text" placeholder="Pesquisar itens" />
+					<span class="input-group-btn">								
+						<button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search"> Buscar</button>
+						<a class="btn btn-secondary" href="/reunioes" th:href="@{/reunioes}"><span class="glyphicon glyphicon-remove"></span> Limpar</a>
+						<a class="btn btn-success" href="/reunioes/reunioesEdit" th:href="@{/reunioes/reunioesEdit}"><span class="glyphicon glyphicon-plus"></span> Novo</a>
+					</span>
+				</form>				
+			</div>   
 		</div>
+        
         <table class="table table-bordred table-striped">
             <thead>
                 <tr>
                     <th>Código</th>
-                    <th>Titulo</th>
                     <th>Data</th>
+                    <th>Titulo</th>
                     <th>Ações</th>
                 </tr>
             </thead>
             <tbody>
-                <tr th:each="reuniao : ${page}">
-                    <td th:text="${reuniao.id}">1</td>
-                    <td th:text="${reuniao.titulo}">Admin</td>
-                    <td th:text="${reuniao.data}">2018-09-25</td>
+                <tr th:each="reuniao : ${page}">                    
+                    <td th:text="${reuniao.data}">2018-12-31</td>
+                    <td th:text="${reuniao.titulo}">Reunião Teste</td>
                     <td>
                         <a class="btn btn-info" href="/reunioes/reunioesEdit/1" th:href="@{/reunioes/reunioesEdit/__${reuniao.id}__}"><span class="glyphicon glyphicon-edit"></span>Editar</a>
                         <a class="btn btn-danger delBtn" href="/reunioes/reunioesDelete/1" th:href="@{/reunioes/reunioesDelete/__${reuniao.id}__}"><span class="glyphicon glyphicon-remove"></span> Excluir</a>  

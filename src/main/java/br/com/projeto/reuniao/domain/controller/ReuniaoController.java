@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import br.com.projeto.reuniao.domain.entity.Reuniao;
 import br.com.projeto.reuniao.domain.service.ReuniaoService;
@@ -39,6 +40,13 @@ public class ReuniaoController {
         return "reunioes/reunioesList";
     }
     
+    @PostMapping("**/filter")    
+    public String findReunioesByFilter(@RequestParam("filter") String filter, 
+    		@PageableDefault(size=3) Pageable pageable, Model model) {       
+        Page<Reuniao> page = reuniaoService.findReunioesByFilter(filter, pageable);
+        model.addAttribute("page", page);        
+        return "reunioes/reunioesList";
+    }
     
     @GetMapping(value={"/reunioesEdit","/reunioesEdit/{id}"})
     public String findReuniaoById(Model model, @PathVariable(required = false, name = "id") Long id) {
