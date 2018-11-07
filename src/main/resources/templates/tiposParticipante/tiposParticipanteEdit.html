@@ -14,26 +14,27 @@
 
 <div class="container">
 
-    <h1 align="center">Tipo de Participante<hr></h1>
+    <h2 align="center">Tipo de Participante<hr></h2>
 
     <form class="form-group" action="/tiposParticipante/tiposParticipanteEdit" th:action="@{/tiposParticipante/tiposParticipanteEdit}" method="post">
         <input th:type="hidden" name="id" th:field="${tipoParticipante.id}" />
         <div class="form-group">
-        	<div class="col-md-6 offset-md-3">
+        	<div class="col-md-6 offset-md-3 vertical-space">
 	            <label for="nome">Nome</label>
 	            <input type="text" class="form-control" id="nome" name="nome" th:field="${tipoParticipante.nome}" />
         	</div>
         </div>
         <div class="form-group">
-        	<div class="col-md-6 offset-md-3">
+        	<div class="col-md-6 offset-md-3 vertical-space">
         		<label for="descricao">Descricao</label>
 	            <textarea class="form-control" id="descricao" name="descricao" th:field="${tipoParticipante.descricao}"></textarea>        	
-	            <br>
+        	</div>
+            <div class="col-md-6 offset-md-3 vertical-space"> 
 	            <div align="center">
 		            <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-ok" ></span>Salvar</button>
 	        		<a href="#" th:href="@{/tiposParticipante}" class="btn btn-danger" role="button"><span class="glyphicon glyphicon-remove" ></span>Cancelar</a>
         		</div>
-        	</div>
+       		</div>
         </div>        
     </form>
 

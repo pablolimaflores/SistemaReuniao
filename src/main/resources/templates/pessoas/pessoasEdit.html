@@ -22,63 +22,60 @@
 
 <div class="container">
 
-    <h1 align="center">Pessoas</h1>
+    <h2 align="center">Cadastro de Pessoas</h2>
+    <hr>
     <form class="form-group" action="/pessoas/pessoasEdit" th:action="@{/pessoas/pessoasEdit}" method="post">
         <input th:type="hidden" name="id" th:field="${pessoa.id}" />
         <div class="form-group" th:classappend="${#fields.hasErrors('pessoa.nome')} ? 'has-error'">
-            <div class="col-md-6 offset-md-3">
-            <label >Nome</label>
-            <input type="text" class="form-control" id="title" th:field="${pessoa.nome}" placeholder="Digite o nome"/>
+            <div class="col-md-6 offset-md-3 vertical-space">
+            	<label >Nome</label>
+            	<input type="text" class="form-control" id="title" th:field="${pessoa.nome}" placeholder="Digite o nome"/>
             </div>
             <span th:if="${#fields.hasErrors('pessoa.nome')}" th:errors="*{pessoa.nome}" id="errorNome" class="help-block"></span>
         </div>
         <div class="form-group" th:classappend="${#fields.hasErrors('pessoa.email')} ? 'has-error'">
-            <div class="col-md-6 offset-md-3">
-            <label>E-mail</label>
-            <input type="email" class="form-control" id="email" th:field="${pessoa.email}" placeholder="exemplo@exemplo"/>
+            <div class="col-md-6 offset-md-3 vertical-space">
+            	<label>E-mail</label>
+            	<input type="email" class="form-control" id="email" th:field="${pessoa.email}" placeholder="exemplo@exemplo"/>
             </div>
             <span th:if="${#fields.hasErrors('pessoa.email')}" th:errors="*{pessoa.email}" id="errorEmail" class="help-block"></span>
         </div>
         <div class="form-group" th:classappend="${#fields.hasErrors('pessoa.telefone')} ? 'has-error'">
-            <div class="   col-md-6 offset-md-3">
-            <label>Telefone</label>
-            <input type="text" class="form-control" id="telefone"  th:field="${pessoa.telefone}" placeholder="(00) 0000-0000"/>
+            <div class="col-md-3 offset-md-3 vertical-space">
+            	<label for="telefone">Telefone</label>
+            	<input type="text" class="form-control" id="telefone"  th:field="${pessoa.telefone}" placeholder="(00) 0000-0000"/>
             </div>
             <span th:if="${#fields.hasErrors('pessoa.telefone')}" th:errors="*{pessoa.telefone}" id="errorTelefone" class="help-block"></span>
-        </div>
-        <div class="form-group" th:classappend="${#fields.hasErrors('pessoa.celular')} ? 'has-error'">
-            <div class="col-md-6 offset-md-3">
+            <div class="col-md-3 vertical-space">
             	<label for="celular">Celular</label>
-            		<input type="text" class="form-control" id="celular" th:field="${pessoa.celular}" placeholder="(00) 0000-0000" />
-            	<div class="   col-md-6 offset-md-3">
-            	<span th:if="${#fields.hasErrors('pessoa.celular')}" th:errors="*{pessoa.celular}" id="errorCelular" class="help-block"></span>
-        				
+           		<input type="text" class="form-control" id="celular" th:field="${pessoa.celular}" placeholder="(00) 0 0000-0000" />
+            	<div class="col-md-6 offset-md-3 vertical-space">
+            		<span th:if="${#fields.hasErrors('pessoa.celular')}" th:errors="*{pessoa.celular}" id="errorCelular" class="help-block"></span>        				
 	    		</div>
         	</div>
-        </div> 
+        </div>         
         <div class="form-group">
-        <div class="col-md-6 offset-md-3">
-            <label for="title">Criar usuario?</label>
-            <input type="checkbox" name="usuario" id="usuario" th:field="${pessoa.usuarioAtivo}" onclick="(document.getElementById('senha').disabled = !this.checked) || (document.getElementById('adm').disabled = !this.checked)" />  
-        </div>              
-        </div>   
-        <div class="form-group" th:classappend="${#fields.hasErrors('pessoa.senha')} ? 'has-error'">
-            <div class="col-md-6 offset-md-3">
-            		<input type="password" class="form-control" id="senha" th:field="${pessoa.senha}" placeholder="Digite a senha" disabled="disabled"/>
-            	<div class="   col-md-6 offset-md-3">
-            	<span th:if="${#fields.hasErrors('pessoa.senha')}" th:errors="*{pessoa.senha}" id="errorSenha" class="help-block"></span>
+	        <div class="col-md-3 offset-md-3 vertical-space">
+	            <label for="title">Criar usuario?</label>
+	            <input type="checkbox" name="usuario" id="usuario" th:field="${pessoa.usuarioAtivo}" onclick="(document.getElementById('senha').disabled = !this.checked) || (document.getElementById('adm').disabled = !this.checked)" />  
+	        </div>
+	        <div class="col-md-3 vertical-space">
+            	<input type="password" class="form-control" id="senha" th:field="${pessoa.senha}" placeholder="Digite a senha" disabled="disabled"/>
+            	<div class="col-md-6" th:classappend="${#fields.hasErrors('pessoa.senha')} ? 'has-error'">
+            		<span th:if="${#fields.hasErrors('pessoa.senha')}" th:errors="*{pessoa.senha}" id="errorSenha" class="help-block"></span>
 	    		</div>
-        	</div>
-        </div>
-        <div class="col-md-6 offset-md-3">
+        	</div>              
+        </div>   
+        
+        <div class="col-md-6 offset-md-3 vertical-space">
             <label for="title">Será administrador?</label><br>
-            <input type="radio" name="adm" value="ADMIN" th:field="${pessoa.role}"> Sim    
-		    <input type="radio" name="adm" value="USER" th:field="${pessoa.role}"> Não 
+            <input type="radio" name="adm" value="ROLE_ADMIN" th:field="${pessoa.role}"> Sim    
+		    <input type="radio" name="adm" value="ROLE_USER" th:field="${pessoa.role}"> Não 
             <br><br>
-            	<div align="center">
-	        	<button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-ok"></span>Cadastrar</button>
-	        	<a href="#" th:href="@{/pessoas}" class="btn btn-danger" role="button"><span class="glyphicon glyphicon-remove"></span> Cancelar</a> 
-        		</div>
+           	<div align="center">
+        		<button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-ok"></span>Cadastrar</button>
+        		<a href="#" th:href="@{/pessoas}" class="btn btn-danger" role="button"><span class="glyphicon glyphicon-remove"></span> Cancelar</a> 
+       		</div>
         </div> 
     </form>	
 </div>

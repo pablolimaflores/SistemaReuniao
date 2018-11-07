@@ -14,32 +14,30 @@
 
 <div class="container">
 
-    <h1 align="center">Tipo<hr></h1>
+    <h2 align="center">Tipo<hr></h2>
 
     <form class="form-group" action="/tipos/tiposEdit" th:action="@{/tipos/tiposEdit}" method="post">
         <input th:type="hidden" name="id" th:field="${tipo.id}" />
         <div class="form-group">
-        	<div class="col-md-6 offset-md-3">
+        	<div class="col-md-6 offset-md-3 vertical-space">
 	            <label for="nome">Nome</label>
 	            <input type="text" id="nome" name="nome" class="form-control"  th:field="${tipo.nome}" />
         	</div>
         </div>
         <div class="form-group">
-        	<div class="col-md-6 offset-md-3">
+        	<div class="col-md-6 offset-md-3 vertical-space">
 	            <label for="descricao">Descricao</label>
 	            <textarea class="form-control" id="descricao" name="descricao" th:field="${tipo.descricao}"></textarea>
        		</div>
         </div>
         <div class="form-group">
-        <div class="col-md-6 offset-md-3">
-            <label for="title">Debate?</label>
-            <input type="checkbox" name="debate" th:field="${tipo.debate}" />  
-        </div>              
+	        <div class="col-md-6 offset-md-3 vertical-space">
+	            <label for="title">Debate?</label>
+	            <input type="checkbox" name="debate" th:field="${tipo.debate}" />  
+	        </div>              
         </div>  
         <div class="form-group">
-        	<div class="col-md-6 offset-md-3">
-        	<br>
-        	<br>
+        	<div class="col-md-6 offset-md-3 vertical-space">        	
         		<div align="center"> 
         			<button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-ok">Salvar</button>
         			<a href="#" th:href="@{/tipos}" class="btn btn-danger" role="button"><span class="glyphicon glyphicon-remove">Cancelar</a>
@@ -47,7 +45,7 @@
     		</div>
     	</div>
     </form>
-
+    
 </div>
 
 <div th:replace="fragments/footer :: footer"/>

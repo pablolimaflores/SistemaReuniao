@@ -65,6 +65,13 @@
                 </tr>
             </thead>
             <tbody>
+            	<div class="alert" th:if="${page != null and #lists.isEmpty(page.content)}">
+				    <tr>
+					    <td colspan=3>
+					        <strong>Nenhum item encontrado!</strong> Por favor, clique em <strong>Limpar</strong> ou tente um filtro de busca diferente.
+					    </td>
+				    </tr>
+				</div>
                 <tr th:each="pessoa : ${page}">
                     <td th:text="${pessoa.id}">1</td>
                     <td th:text="${pessoa.nome}">Admin</td>
