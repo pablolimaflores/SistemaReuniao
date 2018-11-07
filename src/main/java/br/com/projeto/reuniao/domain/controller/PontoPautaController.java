@@ -49,11 +49,13 @@ public class PontoPautaController {
 	}
 	
 	@GetMapping(value={"/pontoPautaEdit/reuniao/{idReuniao}","/pontoPautaEdit/{id}/reuniao/{idReuniao}"})
-	public String findPontoPautaById(Model model, @PathVariable(required = false, name = "id") Long id, @PathVariable(required = true, name = "idReuniao") Long idReuniao){
+	public String findPontoPautaById(@PathVariable(required = false, name = "id") Long id, @PathVariable(required = true, name = "idReuniao") Long idReuniao, @PageableDefault(size=5) Pageable pageable, Model model){
 		
 		model.addAttribute("reuniao", this.reuniaoService.findReuniaoById(idReuniao));
 		model.addAttribute("responsavelList", pessoaService.findAllPessoas());
 		model.addAttribute("tipoList", tipoService.findAllTipos());
+		Page<PontoPauta> page = pontoPautaService.findAllPontoPautasPageable(pageable);
+		model.addAttribute("page", page);
 		
 		if (null != id) {
             model.addAttribute("pontoPauta", this.pontoPautaService.findPontoPautaById(id));
