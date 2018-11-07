@@ -59,6 +59,17 @@ public class ReuniaoController {
         return "reunioes/reunioesEdit";
     }
     
+    @GetMapping(value={"/reunioesExec","/reunioesExec/{id}"})
+    public String findReuniaoForExecById(Model model, @PathVariable(required = false, name = "id") Long id) {
+    	model.addAttribute("tipos", this.tipoService.findAllTipos());
+        if (null != id) {
+            model.addAttribute("reuniao", this.reuniaoService.findReuniaoById(id));
+        } else {
+            model.addAttribute("reuniao", new Reuniao());
+        }
+        return "reunioes/reunioesExec";
+    }
+    
     @PostMapping(value={"/reunioesEdit","/reunioesEdit/{id}"})
     public String updateReuniao(@Valid Reuniao reuniao, BindingResult bindingResult, @PathVariable(required = false, name = "id") Long id, @PageableDefault(size=5) Pageable pageable, Model model) {
     	
