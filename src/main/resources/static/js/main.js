@@ -26,12 +26,13 @@ Tentei usar uma função de espera mas ainda não deu certo.
 */
 $(document).ready(function(){
 	
-	$('.table .eBtn').on('click',function(){
-		sleep(500);
-		event.preventDefault();
-		$('.myForm #exampleModal').modal();
-		
-	});
+		$('.table .eBtn').on('click',function(event){
+			setTimeout(function(){
+				event.preventDefault(event);		
+				
+			}, 100);
+		});
+			$('.myForm #exampleModal').modal();
 });
 
 
