@@ -51,3 +51,16 @@ $(document).ready(function(){
 			$('.myForm #exampleModal').modal();
 	});
 });*/
+
+$(document).ready(function(){
+	$('.container .execBtn').on('click', function(event){
+		event.preventDefault();
+		var href = $(this).attr('href');
+			$.get(href, function(pontoPauta, status){
+				$('.myForm #ordem').val(pontoPauta.ordem);
+				$('.myForm #descricao').val(pontoPauta.descricao);			
+				$('.myForm #discussao').val(pontoPauta.discussao);			
+			});
+			$('.myForm #execModal').modal();
+	});
+});

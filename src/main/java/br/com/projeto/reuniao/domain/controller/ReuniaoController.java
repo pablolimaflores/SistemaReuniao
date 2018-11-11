@@ -1,5 +1,7 @@
 package br.com.projeto.reuniao.domain.controller;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.slf4j.Logger;
@@ -17,7 +19,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import br.com.projeto.reuniao.domain.entity.PontoPauta;
 import br.com.projeto.reuniao.domain.entity.Reuniao;
+import br.com.projeto.reuniao.domain.service.PontoPautaService;
 import br.com.projeto.reuniao.domain.service.ReuniaoService;
 import br.com.projeto.reuniao.domain.service.TipoService;
 
@@ -26,10 +30,13 @@ import br.com.projeto.reuniao.domain.service.TipoService;
 public class ReuniaoController {
 
     @Autowired
-    ReuniaoService reuniaoService;
+    ReuniaoService reuniaoService; 
     
     @Autowired
     TipoService tipoService;
+    
+    @Autowired
+	PontoPautaService pontoPautaService;
     
     private static final Logger LOGGER = LoggerFactory.getLogger(ReuniaoController.class);
     
@@ -64,6 +71,8 @@ public class ReuniaoController {
     	model.addAttribute("tipos", this.tipoService.findAllTipos());
         if (null != id) {
             model.addAttribute("reuniao", this.reuniaoService.findReuniaoById(id));
+            model.addAttribute("pontosPauta", this.pontoPautaService.findAllPontoPautas());
+            model.addAttribute("pontoPauta", new PontoPauta());
         } else {
             model.addAttribute("reuniao", new Reuniao());
         }
@@ -97,5 +106,46 @@ public class ReuniaoController {
         Page<Reuniao> page = reuniaoService.findAllReunioesPage(pageable);
     	model.addAttribute("page", page);
         return "reunioes/reunioesList";
-    }
+    }    
+    
+    @GetMapping(value={"/reunioesExec/{id}/pontoPauta","/reunioesExec/{id}/pontoPauta/{idPontoPauta}"})
+	public String findPontoPautaById(@PathVariable(required = true, name = "id") Long id, @PathVariable(required = false, name = "idPontoPauta") Long idPontoPauta, Model model){
+		
+		model.addAttribute("reuniao", this.reuniaoService.findReuniaoById(id));						
+		
+		if (null != idPontoPauta) {
+            model.addAttribute("pontoPauta", this.pontoPautaService.findPontoPautaById(idPontoPauta));
+        } else {
+            model.addAttribute("pontoPauta", new PontoPauta());
+        }
+		
+		return "reunioes/reunioesExec";
+	}
+    
+    @PostMapping(value={"/reunioesExec/{id}/pontoPauta","/reunioesExec/{id}/pontoPauta/{idPontoPauta}"})
+	public String updtatePontoPautaById(@Valid PontoPauta pontoPauta, BindingResult bindingResult, @PathVariable(required = true, name = "id") Long id, 
+			@PathVariable(required = false, name = "idPontoPauta") Long idPontoPauta, Model model){
+		
+		model.addAttribute("reuniao", this.reuniaoService.findReuniaoById(id));						
+		
+		if(bindingResult.hasErrors()) {
+            bindingResult.getAllErrors().forEach(err -> {
+                LOGGER.info("ERROR {}", err.getDefaultMessage());
+            });
+            model.addAttribute("pontoPauta", pontoPauta);
+            return "pontosPauta/pontoPautaEdit";
+        }
+    	
+    	if (null != id) {
+    		this.pontoPautaService.updatePontoPauta(pontoPauta);
+    	} else {
+    		this.pontoPautaService.insertPontoPauta(pontoPauta);
+    	}    	
+    	List<PontoPauta> pontosPauta = pontoPautaService.findAllPontoPautas();
+		model.addAttribute("pontosPauta", pontosPauta);
+//		Page<PontoPauta> page = pontoPautaService.findAllPontoPautasPageable(pageable);
+//		model.addAttribute("page", page);
+        		
+		return "reunioes/reunioesExec";
+	}
 }
