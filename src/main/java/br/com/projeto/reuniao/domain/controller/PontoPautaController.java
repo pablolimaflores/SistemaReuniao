@@ -64,7 +64,7 @@ public class PontoPautaController {
         }
         return "pontosPauta/pontoPautaEdit";
 	}
-	@PostMapping(value={"/pontoPautaEdit/reuniao/{idReuniao}", "/pontoPautaEdit/{id}/reuniao/{idReuniao}"})
+	@PostMapping(value={"/pontoPautaEdit/reuniao/{idReuniao}", "/pontosPautaEdit/{id}/reuniao/{idReuniao}"})
 	public String updatePontoPauta(@Valid PontoPauta pontoPauta, BindingResult bindingResult, @PathVariable(required = false, name = "id") Long id, @PathVariable(required = true, name = "idReuniao") Long idReuniao, @PageableDefault(size=5) Pageable pageable, Model model) {
 		
 		if(bindingResult.hasErrors()) {

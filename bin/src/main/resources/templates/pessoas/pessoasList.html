@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8" />
+    <title>Lista</title>
+
+    <div th:replace="fragments/header :: header-css"/>
+	
+</head>
+<body>
+
+<div th:replace="fragments/header :: header"/>
+
+
+<div class="container">
+	<div class="card">
+		<div id="myModal" class="modal fade">
+			<div class="modal-dialog modal-confirm">
+				<div class="modal-content">
+					<div class="modal-header">
+						<div class="icon-box" align="center">
+							<i class="material-icons">&#xE5CD;</i>
+						</div>				
+							
+		                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					</div>
+					<div class="modal-body">
+						<p class="alert alert-danger">Deseja deletar este registro? O processo não pode ser desfeito</p>
+					</div>
+					<div align="center">
+						<button id="voltar" type="button" class="btn btn-success" data-dismiss="modal"><span class="glyphicon glyphicon-menu-left">Cancelar</button>
+						<a href="" id="delRef" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span> Excluir</a>
+					</div>
+				</div>
+			</div>
+		</div> 
+	</div>	
+		<div id="top" class="row align-items-center">
+		
+		    <div class="col-md-3 align-self-center">
+		        <h2>Pessoas</h2>	        
+		    </div>
+			<div class="col-md-6 ">				
+				<form class="form-group d-flex justify-content-center h2" action="/pessoas/pessoasList/filter" th:action="@{/pessoas/pessoasList/filter}" method="post">					 	
+					<input name="filter" class="form-control" id="filter" type="text" placeholder="Pesquisar itens" />
+					<span class="input-group-btn">								
+						<button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search"> Buscar</button>
+						<a class="btn btn-secondary" href="/pessoas" th:href="@{/pessoas}"><span class="glyphicon glyphicon-remove"></span> Limpar</a>
+						<a class="btn btn-success" href="/pessoas/pessoasEdit" th:href="@{/pessoas/pessoasEdit}"><span class="glyphicon glyphicon-plus"></span> Novo</a>
+					</span>
+				</form>				
+			</div>   
+		</div>
+
+        <table class="table table-bordred table-striped">
+            <thead>
+                <tr>
+                    <th>Código</th>
+                    <th>Nome</th>
+                    <th>E-mail</th>
+                    <th>Telefone</th>
+                    <th>Celular</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+            	<div class="alert" th:if="${page != null and #lists.isEmpty(page.content)}">
+				    <tr>
+					    <td colspan=6>
+					        <strong>Nenhum item encontrado!</strong> Por favor, clique em <strong>Limpar</strong> ou tente um filtro de busca diferente.
+					    </td>
+				    </tr>
+				</div>
+                <tr th:each="pessoa : ${page}">
+                    <td th:text="${pessoa.id}">1</td>
+                    <td th:text="${pessoa.nome}">Admin</td>
+                    <td th:text="${pessoa.email}">admin@admin.com</td>
+                    <td th:text="${pessoa.telefone}">(55)5555-5555</td>
+                    <td th:text="${pessoa.celular}">(55)99999-9999</td>
+                    <td>
+                        <a class="btn btn-info" href="/pessoas/pessoasEdit/1" th:href="@{/pessoas/pessoasEdit/__${pessoa.id}__}"><span class="glyphicon glyphicon-pencil"></span>Editar</a>
+                        <a href="/pessoas/pessoasDelete/1" th:href="@{/pessoas/pessoasDelete/__${pessoa.id}__}" class="btn btn-danger delBtn"><span class="glyphicon glyphicon-remove"></span>Excluir</a>                        
+                    </td>
+                </tr>
+            </tbody>
+        </table>     
+        <div align="center">
+        	<ul class="pagination">
+        		<li>
+			    <span th:if="${page.hasPrevious()}">
+			      <a th:href="@{/pessoas(page=${page.number-1},size=${page.size})}">Anterior</a>
+			    </span>
+			    <th:block th:each="i: ${#numbers.sequence(0, page.totalPages - 1)}">
+			        <span th:if="${page.number == i}" class="selected">[[${i}+1]]</span>
+			        <span th:unless="${page.number == i}">
+			          <a th:href="@{/pessoas(page=${i},size=${page.size})}">[[${i}+1]]</a>
+			        </span>
+			        
+			    </th:block>
+			    <span th:if="${page.hasNext()}">
+			        <a th:href="@{/pessoas(page=${page.number+1},size=${page.size})}">Proximo</a>
+			    </span>
+			    <li>
+			</ul>    
+		</div>
+
+    </div>
+
+<div th:replace="fragments/footer :: footer"/>
+
+</body>
+</html>
