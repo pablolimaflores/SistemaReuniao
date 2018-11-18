@@ -28,7 +28,7 @@
 <div class="container">	      
 	<div th:fragment="header">									
 		<nav class="navbar navbar-expand-lg navbar-navbar bg-navbar">
-		  <img src="/imagens/logo4.png" class="logoHome">
+		  <img src="/imagens/logo3.png" class="logoHome">
 		  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
 		    <span class="navbar-toggler-icon"></span>
 		  </button>
@@ -74,7 +74,7 @@
 		    <!-- FORM QUE VAI SER USADO PARA REALIZAR O LOGOUT -->
 			<form th:action="@{/logout}" id="form_logou" th:method="post">
 				<li class="nav navbar-nav navbar-right">
-			       <div align="center"><a class="nav-link" href="#" onclick="document.getElementById('form_logou').submit();"><span class="glyphicon glyphicon-log-out"><br>Logout</a></div> 
+			       <div align="center"><a class="nav-link" href="#" onclick="document.getElementById('form_logou').submit();"><span class="glyphicon glyphicon-log-out" style="color: #dc143c"><br>Logout</a></div> 
 			    </li>
 				<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
 			</form>

@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import br.com.projeto.reuniao.domain.entity.PontoPauta;
 import br.com.projeto.reuniao.domain.entity.Reuniao;
+import br.com.projeto.reuniao.domain.service.PessoaService;
 import br.com.projeto.reuniao.domain.service.PontoPautaService;
 import br.com.projeto.reuniao.domain.service.ReuniaoService;
 import br.com.projeto.reuniao.domain.service.TipoService;
@@ -37,6 +38,9 @@ public class ReuniaoController {
     
     @Autowired
 	PontoPautaService pontoPautaService;
+    
+    @Autowired
+    PessoaService pessoaService;
     
     private static final Logger LOGGER = LoggerFactory.getLogger(ReuniaoController.class);
     
@@ -58,6 +62,7 @@ public class ReuniaoController {
     @GetMapping(value={"/reunioesEdit","/reunioesEdit/{id}"})
     public String findReuniaoById(Model model, @PathVariable(required = false, name = "id") Long id) {
     	model.addAttribute("tipos", this.tipoService.findAllTipos());
+    	model.addAttribute("pessoas", this.pessoaService.findAllPessoas());
         if (null != id) {
             model.addAttribute("reuniao", this.reuniaoService.findReuniaoById(id));
         } else {

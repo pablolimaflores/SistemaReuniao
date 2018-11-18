@@ -6,13 +6,53 @@
     <title>Sistema de Reuniao (Executar Reunião)</title>
 
     <div th:replace="fragments/header :: header-css"/>
+	
+	<script type="text/javascript">
+    	$("#data").mask("dd/MM/yyyy");    	
+    </script>
 
 </head>
-<body>
+<body> 
 
 <div th:replace="fragments/header :: header"/>
 
 <div class="container">
+		
+	<div class="myForm">
+	<form class="form-group" action="/reunioes/reunioesExec/1/pontoPauta/1" th:action="@{/reunioes/reunioesExec/__${reuniao.id}__/pontoPauta/__${pontoPauta.id}__}" method="post">
+		<div id="execModal" class="modal fade">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">	
+						<span id="ordem" th:text="${pontoPauta.descricao}"></span>
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>		
+					</div>
+					<div class="modal-body">
+						<input th:type="hidden" name="id" th:field="${pontoPauta.id}" />
+						
+                       	<div class="form-group" th:classappend="${#fields.hasErrors('pontoPauta.discussao')} ? 'has-error'">
+				            <div class="col-md-10 offset-md-1 vertical-space">
+				            	<label for="discussao">Registro da pauta</label>
+				            		<textarea class="form-control" id="discussao" name="discussao" 
+				            		th:field="${pontoPauta.discussao}"></textarea>
+				            	<div class="   col-md-10 offset-md-1">
+				            		<span th:if="${#fields.hasErrors('pontoPauta.discussao')}" th:errors="*{pontoPauta.discussao}" 
+				            		id="errorDiscussao" class="help-block"></span>						        				
+					    		</div>
+				        	</div>
+				        </div> 		
+				        
+		        		<div align="center">
+			        		<button class="btn btn-success"><span class="glyphicon glyphicon-ok"></span>Cadastrar</button>
+			        		<button class="btn btn-danger" data-dismiss="modal"><span class="glyphicon glyphicon-remove">Cancelar</button> 
+		        		</div>											        						  
+					</div>			
+				</div>
+			</div>
+		</div> 
+	</form>	
+	</div>	
+		
 		
     <div class="container" style="margin-top: 1em;">
 	    <form>
@@ -20,9 +60,9 @@
 	            <div class="col-md-6" style="padding=0.5em;">
 	                <div class="card">
 	                    <div class="card-body">
-	                        <h2 class="card-title" align="center">Informações da Reunião</h2>
-	                        <label>Título:<span th:text="${reuniao.titulo}"></span></label><br>
-	                        <label>Data:<span th:text="${reuniao.data}"></span></label><br>
+	                        <!-- <h2 class="card-title" align="center">Informações da Reunião</h2>  -->	
+	                        <h3 class="card-title" align="center">Título:<span th:text="${reuniao.titulo}"></span></h3><br>
+	                        <label id="data">Data:<span th:text="${reuniao.data}"></span></label><br>
 	                        <label>Local:<span th:text="${reuniao.local}"></span></label><br>
 	                        <label>Início:<span th:text="${reuniao.horaInicio}"></span></label><br>
 	                        <label>Fim:<span th:text="${reuniao.horaFim}"></span></label><br>
@@ -30,36 +70,36 @@
 	                        <label>Tipo de Reunião:<span th:text="${reuniao.tipo.nome}"></span></label><br>
 	                        <label>Objetivo:<span th:text="${reuniao.objetivo}"></span></label><br>
 	                        <hr>
-	                        <button class="btn btn-success nBtn"><span class="glyphicon glyphicon-ok"></span>Cadastrar</button>
+	                        <button class="btn btn-success nBtn"><span class="glyphicon glyphicon-ok"></span> Iniciar</button>
 	                    </div>
 	                </div>
 	            </div>            
 	             <div class="col-md-6">
-	                <div class="card"> 
-	                    <div class="card-body">
-	                        <h2 class="card-title" align="center">Pautas</h2>
-	                       <table class="table table-bordred table-striped">
-					          <thead>
-					              	<tr>
-					              		<th>Descrição</th>
-					                	<th>Ordem</th>
-					                    <th>Tempo</th>
-					                    <th>Responsável</th>
-					                </tr>
-					            </thead>
-					            <tbody>
-					           <!-- <tr th:each="reuniao : ${pageSched}">
-					                    <td th:text="${reuniao.data}">2018-09-25</td>
-					                    <td th:text="${reuniao.titulo}">Admin</td>
-					                    <td>
-					                    	<a class="btn btn-info" href="/reunioes/reunioesEdit/1" th:href="@{/reunioes/reunioesEdit/__${reuniao.id}__}"><span class="glyphicon glyphicon-info-sign"></span>   Detalhes</a>
-					                    </td>
-					                </tr>   -->   
-					            </tbody>
-	        				</table>
-	                    </div>
-	                </div>
-	            </div> 
+                <div class="card"> 
+                    <div class="card-body">
+                        <h2 class="card-title" align="center">Pautas</h2>
+                       <table class="table table-bordred table-striped">
+				         <thead>
+				              	<tr>
+				              		<th>#</th>
+				              		<th>Descrição</th>
+				                    <th>Responsável</th>
+				                </tr>
+				            </thead>
+				            <tbody>
+					            <tr th:each="pontoPauta : ${pontosPauta}">
+				                    <td th:text="${pontoPauta.ordem}">1</td>
+				                    <td th:text="${pontoPauta.descricao}">Pauta</td>
+				                    <td th:text="${pontoPauta.responsavel.getNome()}">Admin</td>
+				                     <td>
+				                    	<a class="btn btn-success execBtn" th:href="@{/reunioes/reunioesExec/__${reuniao.id}__/pontoPauta/__${pontoPauta.id}__}"><span class="glyphicon glyphicon-edit"></span> Registrar</a>				                    	
+				                    </td> 
+				                </tr>  
+				            </tbody>
+        				</table>
+                    </div>
+                </div>
+            </div>  
 	        </div>
 	    </form>
 </div>
