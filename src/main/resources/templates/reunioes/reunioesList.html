@@ -70,10 +70,10 @@
                     <td th:text="${reuniao.data}">2018-12-31</td>
                     <td th:text="${reuniao.titulo}">Reunião Teste</td>
                     <td>
-                        <a class="btn btn-info" href="/reunioes/reunioesEdit/1" th:href="@{/reunioes/reunioesEdit/__${reuniao.id}__}"><span class="glyphicon glyphicon-edit"></span>Editar</a>
+                        <a class="btn btn-info" href="/reunioes/reunioesEdit/1" th:href="@{/reunioes/reunioesEdit/__${reuniao.id}__}"><span class="glyphicon glyphicon-edit"></span> Editar</a>
                         <a class="btn btn-danger delBtn" href="/reunioes/reunioesDelete/1" th:href="@{/reunioes/reunioesDelete/__${reuniao.id}__}"><span class="glyphicon glyphicon-remove"></span> Excluir</a>  
                         <a class="btn btn-primary" href="/pontosPauta/pontoPautaEdit/reuniao/1" th:href="@{/pontosPauta/pontoPautaEdit/reuniao/__${reuniao.id}__}"><span class="glyphicon glyphicon-pencil"></span> Pautas</a>
-                        <a class="btn btn-info" href="/reunioes/reunioesExec/1" th:href="@{/reunioes/reunioesExec/__${reuniao.id}__}"><span class="glyphicon glyphicon-check"></span>Executar</a>                       
+                        <a class="btn btn-success" href="/reunioes/reunioesExec/1" th:href="@{/reunioes/reunioesExec/__${reuniao.id}__}"><span class="glyphicon glyphicon-play-circle"></span> Executar</a>                       
                     </td>
                 </tr>
             </tbody>
