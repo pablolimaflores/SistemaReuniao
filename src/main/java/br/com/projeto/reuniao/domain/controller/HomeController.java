@@ -7,6 +7,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import br.com.projeto.reuniao.domain.service.ReuniaoService;
 
+
+/**
+ * 
+ * Controller utilizado para o redirecionamento das paginas de login, home e para as páginas de erros.
+ *
+ */
 @Controller
 public class HomeController {
 	

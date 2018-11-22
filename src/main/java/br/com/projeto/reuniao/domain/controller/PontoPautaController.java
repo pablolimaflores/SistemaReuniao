@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
+import br.com.projeto.reuniao.SistemaReuniaoApp;
 import br.com.projeto.reuniao.domain.entity.PontoPauta;
 import br.com.projeto.reuniao.domain.service.PessoaService;
 import br.com.projeto.reuniao.domain.service.PontoPautaService;
@@ -42,14 +42,14 @@ public class PontoPautaController {
 	private static final Logger LOGGER = LoggerFactory.getLogger(PontoPautaController.class);
 	
 	@GetMapping("")
-	public String findAllPontoPauta(@PageableDefault(size=5) Pageable pageable, Model model) {
+	public String findAllPontoPauta(@PageableDefault(SistemaReuniaoApp.MAXROWS) Pageable pageable, Model model) {
 		Page<PontoPauta> page = pontoPautaService.findAllPontoPautasPageable(pageable);
 		model.addAttribute("page", page);
 		return "pontosPauta/pontosPautaList";
 	}
 	
 	@GetMapping(value={"/pontoPautaEdit/reuniao/{idReuniao}","/pontoPautaEdit/{id}/reuniao/{idReuniao}"})
-	public String findPontoPautaById(@PathVariable(required = false, name = "id") Long id, @PathVariable(required = true, name = "idReuniao") Long idReuniao, @PageableDefault(size=5) Pageable pageable, Model model){
+	public String findPontoPautaById(@PathVariable(required = false, name = "id") Long id, @PathVariable(required = true, name = "idReuniao") Long idReuniao, @PageableDefault(SistemaReuniaoApp.MAXROWS) Pageable pageable, Model model){
 		
 		model.addAttribute("reuniao", this.reuniaoService.findReuniaoById(idReuniao));
 		model.addAttribute("responsavelList", pessoaService.findAllPessoas());
@@ -65,7 +65,7 @@ public class PontoPautaController {
         return "pontosPauta/pontoPautaEdit";
 	}
 	@PostMapping(value={"/pontoPautaEdit/reuniao/{idReuniao}", "/pontosPautaEdit/{id}/reuniao/{idReuniao}"})
-	public String updatePontoPauta(@Valid PontoPauta pontoPauta, BindingResult bindingResult, @PathVariable(required = false, name = "id") Long id, @PathVariable(required = true, name = "idReuniao") Long idReuniao, @PageableDefault(size=5) Pageable pageable, Model model) {
+	public String updatePontoPauta(@Valid PontoPauta pontoPauta, BindingResult bindingResult, @PathVariable(required = false, name = "id") Long id, @PathVariable(required = true, name = "idReuniao") Long idReuniao, @PageableDefault(SistemaReuniaoApp.MAXROWS) Pageable pageable, Model model) {
 		
 		if(bindingResult.hasErrors()) {
             bindingResult.getAllErrors().forEach(err -> {
@@ -85,7 +85,7 @@ public class PontoPautaController {
         return "pontosPauta/pontoPautaList";
 	}
 	@GetMapping("/pontoPautaDelete/{id}")
-	public String pontoPautaDelete(@PathVariable(required = true, name = "id") Long id, @PageableDefault(size=5) Pageable pageable, Model model) {
+	public String pontoPautaDelete(@PathVariable(required = true, name = "id") Long id, @PageableDefault(SistemaReuniaoApp.MAXROWS) Pageable pageable, Model model) {
 		this.pontoPautaService.deletePontoPauta(id);
 		Page<PontoPauta> page = pontoPautaService.findAllPontoPautasPageable(pageable);
 		model.addAttribute("page", page);

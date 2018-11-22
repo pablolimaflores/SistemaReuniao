@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import br.com.projeto.reuniao.SistemaReuniaoApp;
 import br.com.projeto.reuniao.domain.entity.Tipo;
 import br.com.projeto.reuniao.domain.service.TipoService;
 
@@ -30,7 +31,7 @@ public class TipoController {
     private static final Logger LOGGER = LoggerFactory.getLogger(TipoController.class);
     
     @GetMapping("")
-    public String findAllTipos(@PageableDefault(size=3) Pageable pageable, Model model) {       
+    public String findAllTipos(@PageableDefault(SistemaReuniaoApp.MAXROWS) Pageable pageable, Model model) {       
         Page<Tipo> page = tipoService.findAllTipos(pageable);
         model.addAttribute("page", page);
         return "tipos/tiposList";
@@ -38,7 +39,7 @@ public class TipoController {
     
     @PostMapping("**/filter")    
     public String findTiposByFilter(@RequestParam("filter") String filter, 
-    		@PageableDefault(size=3) Pageable pageable, Model model) {       
+    		@PageableDefault(SistemaReuniaoApp.MAXROWS) Pageable pageable, Model model) {       
         Page<Tipo> page = tipoService.findTiposByFilter(filter, pageable);
         model.addAttribute("page", page);        
         return "tipos/tiposList";
@@ -56,7 +57,7 @@ public class TipoController {
     
     @PostMapping(value={"/tiposEdit","/tiposEdit/{id}"})
     public String updateTipo(@Valid Tipo tipo, BindingResult bindingResult, @PathVariable(required = false, name = "id") Long id, 
-    		@PageableDefault(size=3) Pageable pageable, Model model) {
+    		@PageableDefault(SistemaReuniaoApp.MAXROWS) Pageable pageable, Model model) {
     	
     	if(bindingResult.hasErrors()) {
             bindingResult.getAllErrors().forEach(err -> {
@@ -77,7 +78,7 @@ public class TipoController {
     }
 
     @GetMapping("/tiposDelete/{id}")
-    public String tiposDelete(@PathVariable(required = true, name = "id") Long id, @PageableDefault(size=3) Pageable pageable, 
+    public String tiposDelete(@PathVariable(required = true, name = "id") Long id, @PageableDefault(SistemaReuniaoApp.MAXROWS) Pageable pageable, 
     		Model model) {
         this.tipoService.deleteTipo(id);
         Page<Tipo> page = tipoService.findAllTipos(pageable);

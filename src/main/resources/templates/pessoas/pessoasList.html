@@ -39,8 +39,9 @@
 		<div id="top" class="row align-items-center">
 		
 		    <div class="col-md-3 align-self-center">
-		        <h2>Pessoas</h2>	        
+		        <h1 >Pessoas</h1>	        
 		    </div>
+		    <br>
 			<div class="col-md-6 ">				
 				<form class="form-group d-flex justify-content-center h2" action="/pessoas/pessoasList/filter" th:action="@{/pessoas/pessoasList/filter}" method="post">					 	
 					<input name="filter" class="form-control" id="filter" type="text" placeholder="Pesquisar itens" />
@@ -52,16 +53,16 @@
 				</form>				
 			</div>   
 		</div>
-
+		<br>
         <table class="table table-bordred table-striped">
             <thead>
                 <tr>
-                    <th>Código</th>
-                    <th>Nome</th>
-                    <th>E-mail</th>
-                    <th>Telefone</th>
-                    <th>Celular</th>
-                    <th>Ações</th>
+                    <td align="center"><b>Código</th>
+                    <td align="center"><b>Nome</th>
+                    <td align="center"><b>E-mail</th>
+                    <td align="center"><b>Telefone</th>
+                    <td align="center"><b>Celular</th>
+                    <td align="center"><b>Ações</th>
                 </tr>
             </thead>
             <tbody>
@@ -73,12 +74,12 @@
 				    </tr>
 				</div>
                 <tr th:each="pessoa : ${page}">
-                    <td th:text="${pessoa.id}">1</td>
-                    <td th:text="${pessoa.nome}">Admin</td>
-                    <td th:text="${pessoa.email}">admin@admin.com</td>
-                    <td th:text="${pessoa.telefone}">(55)5555-5555</td>
-                    <td th:text="${pessoa.celular}">(55)99999-9999</td>
-                    <td>
+                    <td th:text="${pessoa.id}" align="center">1</td>
+                    <td th:text="${pessoa.nome}" align="center">Admin</td>
+                    <td th:text="${pessoa.email}" align="center">admin@admin.com</td>
+                    <td th:text="${pessoa.telefone}" align="center">(55)5555-5555</td>
+                    <td th:text="${pessoa.celular}" align="center">(55)99999-9999</td>
+                    <td align="center">
                         <a class="btn btn-info" href="/pessoas/pessoasEdit/1" th:href="@{/pessoas/pessoasEdit/__${pessoa.id}__}"><span class="glyphicon glyphicon-pencil"></span>Editar</a>
                         <a href="/pessoas/pessoasDelete/1" th:href="@{/pessoas/pessoasDelete/__${pessoa.id}__}" class="btn btn-danger delBtn"><span class="glyphicon glyphicon-remove"></span>Excluir</a>                        
                     </td>

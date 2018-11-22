@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import br.com.projeto.reuniao.SistemaReuniaoApp;
 import br.com.projeto.reuniao.domain.entity.PontoPauta;
 import br.com.projeto.reuniao.domain.entity.Reuniao;
 import br.com.projeto.reuniao.domain.service.PessoaService;
@@ -45,7 +46,7 @@ public class ReuniaoController {
     private static final Logger LOGGER = LoggerFactory.getLogger(ReuniaoController.class);
     
     @GetMapping("")    
-    public String findAllReunioes(@PageableDefault(size=5) Pageable pageable, Model model) {
+    public String findAllReunioes(@PageableDefault(SistemaReuniaoApp.MAXROWS) Pageable pageable, Model model) {
     	Page<Reuniao> page = reuniaoService.findAllReunioesPage(pageable);
     	model.addAttribute("page", page);
         return "reunioes/reunioesList";
@@ -53,7 +54,7 @@ public class ReuniaoController {
     
     @PostMapping("**/filter")    
     public String findReunioesByFilter(@RequestParam("filter") String filter, 
-    		@PageableDefault(size=3) Pageable pageable, Model model) {       
+    		@PageableDefault(SistemaReuniaoApp.MAXROWS) Pageable pageable, Model model) {       
         Page<Reuniao> page = reuniaoService.findReunioesByFilter(filter, pageable);
         model.addAttribute("page", page);        
         return "reunioes/reunioesList";
@@ -85,7 +86,7 @@ public class ReuniaoController {
     }
     
     @PostMapping(value={"/reunioesEdit","/reunioesEdit/{id}"})
-    public String updateReuniao(@Valid Reuniao reuniao, BindingResult bindingResult, @PathVariable(required = false, name = "id") Long id, @PageableDefault(size=5) Pageable pageable, Model model) {
+    public String updateReuniao(@Valid Reuniao reuniao, BindingResult bindingResult, @PathVariable(required = false, name = "id") Long id, @PageableDefault(SistemaReuniaoApp.MAXROWS) Pageable pageable, Model model) {
     	
     	if(bindingResult.hasErrors()) {
             bindingResult.getAllErrors().forEach(err -> {
@@ -106,7 +107,7 @@ public class ReuniaoController {
     }
 
     @GetMapping("/reunioesDelete/{id}")
-    public String reunioesDelete(@PathVariable(required = true, name = "id") Long id, @PageableDefault(size=5) Pageable pageable, Model model) {
+    public String reunioesDelete(@PathVariable(required = true, name = "id") Long id, @PageableDefault(SistemaReuniaoApp.MAXROWS) Pageable pageable, Model model) {
         this.reuniaoService.deleteReuniao(id);
         Page<Reuniao> page = reuniaoService.findAllReunioesPage(pageable);
     	model.addAttribute("page", page);

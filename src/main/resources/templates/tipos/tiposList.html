@@ -60,7 +60,7 @@
                     <th>Nome</th>
                     <th>Descrição</th>
                     <th>Debate?</th>
-                    <th>Ações</th>
+                    <td colspan="2" align="center" ><b>Ações</th>
                 </tr>
             </thead>
             <tbody>
@@ -75,8 +75,13 @@
                     <td th:text="${tipo.id}">1</td>
                     <td th:text="${tipo.nome}">Tipo</td>
                     <td th:text="${tipo.descricao}">admin@admin.com</td>
-                    <td th:text="${tipo.debate}">false</td>
-                    <td>
+                    <div th:if="${tipo.debate == true}" >
+                    <td align="center" th:text="Sim">Sim</td>
+                    </div>
+                    <div th:unless="${tipo.debate == true}">
+					   <td align="center" th:text="Não">Não</td>
+					</div>
+                    <td width="180">
                         <a class="btn btn-info" href="/tipos/tiposEdit/1" th:href="@{/tipos/tiposEdit/__${tipo.id}__}"><span class="glyphicon glyphicon-pencil"></span>Editar</a>
                         <a class="btn btn-danger delBtn" href="/tipos/tiposDelete/1" th:href="@{/tipos/tiposDelete/__${tipo.id}__}"><span class="glyphicon glyphicon-remove"></span>Excluir</a>                        
                     </td>

@@ -47,7 +47,7 @@ public class PontoPauta extends AbstractEntity {
 	@Column
 	private Integer tempo;
 	
-	@Column(nullable = false, length = 300)
+	@Column(nullable = true, length = 300)
     @Size(min=3, max=300)
 	private String discussao;
 	

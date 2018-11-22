@@ -12,6 +12,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import br.com.projeto.reuniao.domain.entity.Reuniao;
 import br.com.projeto.reuniao.domain.service.ReuniaoService;
 
+/**
+ * 
+ * Controller utilizado para carregar as informações na tela principal do sistema, exibindo as reuniões que ja ocorreram 
+ *e as que estam agendadas.
+ */
+
 @Controller
 @RequestMapping(value = "/index")
 public class IndexController {

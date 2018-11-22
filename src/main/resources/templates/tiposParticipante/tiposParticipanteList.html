@@ -59,7 +59,7 @@
                     <th>Código</th>
                     <th>Nome</th>
                     <th>Descrição</th>                    
-                    <th>Ações</th>
+                    <td colspan="2" align="center"><b>Ações</th>
                 </tr>
             </thead>
             <tbody>
@@ -74,7 +74,7 @@
                     <td th:text="${tipoParticipante.id}">1</td>
                     <td th:text="${tipoParticipante.nome}">TipoParticipante</td>
                     <td th:text="${tipoParticipante.descricao}">...</td>                    
-                    <td>
+                    <td width="180">
                         <a class="btn btn-info" href="/tiposParticipante/tiposParticipanteEdit/1" th:href="@{/tiposParticipante/tiposParticipanteEdit/__${tipoParticipante.id}__}"><span class="glyphicon glyphicon-pencil"></span>Editar</a>
                         <a class="btn btn-danger delBtn" href="/tiposParticipante/tiposParticipanteDelete/1" th:href="@{/tiposParticipante/tiposParticipanteDelete/__${tipoParticipante.id}__}"><span class="glyphicon glyphicon-remove"></span>Excluir</a>                        
                     </td>

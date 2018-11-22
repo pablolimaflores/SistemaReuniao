@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import br.com.projeto.reuniao.SistemaReuniaoApp;
 import br.com.projeto.reuniao.domain.entity.Tipo;
 import br.com.projeto.reuniao.domain.entity.TipoParticipante;
 import br.com.projeto.reuniao.domain.service.TipoParticipanteService;
@@ -31,7 +32,7 @@ public class TipoParticipanteController {
     private static final Logger LOGGER = LoggerFactory.getLogger(TipoParticipanteController.class);
     
     @GetMapping("")    
-    public String findAllTipoParticipantes(@PageableDefault(size=3) Pageable pageable, Model model) {
+    public String findAllTipoParticipantes(@PageableDefault(SistemaReuniaoApp.MAXROWS) Pageable pageable, Model model) {
         Page<TipoParticipante> page = tipoParticipanteService.findAllTiposParticipantePage(pageable);
         model.addAttribute("page", page);
         return "tiposParticipante/tiposParticipanteList";
@@ -39,7 +40,7 @@ public class TipoParticipanteController {
     
     @PostMapping("**/filter")    
     public String findTiposParticipanteByFilter(@RequestParam("filter") String filter, 
-    		@PageableDefault(size=3) Pageable pageable, Model model) {       
+    		@PageableDefault(SistemaReuniaoApp.MAXROWS) Pageable pageable, Model model) {       
         Page<TipoParticipante> page = tipoParticipanteService.findTiposParticipanteByFilter(filter, pageable);
         model.addAttribute("page", page);        
         return "tiposParticipante/tiposParticipanteList";
@@ -56,7 +57,7 @@ public class TipoParticipanteController {
     }
     
     @PostMapping(value={"/tiposParticipanteEdit","/tiposParticipanteEdit/{id}"})
-    public String updateTipoParticipante(@Valid TipoParticipante tipoParticipante, BindingResult bindingResult, @PathVariable(required = false, name = "id") Long id, @PageableDefault(size=3) Pageable pageable, Model model) {
+    public String updateTipoParticipante(@Valid TipoParticipante tipoParticipante, BindingResult bindingResult, @PathVariable(required = false, name = "id") Long id, @PageableDefault(size=5) Pageable pageable, Model model) {
     	
     	if(bindingResult.hasErrors()) {
             bindingResult.getAllErrors().forEach(err -> {
@@ -77,7 +78,7 @@ public class TipoParticipanteController {
     }
 
     @GetMapping("/tiposParticipanteDelete/{id}")
-    public String tiposParticipanteDelete(@PathVariable(required = true, name = "id") Long id, @PageableDefault(size=3) Pageable pageable, Model model) {
+    public String tiposParticipanteDelete(@PathVariable(required = true, name = "id") Long id, @PageableDefault(SistemaReuniaoApp.MAXROWS) Pageable pageable, Model model) {
         this.tipoParticipanteService.deleteTipoParticipante(id);
         Page<TipoParticipante> page = tipoParticipanteService.findAllTiposParticipantePage(pageable);
         model.addAttribute("page", page);
