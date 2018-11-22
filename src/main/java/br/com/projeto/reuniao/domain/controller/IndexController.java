@@ -13,9 +13,11 @@ import br.com.projeto.reuniao.domain.entity.Reuniao;
 import br.com.projeto.reuniao.domain.service.ReuniaoService;
 
 /**
- * 
  * Controller utilizado para carregar as informações na tela principal do sistema, exibindo as reuniões que ja ocorreram 
  *e as que estam agendadas.
+ *
+ *@param model utilizado para inserir um objeto ou uma informação que será renderizada na página.
+ *@param pageable argumento para possibilitar paginar as informações vindas das consultas.
  */
 
 @Controller

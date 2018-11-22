@@ -21,15 +21,30 @@ import br.com.projeto.reuniao.SistemaReuniaoApp;
 import br.com.projeto.reuniao.domain.entity.Tipo;
 import br.com.projeto.reuniao.domain.service.TipoService;
 
+/**
+ *Controller utilizado para manipular o acesso as funcionalidades do sistema na entidade Reuniao. 
+ */
 @Controller
 @RequestMapping(value = "/tipos")
 public class TipoController {
 
+	/**
+	 * Injeção de dependência
+	 */
     @Autowired
     TipoService tipoService;    
     
     private static final Logger LOGGER = LoggerFactory.getLogger(TipoController.class);
     
+
+    /**
+	 * Método para listagem de todas os tipos de reuniões cadastradas no sistema, em formato de paginação, com tamanho
+     * máximo de 5 registros exibidos por página.
+     * 
+	 * @param pageable argumento para possibilitar paginar as informações vindas das consultas.
+	 * @param model utilizado para inserir um objeto ou uma informação que será renderizada na página.
+	 * @return retorno para a página de renderização.
+	 */
     @GetMapping("")
     public String findAllTipos(@PageableDefault(SistemaReuniaoApp.MAXROWS) Pageable pageable, Model model) {       
         Page<Tipo> page = tipoService.findAllTipos(pageable);
@@ -37,6 +52,14 @@ public class TipoController {
         return "tipos/tiposList";
     }
     
+    /**
+     * Método para filtrar as buscas por nome, em formato de páginação e com tamanho 
+     * máximo de 5 registros exibidos por página
+     * 
+     * @param model utilizado para inserir um objeto ou uma informação que será renderizada na página.
+     * @param pageable argumento para possibilitar paginar as informações vindas das consultas.
+     * @return retorno para a página de renderização.
+     */
     @PostMapping("**/filter")    
     public String findTiposByFilter(@RequestParam("filter") String filter, 
     		@PageableDefault(SistemaReuniaoApp.MAXROWS) Pageable pageable, Model model) {       
@@ -45,6 +68,16 @@ public class TipoController {
         return "tipos/tiposList";
     }  
     
+    /**
+     * Método para buscar um registro no banco de dados pelo ID caso necessário, caso o id seja
+     * encontrado na base de dados, as informações do objeto são retornadas para serem manipuladas,
+     * caso o id não seja encontrado, é inserido um novo registro na sessão para que seja possível,
+     * em seguida ser montado o objeto e persistido na base de dados.
+     * 
+     * @param model utilizado para inserir um objeto ou uma informação que será renderizada na página.
+     * @param id utilizado para buscar as informações do objeto reuniao.
+     * @return retorno para a página de renderização.
+     */
     @GetMapping(value={"/tiposEdit","/tiposEdit/{id}"})	
     public String findTipoById(Model model, @PathVariable(required = false, name = "id") Long id) {
         if (null != id) {
@@ -55,6 +88,18 @@ public class TipoController {
         return "tipos/tiposEdit";
     }
     
+    /**
+     * Método utilizado para inserir um novo registro e também para atualizar um registro existente na
+     * base de dados. Ao verificar se o registro em questão já está no banco, se sim retorna as informações
+     * do mesmo para ser editado, se não insere um objeto novo na base de dados.
+     * 
+     * @param tipo objeto que vem montado do formulário para ser persistido no banco de dados.
+     * @param bindingResult utilizado como argumento para validar o objeto.
+     * @param id utilizado para buscar as informações do objeto Tipo, em caso de edição.
+     * @param pageable argumento para possibilitar paginar as informações vindas das consultas.
+     * @param model utilizado para inserir um objeto ou uma informação que será renderizada na página.
+     * @return retorno para a página de renderização.
+     */
     @PostMapping(value={"/tiposEdit","/tiposEdit/{id}"})
     public String updateTipo(@Valid Tipo tipo, BindingResult bindingResult, @PathVariable(required = false, name = "id") Long id, 
     		@PageableDefault(SistemaReuniaoApp.MAXROWS) Pageable pageable, Model model) {
@@ -77,6 +122,14 @@ public class TipoController {
         return "tipos/tiposList";
     }
 
+    /**
+     * Método utilizado para exclusão de registros na base de dados
+     * 
+     * @param id utilizado para excluir o registro.
+     * @param pageable argumento para possibilitar paginar as informações vindas das consultas.
+     * @param model utilizado para inserir um objeto ou uma informação que será renderizada na página.
+     * @return retorno para a página de renderização.
+     */
     @GetMapping("/tiposDelete/{id}")
     public String tiposDelete(@PathVariable(required = true, name = "id") Long id, @PageableDefault(SistemaReuniaoApp.MAXROWS) Pageable pageable, 
     		Model model) {

@@ -67,7 +67,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr th:each="pontoPauta : ${pontoPautaList}">
+                <tr th:each="pontoPauta : ${page}">
                     <td th:text="${pontoPauta.ordem}">1</td>
                     <td th:text="${pontoPauta.descricao}">pauta</td>
                     <td th:text="${pontoPauta.tempo}">1</td>

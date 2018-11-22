@@ -67,7 +67,8 @@
 						            </div>
 						            <span th:if="${#fields.hasErrors('pontoPauta.tempo')}" th:errors="*{pontoPauta.tempo}" id="errorTempo" class="help-block"></span>
 						        </div>
-						        <div class="form-group" th:classappend="${#fields.hasErrors('pontoPauta.discussao')} ? 'has-error'">
+						        
+						        <!-- <div class="form-group" th:classappend="${#fields.hasErrors('pontoPauta.discussao')} ? 'has-error'">
 						            <div class="col-md-6 offset-md-3">
 						            	<label for="celular">Discussão</label>
 						            		<textarea class="form-control" id="discussao" name="discussao" th:field="${pontoPauta.discussao}"></textarea>
@@ -76,7 +77,8 @@
 						        				
 							    		</div>
 						        	</div>
-						        </div> 
+						        </div> -->
+						         
 						        <div class="form-group" th:classappend="${#fields.hasErrors('pontoPauta.responsavel')} ? 'has-error'">
 						        	<div class="col-md-6 offset-md-3">
 						        		 <legend align="center">Selecione o responsável</legend>
@@ -144,8 +146,8 @@
 				                    <td th:text="${pontoPauta.descricao}">Pauta</td>
 				                    <td th:text="${pontoPauta.responsavel.getNome()}">Admin</td>
 				                     <td>
-				                    	<a class="btn btn-success eBtn" th:href="@{/pontosPauta/pontoPautaEdit/__${pontoPauta.id}__/reuniao/__${reuniao.id}__}"><span class="glyphicon glyphicon-edit"></span> Editar</a>
-				                    	<a class="btn btn-danger delBtn" href="/pontosPauta/pontoPautaDelete/1" th:href="@{/pontosPauta/pontoPautaDelete/__${pontoPauta.id}__}"><span class="glyphicon glyphicon-remove"></span> Excluir</a>
+				                    	<a class="btn btn-success eBtn" th:href="@{/pontosPauta/pontoPautaEdit/__${pontoPauta.id}__/reuniao/__${reuniao.id}__}" title="Editar"><span class="glyphicon glyphicon-edit"></span></a>
+				                    	<a class="btn btn-danger delBtn" href="/pontosPauta/pontoPautaDelete/1" th:href="@{/pontosPauta/pontoPautaDelete/__${pontoPauta.id}__}" title="Excluir"><span class="glyphicon glyphicon-remove"></span></a>
 				                    </td> 
 				                </tr>  
 				            </tbody>
