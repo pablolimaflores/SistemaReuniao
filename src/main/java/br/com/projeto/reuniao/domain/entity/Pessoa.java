@@ -24,6 +24,10 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
+/**
+ * Classe que representa as pessoas que serão cadastradas no sistema e seus atributos.
+ */
+
 @Data
 @Entity
 @NoArgsConstructor
@@ -144,6 +148,9 @@ public class Pessoa extends AbstractEntity implements UserDetails, Serializable 
 		this.role = role;
 	}
 	
+	/**
+	 * Método para adicionar permissões de acesso a pessoa cadastrada.
+	 */
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {		
 		final Set<GrantedAuthority> authorities = new HashSet<>();        

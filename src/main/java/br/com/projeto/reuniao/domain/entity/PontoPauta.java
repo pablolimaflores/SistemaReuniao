@@ -14,6 +14,9 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
+/**
+ *Classe que representa os pontos de pauta de uma reunião e seus atributos.
+ */
 @Data
 @Entity
 @NoArgsConstructor

@@ -10,6 +10,9 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
+/**
+ * Classe que representa os participantes que serão cadastradas no sistema e seus atributos.
+ */
 @Data
 @Entity
 @NoArgsConstructor
@@ -22,7 +25,7 @@ public class Participante extends AbstractEntity {
 	private static final long serialVersionUID = 390286427487319138L;
 	
 	/**
-     * 
+     *
      */
     @Column
     private Boolean compareceu;
@@ -49,7 +52,6 @@ public class Participante extends AbstractEntity {
 	private TipoParticipante tipoParticipante;
 
 	/**
-	 * 
 	 * @param id
 	 * @param compareceu
 	 * @param pessoa

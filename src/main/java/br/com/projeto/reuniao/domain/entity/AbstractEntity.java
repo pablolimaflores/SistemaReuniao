@@ -17,6 +17,11 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * Classe utilizada como entidade 'pai' sendo herdada por todas as outras classes.
+ *  
+ *
+ */
 @Data
 @NoArgsConstructor
 @MappedSuperclass
