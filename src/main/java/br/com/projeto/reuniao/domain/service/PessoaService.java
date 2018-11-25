@@ -98,8 +98,12 @@ public class PessoaService implements UserDetailsService {
 		
 		final Pessoa pessoaSaved = this.pessoaRepository.findById( id )
 				.orElseThrow(() -> new IllegalArgumentException( "Registro de Pessoa com id "+ id + " não encontrado." ) );
-		
-		this.pessoaRepository.deleteById( pessoaSaved.getId() );
+		try {
+			this.pessoaRepository.deleteById( pessoaSaved.getId() );
+			this.pessoaRepository.flush();
+		} catch (org.springframework.dao.DataIntegrityViolationException e) {
+			 throw new RuntimeException("Não é possível excluir uma pessoa que possui registros associados.");
+		}
     }
 	
 	/**
