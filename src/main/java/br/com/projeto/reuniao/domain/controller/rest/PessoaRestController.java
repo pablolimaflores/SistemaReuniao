@@ -1,4 +1,4 @@
-package br.com.projeto.reuniao.domain.controller;
+package br.com.projeto.reuniao.domain.controller.rest;
 
 import java.util.List;
 
