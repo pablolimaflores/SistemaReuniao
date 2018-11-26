@@ -9,7 +9,7 @@
 	<packaging>jar</packaging>
 
 	<name>${project.artifactId}</name>
-	<description>SGR - Sistema de Gerenciamento de Reuniões</description>
+	<description>FlexMeeting - Sistema de Gerenciamento de Reuniões</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
