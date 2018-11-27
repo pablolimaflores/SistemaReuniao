@@ -12,12 +12,16 @@ import br.com.projeto.reuniao.domain.repository.IParticipanteRepository;
 @Service
 public class ParticipanteService {
 	
+	/**
+	 * Injeção de dependência
+	 */
 	@Autowired
 	private IParticipanteRepository participanteRepository;
 	
 	/**
+	 * Método utilizado para listar todos os participantes cadastrados na base de dados.
 	 * 
-	 * @return
+	 * @return 
 	 */
 	@Transactional(readOnly = true)
 	public List<Participante> findAllParticipantes() {
@@ -25,6 +29,7 @@ public class ParticipanteService {
     }
 	
 	/**
+	 * Método utilizado para buscar um registro pelo ID.
 	 * 
 	 * @return
 	 */
@@ -37,6 +42,7 @@ public class ParticipanteService {
     }
 	
 	/**
+	 * Método utilizado para inserir um registro na base de dados.
 	 * 
 	 * @param participante
 	 * @return
@@ -50,6 +56,7 @@ public class ParticipanteService {
 	}
 	
 	/**
+	 * Método para atualizar informações de um registro na base de dados.
 	 * 
 	 * @param participante
 	 * @return
@@ -64,6 +71,7 @@ public class ParticipanteService {
 	}
 	
 	/**
+	 * Método para excluir um registro na base de dados.
 	 * 
 	 * @param id
 	 */

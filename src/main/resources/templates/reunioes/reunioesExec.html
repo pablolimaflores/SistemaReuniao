@@ -18,18 +18,18 @@
 
 <div class="container">
 		
-	<div class="myForm">
+	<!-- <div class="myForm">
+		reunioesExec
 	<form class="form-group" action="/reunioes/reunioesExec/1/pontoPauta/1" th:action="@{/reunioes/reunioesExec/__${reuniao.id}__/pontoPauta/__${pontoPauta.id}__}" method="post">
 		<div id="execModal" class="modal fade">
 			<div class="modal-dialog" role="document">
 				<div class="modal-content">
 					<div class="modal-header">	
-						<span id="ordem" th:text="${pontoPauta.descricao}"></span>
+						<p th:text="${pontoPauta.id}"></p>
 						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>		
 					</div>
 					<div class="modal-body">
-						<input th:type="hidden" name="id" th:field="${pontoPauta.id}" />
-						
+
                        	<div class="form-group" th:classappend="${#fields.hasErrors('pontoPauta.discussao')} ? 'has-error'">
 				            <div class="col-md-10 offset-md-1 vertical-space">
 				            	<label for="discussao">Registro da pauta</label>
@@ -51,11 +51,10 @@
 			</div>
 		</div> 
 	</form>	
-	</div>	
+	</div>	 -->
 		
 		
     <div class="container" style="margin-top: 1em;">
-	    <form>
 	        <div class="row">
 	            <div class="col-md-6" style="padding=0.5em;">
 	                <div class="card">
@@ -70,7 +69,6 @@
 	                        <label>Tipo de Reunião:<span th:text="${reuniao.tipo.nome}"></span></label><br>
 	                        <label>Objetivo:<span th:text="${reuniao.objetivo}"></span></label><br>
 	                        <hr>
-	                        <button class="btn btn-success nBtn"><span class="glyphicon glyphicon-ok"></span> Iniciar</button>
 	                    </div>
 	                </div>
 	            </div>            
@@ -78,7 +76,7 @@
                 <div class="card"> 
                     <div class="card-body">
                         <h2 class="card-title" align="center">Pautas</h2>
-                       <table class="table table-bordred table-striped">
+                       <!-- <table class="table table-bordred table-striped">
 				         <thead>
 				              	<tr>
 				              		<th>#</th>
@@ -92,17 +90,41 @@
 				                    <td th:text="${pontoPauta.descricao}">Pauta</td>
 				                    <td th:text="${pontoPauta.responsavel.getNome()}">Admin</td>
 				                     <td>
-				                    	<a class="btn btn-success execBtn" th:href="@{/reunioes/reunioesExec/__${reuniao.id}__/pontoPauta/__${pontoPauta.id}__}"><span class="glyphicon glyphicon-edit"></span> Registrar</a>				                    	
+				                    	<a class="btn btn-success" th:href="@{../pontoPauta/__${pontoPauta.id}__/reuniao/__${reuniao.id}__}"><span class="glyphicon glyphicon-check"></span> Escolher</a>				                    	
 				                    </td> 
 				                </tr>  
 				            </tbody>
-        				</table>
+        				</table> -->
+        				
+        					<form th:action="@{../pontoPauta/__${pontoPauta.id}__/reuniao/__${reuniao.id}__}" method="post">
+		        				 <div class="form-group" th:classappend="${#fields.hasErrors('pontoPauta.discussao')} ? 'has-error'">
+		        				 		<br><br>
+		        				 		<div class="col-md-10 offset-md-1 vertical-space">
+					                        <label for="pauta">Pauta</label>
+					                        <select id="pauta" th:field="*{pontoPauta}">
+					                            <option value="">Selecione</option>
+					                            <option th:each="p : ${pontosPauta}" 
+					                                    th:value="${p.id}" th:text="${p.descricao}">Pauta X</option>
+					                        </select>
+	                    				</div>
+		        				 
+									    <div class="col-md-10 offset-md-1 vertical-space">
+									    	<label for="discussao">Registro da pauta</label>
+									        	<textarea class="form-control" id="discussao" name="discussao" 
+									            		th:field="${pontoPauta.discussao}"></textarea>
+									            <div class="   col-md-10 offset-md-1">
+									            	<span th:if="${#fields.hasErrors('pontoPauta.discussao')}" th:errors="*{pontoPauta.discussao}" 
+									            	id="errorDiscussao" class="help-block"></span>						        				
+										    	</div>
+										    	<button class="btn btn-success" type="submit">Registrar <span class="glyphicon glyphicon-ok"></span></button>
+							        	</div>
+						        </div> 	
+						    </form>    
                     </div>
                 </div>
             </div>  
 	        </div>
-	    </form>
-	</div>
+</div>
     
 </div>
 <!-- /.container -->

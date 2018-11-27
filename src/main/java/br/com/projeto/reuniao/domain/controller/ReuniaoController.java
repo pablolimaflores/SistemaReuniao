@@ -14,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -185,22 +186,42 @@ public class ReuniaoController {
     @GetMapping(value={"/reunioesExec/{id}/pontoPauta","/reunioesExec/{id}/pontoPauta/{idPontoPauta}"})
 	public String findPontoPautaById(@PathVariable(required = true, name = "id") Long id, @PathVariable(required = false, name = "idPontoPauta") Long idPontoPauta, Model model){
 		
-		model.addAttribute("reuniao", this.reuniaoService.findReuniaoById(id));						
+		model.addAttribute("reuniao", this.reuniaoService.findReuniaoById(id));	
+		model.addAttribute("pontoPauta", this.pontoPautaService.findPontoPautaById(1));
 		
 		if (null != idPontoPauta) {
             model.addAttribute("pontoPauta", this.pontoPautaService.findPontoPautaById(idPontoPauta));
         } else {
             model.addAttribute("pontoPauta", new PontoPauta());
-        }
-		
+        }	
 		return "reunioes/reunioesExec";
 	}
+    
+    @ModelAttribute("pontosPauta")
+    public List<PontoPauta> pontos(){
+    	return this.pontoPautaService.findAllPontoPautas();
+    }
+    
+    @GetMapping(value= {"/pontoPauta/{id}/reuniao/{idReuniao}"})
+    public String registrarPauta(@Valid PontoPauta pontoPauta, BindingResult bindingResult, @PathVariable(required = true, name = "id") Long id,@PathVariable(required = true, name = "idReuniao") Long idReuniao, Model model) {
+    		
+    	model.addAttribute("pontoPauta", this.pontoPautaService.findPontoPautaById(id));
+    	model.addAttribute("reuniao", this.reuniaoService.findReuniaoById(idReuniao));
+    	
+    	if(null != id) {
+    		this.pontoPautaService.updatePontoPauta(pontoPauta);
+    		System.out.println("Foi!!!!!!!!!");
+    	}
+    	
+    	return "reunioes/reunioesExec";
+    }
     
     @PostMapping(value={"/reunioesExec/{id}/pontoPauta","/reunioesExec/{id}/pontoPauta/{idPontoPauta}"})
 	public String updtatePontoPautaById(@Valid PontoPauta pontoPauta, BindingResult bindingResult, @PathVariable(required = true, name = "id") Long id, 
 			@PathVariable(required = false, name = "idPontoPauta") Long idPontoPauta, Model model){
 		
-		model.addAttribute("reuniao", this.reuniaoService.findReuniaoById(id));						
+		model.addAttribute("reuniao", this.reuniaoService.findReuniaoById(id));	
+		model.addAttribute("pontoPauta", this.pontoPautaService.findPontoPautaById(idPontoPauta));
 		
 		if(bindingResult.hasErrors()) {
             bindingResult.getAllErrors().forEach(err -> {
@@ -212,7 +233,7 @@ public class ReuniaoController {
     	
     	if (null != id) {
     		this.pontoPautaService.updatePontoPauta(pontoPauta);
-    	} else {
+    	}else {
     		this.pontoPautaService.insertPontoPauta(pontoPauta);
     	}    	
     	List<PontoPauta> pontosPauta = pontoPautaService.findAllPontoPautas();

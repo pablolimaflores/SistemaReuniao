@@ -1,5 +1,7 @@
 package br.com.projeto.reuniao.domain.controller;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.slf4j.Logger;
@@ -12,12 +14,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import br.com.projeto.reuniao.SistemaReuniaoApp;
+import br.com.projeto.reuniao.domain.entity.Pessoa;
 import br.com.projeto.reuniao.domain.entity.PontoPauta;
+import br.com.projeto.reuniao.domain.entity.Tipo;
 import br.com.projeto.reuniao.domain.service.PessoaService;
 import br.com.projeto.reuniao.domain.service.PontoPautaService;
 import br.com.projeto.reuniao.domain.service.ReuniaoService;
@@ -72,6 +77,26 @@ public class PontoPautaController {
 	}
 	
 	/**
+	 * 
+	 * @return
+	 */
+	@ModelAttribute("responsavelList")
+	public List<Pessoa> findResponsavel(){
+		return pessoaService.findAllPessoas();
+	}
+	
+	/**
+	 * Método para inserir uma lista de objetos na model para serem exibidas
+	 * no formulário de cadastro de pautas.
+	 * 
+	 * @return
+	 */
+	@ModelAttribute("tipoList")
+	public List<Tipo> findTipos(){
+		return tipoService.findAllTipos();
+	}
+	
+	/**
 	 * Método para buscar um registro no banco de dados pelo ID caso necessário, caso o id seja
      * encontrado na base de dados, as informações do objeto são retornadas para serem manipuladas,
      * caso o id não seja encontrado, é inserido um novo registro na sessão para que seja possível,
@@ -87,8 +112,6 @@ public class PontoPautaController {
 	public String findPontoPautaById(@PathVariable(required = false, name = "id") Long id, @PathVariable(required = true, name = "idReuniao") Long idReuniao, @PageableDefault(SistemaReuniaoApp.MAXROWS) Pageable pageable, Model model){
 		
 		model.addAttribute("reuniao", this.reuniaoService.findReuniaoById(idReuniao));
-		model.addAttribute("responsavelList", pessoaService.findAllPessoas());
-		model.addAttribute("tipoList", tipoService.findAllTipos());
 		Page<PontoPauta> page = pontoPautaService.findAllPontoPautasPageable(pageable);
 		model.addAttribute("page", page);
 		
@@ -123,7 +146,6 @@ public class PontoPautaController {
             model.addAttribute("pontoPauta", pontoPauta);
             return "pontosPauta/pontoPautaEdit";
         }
-    	
     	if (null != id) {
     		this.pontoPautaService.updatePontoPauta(pontoPauta);
     	} else {
@@ -133,7 +155,6 @@ public class PontoPautaController {
 		model.addAttribute("page", page);
         return "pontosPauta/pontoPautaList";
 	}
-	
 	/**
 	 * Método utilizado para exclusão de registros na base de dados.
 	 * 
@@ -148,6 +169,5 @@ public class PontoPautaController {
 		Page<PontoPauta> page = pontoPautaService.findAllPontoPautasPageable(pageable);
 		model.addAttribute("page", page);
 		return "pontosPauta/pontoPautaList";
-	}
-	
+	}	
 }
