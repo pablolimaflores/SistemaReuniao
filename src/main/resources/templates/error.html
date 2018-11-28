@@ -7,34 +7,26 @@
 </head>
 <body>
 
-<div th:replace="fragments/header :: header"/>
-
-<div class="container">	
-		<h3>Erro no sistema</h3>
-		<hr>
-		<!--  As we are using Thymeleaf, you might consider using
-		      ${#httpServletRequest.requestURL}. But that returns the path
-		      to this error page.  Hence we explicitly add the url to the
-		      Model in some of the example code. -->
+	<div th:replace="fragments/header :: header"/>
+	
+		<div class="container">	
 		
-		<p th:if="${url}">
-			<b>URL:</b> <span th:text="${url}">Page URL</span>
-		</p>	
-	
-		<p th:if="${timestamp}" id='created'>
-			<b>Ocorrido em:</b> <span th:text="${timestamp}">Timestamp</span>
-		</p>
-	
-		<p th:if="${status}">
-			<b>Response Status:</b> <span th:text="${status}">status-code</span> <span
-				th:if="${error}" th:text="'('+${error}+')'">erro ...</span>
-		</p>
-	
-		<p>A aplicação encontrou um erro. Por favor contactar o suporte em <em><strong>suporte@flexmeeting.com</strong></em>.</p>	
-		    
-</div>
-
-
+			<div>
+				<h1 class="h3 mb-3 font-weight-normal">
+					<i class="oi oi-warning"></i> 
+					<span th:text="${status}"></span>
+				</h1>
+				
+				<h2 th:text="${error}"></h2>
+				
+				<div class="vertical-space">
+					<span th:text="${message}"></span><br/><br/>
+					<a class="btn btn-primary" type="button" href="javascript:history.back()">Voltar a página anterior</a>
+				</div>
+			</div>	
+				    
+		</div>
+		
 	<div th:replace="fragments/footer :: footer"/>
 
 </body>

@@ -23,7 +23,7 @@ public class EmailController {
             helper.setTo( "pablolimaflores@gmail.com" );
 //            helper.setTo( "tiagomarinsq97@gmail.com" );
             helper.setSubject( "FlexMeeting: Teste Envio de e-mail" );
-            helper.setText("<p>Testando essa desgraça de email pelo FlexMeeting... :P </p>", true);
+            helper.setText("<p>Testando email pelo FlexMeeting... :P </p>", true);
             mailSender.send(mail);
 
             return "OK";
