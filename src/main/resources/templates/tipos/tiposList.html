@@ -72,8 +72,8 @@
                     <td th:text="${tipo.id}">1</td>
                     <td th:text="${tipo.nome}">Tipo</td>
                     <td th:text="${tipo.descricao}">admin@admin.com</td>
-                    <div th:if="${tipo.debate == true}" >
-                    <td align="center" th:text="Sim">Sim</td>
+                    <div th:if="${tipo.debate == true}">
+                    	<td align="center" th:text="Sim">Sim</td>
                     </div>
                     <div th:unless="${tipo.debate == true}">
 					   <td align="center" th:text="Não">Não</td>

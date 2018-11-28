@@ -75,13 +75,13 @@
 							</div>
 							<div class="form-group">
 								<div class="col-md-11 vertical-space">
-										<label class="control-label">Tipo de Reunião</label>
-						        	<select class="col-md-12" id="tipo" name="tipo" th:field="${reuniao.tipo}">
+									<label for="tipo" class="control-label">Tipo de Reunião</label>
+						        	<select class="form-control" style="height:2.5em;" id="tipo" name="tipo" th:field="${reuniao.tipo}">
 						        		<option value="">Selecione o tipo de reunião</option>
 						        		<option th:each="tipo : ${tipos}" th:value="${tipo.id}" th:text="${tipo.nome}"></option>
 						        		<span th:if="${#fields.hasErrors('reuniao.tipo')}" th:errors="*{reuniao.tipo}" id="errorTipo" class="help-block"></span>
 						        	</select>
-					        	</div>
+					        	</div>					        						        	
 							</div>
 							<div class="form-group">
 								<div class="col-md-11 vertical-space">

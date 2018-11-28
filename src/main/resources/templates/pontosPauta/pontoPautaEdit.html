@@ -47,29 +47,29 @@
 					<div class="modal-body">
 							<input th:type="hidden" name="id" th:field="${pontoPauta.id}" />
 						        <div class="form-group" th:classappend="${#fields.hasErrors('pontoPauta.ordem')} ? 'has-error'">
-						            <div class="col-md-6 offset-md-3">
+						            <div class="col-md-6 offset-md-3 vertical-space">
 						            <label >Ordem</label>
 						            <input type="number" class="form-control" id="ordem" th:field="${pontoPauta.ordem}" value="" placeholder="Digite a ordem de importancia.."/>
 						            </div>
 						            <span th:if="${#fields.hasErrors('pontoPauta.ordem')}" th:errors="*{pontoPauta.ordem}" id="errorOrdem" class="help-block"></span>
 						        </div>
 						        <div class="form-group" th:classappend="${#fields.hasErrors('pontoPauta.descricao')} ? 'has-error'">
-						            <div class="col-md-6 offset-md-3">
-						            <label>Descrição</label>
+						            <div class="col-md-6 offset-md-3 vertical-space">
+						            <label for="descricao">Descrição</label>
 						            <textarea class="form-control" id="descricao"  name="descricao" th:field="${pontoPauta.descricao}" placeholder="Digite a descrição da pauta.."></textarea>
 						            </div>
 						            <span th:if="${#fields.hasErrors('pontoPauta.descricao')}" th:errors="*{pontoPauta.descricao}" id="errorDescricao" class="help-block"></span>
 						        </div>
 						        <div class="form-group" th:classappend="${#fields.hasErrors('pontoPauta.tempo')} ? 'has-error'">
-						            <div class="   col-md-6 offset-md-3">
-						            <label>Tempo</label>
+						            <div class="col-md-6 offset-md-3 vertical-space">
+						            <label for="tempo">Tempo</label>
 						            <input type="number" class="form-control" id="tempo" value=""  th:field="${pontoPauta.tempo}"/>
 						            </div>
 						            <span th:if="${#fields.hasErrors('pontoPauta.tempo')}" th:errors="*{pontoPauta.tempo}" id="errorTempo" class="help-block"></span>
 						        </div>
 						        
 						        <!-- <div class="form-group" th:classappend="${#fields.hasErrors('pontoPauta.discussao')} ? 'has-error'">
-						            <div class="col-md-6 offset-md-3">
+						            <div class="col-md-6 offset-md-3 vertical-space">
 						            	<label>Discussão</label>
 						            		<textarea class="form-control" id="discussao" name="discussao" th:field="${pontoPauta.discussao}"></textarea>
 						            	<div class="   col-md-6 offset-md-3">
@@ -80,28 +80,32 @@
 						        </div> -->
 						         
 						        <div class="form-group" th:classappend="${#fields.hasErrors('pontoPauta.responsavel')} ? 'has-error'">
-						        	<div class="col-md-6 offset-md-3">
-						        		 <legend align="center">Selecione o responsável</legend>
-						        		 <select class="col-md-12" id="pessoa" name="pessoa" value="" th:field="${pontoPauta.responsavel}">
-						        			<option value=""></option>
-						        			<option th:each="pessoa : ${responsavelList}" th:value="${pessoa.id}" th:text="${pessoa.nome}"></option>
-						        			<span th:if="${#fields.hasErrors('pontoPauta.responsavel')}" th:errors="*{pontoPauta.responsavel}" id="errorResponsavel" class="help-block"></span>
-						        		</select>
+						        	<div class="col-md-12">
+							        	<div class="col-md-6 offset-md-3 vertical-space">							        		 
+							        		 <label for="pessoa" class="control-label">Selecione o responsável</label>
+							        		 <select class="form-control" style="height:2.5em;" id="pessoa" name="pessoa" value="" th:field="${pontoPauta.responsavel}">
+							        			<option value=""></option>
+							        			<option th:each="pessoa : ${responsavelList}" th:value="${pessoa.id}" th:text="${pessoa.nome}"></option>
+							        			<span th:if="${#fields.hasErrors('pontoPauta.responsavel')}" th:errors="*{pontoPauta.responsavel}" id="errorResponsavel" class="help-block"></span>
+							        		</select>
+							        	</div>
 						        	</div>
 						        </div>
 						   <div class="form-group" th:classappend="${#fields.hasErrors('pontoPauta.tipo')} ? 'has-error'">
-						       <div class="col-md-12">
-						        	<legend align="center">Selecione o Tipo da Pauta</legend>
-						        		<select class="col-md-6 offset-md-3" id="tipo" name="tipo" th:field="${pontoPauta.tipo}">
+						       <div class="col-md-12">	
+							       <div class="col-md-6 offset-md-3 vertical-space">					        	
+						        		<label for="tipo" class="control-label">Selecione o Tipo da Pauta</label>
+						        		<select class="form-control" style="height:2.5em;" id="tipo" name="tipo" th:field="${pontoPauta.tipo}">
 						        			<option value=""></option>
 						        			<option th:each="tipo : ${tipoList}" th:value="${tipo.id}" th:text="${tipo.nome}" value=""></option>
 						        			<span th:if="${#fields.hasErrors('pontoPauta.tipo')}" th:errors="*{pontoPauta.tipo}" id="errorTipo" class="help-block"></span>
 						        		</select>
 						        		<br><br>
-						        		<div align="center">
-							        		<button class="btn btn-success"><span class="glyphicon glyphicon-ok"></span>Cadastrar</button>
-							        		<button class="btn btn-danger" data-dismiss="modal"><span class="glyphicon glyphicon-remove">Cancelar</button> 
-						        		</div>
+							       	</div>
+					        		<div class="col-md-6 offset-md-3 vertical-space" align="center">
+						        		<button class="btn btn-success"><span class="glyphicon glyphicon-ok"></span>Cadastrar</button>
+						        		<button class="btn btn-danger" data-dismiss="modal"><span class="glyphicon glyphicon-remove">Cancelar</button> 
+					        		</div>
 						       	</div>
 						  </div>
 					</div>			
