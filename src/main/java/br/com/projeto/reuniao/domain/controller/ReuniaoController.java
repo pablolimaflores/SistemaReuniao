@@ -21,11 +21,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import br.com.projeto.reuniao.SistemaReuniaoApp;
+import br.com.projeto.reuniao.domain.entity.Pessoa;
 import br.com.projeto.reuniao.domain.entity.PontoPauta;
 import br.com.projeto.reuniao.domain.entity.Reuniao;
+import br.com.projeto.reuniao.domain.entity.Tipo;
+import br.com.projeto.reuniao.domain.entity.TipoParticipante;
+import br.com.projeto.reuniao.domain.service.ParticipanteService;
 import br.com.projeto.reuniao.domain.service.PessoaService;
 import br.com.projeto.reuniao.domain.service.PontoPautaService;
 import br.com.projeto.reuniao.domain.service.ReuniaoService;
+import br.com.projeto.reuniao.domain.service.TipoParticipanteService;
 import br.com.projeto.reuniao.domain.service.TipoService;
 
 
@@ -59,6 +64,18 @@ public class ReuniaoController {
 	 */
     @Autowired
     PessoaService pessoaService;
+    
+    /**
+	 * Injeção de dependência
+	 */
+    @Autowired
+    ParticipanteService participanteService;
+    
+    /**
+	 * Injeção de dependência
+	 */
+    @Autowired
+    TipoParticipanteService tipoParticipanteService;
     
     private static final Logger LOGGER = LoggerFactory.getLogger(ReuniaoController.class);
     
@@ -104,9 +121,8 @@ public class ReuniaoController {
      * @return retorno para a página de renderização.
      */
     @GetMapping(value={"/reunioesEdit","/reunioesEdit/{id}"})
-    public String findReuniaoById(Model model, @PathVariable(required = false, name = "id") Long id) {
-    	model.addAttribute("tipos", this.tipoService.findAllTipos());
-    	model.addAttribute("pessoas", this.pessoaService.findAllPessoas());
+    public String findReuniaoById(Model model, @PathVariable(required = false, name = "id") Long id) {    	   
+    	model.addAttribute("participantes", this.participanteService.findAllParticipantes());    	
         if (null != id) {
             model.addAttribute("reuniao", this.reuniaoService.findReuniaoById(id));
         } else {
@@ -114,6 +130,33 @@ public class ReuniaoController {
         }
         return "reunioes/reunioesEdit";
     }
+    
+    /**
+	 * 
+	 * @return
+	 */
+	@ModelAttribute("pessoas")
+	public List<Pessoa> findPessoas() {
+		return this.pessoaService.findAllPessoas();
+	}
+    
+    /**
+	 * 
+	 * @return
+	 */
+	@ModelAttribute("tipos")
+	public List<Tipo> findTipos() {
+		return this.tipoService.findAllTipos();
+	}
+	
+    /**
+	 * 
+	 * @return
+	 */
+	@ModelAttribute("tiposParticipante")
+	public List<TipoParticipante> findTiposParticipante() {
+		return this.tipoParticipanteService.findAllTiposParticipante();
+	}
     
     /**
      * 

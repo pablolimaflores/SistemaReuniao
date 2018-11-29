@@ -80,6 +80,6 @@ public class Participante extends AbstractEntity {
 		this.pessoa = pessoa;
 		this.reuniao = reuniao;
 		this.tipoParticipante = tipoParticipante;
-	}	
+	}
 
 }

@@ -100,32 +100,60 @@
                     </div>
                 </div>
             </div>            
-             <div class="col-md-6">
-                <div class="card"> 
-                    <div class="card-body">
-                        <legend align="center">Participantes</legend>
-                        	<table class="table table-bordred table-striped">
-					            <thead>
-					                <tr>
-					                    <th>Nome</th>
-					                </tr>
-					            </thead>
-					            <tbody>
-					                <tr th:each="pessoa : ${pessoas}">
-					                                	
-					                    <td th:text="${pessoa.nome}"></td>
-					                    <td> 
-					                    	<input type="checkbox">
-					                    	<!--
-					                    		<input type="checkbox" value="${reuniao.participantes}" th:field="${reuniao.participantes}">
-					                    	--> 
-					                    </td>           
-					                </tr>
-					            </tbody>
-        					</table>
-                    </div>
+            <div class="col-md-6">
+                <div class="card vertical-space">
+                	<legend align="center">Inserir Participante</legend>
+                	<form class="form-horizontal" action="/reunioes/reunioesEdit/participante" th:action="@{/reunioes/reunioesEdit/participante}" method="post">
+						<input th:type="hidden" name="id" th:field="${reuniao.id}" />	
+						<div class="form-group">
+							<div class="row col-md-10 offset-md-1 vertical-space">
+								<label for="tipo" class="control-label">Pessoas</label>
+					        	<select class="form-control" style="height:2.5em;" id="participante" name="participante" th:field="${reuniao.participantes}">
+					        		<option value="">Selecione uma pessoa</option>
+					        		<option th:each="pessoa : ${pessoas}" th:value="${pessoa.id}" th:text="${pessoa.nome}"></option>
+					        		<!-- 
+					        		<span th:if="${#fields.hasErrors('pessoa.nome')}" th:errors="*{pessoa.nome}" id="errorNome" class="help-block"></span>
+					        		-->
+					        	</select>				        		
+			        			<button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-ok"></span></button>				        		
+				        	</div>
+				        	
+				        						        						        	
+						</div>
+						<!-- 
+						<div class="form-group">
+							<div class="col-md-11 vertical-space">
+								<label for="tipo" class="control-label">Tipo do Participante</label>
+					        	<select class="form-control" style="height:2.5em;" id="tiposParticipante" name="tiposParticipante" th:field="${reuniao.tiposParticipante}">
+					        		<option value="">Selecione uma tipo</option>
+					        		<option th:each="tipoParticipante : ${tiposParticipante}" th:value="${tipoParticipante.id}" th:text="${tipoParticipante.nome}"></option>					        		
+					        	</select>
+				        	</div>					        						        	
+						</div>
+						 -->
+					</form>	
                 </div>
-            </div> 
+	            
+                <div class="card">                    
+                	<div class="col-md-10 offset-md-1 vertical-space">
+                       	<legend align="center">Participantes</legend>
+                       	<table class="table table-bordred table-striped">
+				            <thead>
+				                <tr>
+				                    <th>Nome</th>
+				                </tr>
+				            </thead>
+				            <tbody>
+				                <tr th:each="participante : ${participantes}">				                                	
+				                    <td th:text="${participante.pessoa.nome}"></td>
+				                    <td>
+				                    	<a href="#" th:href="@{/reunioes/reunioesEdit}" class="btn btn-danger" role="button"><span class="glyphicon glyphicon-remove"></span></a>
+				                    </td>				                    
+				                </tr>
+				            </tbody>
+       					</table>
+                    </div>                    
+                </div>	                                                                                      
         </div>
 	
 </div>
