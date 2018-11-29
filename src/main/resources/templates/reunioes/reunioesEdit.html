@@ -106,19 +106,19 @@
                 	<form class="form-horizontal" action="/reunioes/reunioesEdit/participante" th:action="@{/reunioes/reunioesEdit/participante}" method="post">
 						<input th:type="hidden" name="id" th:field="${reuniao.id}" />	
 						<div class="form-group">
-							<div class="row col-md-10 offset-md-1 vertical-space">
-								<label for="tipo" class="control-label">Pessoas</label>
-					        	<select class="form-control" style="height:2.5em;" id="participante" name="participante" th:field="${reuniao.participantes}">
-					        		<option value="">Selecione uma pessoa</option>
-					        		<option th:each="pessoa : ${pessoas}" th:value="${pessoa.id}" th:text="${pessoa.nome}"></option>
-					        		<!-- 
-					        		<span th:if="${#fields.hasErrors('pessoa.nome')}" th:errors="*{pessoa.nome}" id="errorNome" class="help-block"></span>
-					        		-->
-					        	</select>				        		
-			        			<button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-ok"></span></button>				        		
-				        	</div>
-				        	
-				        						        						        	
+							<div class="row">
+								<div class="col-md-10 offset-md-1 vertical-space">
+									<label for="tipo" class="control-label">Pessoas</label>
+						        	<select class="form-control" style="height:2.5em;" id="participante" name="participante" th:field="${reuniao.participantes}">
+						        		<option value="">Selecione uma pessoa</option>
+						        		<option th:each="pessoa : ${pessoas}" th:value="${pessoa.id}" th:text="${pessoa.nome}"></option>
+						        		<!-- 
+						        		<span th:if="${#fields.hasErrors('pessoa.nome')}" th:errors="*{pessoa.nome}" id="errorNome" class="help-block"></span>
+						        		-->
+						        	</select>				        		
+				        			<button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-ok"></span></button>				        		
+					        	</div>
+				        	</div>				        						        						        
 						</div>
 						<!-- 
 						<div class="form-group">
