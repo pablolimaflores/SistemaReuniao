@@ -42,6 +42,17 @@ public class ParticipanteService {
     }
 	
 	/**
+	 * Método utilizado para buscar um registro pelo ID.
+	 * 
+	 * @return
+	 */
+	@Transactional(readOnly = true)
+	public List<Participante> listParticipanteByReuniaoId( Long idReuniao ) {
+		
+		return this.participanteRepository.listByReuniaoId(idReuniao);
+    }
+	
+	/**
 	 * Método utilizado para inserir um registro na base de dados.
 	 * 
 	 * @param participante

@@ -1,6 +1,6 @@
 package br.com.projeto.reuniao.domain.repository;
 
-import java.util.Optional;
+import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -16,6 +16,6 @@ public interface IParticipanteRepository extends JpaRepository<Participante, Lon
 			+ "participante.tipoParticipante) "
 			+ "FROM Participante participante "
 			+ "WHERE participante.reuniao.id = :idReuniao")
-	Optional<Participante> findByReuniaoId(@Param("idReuniao") Long idReuniao);
+	List<Participante> listByReuniaoId(@Param("idReuniao") Long idReuniao);
 	
 }

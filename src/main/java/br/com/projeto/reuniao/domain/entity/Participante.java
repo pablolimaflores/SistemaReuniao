@@ -81,5 +81,20 @@ public class Participante extends AbstractEntity {
 		this.reuniao = reuniao;
 		this.tipoParticipante = tipoParticipante;
 	}
+	
+	/**
+	 * 
+	 * @param id
+	 * @param pessoa
+	 * @param reuniao
+	 * @param tipoParticipante
+	 */
+	public Participante(Long id, @NotNull Pessoa pessoa, @NotNull Reuniao reuniao,
+			@NotNull TipoParticipante tipoParticipante) {		
+		super(id);
+		this.pessoa = pessoa;
+		this.reuniao = reuniao;
+		this.tipoParticipante = tipoParticipante;
+	}
 
 }

@@ -1,5 +1,6 @@
 package br.com.projeto.reuniao.domain.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import br.com.projeto.reuniao.SistemaReuniaoApp;
+import br.com.projeto.reuniao.domain.entity.Participante;
 import br.com.projeto.reuniao.domain.entity.Pessoa;
 import br.com.projeto.reuniao.domain.entity.PontoPauta;
 import br.com.projeto.reuniao.domain.entity.Reuniao;
@@ -126,7 +128,7 @@ public class ReuniaoController {
         if (null != id) {
             model.addAttribute("reuniao", this.reuniaoService.findReuniaoById(id));
         } else {
-            model.addAttribute("reuniao", new Reuniao());
+            model.addAttribute("reuniao", new Reuniao());            
         }
         return "reunioes/reunioesEdit";
     }
@@ -156,6 +158,19 @@ public class ReuniaoController {
 	@ModelAttribute("tiposParticipante")
 	public List<TipoParticipante> findTiposParticipante() {
 		return this.tipoParticipanteService.findAllTiposParticipante();
+	}
+	
+	/**
+	 * 
+	 * @return
+	 */
+	@ModelAttribute("participantes")
+	public List<Participante> listParticipantesByReuniaoId(Long id) {
+		if (null != id) {
+			return this.participanteService.listParticipanteByReuniaoId(id);
+		} else {
+			return new ArrayList<Participante>();
+		}
 	}
     
     /**
