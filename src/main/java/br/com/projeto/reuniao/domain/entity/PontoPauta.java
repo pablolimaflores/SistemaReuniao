@@ -51,14 +51,15 @@ public class PontoPauta extends AbstractEntity {
 	private Integer tempo;
 	
 	@Column(nullable = true, length = 300)
-    @Size(min=3, max=300)
+    @Size(max=300)
 	private String discussao;
 	
 	/**
      * 
      */
     @NotNull
-    @OneToOne(fetch = FetchType.EAGER, optional = false)
+//    @OneToOne(fetch = FetchType.EAGER, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "pessoa_id")
 	private Pessoa responsavel;
 	
@@ -68,6 +69,13 @@ public class PontoPauta extends AbstractEntity {
 	@NotNull
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
 	private Tipo tipo;
+	
+	/**
+	 * 
+	 */
+	@NotNull
+	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+	private Reuniao reuniao;
 
 	/**
 	 * 
@@ -105,6 +113,37 @@ public class PontoPauta extends AbstractEntity {
 		this.discussao = discussao;
 		this.responsavel = responsavel;
 		this.tipo = tipo;
+	}
+	
+	public PontoPauta(Long id, Integer ordem, String descricao, Integer tempo, String discussao, Pessoa responsavel, Tipo tipo, Reuniao reuniao) {
+		super(id);
+		this.ordem = ordem;
+		this.descricao = descricao;
+		this.tempo = tempo;
+		this.discussao = discussao;
+		this.responsavel = responsavel;
+		this.tipo = tipo;
+		this.reuniao = reuniao;
+	}
+	
+	
+	public PontoPauta(Integer ordem, String descricao, Integer tempo, String discussao, Pessoa responsavel, Tipo tipo, Reuniao reuniao) {		
+		this.ordem = ordem;
+		this.descricao = descricao;
+		this.tempo = tempo;
+		this.discussao = discussao;
+		this.responsavel = responsavel;
+		this.tipo = tipo;
+		this.reuniao = reuniao;
+	}
+	
+	public PontoPauta(Integer ordem, String descricao, Integer tempo, Pessoa responsavel, Tipo tipo, Reuniao reuniao) {		
+		this.ordem = ordem;
+		this.descricao = descricao;
+		this.tempo = tempo;		
+		this.responsavel = responsavel;
+		this.tipo = tipo;
+		this.reuniao = reuniao;
 	}
 				
 }

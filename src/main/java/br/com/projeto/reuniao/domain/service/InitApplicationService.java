@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import br.com.projeto.reuniao.domain.entity.Participante;
 import br.com.projeto.reuniao.domain.entity.Pessoa;
+import br.com.projeto.reuniao.domain.entity.PontoPauta;
 import br.com.projeto.reuniao.domain.entity.Reuniao;
 import br.com.projeto.reuniao.domain.entity.Role;
 import br.com.projeto.reuniao.domain.entity.Tipo;
@@ -152,23 +153,333 @@ public class InitApplicationService {
     	Participante participanteJoao = new Participante(true, joao, reuniao, mediador);
     	Participante participanteMaria = new Participante(true, maria, reuniao, secretario);
     	Participante participanteUser = new Participante(true, user, reuniao, integrante);
+    	Participante participanteUsuario1Reuniao = new Participante(true, usuario1, reuniao, solicitante);
+    	Participante participanteUsuario2Reuniao = new Participante(true, usuario2, reuniao, solicitante);
+    	Participante participanteUsuario3Reuniao = new Participante(true, usuario3, reuniao, solicitante);
+    	Participante participanteUsuario4Reuniao = new Participante(true, usuario4, reuniao, solicitante);
+    	
+    	Participante participanteUsuario1Reuniao1 = new Participante(true, usuario1, reuniao1, solicitante);
+    	Participante participanteUsuario2Reuniao1 = new Participante(true, usuario2, reuniao1, solicitante);
+    	Participante participanteUsuario3Reuniao1 = new Participante(true, usuario3, reuniao1, solicitante);
+    	Participante participanteUsuario4Reuniao1 = new Participante(true, usuario4, reuniao1, solicitante);
+    	
+    	Participante participanteUsuario1Reuniao2 = new Participante(true, usuario1, reuniao2, solicitante);
+    	Participante participanteUsuario2Reuniao2 = new Participante(true, usuario2, reuniao2, solicitante);
+    	
+    	Participante participanteUsuario3Reuniao3 = new Participante(true, usuario3, reuniao3, solicitante);
+    	Participante participanteUsuario4Reuniao3 = new Participante(true, usuario4, reuniao3, solicitante);
+    	
+    	Participante participanteUsuario4Reuniao4 = new Participante(true, usuario4, reuniao4, solicitante);
+    	Participante participanteUsuario5Reuniao5 = new Participante(true, usuario5, reuniao5, solicitante);
+    	Participante participanteUsuario6Reuniao6 = new Participante(true, usuario6, reuniao6, solicitante);
+    	Participante participanteUsuario7Reuniao7 = new Participante(true, usuario7, reuniao7, solicitante);
+    	Participante participanteUsuario8Reuniao8 = new Participante(true, usuario8, reuniao8, solicitante);
+    	Participante participanteUsuario9Reuniao9 = new Participante(true, usuario9, reuniao9, solicitante);    	
+    	Participante participanteUsuario10Reuniao10 = new Participante(true, usuario10, reuniao10, solicitante);
+    	Participante participanteUsuario11Reuniao11 = new Participante(true, usuario11, reuniao11, solicitante);
+    	
     	
     	if (participanteService.countParticipantes() == 0) {    		
     		participanteService.insertParticipante(participanteAdmin);
     		participanteService.insertParticipante(participanteJoao);
     		participanteService.insertParticipante(participanteMaria);
     		participanteService.insertParticipante(participanteUser);
+    		participanteService.insertParticipante(participanteUsuario1Reuniao);
+    		participanteService.insertParticipante(participanteUsuario2Reuniao);
+    		participanteService.insertParticipante(participanteUsuario3Reuniao);
+    		participanteService.insertParticipante(participanteUsuario4Reuniao);
+    		
+    		participanteService.insertParticipante(participanteUsuario1Reuniao1);
+    		participanteService.insertParticipante(participanteUsuario2Reuniao1);
+    		participanteService.insertParticipante(participanteUsuario3Reuniao1);
+    		participanteService.insertParticipante(participanteUsuario4Reuniao1);
+    		
+    		participanteService.insertParticipante(participanteUsuario1Reuniao2);
+    		participanteService.insertParticipante(participanteUsuario2Reuniao2);
+    		
+    		participanteService.insertParticipante(participanteUsuario3Reuniao3);
+    		participanteService.insertParticipante(participanteUsuario4Reuniao3);
+    		
+    		participanteService.insertParticipante(participanteUsuario4Reuniao4);
+    		participanteService.insertParticipante(participanteUsuario5Reuniao5);
+    		participanteService.insertParticipante(participanteUsuario6Reuniao6);
+    		participanteService.insertParticipante(participanteUsuario7Reuniao7);
+    		participanteService.insertParticipante(participanteUsuario8Reuniao8);
+    		participanteService.insertParticipante(participanteUsuario9Reuniao9);
+    		participanteService.insertParticipante(participanteUsuario10Reuniao10);
+    		participanteService.insertParticipante(participanteUsuario11Reuniao11);
+    		
     	}
     	
-//    	PontoPauta pontoPauta1 = new PontoPauta(1, "Pauta 01", 30, "", joao, informativo);
-//    	PontoPauta pontoPauta2 = new PontoPauta(2, "Pauta 02", 60, "", joao, informativo);
-//    	
-//    	if (pontoPautaService.countPontoPauta() == 0) {
-//    		pontoPautaService.insertPontoPauta(pontoPauta1);
-//    		pontoPautaService.insertPontoPauta(pontoPauta2);
-//    	}
+    	PontoPauta pontoPauta1 = new PontoPauta(1, "Pauta 01", 30,joao, informativo, reuniao);
+    	PontoPauta pontoPauta2 = new PontoPauta(2, "Pauta 02", 60, usuario2, deliberativo, reuniao);
+    	PontoPauta pontoPauta3 = new PontoPauta(3, "Pauta 03", 30,usuario3, trabalho, reuniao);
+    	PontoPauta pontoPauta4 = new PontoPauta(4, "Pauta 04", 60, usuario4, trabalho, reuniao);
+    	PontoPauta pontoPauta5 = new PontoPauta(5, "Pauta 05", 30,usuario5, trabalho, reuniao);
+    	PontoPauta pontoPauta6 = new PontoPauta(6, "Pauta 06", 60, usuario6, trabalho, reuniao);
+    	PontoPauta pontoPauta7 = new PontoPauta(7, "Pauta 07", 30,usuario7, trabalho, reuniao);
+    	PontoPauta pontoPauta8 = new PontoPauta(8, "Pauta 08", 60, usuario8, trabalho, reuniao);
+    	PontoPauta pontoPauta9 = new PontoPauta(9, "Pauta 09", 30,usuario9, trabalho, reuniao);
+    	PontoPauta pontoPauta10 = new PontoPauta(10, "Pauta 10", 60, usuario10, brainstorm, reuniao);
+    	
+    	PontoPauta pontoPauta1Reuniao1 = new PontoPauta(1, "Pauta 01", 30,joao, informativo, reuniao1);
+    	PontoPauta pontoPauta2Reuniao1 = new PontoPauta(2, "Pauta 02", 60, usuario2, deliberativo, reuniao1);
+    	PontoPauta pontoPauta3Reuniao1 = new PontoPauta(3, "Pauta 03", 30,usuario3, trabalho, reuniao1);
+    	PontoPauta pontoPauta4Reuniao1 = new PontoPauta(4, "Pauta 04", 60, usuario4, trabalho, reuniao1);
+    	PontoPauta pontoPauta5Reuniao1 = new PontoPauta(5, "Pauta 05", 30,usuario5, trabalho, reuniao1);
+    	PontoPauta pontoPauta6Reuniao1 = new PontoPauta(6, "Pauta 06", 60, usuario6, trabalho, reuniao1);
+    	PontoPauta pontoPauta7Reuniao1 = new PontoPauta(7, "Pauta 07", 30,usuario7, trabalho, reuniao1);
+    	PontoPauta pontoPauta8Reuniao1 = new PontoPauta(8, "Pauta 08", 60, usuario8, trabalho, reuniao1);
+    	PontoPauta pontoPauta9Reuniao1 = new PontoPauta(9, "Pauta 09", 30,usuario9, trabalho, reuniao1);
+    	PontoPauta pontoPauta10Reuniao1 = new PontoPauta(10, "Pauta 10", 60, usuario10, brainstorm, reuniao1);
+    	
+    	PontoPauta pontoPauta1Reuniao2 = new PontoPauta(1, "Pauta 01", 30,joao, informativo, reuniao2);
+    	PontoPauta pontoPauta2Reuniao2 = new PontoPauta(2, "Pauta 02", 60, usuario2, deliberativo, reuniao2);
+    	PontoPauta pontoPauta3Reuniao2 = new PontoPauta(3, "Pauta 03", 30,usuario3, trabalho, reuniao2);
+    	PontoPauta pontoPauta4Reuniao2 = new PontoPauta(4, "Pauta 04", 60, usuario4, trabalho, reuniao2);
+    	PontoPauta pontoPauta5Reuniao2 = new PontoPauta(5, "Pauta 05", 30,usuario5, trabalho, reuniao2);
+    	PontoPauta pontoPauta6Reuniao2 = new PontoPauta(6, "Pauta 06", 60, usuario6, trabalho, reuniao2);
+    	PontoPauta pontoPauta7Reuniao2 = new PontoPauta(7, "Pauta 07", 30,usuario7, trabalho, reuniao2);
+    	PontoPauta pontoPauta8Reuniao2 = new PontoPauta(8, "Pauta 08", 60, usuario8, trabalho, reuniao2);
+    	PontoPauta pontoPauta9Reuniao2 = new PontoPauta(9, "Pauta 09", 30,usuario9, trabalho, reuniao2);
+    	PontoPauta pontoPauta10Reuniao2 = new PontoPauta(10, "Pauta 10", 60, usuario10, brainstorm, reuniao2);
+    	
+    	PontoPauta pontoPauta1Reuniao3 = new PontoPauta(1, "Pauta 01", 30,joao, informativo, reuniao3);
+    	PontoPauta pontoPauta2Reuniao3 = new PontoPauta(2, "Pauta 02", 60, usuario2, deliberativo, reuniao3);
+    	PontoPauta pontoPauta3Reuniao3 = new PontoPauta(3, "Pauta 03", 30,usuario3, trabalho, reuniao3);
+    	PontoPauta pontoPauta4Reuniao3 = new PontoPauta(4, "Pauta 04", 60, usuario4, trabalho, reuniao3);
+    	PontoPauta pontoPauta5Reuniao3 = new PontoPauta(5, "Pauta 05", 30,usuario5, trabalho, reuniao3);
+    	PontoPauta pontoPauta6Reuniao3 = new PontoPauta(6, "Pauta 06", 60, usuario6, trabalho, reuniao3);
+    	PontoPauta pontoPauta7Reuniao3 = new PontoPauta(7, "Pauta 07", 30,usuario7, trabalho, reuniao3);
+    	PontoPauta pontoPauta8Reuniao3 = new PontoPauta(8, "Pauta 08", 60, usuario8, trabalho, reuniao3);
+    	PontoPauta pontoPauta9Reuniao3 = new PontoPauta(9, "Pauta 09", 30,usuario9, trabalho, reuniao3);
+    	PontoPauta pontoPauta10Reuniao3 = new PontoPauta(10, "Pauta 10", 60, usuario10, brainstorm, reuniao3);
+    	
+    	PontoPauta pontoPauta1Reuniao4 = new PontoPauta(1, "Pauta 01", 30,joao, informativo, reuniao4);
+    	PontoPauta pontoPauta2Reuniao4 = new PontoPauta(2, "Pauta 02", 60, usuario2, deliberativo, reuniao4);
+    	PontoPauta pontoPauta3Reuniao4 = new PontoPauta(3, "Pauta 03", 30,usuario3, trabalho, reuniao4);
+    	PontoPauta pontoPauta4Reuniao4 = new PontoPauta(4, "Pauta 04", 60, usuario4, trabalho, reuniao4);
+    	PontoPauta pontoPauta5Reuniao4 = new PontoPauta(5, "Pauta 05", 30,usuario5, trabalho, reuniao4);
+    	PontoPauta pontoPauta6Reuniao4 = new PontoPauta(6, "Pauta 06", 60, usuario6, trabalho, reuniao4);
+    	PontoPauta pontoPauta7Reuniao4 = new PontoPauta(7, "Pauta 07", 30,usuario7, trabalho, reuniao4);
+    	PontoPauta pontoPauta8Reuniao4 = new PontoPauta(8, "Pauta 08", 60, usuario8, trabalho, reuniao4);
+    	PontoPauta pontoPauta9Reuniao4 = new PontoPauta(9, "Pauta 09", 30,usuario9, trabalho, reuniao4);
+    	PontoPauta pontoPauta10Reuniao4 = new PontoPauta(10, "Pauta 10", 60, usuario10, brainstorm, reuniao4);
+    	
+    	PontoPauta pontoPauta1Reuniao5 = new PontoPauta(1, "Pauta 01", 30,joao, informativo, reuniao5);
+    	PontoPauta pontoPauta2Reuniao5 = new PontoPauta(2, "Pauta 02", 60, usuario2, deliberativo, reuniao5);
+    	PontoPauta pontoPauta3Reuniao5 = new PontoPauta(3, "Pauta 03", 30,usuario3, trabalho, reuniao5);
+    	PontoPauta pontoPauta4Reuniao5 = new PontoPauta(4, "Pauta 04", 60, usuario4, trabalho, reuniao5);
+    	PontoPauta pontoPauta5Reuniao5 = new PontoPauta(5, "Pauta 05", 30,usuario5, trabalho, reuniao5);
+    	PontoPauta pontoPauta6Reuniao5 = new PontoPauta(6, "Pauta 06", 60, usuario6, trabalho, reuniao5);
+    	PontoPauta pontoPauta7Reuniao5 = new PontoPauta(7, "Pauta 07", 30,usuario7, trabalho, reuniao5);
+    	PontoPauta pontoPauta8Reuniao5 = new PontoPauta(8, "Pauta 08", 60, usuario8, trabalho, reuniao5);
+    	PontoPauta pontoPauta9Reuniao5 = new PontoPauta(9, "Pauta 09", 30,usuario9, trabalho, reuniao5);
+    	PontoPauta pontoPauta10Reuniao5 = new PontoPauta(10, "Pauta 10", 60, usuario10, brainstorm, reuniao5);
+    	
+    	PontoPauta pontoPauta1Reuniao6 = new PontoPauta(1, "Pauta 01", 30,joao, informativo, reuniao6);
+    	PontoPauta pontoPauta2Reuniao6 = new PontoPauta(2, "Pauta 02", 60, usuario2, deliberativo, reuniao6);
+    	PontoPauta pontoPauta3Reuniao6 = new PontoPauta(3, "Pauta 03", 30,usuario3, trabalho, reuniao6);
+    	PontoPauta pontoPauta4Reuniao6 = new PontoPauta(4, "Pauta 04", 60, usuario4, trabalho, reuniao6);
+    	PontoPauta pontoPauta5Reuniao6 = new PontoPauta(5, "Pauta 05", 30,usuario5, trabalho, reuniao6);
+    	PontoPauta pontoPauta6Reuniao6 = new PontoPauta(6, "Pauta 06", 60, usuario6, trabalho, reuniao6);
+    	PontoPauta pontoPauta7Reuniao6 = new PontoPauta(7, "Pauta 07", 30,usuario7, trabalho, reuniao6);
+    	PontoPauta pontoPauta8Reuniao6 = new PontoPauta(8, "Pauta 08", 60, usuario8, trabalho, reuniao6);
+    	PontoPauta pontoPauta9Reuniao6 = new PontoPauta(9, "Pauta 09", 30,usuario9, trabalho, reuniao6);
+    	PontoPauta pontoPauta10Reuniao6 = new PontoPauta(10, "Pauta 10", 60, usuario10, brainstorm, reuniao6);
+    	
+    	PontoPauta pontoPauta1Reuniao7 = new PontoPauta(1, "Pauta 01", 30,joao, informativo, reuniao7);
+    	PontoPauta pontoPauta2Reuniao7 = new PontoPauta(2, "Pauta 02", 60, usuario2, deliberativo, reuniao7);
+    	PontoPauta pontoPauta3Reuniao7 = new PontoPauta(3, "Pauta 03", 30,usuario3, trabalho, reuniao7);
+    	PontoPauta pontoPauta4Reuniao7 = new PontoPauta(4, "Pauta 04", 60, usuario4, trabalho, reuniao7);
+    	PontoPauta pontoPauta5Reuniao7 = new PontoPauta(5, "Pauta 05", 30,usuario5, trabalho, reuniao7);
+    	PontoPauta pontoPauta6Reuniao7 = new PontoPauta(6, "Pauta 06", 60, usuario6, trabalho, reuniao7);
+    	PontoPauta pontoPauta7Reuniao7 = new PontoPauta(7, "Pauta 07", 30,usuario7, trabalho, reuniao7);
+    	PontoPauta pontoPauta8Reuniao7 = new PontoPauta(8, "Pauta 08", 60, usuario8, trabalho, reuniao7);
+    	PontoPauta pontoPauta9Reuniao7 = new PontoPauta(9, "Pauta 09", 30,usuario9, trabalho, reuniao7);
+    	PontoPauta pontoPauta10Reuniao7 = new PontoPauta(10, "Pauta 10", 60, usuario10, brainstorm, reuniao7);
+    	
+    	PontoPauta pontoPauta1Reuniao8 = new PontoPauta(1, "Pauta 01", 30,joao, informativo, reuniao8);
+    	PontoPauta pontoPauta2Reuniao8 = new PontoPauta(2, "Pauta 02", 60, usuario2, deliberativo, reuniao8);
+    	PontoPauta pontoPauta3Reuniao8 = new PontoPauta(3, "Pauta 03", 30,usuario3, trabalho, reuniao8);
+    	PontoPauta pontoPauta4Reuniao8 = new PontoPauta(4, "Pauta 04", 60, usuario4, trabalho, reuniao8);
+    	PontoPauta pontoPauta5Reuniao8 = new PontoPauta(5, "Pauta 05", 30,usuario5, trabalho, reuniao8);
+    	PontoPauta pontoPauta6Reuniao8 = new PontoPauta(6, "Pauta 06", 60, usuario6, trabalho, reuniao8);
+    	PontoPauta pontoPauta7Reuniao8 = new PontoPauta(7, "Pauta 07", 30,usuario7, trabalho, reuniao8);
+    	PontoPauta pontoPauta8Reuniao8 = new PontoPauta(8, "Pauta 08", 60, usuario8, trabalho, reuniao8);
+    	PontoPauta pontoPauta9Reuniao8 = new PontoPauta(9, "Pauta 09", 30,usuario9, trabalho, reuniao8);
+    	PontoPauta pontoPauta10Reuniao8 = new PontoPauta(10, "Pauta 10", 60, usuario10, brainstorm, reuniao8);
+    	
+    	PontoPauta pontoPauta1Reuniao9 = new PontoPauta(1, "Pauta 01", 30,joao, informativo, reuniao9);
+    	PontoPauta pontoPauta2Reuniao9 = new PontoPauta(2, "Pauta 02", 60, usuario2, deliberativo, reuniao9);
+    	PontoPauta pontoPauta3Reuniao9 = new PontoPauta(3, "Pauta 03", 30,usuario3, trabalho, reuniao9);
+    	PontoPauta pontoPauta4Reuniao9 = new PontoPauta(4, "Pauta 04", 60, usuario4, trabalho, reuniao9);
+    	PontoPauta pontoPauta5Reuniao9 = new PontoPauta(5, "Pauta 05", 30,usuario5, trabalho, reuniao9);
+    	PontoPauta pontoPauta6Reuniao9 = new PontoPauta(6, "Pauta 06", 60, usuario6, trabalho, reuniao9);
+    	PontoPauta pontoPauta7Reuniao9 = new PontoPauta(7, "Pauta 07", 30,usuario7, trabalho, reuniao9);
+    	PontoPauta pontoPauta8Reuniao9 = new PontoPauta(8, "Pauta 08", 60, usuario8, trabalho, reuniao9);
+    	PontoPauta pontoPauta9Reuniao9 = new PontoPauta(9, "Pauta 09", 30,usuario9, trabalho, reuniao9);
+    	PontoPauta pontoPauta10Reuniao9 = new PontoPauta(10, "Pauta 10", 60, usuario10, brainstorm, reuniao9);
+    	
+    	PontoPauta pontoPauta1Reuniao10 = new PontoPauta(1, "Pauta 01", 30,joao, informativo, reuniao10);
+    	PontoPauta pontoPauta2Reuniao10 = new PontoPauta(2, "Pauta 02", 60, usuario2, deliberativo, reuniao10);
+    	PontoPauta pontoPauta3Reuniao10 = new PontoPauta(3, "Pauta 03", 30,usuario3, trabalho, reuniao10);
+    	PontoPauta pontoPauta4Reuniao10 = new PontoPauta(4, "Pauta 04", 60, usuario4, trabalho, reuniao10);
+    	PontoPauta pontoPauta5Reuniao10 = new PontoPauta(5, "Pauta 05", 30,usuario5, trabalho, reuniao10);
+    	PontoPauta pontoPauta6Reuniao10 = new PontoPauta(6, "Pauta 06", 60, usuario6, trabalho, reuniao10);
+    	PontoPauta pontoPauta7Reuniao10 = new PontoPauta(7, "Pauta 07", 30,usuario7, trabalho, reuniao10);
+    	PontoPauta pontoPauta8Reuniao10 = new PontoPauta(8, "Pauta 08", 60, usuario8, trabalho, reuniao10);
+    	PontoPauta pontoPauta9Reuniao10 = new PontoPauta(9, "Pauta 09", 30,usuario9, trabalho, reuniao10);
+    	PontoPauta pontoPauta10Reuniao10 = new PontoPauta(10, "Pauta 10", 60, usuario10, brainstorm, reuniao10);
+    	
+    	PontoPauta pontoPauta1Reuniao11 = new PontoPauta(1, "Pauta 01", 30,joao, informativo, reuniao11);
+    	PontoPauta pontoPauta2Reuniao11 = new PontoPauta(2, "Pauta 02", 60, usuario2, deliberativo, reuniao11);
+    	PontoPauta pontoPauta3Reuniao11 = new PontoPauta(3, "Pauta 03", 30,usuario3, trabalho, reuniao11);
+    	PontoPauta pontoPauta4Reuniao11 = new PontoPauta(4, "Pauta 04", 60, usuario4, trabalho, reuniao11);
+    	PontoPauta pontoPauta5Reuniao11 = new PontoPauta(5, "Pauta 05", 30,usuario5, trabalho, reuniao11);
+    	PontoPauta pontoPauta6Reuniao11 = new PontoPauta(6, "Pauta 06", 60, usuario6, trabalho, reuniao11);
+    	PontoPauta pontoPauta7Reuniao11 = new PontoPauta(7, "Pauta 07", 30,usuario7, trabalho, reuniao11);
+    	PontoPauta pontoPauta8Reuniao11 = new PontoPauta(8, "Pauta 08", 60, usuario8, trabalho, reuniao11);
+    	PontoPauta pontoPauta9Reuniao11 = new PontoPauta(9, "Pauta 09", 30,usuario9, trabalho, reuniao11);
+    	PontoPauta pontoPauta10Reuniao11 = new PontoPauta(10, "Pauta 10", 60, usuario10, brainstorm, reuniao11);
+    	
+    	
+    	
+    	if (pontoPautaService.countPontoPauta() == 0) {
+    		pontoPautaService.insertPontoPauta(pontoPauta1);
+    		pontoPautaService.insertPontoPauta(pontoPauta2);
+    		pontoPautaService.insertPontoPauta(pontoPauta3);
+    		pontoPautaService.insertPontoPauta(pontoPauta4);
+    		pontoPautaService.insertPontoPauta(pontoPauta5);
+    		pontoPautaService.insertPontoPauta(pontoPauta6);
+    		pontoPautaService.insertPontoPauta(pontoPauta7);
+    		pontoPautaService.insertPontoPauta(pontoPauta8);
+    		pontoPautaService.insertPontoPauta(pontoPauta9);
+    		pontoPautaService.insertPontoPauta(pontoPauta10);
+    		
+    		pontoPautaService.insertPontoPauta(pontoPauta1Reuniao1);
+    		pontoPautaService.insertPontoPauta(pontoPauta2Reuniao1);
+    		pontoPautaService.insertPontoPauta(pontoPauta3Reuniao1);
+    		pontoPautaService.insertPontoPauta(pontoPauta4Reuniao1);
+    		pontoPautaService.insertPontoPauta(pontoPauta5Reuniao1);
+    		pontoPautaService.insertPontoPauta(pontoPauta6Reuniao1);
+    		pontoPautaService.insertPontoPauta(pontoPauta7Reuniao1);
+    		pontoPautaService.insertPontoPauta(pontoPauta8Reuniao1);
+    		pontoPautaService.insertPontoPauta(pontoPauta9Reuniao1);
+    		pontoPautaService.insertPontoPauta(pontoPauta10Reuniao1);
+    		
+    		pontoPautaService.insertPontoPauta(pontoPauta1Reuniao2);
+    		pontoPautaService.insertPontoPauta(pontoPauta2Reuniao2);
+    		pontoPautaService.insertPontoPauta(pontoPauta3Reuniao2);
+    		pontoPautaService.insertPontoPauta(pontoPauta4Reuniao2);
+    		pontoPautaService.insertPontoPauta(pontoPauta5Reuniao2);
+    		pontoPautaService.insertPontoPauta(pontoPauta6Reuniao2);
+    		pontoPautaService.insertPontoPauta(pontoPauta7Reuniao2);
+    		pontoPautaService.insertPontoPauta(pontoPauta8Reuniao2);
+    		pontoPautaService.insertPontoPauta(pontoPauta9Reuniao2);
+    		pontoPautaService.insertPontoPauta(pontoPauta10Reuniao2);
+    		
+    		pontoPautaService.insertPontoPauta(pontoPauta1Reuniao3);
+    		pontoPautaService.insertPontoPauta(pontoPauta2Reuniao3);
+    		pontoPautaService.insertPontoPauta(pontoPauta3Reuniao3);
+    		pontoPautaService.insertPontoPauta(pontoPauta4Reuniao3);
+    		pontoPautaService.insertPontoPauta(pontoPauta5Reuniao3);
+    		pontoPautaService.insertPontoPauta(pontoPauta6Reuniao3);
+    		pontoPautaService.insertPontoPauta(pontoPauta7Reuniao3);
+    		pontoPautaService.insertPontoPauta(pontoPauta8Reuniao3);
+    		pontoPautaService.insertPontoPauta(pontoPauta9Reuniao3);
+    		pontoPautaService.insertPontoPauta(pontoPauta10Reuniao3);
+    		
+    		pontoPautaService.insertPontoPauta(pontoPauta1Reuniao4);
+    		pontoPautaService.insertPontoPauta(pontoPauta2Reuniao4);
+    		pontoPautaService.insertPontoPauta(pontoPauta3Reuniao4);
+    		pontoPautaService.insertPontoPauta(pontoPauta4Reuniao4);
+    		pontoPautaService.insertPontoPauta(pontoPauta5Reuniao4);
+    		pontoPautaService.insertPontoPauta(pontoPauta6Reuniao4);
+    		pontoPautaService.insertPontoPauta(pontoPauta7Reuniao4);
+    		pontoPautaService.insertPontoPauta(pontoPauta8Reuniao4);
+    		pontoPautaService.insertPontoPauta(pontoPauta9Reuniao4);
+    		pontoPautaService.insertPontoPauta(pontoPauta10Reuniao4);
+    		
+    		pontoPautaService.insertPontoPauta(pontoPauta1Reuniao5);
+    		pontoPautaService.insertPontoPauta(pontoPauta2Reuniao5);
+    		pontoPautaService.insertPontoPauta(pontoPauta3Reuniao5);
+    		pontoPautaService.insertPontoPauta(pontoPauta4Reuniao5);
+    		pontoPautaService.insertPontoPauta(pontoPauta5Reuniao5);
+    		pontoPautaService.insertPontoPauta(pontoPauta6Reuniao5);
+    		pontoPautaService.insertPontoPauta(pontoPauta7Reuniao5);
+    		pontoPautaService.insertPontoPauta(pontoPauta8Reuniao5);
+    		pontoPautaService.insertPontoPauta(pontoPauta9Reuniao5);
+    		pontoPautaService.insertPontoPauta(pontoPauta10Reuniao5);
+    		
+    		pontoPautaService.insertPontoPauta(pontoPauta1Reuniao6);
+    		pontoPautaService.insertPontoPauta(pontoPauta2Reuniao6);
+    		pontoPautaService.insertPontoPauta(pontoPauta3Reuniao6);
+    		pontoPautaService.insertPontoPauta(pontoPauta4Reuniao6);
+    		pontoPautaService.insertPontoPauta(pontoPauta5Reuniao6);
+    		pontoPautaService.insertPontoPauta(pontoPauta6Reuniao6);
+    		pontoPautaService.insertPontoPauta(pontoPauta7Reuniao6);
+    		pontoPautaService.insertPontoPauta(pontoPauta8Reuniao6);
+    		pontoPautaService.insertPontoPauta(pontoPauta9Reuniao6);
+    		pontoPautaService.insertPontoPauta(pontoPauta10Reuniao6);
+    		
+    		pontoPautaService.insertPontoPauta(pontoPauta1Reuniao7);
+    		pontoPautaService.insertPontoPauta(pontoPauta2Reuniao7);
+    		pontoPautaService.insertPontoPauta(pontoPauta3Reuniao7);
+    		pontoPautaService.insertPontoPauta(pontoPauta4Reuniao7);
+    		pontoPautaService.insertPontoPauta(pontoPauta5Reuniao7);
+    		pontoPautaService.insertPontoPauta(pontoPauta6Reuniao7);
+    		pontoPautaService.insertPontoPauta(pontoPauta7Reuniao7);
+    		pontoPautaService.insertPontoPauta(pontoPauta8Reuniao7);
+    		pontoPautaService.insertPontoPauta(pontoPauta9Reuniao7);
+    		pontoPautaService.insertPontoPauta(pontoPauta10Reuniao7);
+    		
+    		pontoPautaService.insertPontoPauta(pontoPauta1Reuniao8);
+    		pontoPautaService.insertPontoPauta(pontoPauta2Reuniao8);
+    		pontoPautaService.insertPontoPauta(pontoPauta3Reuniao8);
+    		pontoPautaService.insertPontoPauta(pontoPauta4Reuniao8);
+    		pontoPautaService.insertPontoPauta(pontoPauta5Reuniao8);
+    		pontoPautaService.insertPontoPauta(pontoPauta6Reuniao8);
+    		pontoPautaService.insertPontoPauta(pontoPauta7Reuniao8);
+    		pontoPautaService.insertPontoPauta(pontoPauta8Reuniao8);
+    		pontoPautaService.insertPontoPauta(pontoPauta9Reuniao8);
+    		pontoPautaService.insertPontoPauta(pontoPauta10Reuniao8);
+    		
+    		pontoPautaService.insertPontoPauta(pontoPauta1Reuniao9);
+    		pontoPautaService.insertPontoPauta(pontoPauta2Reuniao9);
+    		pontoPautaService.insertPontoPauta(pontoPauta3Reuniao9);
+    		pontoPautaService.insertPontoPauta(pontoPauta4Reuniao9);
+    		pontoPautaService.insertPontoPauta(pontoPauta5Reuniao9);
+    		pontoPautaService.insertPontoPauta(pontoPauta6Reuniao9);
+    		pontoPautaService.insertPontoPauta(pontoPauta7Reuniao9);
+    		pontoPautaService.insertPontoPauta(pontoPauta8Reuniao9);
+    		pontoPautaService.insertPontoPauta(pontoPauta9Reuniao9);
+    		pontoPautaService.insertPontoPauta(pontoPauta10Reuniao9);
+    		
+    		pontoPautaService.insertPontoPauta(pontoPauta1Reuniao10);
+    		pontoPautaService.insertPontoPauta(pontoPauta2Reuniao10);
+    		pontoPautaService.insertPontoPauta(pontoPauta3Reuniao10);
+    		pontoPautaService.insertPontoPauta(pontoPauta4Reuniao10);
+    		pontoPautaService.insertPontoPauta(pontoPauta5Reuniao10);
+    		pontoPautaService.insertPontoPauta(pontoPauta6Reuniao10);
+    		pontoPautaService.insertPontoPauta(pontoPauta7Reuniao10);
+    		pontoPautaService.insertPontoPauta(pontoPauta8Reuniao10);
+    		pontoPautaService.insertPontoPauta(pontoPauta9Reuniao10);
+    		pontoPautaService.insertPontoPauta(pontoPauta10Reuniao10);
+    		
+    		pontoPautaService.insertPontoPauta(pontoPauta1Reuniao11);
+    		pontoPautaService.insertPontoPauta(pontoPauta2Reuniao11);
+    		pontoPautaService.insertPontoPauta(pontoPauta3Reuniao11);
+    		pontoPautaService.insertPontoPauta(pontoPauta4Reuniao11);
+    		pontoPautaService.insertPontoPauta(pontoPauta5Reuniao11);
+    		pontoPautaService.insertPontoPauta(pontoPauta6Reuniao11);
+    		pontoPautaService.insertPontoPauta(pontoPauta7Reuniao11);
+    		pontoPautaService.insertPontoPauta(pontoPauta8Reuniao11);
+    		pontoPautaService.insertPontoPauta(pontoPauta9Reuniao11);
+    		pontoPautaService.insertPontoPauta(pontoPauta10Reuniao11);
+    	}
     	    	
-    	LOGGER.info("Initialization completed");
+    	LOGGER.info("\n******** Initialization completed ********\n");
     }
 
 }
