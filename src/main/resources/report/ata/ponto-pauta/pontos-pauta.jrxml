@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="participantes" pageWidth="595" pageHeight="842" whenNoDataType="NoDataSection" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="0" bottomMargin="0" whenResourceMissingType="Key" uuid="10fe57ae-f7fe-4ef2-b995-af251c12dbc8">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="ata\DataAdapter.xml"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+	<parameter name="reuniaoId" class="java.lang.Long"/>
+	<queryString>
+		<![CDATA[SELECT pp.id, pp.ordem, pp.descricao, pp.discussao, pp.tempo, pp.pessoa_id, pp.reuniao_id, pp.tipo_id, pes.nome as responsavel, t.nome AS tipo 
+  FROM public.ponto_pauta AS pp
+  JOIN pessoa AS pes ON (pp.pessoa_id = pes.id)
+  JOIN tipo_participante AS t ON (t.id = pp.tipo_id) 
+  WHERE pp.reuniao_id = $P{reuniaoId}
+  ORDER BY pp.ordem]]>
+	</queryString>
+	<field name="id" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.label" value="id"/>
+	</field>
+	<field name="ordem" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="ordem"/>
+	</field>
+	<field name="descricao" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="descricao"/>
+	</field>
+	<field name="discussao" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="discussao"/>
+	</field>
+	<field name="tempo" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="tempo"/>
+	</field>
+	<field name="pessoa_id" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.label" value="pessoa_id"/>
+	</field>
+	<field name="reuniao_id" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.label" value="reuniao_id"/>
+	</field>
+	<field name="tipo_id" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.label" value="tipo_id"/>
+	</field>
+	<field name="responsavel" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="responsavel"/>
+	</field>
+	<field name="tipo" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="tipo"/>
+	</field>
+	<detail>
+		<band height="82" splitType="Stretch">
+			<textField>
+				<reportElement x="25" y="0" width="494" height="20" uuid="ab40e9d4-b971-4a1b-80d4-9dba51e15732">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="745a5e06-4815-4ea2-9293-edf816c59064"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle" markup="html"/>
+				<textFieldExpression><![CDATA["<b>Pauta: </b>" +$F{descricao}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="0" width="25" height="20" uuid="3df7c479-f0f8-4067-a916-3114896e7abd">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="745a5e06-4815-4ea2-9293-edf816c59064"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{ordem} + ")"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="25" y="23" width="494" height="20" uuid="dc0d9a91-78a5-4872-aa6a-8f00e7796572">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="745a5e06-4815-4ea2-9293-edf816c59064"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle" markup="html"/>
+				<textFieldExpression><![CDATA["<b>Responsável: </b>" + $F{responsavel}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="25" y="47" width="494" height="20" uuid="570e61fc-a27d-4e51-9903-41e84fe0590a"/>
+				<textElement verticalAlignment="Middle" markup="html">
+					<font fontName="Arial" size="10"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA["<b>O que foi discutido: </b>" +($F{discussao} != null ? $F{discussao} : "-")]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="71" width="551" height="1" uuid="999473d0-20e5-4e09-9f90-316533a07a65"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</detail>
+</jasperReport>

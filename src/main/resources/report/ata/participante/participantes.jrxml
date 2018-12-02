@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="participantes" pageWidth="595" pageHeight="842" whenNoDataType="NoDataSection" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="0" bottomMargin="0" whenResourceMissingType="Key" uuid="10fe57ae-f7fe-4ef2-b995-af251c12dbc8">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="ata\DataAdapter.xml"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+	<parameter name="reuniaoId" class="java.lang.Long"/>
+	<queryString>
+		<![CDATA[SELECT p.id, p.compareceu, p.pessoa_id, p.reuniao_id, p.tipo_participante_id, pes.nome AS nome, t.nome AS tipo 
+  FROM participante AS p
+  JOIN pessoa AS pes ON (p.pessoa_id = pes.id)
+  JOIN tipo_participante AS t ON (t.id = p.tipo_participante_id) 
+  WHERE p.reuniao_id = $P{reuniaoId}
+  ORDER BY nome]]>
+	</queryString>
+	<field name="id" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.label" value="id"/>
+	</field>
+	<field name="compareceu" class="java.lang.Boolean">
+		<property name="com.jaspersoft.studio.field.label" value="compareceu"/>
+	</field>
+	<field name="pessoa_id" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.label" value="pessoa_id"/>
+	</field>
+	<field name="reuniao_id" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.label" value="reuniao_id"/>
+	</field>
+	<field name="tipo_participante_id" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.label" value="tipo_participante_id"/>
+	</field>
+	<field name="nome" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="nome"/>
+	</field>
+	<field name="tipo" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="tipo"/>
+	</field>
+	<detail>
+		<band height="22" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="1" width="550" height="20" uuid="ab40e9d4-b971-4a1b-80d4-9dba51e15732">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="745a5e06-4815-4ea2-9293-edf816c59064"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA["- "+$F{nome}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>
