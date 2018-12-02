@@ -55,6 +55,7 @@
 									<span th:if="${#fields.hasErrors('reuniao.horaFim')}" th:errors="*{reuniao.horaFim}" id="errorHoraFim" class="help-block"></span>
 								</div>
 							</div>							
+							<!-- 
 							<div class="form-group">
 								<label class="col-md-4 control-label">Pré-requisito</label>
 								<div class="col-md-8 vertical-space">
@@ -66,9 +67,10 @@
 									</div>
 								</div>  
 							</div>
+							 -->
 							<div class="form-group">
 									<div class="col-md-12">
-										<label class="control-label horizontal-space">Qual pré-requisito?</label>	
+										<label class="control-label horizontal-space">Pré-requisito (caso tenha algum)</label>	
 										<input type="text" placeholder="Informar o pré-requisito da reunião" class="form-control input-md" th:field="${reuniao.preRequisito}">
 										<span th:if="${#fields.hasErrors('reuniao.preRequisito')}" th:errors="*{reuniao.preRequisito}" id="errorPreRequisito" class="help-block"></span>
 									</div>
