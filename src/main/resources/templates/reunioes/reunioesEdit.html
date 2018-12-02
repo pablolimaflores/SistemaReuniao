@@ -22,14 +22,14 @@
                         <form class="form-horizontal" action="/reunioes/reunioesEdit" th:action="@{/reunioes/reunioesEdit}" method="post">
 							<input th:type="hidden" name="id" th:field="${reuniao.id}" />	
 							<div class="form-group">  
-								<div class="col-md-11 vertical-space">
+								<div class="col-md-12 vertical-space">
 									<label class="control-label">Título</label>
 									<input type="text" placeholder="Título da reunião" class="form-control input-md" th:field="${reuniao.titulo}">
 									<span th:if="${#fields.hasErrors('reuniao.titulo')}" th:errors="*{reuniao.titulo}" id="errorTitulo" class="help-block"></span>
 								</div>
 							</div>					
 							<div class="form-group">
-								<div class="col-md-11 vertical-space">
+								<div class="col-md-12 vertical-space">
 									<label class="control-label">Data</label>
 									<input type="date" class="form-control input-md" th:field="${reuniao.data}">
 									<span th:if="${#fields.hasErrors('reuniao.data')}" th:errors="*{reuniao.data}" id="errorData" class="help-block"></span>
@@ -37,27 +37,27 @@
 							</div>
 							
 							<div class="form-group">
-								<div class="col-md-11 vertical-space">
+								<div class="col-md-12 vertical-space">
 									<label class="control-label horizontal-space">Local</label>
 									<input type="text" placeholder="local da reunião" class="form-control input-md" th:field="${reuniao.local}">
 									<span th:if="${#fields.hasErrors('reuniao.local')}" th:errors="*{reuniao.local}" id="errorLocal" class="help-block"></span>
 								</div>
 							</div>					
 							<div class="form-group">
-								<label class="col-md-3 control-label">Início</label>
-								<div class="col-md-3 vertical-space">
+								<label class="col-md-2 control-label">Início</label>
+								<div class="col-md-4 vertical-space">
 									<input type="time" class="form-control input-md" th:field="${reuniao.horaInicio}">
 									<span th:if="${#fields.hasErrors('reuniao.horaInicio')}" th:errors="*{reuniao.horaInicio}" id="errorHoraInicio" class="help-block"></span>
 								</div>
-								<label class="col-md-2 control-label">Fim</label>  
-								<div class="col-md-3 vertical-space">
+								<label class="col-md-2 control-label">até às</label>  
+								<div class="col-md-4 vertical-space">
 									<input type="time" class="form-control input-md" th:field="${reuniao.horaFim}">
 									<span th:if="${#fields.hasErrors('reuniao.horaFim')}" th:errors="*{reuniao.horaFim}" id="errorHoraFim" class="help-block"></span>
 								</div>
 							</div>							
 							<div class="form-group">
-								<label class="col-md-3 control-label">Pré-requisito</label>
-								<div class="col-md-2 vertical-space">
+								<label class="col-md-4 control-label">Pré-requisito</label>
+								<div class="col-md-8 vertical-space">
 									<div class="input-group">
 										<span class="input-group-addon col-md3">     
 											<input type="radio" name="dependencia"> Sim    
@@ -67,14 +67,14 @@
 								</div>  
 							</div>
 							<div class="form-group">
-									<div class="col-md-11">
+									<div class="col-md-12">
 										<label class="control-label horizontal-space">Qual pré-requisito?</label>	
 										<input type="text" placeholder="Informar o pré-requisito da reunião" class="form-control input-md" th:field="${reuniao.preRequisito}">
 										<span th:if="${#fields.hasErrors('reuniao.preRequisito')}" th:errors="*{reuniao.preRequisito}" id="errorPreRequisito" class="help-block"></span>
 									</div>
 							</div>
 							<div class="form-group">
-								<div class="col-md-11 vertical-space">
+								<div class="col-md-12 vertical-space">
 									<label for="tipo" class="control-label">Tipo de Reunião</label>
 						        	<select class="form-control" style="height:2.5em;" id="tipo" name="tipo" th:field="${reuniao.tipo}">
 						        		<option value="">Selecione o tipo de reunião</option>
@@ -84,13 +84,13 @@
 					        	</div>					        						        	
 							</div>
 							<div class="form-group">
-								<div class="col-md-11 vertical-space">
+								<div class="col-md-12 vertical-space">
 								<label class="control-label">Objetivo</label>
 									<input type="text" placeholder="Objetivo..." class="form-control input-md" th:field="${reuniao.objetivo}">
 									<span th:if="${#fields.hasErrors('reuniao.objetivo')}" th:errors="*{reuniao.objetivo}" id="errorObjetivo" class="help-block"></span>
 								</div>
 							</div>
-							<div class="col-md-6 offset-md-3 vertical-space"> 
+							<div class="col-md-10 offset-md-1 vertical-space"> 
 								<div align="center">
 									<button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-ok"></span>Cadastrar</button>
 									<a href="#" th:href="@{/reunioes}" class="btn btn-danger" role="button"><span class="glyphicon glyphicon-remove"></span> Cancelar</a>
@@ -99,7 +99,7 @@
 						</form>
                     </div>
                 </div>
-            </div>            
+            </div>  
             <div class="col-md-6" style="padding=0.5em;">
                 <div class="card vertical-space">
                 	<legend align="center">Inserir Participante</legend>
