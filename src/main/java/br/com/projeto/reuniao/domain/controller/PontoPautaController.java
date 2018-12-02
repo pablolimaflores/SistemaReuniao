@@ -144,7 +144,7 @@ public class PontoPautaController {
                 LOGGER.info("ERROR {}", err.getDefaultMessage());
             });
             model.addAttribute("pontoPauta", pontoPauta);
-            return "pontosPauta/pontoPautaEdit";
+            return "pontosPauta/pontoPautaEdit/reuniao/{idReuniao}";
         }
     	if (null != id) {
     		this.pontoPautaService.updatePontoPauta(pontoPauta);
@@ -153,7 +153,7 @@ public class PontoPautaController {
     	}    	
     	Page<PontoPauta> page = pontoPautaService.findAllPontoPautasPageable(pageable);
 		model.addAttribute("page", page);
-        return "pontosPauta/pontoPautaList";
+        return "pontosPauta/pontoPautaEdit/reuniao/{idReuniao}";
 	}
 	/**
 	 * Método utilizado para exclusão de registros na base de dados.

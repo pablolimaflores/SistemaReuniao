@@ -17,43 +17,7 @@
 <div th:replace="fragments/header :: header"/>
 
 <div class="container">
-		
-	<!-- <div class="myForm">
-		reunioesExec
-	<form class="form-group" action="/reunioes/reunioesExec/1/pontoPauta/1" th:action="@{/reunioes/reunioesExec/__${reuniao.id}__/pontoPauta/__${pontoPauta.id}__}" method="post">
-		<div id="execModal" class="modal fade">
-			<div class="modal-dialog" role="document">
-				<div class="modal-content">
-					<div class="modal-header">	
-						<p th:text="${pontoPauta.id}"></p>
-						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>		
-					</div>
-					<div class="modal-body">
-
-                       	<div class="form-group" th:classappend="${#fields.hasErrors('pontoPauta.discussao')} ? 'has-error'">
-				            <div class="col-md-10 offset-md-1 vertical-space">
-				            	<label for="discussao">Registro da pauta</label>
-				            		<textarea class="form-control" id="discussao" name="discussao" 
-				            		th:field="${pontoPauta.discussao}"></textarea>
-				            	<div class="   col-md-10 offset-md-1">
-				            		<span th:if="${#fields.hasErrors('pontoPauta.discussao')}" th:errors="*{pontoPauta.discussao}" 
-				            		id="errorDiscussao" class="help-block"></span>						        				
-					    		</div>
-				        	</div>
-				        </div> 		
-				        
-		        		<div align="center">
-			        		<button class="btn btn-success"><span class="glyphicon glyphicon-ok"></span>Cadastrar</button>
-			        		<button class="btn btn-danger" data-dismiss="modal"><span class="glyphicon glyphicon-remove">Cancelar</button> 
-		        		</div>											        						  
-					</div>			
-				</div>
-			</div>
-		</div> 
-	</form>	
-	</div>	 -->
-		
-		
+	
     <div class="container" style="margin-top: 1em;">
 	        <div class="row">
 	            <div class="col-md-6" style="padding=0.5em;">
@@ -76,45 +40,25 @@
                 <div class="card"> 
                     <div class="card-body">
                         <h2 class="card-title" align="center">Pautas</h2>
-                       <!-- <table class="table table-bordred table-striped">
-				         <thead>
-				              	<tr>
-				              		<th>#</th>
-				              		<th>Descrição</th>
-				                    <th>Responsável</th>
-				                </tr>
-				            </thead>
-				            <tbody>
-					            <tr th:each="pontoPauta : ${pontosPauta}">
-				                    <td th:text="${pontoPauta.ordem}">1</td>
-				                    <td th:text="${pontoPauta.descricao}">Pauta</td>
-				                    <td th:text="${pontoPauta.responsavel.getNome()}">Admin</td>
-				                     <td>
-				                    	<a class="btn btn-success" th:href="@{../pontoPauta/__${pontoPauta.id}__/reuniao/__${reuniao.id}__}"><span class="glyphicon glyphicon-check"></span> Escolher</a>				                    	
-				                    </td> 
-				                </tr>  
-				            </tbody>
-        				</table> -->
         				
-        					<form th:action="@{../pontoPauta/__${pontoPauta.id}__/reuniao/__${reuniao.id}__}" method="post">
+        					<form th:action="@{/reunioes/pontoPauta/reuniao/__${reuniao.id}__}"  method="post">
+        					
 		        				 <div class="form-group" th:classappend="${#fields.hasErrors('pontoPauta.discussao')} ? 'has-error'">
 		        				 		<br><br>
 		        				 		<div class="col-md-10 offset-md-1 vertical-space">
-					                        <label for="pauta">Pauta</label>
-					                        <select id="pauta" th:field="*{pontoPauta}">
+					                        <label>Pauta</label>
+					                        <select id="pauta" name="idPauta">
 					                            <option value="">Selecione</option>
 					                            <option th:each="p : ${pontosPauta}" 
 					                                    th:value="${p.id}" th:text="${p.descricao}">Pauta X</option>
 					                        </select>
 	                    				</div>
-		        				 
+		        				 				        				 
 									    <div class="col-md-10 offset-md-1 vertical-space">
 									    	<label for="discussao">Registro da pauta</label>
-									        	<textarea class="form-control" id="discussao" name="discussao" 
-									            		th:field="${pontoPauta.discussao}"></textarea>
-									            <div class="   col-md-10 offset-md-1">
-									            	<span th:if="${#fields.hasErrors('pontoPauta.discussao')}" th:errors="*{pontoPauta.discussao}" 
-									            	id="errorDiscussao" class="help-block"></span>						        				
+									        	<textarea class="form-control" id="disc" name="disc" 
+									            ></textarea>
+									            <div class="   col-md-10 offset-md-1">					        				
 										    	</div>
 										    	<button class="btn btn-success" type="submit">Registrar <span class="glyphicon glyphicon-ok"></span></button>
 							        	</div>
@@ -125,6 +69,33 @@
             </div>  
 	        </div>
 </div>
+<br><br>
+<table class="table table-bordred table-striped">
+            <thead>
+                <tr>
+                    <th>Ordem</th>
+                    <th>Descrição</th>
+                    <th>Tempo</th>
+                    <th>Discussão</th>
+                    <th>Responsável</th>
+                    <th>Tipo</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="pontoPauta : ${pontosPauta}">
+                    <td th:text="${pontoPauta.ordem}">1</td>
+                    <td th:text="${pontoPauta.descricao}">pauta</td>
+                    <td th:text="${pontoPauta.tempo}">1</td>
+                    <td th:text="${pontoPauta.discussao}">pauta</td>
+                    <td th:text="${pontoPauta.responsavel.getNome()}">Adm</td>
+                    <td th:text="${pontoPauta.tipo.getNome()}">tipo pauta</td>
+                    <!-- <td>
+                        <a class="btn btn-info" href="/pontosPauta/pontoPautaEdit/1" th:href="@{/pontosPauta/pontoPautaEdit/__${pontoPauta.id}__}"><span class="glyphicon glyphicon-edit"></span>Editar</a>
+                        <a class="btn btn-danger delBtn" href="/pontosPauta/pontoPautaEdit/1" th:href="@{/pontosPauta/pontoPautaDelete/__${pontoPauta.id}__}"><span class="glyphicon glyphicon-remove"></span> Excluir</a>                         
+                    </td> -->
+                </tr>
+            </tbody>
+        </table>
     
 </div>
 <!-- /.container -->

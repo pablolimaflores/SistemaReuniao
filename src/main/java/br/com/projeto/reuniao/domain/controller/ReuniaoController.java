@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -184,7 +185,7 @@ public class ReuniaoController {
     	model.addAttribute("tipos", this.tipoService.findAllTipos());
         if (null != id) {
             model.addAttribute("reuniao", this.reuniaoService.findReuniaoById(id));
-            model.addAttribute("pontosPauta", this.pontoPautaService.findAllPontoPautas());
+            model.addAttribute("pontosPauta", this.pontoPautaService.listPontoPautaByReuniaoId(id));
             model.addAttribute("pontoPauta", new PontoPauta());
         } else {
             model.addAttribute("reuniao", new Reuniao());
@@ -255,21 +256,30 @@ public class ReuniaoController {
 		return "reunioes/reunioesExec";
 	}
     
-    @ModelAttribute("pontosPauta")
-    public List<PontoPauta> pontos(){
-    	return this.pontoPautaService.findAllPontoPautas();
+    @ModelAttribute("responsavelList")
+    public List<Pessoa> resp(){
+    	return this.pessoaService.findAllPessoas();
     }
     
-    @GetMapping(value= {"/pontoPauta/{id}/reuniao/{idReuniao}"})
-    public String registrarPauta(@Valid PontoPauta pontoPauta, BindingResult bindingResult, @PathVariable(required = true, name = "id") Long id,@PathVariable(required = true, name = "idReuniao") Long idReuniao, Model model) {
+    @ModelAttribute("tipoList")
+    public List<Tipo> tipos(){
+    	return this.tipoService.findAllTipos();
+    }
+    
+    @PostMapping(value= {"/pontoPauta/reuniao/{idReuniao}"})
+    public String registrarPauta(@PathVariable(required = true, name = "idReuniao") Long id, @RequestParam(name = "idPauta") Long idPauta,
+    		@RequestParam(name = "disc") String disc,  Model model) {
     		
-    	model.addAttribute("pontoPauta", this.pontoPautaService.findPontoPautaById(id));
-    	model.addAttribute("reuniao", this.reuniaoService.findReuniaoById(idReuniao));
+    	PontoPauta p = this.pontoPautaService.findPontoPautaById(idPauta);
+    	model.addAttribute("pontoPauta", p);
     	
-    	if(null != id) {
-    		this.pontoPautaService.updatePontoPauta(pontoPauta);
-    		System.out.println("Foi!!!!!!!!!");
-    	}
+    	model.addAttribute("pontosPauta", this.pontoPautaService.listPontoPautaByReuniaoId(id));
+    	
+    	model.addAttribute("reuniao", this.reuniaoService.findReuniaoById(id));
+    	
+    	p.setDiscussao(disc);
+    	this.pontoPautaService.updatePontoPauta(p);
+    	System.out.println("Foi!!!!!!!!!");
     	
     	return "reunioes/reunioesExec";
     }

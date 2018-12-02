@@ -61,7 +61,16 @@ public class PontoPautaService {
 		pontoPauta.refreshCreatedAndUpdated();		
 		return this.pontoPautaRepository.save( pontoPauta );
 	}
-	
+	/**
+	 * 
+	 * @param idReuniao
+	 * @return
+	 */
+	@Transactional(readOnly = true)
+	public List<PontoPauta> listPontoPautaByReuniaoId( long idReuniao ) {
+		
+		return this.pontoPautaRepository.listByReuniaoId(idReuniao);
+    }	
 	/**
 	 * 
 	 * @param pontoPauta
@@ -111,3 +120,5 @@ public class PontoPautaService {
 		return this.pontoPautaRepository.count();
 	}
 }
+
+

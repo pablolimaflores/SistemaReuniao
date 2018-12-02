@@ -477,6 +477,7 @@ public class InitApplicationService {
     		pontoPautaService.insertPontoPauta(pontoPauta8Reuniao11);
     		pontoPautaService.insertPontoPauta(pontoPauta9Reuniao11);
     		pontoPautaService.insertPontoPauta(pontoPauta10Reuniao11);
+    		
     	}
     	    	
     	LOGGER.info("\n******** Initialization completed ********\n");
