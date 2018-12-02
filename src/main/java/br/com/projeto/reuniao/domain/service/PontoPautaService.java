@@ -10,16 +10,12 @@ import org.springframework.transaction.annotation.Transactional;
 
 import br.com.projeto.reuniao.domain.entity.PontoPauta;
 import br.com.projeto.reuniao.domain.repository.IPontoPautaRepository;
-import br.com.projeto.reuniao.domain.repository.IPontoPautaRepositoryPageable;
 
 @Service
 public class PontoPautaService {
 	
 	@Autowired
 	private IPontoPautaRepository pontoPautaRepository;
-	
-	@Autowired
-	private IPontoPautaRepositoryPageable pontoPageable;
 	
 	/**
 	 * 
@@ -35,7 +31,7 @@ public class PontoPautaService {
 	 */
 	@Transactional(readOnly = true)
 	public Page<PontoPauta> findAllPontoPautasPageable(Pageable pageable){
-		return pontoPageable.findAll(pageable);
+		return pontoPautaRepository.findAll(pageable);
 	}
 	
 	/**

@@ -47,7 +47,7 @@
 		        				 		<br><br>
 		        				 		<div class="col-md-10 offset-md-1 vertical-space">
 					                        <label>Pauta</label>
-					                        <select id="pauta" name="idPauta">
+					                        <select class="form-control" style="height:2.5em;" id="pauta" name="idPauta">
 					                            <option value="">Selecione</option>
 					                            <option th:each="p : ${pontosPauta}" 
 					                                    th:value="${p.id}" th:text="${p.descricao}">Pauta X</option>
@@ -73,9 +73,8 @@
 <table class="table table-bordred table-striped">
             <thead>
                 <tr>
-                    <th>Ordem</th>
-                    <th>Descrição</th>
-                    <th>Tempo</th>
+                    <td align="center"><b>Ordem</th>
+                    <td align="center"><br>Descrição</th>
                     <th>Discussão</th>
                     <th>Responsável</th>
                     <th>Tipo</th>
@@ -83,9 +82,8 @@
             </thead>
             <tbody>
                 <tr th:each="pontoPauta : ${pontosPauta}">
-                    <td th:text="${pontoPauta.ordem}">1</td>
-                    <td th:text="${pontoPauta.descricao}">pauta</td>
-                    <td th:text="${pontoPauta.tempo}">1</td>
+                    <td align="center" th:text="${pontoPauta.ordem}">1</td>
+                    <td align="center" th:text="${pontoPauta.descricao}">pauta</td>
                     <td th:text="${pontoPauta.discussao}">pauta</td>
                     <td th:text="${pontoPauta.responsavel.getNome()}">Adm</td>
                     <td th:text="${pontoPauta.tipo.getNome()}">tipo pauta</td>
