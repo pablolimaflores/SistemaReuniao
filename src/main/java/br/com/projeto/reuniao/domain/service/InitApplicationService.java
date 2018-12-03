@@ -73,6 +73,10 @@ public class InitApplicationService {
     	Pessoa usuario11 = new Pessoa("Denise Moraes", "denise@denise.com", "(51) 3210-3210", "(51) 98765-4321", true, null, Role.ROLE_USER);
     	Pessoa usuario12 = new Pessoa("Chun Li", "chunli@chunli.com", "(11) 2345-5432", "(45) 91234-5678", true, "1234", Role.ROLE_USER);
     	
+    	Pessoa pabloGMail= new Pessoa("Pablo L. Flores (gmail)", "pablolimaflores@gmail.com", "(11) 2345-5432", "(45) 91234-5678", true, "1234", Role.ROLE_ADMIN);
+    	Pessoa pabloHotMail= new Pessoa("Pablo L. Flores (hotmail)", "pablolimaflores@hotmail.com", "(11) 2345-5432", "(45) 91234-5678", true, "1234", Role.ROLE_ADMIN);
+    	Pessoa pabloPTI= new Pessoa("Pablo L. Flores (pti)", "pablo.flores@pti.org.br", "(11) 2345-5432", "(45) 91234-5678", true, "1234", Role.ROLE_ADMIN);
+    	
     	if(pessoaService.countPessoas() == 0) {    		
 			pessoaService.insertPessoa(admin);						  
 			pessoaService.insertPessoa(user);
@@ -93,6 +97,10 @@ public class InitApplicationService {
 			pessoaService.insertPessoa(usuario10);
 			pessoaService.insertPessoa(usuario11);
 			pessoaService.insertPessoa(usuario12);
+			
+			pessoaService.insertPessoa(pabloGMail);
+			pessoaService.insertPessoa(pabloHotMail);
+			pessoaService.insertPessoa(pabloPTI);
 			
     	}
     	
@@ -120,7 +128,7 @@ public class InitApplicationService {
 	        tipoParticipanteService.insertTipoParticipante(integrante);
     	}
     	
-    	Reuniao reuniao = new Reuniao("Fechamento das atividades de setembro/2018", LocalDate.of(2018, 10, 28), "Instituto Federal do Paraná - Câmpus Foz do Iguaçu", LocalTime.of(10, 30), LocalTime.of(12, 00), "", "Revisão e fechamento das atividades executada no mês", trabalho);    	
+    	Reuniao reuniao = new Reuniao("Apresentação do sistema FlexMeeting", LocalDate.of(2018, 12, 5), "Instituto Federal do Paraná - Câmpus Foz do Iguaçu", LocalTime.of(20, 30), LocalTime.of(22, 00), "", "Apresentação do projeto integrador para a banca e colegas.", trabalho);    	
     	Reuniao reuniao1 = new Reuniao("Reunião de planejamento de outubro/2018", LocalDate.of(2018, 11, 12), "Instituto Federal do Paraná - Câmpus Foz do Iguaçu", LocalTime.of(8, 30), LocalTime.of(9, 30), "", "Analisar junto a equipe quais serão as atividades que pretende-se executadar neste mês de outubro de 2018.", trabalho);        
     	Reuniao reuniao2 = new Reuniao("Repassar a equipe sobre alterações na lei 1234", LocalDate.of(2018, 11, 14), "Instituto Federal do Paraná - Câmpus Foz do Iguaçu", LocalTime.of(16, 15), LocalTime.of(17, 15), "", "apresentar o sistema", informativo);        
     	Reuniao reuniao3 = new Reuniao("Renuião para definição calendário para atividades extra", LocalDate.of(2018, 12, 7), "Instituto Federal do Paraná - Câmpus Foz do Iguaçu", LocalTime.of(7, 30), LocalTime.of(12, 00), "", "apresentar o sistema", trabalho);
@@ -158,6 +166,10 @@ public class InitApplicationService {
     	Participante participanteUsuario3Reuniao = new Participante(true, usuario3, reuniao, solicitante);
     	Participante participanteUsuario4Reuniao = new Participante(true, usuario4, reuniao, solicitante);
     	
+    	Participante participantePabloGMail = new Participante(true, pabloGMail, reuniao, integrante);
+    	Participante participantePabloHotMail = new Participante(true, pabloHotMail, reuniao, integrante);
+    	Participante participantePabloPTI = new Participante(true, pabloPTI, reuniao, integrante);
+    	
     	Participante participanteUsuario1Reuniao1 = new Participante(true, usuario1, reuniao1, solicitante);
     	Participante participanteUsuario2Reuniao1 = new Participante(true, usuario2, reuniao1, solicitante);
     	Participante participanteUsuario3Reuniao1 = new Participante(true, usuario3, reuniao1, solicitante);
@@ -180,14 +192,17 @@ public class InitApplicationService {
     	
     	
     	if (participanteService.countParticipantes() == 0) {    		
-    		participanteService.insertParticipante(participanteAdmin);
+//    		participanteService.insertParticipante(participanteAdmin);
     		participanteService.insertParticipante(participanteJoao);
     		participanteService.insertParticipante(participanteMaria);
-    		participanteService.insertParticipante(participanteUser);
-    		participanteService.insertParticipante(participanteUsuario1Reuniao);
-    		participanteService.insertParticipante(participanteUsuario2Reuniao);
-    		participanteService.insertParticipante(participanteUsuario3Reuniao);
-    		participanteService.insertParticipante(participanteUsuario4Reuniao);
+//    		participanteService.insertParticipante(participanteUser);
+//    		participanteService.insertParticipante(participanteUsuario1Reuniao);
+//    		participanteService.insertParticipante(participanteUsuario2Reuniao);
+//    		participanteService.insertParticipante(participanteUsuario3Reuniao);
+//    		participanteService.insertParticipante(participanteUsuario4Reuniao);
+    		participanteService.insertParticipante(participantePabloGMail);
+    		participanteService.insertParticipante(participantePabloHotMail);
+    		participanteService.insertParticipante(participantePabloPTI);
     		
     		participanteService.insertParticipante(participanteUsuario1Reuniao1);
     		participanteService.insertParticipante(participanteUsuario2Reuniao1);
