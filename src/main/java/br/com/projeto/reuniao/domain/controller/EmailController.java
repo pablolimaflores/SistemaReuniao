@@ -9,12 +9,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import br.com.projeto.reuniao.domain.entity.Participante;
 import br.com.projeto.reuniao.domain.entity.Reuniao;
 import br.com.projeto.reuniao.domain.service.ParticipanteService;
+import br.com.projeto.reuniao.domain.service.PessoaService;
 import br.com.projeto.reuniao.domain.service.ReuniaoService;
 
 @Controller
@@ -28,10 +30,13 @@ public class EmailController {
 
 	@Autowired
 	private ParticipanteService participanteService;
+	
+	@Autowired
+	private PessoaService pessoaService;
 
 
 	@GetMapping(path = "reunioes/reunioesEdit/{id}/email")
-	public String sendMailByReuniao(@PathVariable(required = false, name = "id") Long id) {
+	public String sendMailByReuniao(Model model, @PathVariable(required = false, name = "id") Long id) {
 
 		if (null != id) {
 			
@@ -54,13 +59,13 @@ public class EmailController {
 					StringBuilder emailHtml = new StringBuilder("");
 					
 					emailHtml.append("<h2>" + reuniao.getTitulo() + "</h2>")														
-					.append("<p>Tipo: " + reuniao.getTipo().getNome() + "</p>")
-					.append("<p>Local: " + reuniao.getLocal() + "</p>")
-					.append("<p>Data: " + reuniao.getData().format(formatter) + "</p>")
-					.append("<p>Horario: das " + reuniao.getHoraInicio() + " até às " + reuniao.getHoraFim() + "</p>")
-					.append("<p>Objetivo: " + reuniao.getObjetivo() + "</p>");
+					.append("<p><strong>Tipo:</strong> " + reuniao.getTipo().getNome() + "</p>")
+					.append("<p><strong>Local:</strong> " + reuniao.getLocal() + "</p>")
+					.append("<p><strong>Data:</strong> " + reuniao.getData().format(formatter) + "</p>")
+					.append("<p><strong>Horario:</strong> das " + reuniao.getHoraInicio() + " até às " + reuniao.getHoraFim() + "</p>")
+					.append("<p><strong>Objetivo:</strong> " + reuniao.getObjetivo() + "</p>");
 					if (!reuniao.getPreRequisito().isEmpty()) {
-						emailHtml.append("<p>Pré-requisito: " + reuniao.getPreRequisito() + "</p>");
+						emailHtml.append("<p><strong>Pré-requisito:</strong> " + reuniao.getPreRequisito() + "</p>");
 					}
 
 					helper.setText(emailHtml.toString(), true);
@@ -88,7 +93,15 @@ public class EmailController {
 			}
 		}
 		
-		return "reunioes/reunioesEdit";
+		model.addAttribute("pessoas", this.pessoaService.findAllPessoas());
+		model.addAttribute("participantes", this.participanteService.findAllParticipantes());    	
+        if (null != id) {
+            model.addAttribute("reuniao", this.reuniaoService.findReuniaoById(id));
+        } else {
+            model.addAttribute("reuniao", new Reuniao());            
+        }
+        return "reunioes/reunioesEdit";
+				
 	}
 	
 }
