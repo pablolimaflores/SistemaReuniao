@@ -389,7 +389,9 @@ public class ReuniaoController {
 		JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, params, dataSource.getConnection());
 				
 		response.setContentType("application/x-pdf");
-		response.setHeader("Content-disposition", "inline; filename=ata-reuniao.pdf");
+		response.setHeader("Content-disposition", "inline; filename=ata-reuniao.pdt");		
+//		response.setContentType("application/odt");
+//		response.setHeader("Content-disposition", "inline; filename=ata-reuniao.odt");
 
 		final OutputStream outStream = response.getOutputStream();
 		JasperExportManager.exportReportToPdfStream(jasperPrint, outStream);
