@@ -40,7 +40,7 @@
 		    </div>
 			<div class="col-md-6 ">				
 				<form class="form-group d-flex justify-content-center h2" action="/reunioes/reunioesList/filter" th:action="@{/reunioes/reunioesList/filter}" method="post">					 	
-					<input name="filter" class="form-control" id="filter" type="text" placeholder="Pesquisar itens" />
+					<input name="filter" class="form-control" id="filter" type="text" placeholder="Pesquisar Reuniões" />
 					<span class="input-group-btn">								
 						<button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search"> Buscar</button>
 						<a class="btn btn-secondary" href="/reunioes" th:href="@{/reunioes}"><span class="glyphicon glyphicon-remove"></span> Limpar</a>
@@ -53,9 +53,9 @@
         <table class="table table-bordred table-striped">
             <thead>
                 <tr>                    
-                    <th>Data</th>
-                    <th>Titulo</th>
-                    <th>Ações</th>
+                    <td align="center"><b>Data</th>
+                    <td align="center"><b>Titulo</th>
+                    <td colspan="3" align="center"><b>Ações</th>
                 </tr>
             </thead>
             <tbody>
@@ -67,15 +67,15 @@
 				    </tr>
 				</div>
                 <tr th:each="reuniao : ${page}">                    
-                    <td th:text="${reuniao.data}">2018-12-31</td>
-                    <td th:text="${reuniao.titulo}">Reunião Teste</td>
+                    <td th:text="${reuniao.data}" align="center">2018-12-31</td>
+                    <td th:text="${reuniao.titulo}" align="center">Reunião Teste</td>
                     <td width="250">
-                        <a class="btn btn-info" href="/reunioes/reunioesEdit/1" th:href="@{/reunioes/reunioesEdit/__${reuniao.id}__}"><span class="glyphicon glyphicon-edit" title="Editar"></span></a>
-                        <a class="btn btn-danger delBtn" href="/reunioes/reunioesDelete/1" th:href="@{/reunioes/reunioesDelete/__${reuniao.id}__}"><span class="glyphicon glyphicon-remove" title="Excluir"></span></a>  
-                        <a class="btn btn-primary" href="/pontosPauta/pontoPautaEdit/reuniao/1" th:href="@{/pontosPauta/pontoPautaEdit/reuniao/__${reuniao.id}__}"><span class="glyphicon glyphicon-pencil" title="Pautas"></span></a>
-                        <a class="btn btn-success" href="/reunioes/reunioesExec/1" th:href="@{/reunioes/reunioesExec/__${reuniao.id}__}"><span class="glyphicon glyphicon-play-circle" title="Executar"></span></a>
+                        <a title="Editar Reunião" class="btn btn-info" href="/reunioes/reunioesEdit/1" th:href="@{/reunioes/reunioesEdit/__${reuniao.id}__}"><span class="glyphicon glyphicon-edit"></span></a>
+                        <a title="Excluir Reunião" class="btn btn-danger delBtn" href="/reunioes/reunioesDelete/1" th:href="@{/reunioes/reunioesDelete/__${reuniao.id}__}"><span class="glyphicon glyphicon-remove"></span></a>  
+                        <a title="Criar Pauta" class="btn btn-primary" href="/pontosPauta/pontoPautaEdit/reuniao/1" th:href="@{/pontosPauta/pontoPautaEdit/reuniao/__${reuniao.id}__}"><span class="glyphicon glyphicon-pencil"></span></a>
+                        <a title="Executar Reunião" class="btn btn-success" href="/reunioes/reunioesExec/1" th:href="@{/reunioes/reunioesExec/__${reuniao.id}__}"><span class="glyphicon glyphicon-play-circle"></span></a>
                         <!-- <a class="btn btn-warning" href="/reunioes/1/report/ata" th:href="@{/reunioes/__${reuniao.id}__/report/ata}"><span class="glyphicon glyphicon-file" title="Gerar ata de Reunião"></span></a> -->
-                        <a class="btn btn-warning" href="/reunioes/1/ata" th:href="@{/reunioes/__${reuniao.id}__/ata}"><span class="glyphicon glyphicon-file" title="Gerar ata de Reunião"></span></a>
+                        <a title="Gerar Ata de Reunião" class="btn btn-warning" href="/reunioes/1/ata" th:href="@{/reunioes/__${reuniao.id}__/ata}"><span class="glyphicon glyphicon-file"></span></a>
                     </td>
                 </tr>
             </tbody>

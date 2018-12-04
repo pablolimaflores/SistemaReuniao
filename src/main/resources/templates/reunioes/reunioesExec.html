@@ -74,19 +74,19 @@
             <thead>
                 <tr>
                     <td align="center"><b>Ordem</th>
-                    <td align="center"><br>Descrição</th>
-                    <th>Discussão</th>
-                    <th>Responsável</th>
-                    <th>Tipo</th>
+                    <td align="center"><b>Descrição</th>
+                    <td align="center"><b>Discussão</th>
+                    <td align="center"><b>Responsável</th>
+                    <td align="center"><b>Tipo</th>
                 </tr>
             </thead>
             <tbody>
                 <tr th:each="pontoPauta : ${pontosPauta}">
                     <td align="center" th:text="${pontoPauta.ordem}">1</td>
                     <td align="center" th:text="${pontoPauta.descricao}">pauta</td>
-                    <td th:text="${pontoPauta.discussao}">pauta</td>
-                    <td th:text="${pontoPauta.responsavel.getNome()}">Adm</td>
-                    <td th:text="${pontoPauta.tipo.getNome()}">tipo pauta</td>
+                    <td align="center" th:text="${pontoPauta.discussao}">pauta</td>
+                    <td align="center" th:text="${pontoPauta.responsavel.getNome()}">Adm</td>
+                    <td align="center" th:text="${pontoPauta.tipo.getNome()}">tipo pauta</td>
                     <!-- <td>
                         <a class="btn btn-info" href="/pontosPauta/pontoPautaEdit/1" th:href="@{/pontosPauta/pontoPautaEdit/__${pontoPauta.id}__}"><span class="glyphicon glyphicon-edit"></span>Editar</a>
                         <a class="btn btn-danger delBtn" href="/pontosPauta/pontoPautaEdit/1" th:href="@{/pontosPauta/pontoPautaDelete/__${pontoPauta.id}__}"><span class="glyphicon glyphicon-remove"></span> Excluir</a>                         
