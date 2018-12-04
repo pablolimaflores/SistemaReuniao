@@ -162,6 +162,40 @@
 				<textFieldExpression><![CDATA["<b>Objetivo: </b>" + $F{objetivo}]]></textFieldExpression>
 			</textField>
 		</band>
+		<band height="72" splitType="Stretch">
+			<staticText>
+				<reportElement positionType="Float" x="0" y="11" width="550" height="21" uuid="5d87a949-f042-4ae4-8037-3156e3d3e3ec"/>
+				<textElement verticalAlignment="Middle" markup="html">
+					<font fontName="Arial" size="16" isBold="false"/>
+				</textElement>
+				<text><![CDATA[<b>2. Participantes</b>]]></text>
+			</staticText>
+			<subreport>
+				<reportElement x="1" y="43" width="550" height="20" uuid="34d60d23-de67-433e-879f-52c2904e8176"/>
+				<subreportParameter name="reuniaoId">
+					<subreportParameterExpression><![CDATA[$P{reuniaoId}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA["ata/participante/participantes.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="70">
+			<staticText>
+				<reportElement positionType="Float" x="0" y="11" width="550" height="21" uuid="cce51d8d-460b-4985-8e89-9cda3cc23355"/>
+				<textElement verticalAlignment="Middle" markup="html">
+					<font fontName="Arial" size="16" isBold="false"/>
+				</textElement>
+				<text><![CDATA[<b>3. Pontos de Pauta</b>]]></text>
+			</staticText>
+			<subreport>
+				<reportElement x="1" y="43" width="550" height="20" uuid="668fbebd-df5a-40be-aae1-32f2e2c286aa"/>
+				<subreportParameter name="reuniaoId">
+					<subreportParameterExpression><![CDATA[$P{reuniaoId}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA["ata/ponto-pauta/pontos-pauta.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
 	</detail>
 	<pageFooter>
 		<band height="21" splitType="Stretch">
