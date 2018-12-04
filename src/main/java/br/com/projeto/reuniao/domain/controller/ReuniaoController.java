@@ -3,12 +3,14 @@ package br.com.projeto.reuniao.domain.controller;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.sql.DataSource;
 import javax.validation.Valid;
 
 import org.slf4j.Logger;
@@ -42,7 +44,6 @@ import br.com.projeto.reuniao.domain.service.PontoPautaService;
 import br.com.projeto.reuniao.domain.service.ReuniaoService;
 import br.com.projeto.reuniao.domain.service.TipoParticipanteService;
 import br.com.projeto.reuniao.domain.service.TipoService;
-import net.sf.jasperreports.engine.JREmptyDataSource;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
@@ -93,6 +94,9 @@ public class ReuniaoController {
 	 */
 	@Autowired
 	TipoParticipanteService tipoParticipanteService;
+	
+	@Autowired
+	private DataSource dataSource;
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(ReuniaoController.class);
 
@@ -375,29 +379,20 @@ public class ReuniaoController {
 
 	@GetMapping(value = "/{id}/ata")
 	@ResponseBody
-	public void getRpt1(@PathVariable("id") long id, HttpServletResponse response) throws JRException, IOException {
-
-		// try {
-		// Connection conn = jdbcTemplate.getDataSource().getConnection();
+	public void getRpt1(@PathVariable("id") long id, HttpServletResponse response) throws JRException, IOException, SQLException {
 
 		InputStream jasperStream = this.getClass().getResourceAsStream("/report/ata/ata-reuniao.jasper");
 
 		Map<String, Object> params = new HashMap<>();
 		params.put("reuniaoId", id);
-
 		JasperReport jasperReport = (JasperReport) JRLoader.loadObject(jasperStream);
-		JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, params, new JREmptyDataSource());
-		// JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, params,
-		// conn);
-
+		JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, params, dataSource.getConnection());
+				
 		response.setContentType("application/x-pdf");
 		response.setHeader("Content-disposition", "inline; filename=ata-reuniao.pdf");
 
 		final OutputStream outStream = response.getOutputStream();
 		JasperExportManager.exportReportToPdfStream(jasperPrint, outStream);
-		// } catch (SQLException e) {
-		// e.printStackTrace();
-		// }
 
 	}
 

@@ -90,6 +90,12 @@ public class Reuniao extends AbstractEntity {
 	 */
 	@OneToMany(cascade = CascadeType.ALL , fetch = FetchType.LAZY, mappedBy = "reuniao")
 	private List<Participante> participantes;
+	
+	/**
+	 * 
+	 */
+	@OneToMany(cascade = CascadeType.ALL , fetch = FetchType.LAZY, mappedBy = "reuniao")
+	private List<PontoPauta> pontosPauta;
 
 	/**
 	 * 
