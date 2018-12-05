@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8" />   
+
+    <div th:replace="fragments/header :: header-css"/>
+	
+	<script type="text/javascript">
+    	$("#data").mask("dd/MM/yyyy");    	
+    </script>
+
+</head>
+<body> 
+
+<div th:replace="fragments/header :: header"/>
+
+<div class="container">
+	
+    <div class="container" style="margin-top: 1em;">
+	        <div class="row">
+	            <div class="col-md-6" style="padding=0.5em;">
+	                <div class="card">
+	                    <div class="card-body" align="center">
+	                        <!-- <h2 class="card-title" align="center">Informações da Reunião</h2>  -->	
+	                        <h3 class="card-title" align="center">Título:<span th:text="${reuniao.titulo}"></span></h3><br>
+	                        <label id="data">Data:<span th:text="${reuniao.data}"></span></label><br>
+	                        <label>Local:<span th:text="${reuniao.local}"></span></label><br>
+	                        <label>Início:<span th:text="${reuniao.horaInicio}"></span></label><br>
+	                        <label>Fim:<span th:text="${reuniao.horaFim}"></span></label><br>
+	                        <label>Pré-requisito:<span th:text="${reuniao.preRequisito}"></span></label><br>
+	                        <label>Tipo de Reunião:<span th:text="${reuniao.tipo.nome}"></span></label><br>
+	                        <label>Objetivo:<span th:text="${reuniao.objetivo}"></span></label><br>
+	                        <hr>
+	                    </div>
+	                </div>
+	            </div>            
+	             <div class="col-md-6">
+                <div class="card"> 
+                    <div class="card-body">
+                        <h2 class="card-title" align="center">Participantes</h2>
+        				
+        					<form th:action="@{/reunioes/participantesEdit/reuniao/__${reuniao.id}__}"  method="post">
+        					
+		        				 <div class="form-group" th:classappend="${#fields.hasErrors('participante.pessoa.nome')} ? 'has-error'">
+		        				 		<br><br>
+		        				 		<div class="col-md-10 offset-md-1 vertical-space">
+					                        <label>Participante</label>
+					                        <select class="form-control" style="height:2.5em;" id="participante" name="idParticipante">
+					                            <option value="">Selecione</option>
+					                            <option th:each="p : ${pessoas}" 
+					                                    th:value="${p.id}" th:text="${p.nome}">Participante X</option>
+					                        </select>
+	                    				</div>
+		        				 				        				 
+									    <div class="col-md-10 offset-md-1 vertical-space">
+					                        <label>Tipo</label>
+					                        <select class="form-control" style="height:2.5em;" id="participante" name="idParticipante">
+					                            <option value="">Selecione um tipo de participante</option>
+					                            <option th:each="t : ${tiposParticipante}" 
+					                                    th:value="${t.id}" th:text="${t.nome}">Secretário</option>
+					                        </select>
+	                    				</div>
+	                    				<div class="col-md-10 offset-md-1 vertical-space">
+									    	<button class="btn btn-success" type="submit">Incluir <span class="glyphicon glyphicon-ok"></span></button>
+								    	</div>
+						        </div> 	
+						    </form>    
+                    </div>
+                </div>
+            </div>  
+	        </div>
+</div>
+<br><br>
+<table class="table table-bordred table-striped">
+            <thead>
+                <tr>
+                    <td align="center"><b>Cód</th>
+                    <td align="center"><b>Participante</th>
+                    <td align="center"><b>Tipo</th>
+                    <!-- <td align="center"><b>Ação</th> -->                                        
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="participante : ${participantes}">
+                    <td align="center" th:text="${participante.id}">1</td>
+                    <td align="center" th:text="${participante.pessoa.getNome()}">Adm</td>
+                    <td align="center" th:text="${participante.tipoParticipante.getNome()}">Participante</td>
+                    <!-- <td>                        
+                        <a class="btn btn-danger delBtn" href="/reunioes/participantesEdit/1" th:href="@{/reunioes/participantesEdit/__${pontoPauta.id}__}"><span class="glyphicon glyphicon-remove"></span> Excluir</a>                         
+                    </td> -->
+                </tr>
+            </tbody>
+        </table>
+    
+</div>
+<!-- /.container -->
+
+<div th:replace="fragments/footer :: footer"/>
+
+</body>
+</html>

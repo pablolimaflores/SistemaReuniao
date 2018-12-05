@@ -71,7 +71,7 @@
                     <td th:text="${reuniao.titulo}">Reunião Teste</td>
                     <td width="280">
                         <a title="Editar Reunião" class="btn btn-info" href="/reunioes/reunioesEdit/1" th:href="@{/reunioes/reunioesEdit/__${reuniao.id}__}"><span class="glyphicon glyphicon-pencil"></span></a>
-                        <!-- <a title="Gerir Participantes" class="btn btn-warning" href="/participantes/participantesEdit/reuniao/1" th:href="@{/participantes/participantesEdit/reuniao/__${reuniao.id}__}"><span class="glyphicon glyphicon-user"></span></a> -->
+                        <a title="Gerir Participantes" class="btn btn-warning" href="/reunioes/participantesEdit/reuniao/1" th:href="@{/reunioes/participantesEdit/reuniao/__${reuniao.id}__}"><span class="glyphicon glyphicon-user"></span></a>
                         <a title="Gerir Pauta" class="btn btn-primary" href="/pontosPauta/pontoPautaEdit/reuniao/1" th:href="@{/pontosPauta/pontoPautaEdit/reuniao/__${reuniao.id}__}"><span class="glyphicon glyphicon-list"></span></a>
                         <a title="Executar Reunião" class="btn btn-success" href="/reunioes/reunioesExec/1" th:href="@{/reunioes/reunioesExec/__${reuniao.id}__}"><span class="glyphicon glyphicon-play-circle"></span></a>                        
                         <a title="Gerar Ata de Reunião" class="btn btn-secondary" href="/reunioes/1/ata" th:href="@{/reunioes/__${reuniao.id}__/ata}"><span class="glyphicon glyphicon-file"></span></a>
