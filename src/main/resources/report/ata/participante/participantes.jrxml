@@ -13,6 +13,7 @@
 	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
 	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
 	<parameter name="reuniaoId" class="java.lang.Long"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.Object" isForPrompting="false"/>
 	<queryString>
 		<![CDATA[SELECT p.id, p.compareceu, p.pessoa_id, p.reuniao_id, p.tipo_participante_id, pes.nome AS nome, t.nome AS tipo 
   FROM participante AS p

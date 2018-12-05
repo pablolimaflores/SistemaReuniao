@@ -6,6 +6,8 @@
 	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="347"/>
 	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w2" value="647"/>
 	<parameter name="reuniaoId" class="java.lang.Long"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.Object" isForPrompting="false"/>
+	<parameter name="SUBREPORT_DIR2" class="java.lang.Object" isForPrompting="false"/>
 	<queryString>
 		<![CDATA[SELECT r.id, r.ativo, r.created, r.updated, r.data, r.hora_fim, r.hora_inicio, r.local, r.objetivo, r.pre_requisito, r.titulo, r.tipo_id, t.nome AS tipo 
   FROM reuniao AS r 
@@ -161,6 +163,40 @@
 				</textElement>
 				<textFieldExpression><![CDATA["<b>Objetivo: </b>" + $F{objetivo}]]></textFieldExpression>
 			</textField>
+		</band>
+		<band height="72" splitType="Stretch">
+			<staticText>
+				<reportElement positionType="Float" x="0" y="11" width="550" height="21" uuid="5d87a949-f042-4ae4-8037-3156e3d3e3ec"/>
+				<textElement verticalAlignment="Middle" markup="html">
+					<font fontName="Arial" size="16" isBold="false"/>
+				</textElement>
+				<text><![CDATA[<b>2. Participantes</b>]]></text>
+			</staticText>
+			<subreport>
+				<reportElement x="1" y="43" width="550" height="20" uuid="34d60d23-de67-433e-879f-52c2904e8176"/>
+				<subreportParameter name="reuniaoId">
+					<subreportParameterExpression><![CDATA[$P{reuniaoId}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="70">
+			<staticText>
+				<reportElement positionType="Float" x="0" y="11" width="550" height="21" uuid="cce51d8d-460b-4985-8e89-9cda3cc23355"/>
+				<textElement verticalAlignment="Middle" markup="html">
+					<font fontName="Arial" size="16" isBold="false"/>
+				</textElement>
+				<text><![CDATA[<b>3. Pontos de Pauta</b>]]></text>
+			</staticText>
+			<subreport>
+				<reportElement x="1" y="43" width="550" height="20" uuid="668fbebd-df5a-40be-aae1-32f2e2c286aa"/>
+				<subreportParameter name="reuniaoId">
+					<subreportParameterExpression><![CDATA[$P{reuniaoId}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR2}]]></subreportExpression>
+			</subreport>
 		</band>
 	</detail>
 	<pageFooter>

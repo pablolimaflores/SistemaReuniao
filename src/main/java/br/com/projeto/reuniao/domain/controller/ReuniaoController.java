@@ -50,6 +50,7 @@ import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  * Controller utilizado para manipular o acesso as funcionalidades do sistema na
@@ -379,23 +380,26 @@ public class ReuniaoController {
 
 	@GetMapping(value = "/{id}/ata")
 	@ResponseBody
-	public void getRpt1(@PathVariable("id") long id, HttpServletResponse response) throws JRException, IOException, SQLException {
+	public void exportAtaReuniaoToPDF(@PathVariable("id") long id, HttpServletResponse response) throws JRException, IOException, SQLException {
 
 		InputStream jasperStream = this.getClass().getResourceAsStream("/report/ata/ata-reuniao.jasper");
 
 		Map<String, Object> params = new HashMap<>();
 		params.put("reuniaoId", id);
+		params.put("SUBREPORT_DIR", this.getClass().getResourceAsStream("/report/ata/participante/participantes.jasper"));
+		params.put("SUBREPORT_DIR2", this.getClass().getResourceAsStream("/report/ata/ponto-pauta/pontos-pauta.jasper"));
+		
 		JasperReport jasperReport = (JasperReport) JRLoader.loadObject(jasperStream);
 		JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, params, dataSource.getConnection());
 				
 		response.setContentType("application/x-pdf");
-		response.setHeader("Content-disposition", "inline; filename=ata-reuniao.pdt");		
+		response.setHeader("Content-disposition", "inline; filename=ata-reuniao.pdf");				
 //		response.setContentType("application/odt");
-//		response.setHeader("Content-disposition", "inline; filename=ata-reuniao.odt");
+//		response.setHeader("Content-disposition", "inline; filename=ata-reuniao.odt");		
 
 		final OutputStream outStream = response.getOutputStream();
 		JasperExportManager.exportReportToPdfStream(jasperPrint, outStream);
-
+		
 	}
 
 }
