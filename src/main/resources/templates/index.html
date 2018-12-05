@@ -28,7 +28,7 @@
 				            </thead>
 				            <tbody>
 				                <tr th:each="reuniao : ${pageExec}">
-				                    <td th:text="${reuniao.data}">2018-09-25</td>
+				                    <td th:text="${#temporals.format(reuniao.data, 'dd/MM/yyyy')}">2018-09-25</td>
 				                    <td th:text="${reuniao.titulo}">Admin</td>
 				                    <td>
 				                    	<a class="btn btn-info" href="/reunioes/reunioesEdit/1" th:href="@{/reunioes/reunioesEdit/__${reuniao.id}__}"><span class="glyphicon glyphicon-info-sign"></span>   Detalhes</a>
@@ -53,7 +53,7 @@
 				            </thead>
 				            <tbody>
 				                <tr th:each="reuniao : ${pageSched}">
-				                    <td th:text="${reuniao.data}">2018-09-25</td>
+				                    <td th:text="${#temporals.format(reuniao.data, 'dd/MM/yyyy')}">20/11/2018</td>
 				                     <td th:text="${reuniao.titulo}">Admin</td>
 				                    <td>
 				                    	<a class="btn btn-info" href="/reunioes/reunioesEdit/1" th:href="@{/reunioes/reunioesEdit/__${reuniao.id}__}"><span class="glyphicon glyphicon-info-sign"></span>   Detalhes</a>
