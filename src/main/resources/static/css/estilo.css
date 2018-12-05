@@ -114,3 +114,10 @@ body {
 #hl{
 	margin-top: 10px;
 }
+.table-min-height-400 {
+	min-height: 400px;
+}
+
+.tr-height {	
+	height: 10px;
+}

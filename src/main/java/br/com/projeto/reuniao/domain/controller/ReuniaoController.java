@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -382,9 +384,13 @@ public class ReuniaoController {
 		
 		JasperReport jasperReport = (JasperReport) JRLoader.loadObject(jasperStream);
 		JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, params, dataSource.getConnection());
-				
+
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd-HH-mm-ss");
+		String fileName = "ata-reuniao-"+ LocalDateTime.now().format(formatter);
+		String fileFormat = ".pdf";
+		
 		response.setContentType("application/x-pdf");
-		response.setHeader("Content-disposition", "inline; filename=ata-reuniao.pdf");				
+		response.setHeader("Content-disposition", "inline; filename="+fileName+fileFormat);				
 //		response.setContentType("application/odt");
 //		response.setHeader("Content-disposition", "inline; filename=ata-reuniao.odt");		
 

@@ -25,7 +25,7 @@
 						<p class="alert alert-danger">Deseja deletar este registro? O processo não pode ser desfeito</p>
 					</div>
 					<div align="center">
-						<button id="voltar" type="button" class="btn btn-success" data-dismiss="modal"><span class="glyphicon glyphicon-menu-left">Cancelar</button>
+						<button id="voltar" type="button" class="btn btn-success" data-dismiss="modal"><span class="glyphicon glyphicon-menu-left"> Cancelar</button>
 						<a href="" id="delRef" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span> Excluir</a>
 					</div>
 				</div>
@@ -78,9 +78,9 @@
                     <div th:unless="${tipo.debate == true}">
 					   <td align="center" th:text="Não">Não</td>
 					</div>
-                    <td width="180">
-                        <a class="btn btn-info" href="/tipos/tiposEdit/1" th:href="@{/tipos/tiposEdit/__${tipo.id}__}"><span class="glyphicon glyphicon-pencil"></span>Editar</a>
-                        <a class="btn btn-danger delBtn" href="/tipos/tiposDelete/1" th:href="@{/tipos/tiposDelete/__${tipo.id}__}"><span class="glyphicon glyphicon-remove"></span>Excluir</a>                        
+                    <td width="190">
+                        <a class="btn btn-info" href="/tipos/tiposEdit/1" th:href="@{/tipos/tiposEdit/__${tipo.id}__}"><span class="glyphicon glyphicon-pencil"></span> Editar</a>
+                        <a class="btn btn-danger delBtn" href="/tipos/tiposDelete/1" th:href="@{/tipos/tiposDelete/__${tipo.id}__}"><span class="glyphicon glyphicon-remove"></span> Excluir</a>                        
                     </td>
                 </tr>
             </tbody>
