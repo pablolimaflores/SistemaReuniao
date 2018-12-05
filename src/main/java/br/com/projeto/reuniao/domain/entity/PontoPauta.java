@@ -5,7 +5,6 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -39,8 +38,8 @@ public class PontoPauta extends AbstractEntity {
 	 * 
 	 */	
 	@NotBlank
-    @Column(nullable = false, length = 300)
-    @Size(min=3, max=300)
+    @Column(nullable = false, length = 500)
+    @Size(min=3, max=500)
 	private String descricao;
 	
 	/**
@@ -50,8 +49,8 @@ public class PontoPauta extends AbstractEntity {
 	@Column
 	private Integer tempo;
 	
-	@Column(nullable = true, length = 300)
-    @Size(max=300)
+	@Column(nullable = true, length = 1500)
+    @Size(max=1500)
 	private String discussao;
 	
 	/**

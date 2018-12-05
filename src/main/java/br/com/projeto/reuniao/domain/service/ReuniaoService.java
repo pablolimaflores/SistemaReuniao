@@ -10,16 +10,12 @@ import org.springframework.transaction.annotation.Transactional;
 
 import br.com.projeto.reuniao.domain.entity.Reuniao;
 import br.com.projeto.reuniao.domain.repository.IReuniaoRepository;
-import br.com.projeto.reuniao.domain.repository.IReuniaoReportRepository;
 
 @Service
 public class ReuniaoService {
 	
 	@Autowired
 	private IReuniaoRepository reuniaoRepository;	
-	
-	@Autowired
-	private IReuniaoReportRepository reuniaoReportRepository;	
 	
 	/**
 	 * 
@@ -136,19 +132,6 @@ public class ReuniaoService {
 	public Page<Reuniao> findAllReuniaoScheduledByData(Pageable pageable){
 		
 		return this.reuniaoRepository.findAllScheduledByData(pageable);
-	}
-	
-	/*------------------------------------------------------------------- 
-	 *                REPORTS 
-	 *-------------------------------------------------------------------*/ 
-    
-	/**
-	 * 
-	 * @param reuniaoId
-	 * @return
-	 */
-	public byte[] exportAtaReuniaoToPDF( long reuniaoId ) { 
-		return this.reuniaoReportRepository.exportAtaReuniaoToPDF(reuniaoId).toByteArray(); 
 	}
 	
 }

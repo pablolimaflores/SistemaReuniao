@@ -19,7 +19,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -50,7 +49,6 @@ import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.util.JRLoader;
-import net.sf.jasperreports.view.JasperViewer;
 
 /**
  * Controller utilizado para manipular o acesso as funcionalidades do sistema na
@@ -96,6 +94,9 @@ public class ReuniaoController {
 	@Autowired
 	TipoParticipanteService tipoParticipanteService;
 	
+	/**
+	 * Datasource para o report
+	 */
 	@Autowired
 	private DataSource dataSource;
 
@@ -366,17 +367,7 @@ public class ReuniaoController {
 
 	/*------------------------------------------------------------------- 
 	 *                REPORTS 
-	 *-------------------------------------------------------------------*/
-
-	/**
-	 * 
-	 * @param id
-	 * @return
-	 */
-	@GetMapping(value = "/{id}/report/ata", produces = MediaType.APPLICATION_PDF_VALUE)
-	public byte[] exportAtaReuniaoToPDF(@PathVariable("id") long id) {
-		return this.reuniaoService.exportAtaReuniaoToPDF(id);
-	}
+	 *-------------------------------------------------------------------*/	
 
 	@GetMapping(value = "/{id}/ata")
 	@ResponseBody
