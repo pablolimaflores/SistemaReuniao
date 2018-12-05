@@ -15,7 +15,7 @@
 <div class="container" >
 	
 	<div class="row" >
-            <div class="col-md-6" style="padding=0.5em;">
+            <div class="col-md-6 offset-md-3" style="padding=0.5em;">
                 <div class="card" >
                     <div class="card-body">
                         <legend align="center">Dados da Reunião</legend>
@@ -103,7 +103,7 @@
                     </div>
                 </div>
             </div>  
-            <div class="col-md-6" style="padding=0.5em;">
+            <!-- <div class="col-md-6" style="padding=0.5em;">
                 <div class="card vertical-space">
                 	<legend align="center">Inserir Participante</legend>
                 	<form class="form-horizontal" action="/reunioes/reunioesEdit/participante" th:action="@{/reunioes/reunioesEdit/participante}" method="post">
@@ -115,15 +115,15 @@
 						        	<select class="form-control" style="height:2.5em;" id="participante" name="participante" th:field="${reuniao.participantes}">
 						        		<option value="">Selecione uma pessoa</option>
 						        		<option th:each="pessoa : ${pessoas}" th:value="${pessoa.id}" th:text="${pessoa.nome}"></option>
-						        		<!-- 
+						        		
 						        		<span th:if="${#fields.hasErrors('pessoa.nome')}" th:errors="*{pessoa.nome}" id="errorNome" class="help-block"></span>
-						        		-->
+						        		
 						        	</select>				        		
 				        			<button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-ok"></span></button>				        		
 					        	</div>
 				        	</div>				        						        						        
 						</div>
-						<!-- 
+						
 						<div class="form-group">
 							<div class="col-md-11 vertical-space">
 								<label for="tipo" class="control-label">Tipo do Participante</label>
@@ -133,7 +133,7 @@
 					        	</select>
 				        	</div>					        						        	
 						</div>
-						 -->
+						
 					</form>	
                 </div>
 	            
@@ -156,7 +156,7 @@
 				            </tbody>
        					</table>
                     </div>                    
-                </div>	                                                                                      
+                </div>	   -->                                                                                    
         </div>
 	
 </div>
