@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.projeto.reuniao.SistemaReuniaoApp;
 import br.com.projeto.reuniao.domain.entity.Pessoa;
@@ -100,7 +101,11 @@ public class PessoaController {
      * @return retorno para a página de renderização.
      */
     @PostMapping(value={"/pessoasEdit","/pessoasEdit/{id}"})
-    public String updatePessoa(@Valid Pessoa pessoa, BindingResult bindingResult, @PathVariable(required = false, name = "id") Long id, @PageableDefault(SistemaReuniaoApp.MAXROWS) Pageable pageable, Model model) {
+    public String updatePessoa(@Valid Pessoa pessoa, BindingResult bindingResult, 
+    		@PathVariable(required = false, name = "id") Long id, 
+    		@PageableDefault(SistemaReuniaoApp.MAXROWS) Pageable pageable, 
+    		RedirectAttributes attr,
+    		Model model) {
     	
     	if(bindingResult.hasErrors()) {
             bindingResult.getAllErrors().forEach(err -> {
@@ -110,14 +115,17 @@ public class PessoaController {
             return "pessoas/pessoasEdit";
         }
     	
-    	if (null != id) {
+    	if (null != id) {    		
     		this.pessoaService.updatePessoa(pessoa);
+//    		attr.addFlashAttribute("success", "Pessoa atualizada com sucesso.");
     	} else {
     		this.pessoaService.insertPessoa(pessoa);
-    	}    	
+//    		attr.addFlashAttribute("success", "Pessoa inserida com sucesso.");
+    	}   
+    	attr.addFlashAttribute("success", "Operação efetuada com sucesso.");
     	Page<Pessoa> page = pessoaService.findAllPessoas(pageable);
         model.addAttribute("page", page);
-        return "pessoas/pessoasList";
+        return "redirect:/pessoas";
     }
 
     
@@ -131,7 +139,8 @@ public class PessoaController {
      */
     @GetMapping("/pessoasDelete/{id}")
     public String pessoasDelete(@PathVariable(required = true, name = "id") Long id, @PageableDefault(SistemaReuniaoApp.MAXROWS) Pageable pageable, Model model) {
-        this.pessoaService.deletePessoa(id);
+    	model.addAttribute("success", "Pessoa excluida com sucesso.");
+    	this.pessoaService.deletePessoa(id);
         Page<Pessoa> page = pessoaService.findAllPessoas(pageable);
         model.addAttribute("page", page);
         return "pessoas/pessoasList";
