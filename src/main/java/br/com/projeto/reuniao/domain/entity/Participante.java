@@ -65,7 +65,7 @@ public class Participante extends AbstractEntity {
 		this.pessoa = pessoa;
 		this.reuniao = reuniao;
 		this.tipoParticipante = tipoParticipante;
-	}
+	}	
 	
 	/**
 	 * 	 
@@ -92,6 +92,32 @@ public class Participante extends AbstractEntity {
 	public Participante(Long id, @NotNull Pessoa pessoa, @NotNull Reuniao reuniao,
 			@NotNull TipoParticipante tipoParticipante) {		
 		super(id);
+		this.pessoa = pessoa;
+		this.reuniao = reuniao;
+		this.tipoParticipante = tipoParticipante;
+	}
+		
+	/**
+	 * 	 	 
+	 * @param pessoa
+	 * @param reuniao
+	 * @param tipoParticipante
+	 */
+	public Participante(Long idPessoa, Long idReuniao,
+			Long idTipoParticipante) {				
+		this.setPessoa(new Pessoa(idPessoa));
+		this.setReuniao(new Reuniao(idReuniao));
+		this.setTipoParticipante(new TipoParticipante(idTipoParticipante));
+	}	
+	
+	/**
+	 * 	 	 
+	 * @param pessoa
+	 * @param reuniao
+	 * @param tipoParticipante
+	 */
+	public Participante(@NotNull Pessoa pessoa, @NotNull Reuniao reuniao,
+			@NotNull TipoParticipante tipoParticipante) {				
 		this.pessoa = pessoa;
 		this.reuniao = reuniao;
 		this.tipoParticipante = tipoParticipante;

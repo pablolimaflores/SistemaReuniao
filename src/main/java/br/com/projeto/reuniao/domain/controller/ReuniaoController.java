@@ -95,7 +95,7 @@ public class ReuniaoController {
 	 */
 	@Autowired
 	TipoParticipanteService tipoParticipanteService;
-	
+
 	/**
 	 * Datasource para o report
 	 */
@@ -225,30 +225,6 @@ public class ReuniaoController {
 			model.addAttribute("reuniao", new Reuniao());
 		}
 		return "reunioes/reunioesExec";
-	}
-	
-	/**
-	 * 
-	 * @param model
-	 * @param id
-	 * @return
-	 */
-	@GetMapping(value = { "/participantesEdit/reuniao", "/participantesEdit/reuniao/{id}" })
-	public String findReuniaoForParticipantesByReuniaoId(Model model, @PathVariable(required = false, name = "id") Long id) {
-		model.addAttribute("tiposParticipante", this.tipoParticipanteService.findAllTiposParticipante());
-		if (null != id) {
-			model.addAttribute("reuniao", this.reuniaoService.findReuniaoById(id));
-			model.addAttribute("participantes", this.participanteService.listParticipanteByReuniaoId(id));
-			
-			Participante participante = new Participante();
-			model.addAttribute("participante", participante);
-			
-		} else {
-			model.addAttribute("reuniao", new Reuniao());
-			Participante participante = new Participante();
-			model.addAttribute("participante", participante);
-		}
-		return "reunioes/participantesEdit";
 	}
 
 	/**
@@ -390,11 +366,35 @@ public class ReuniaoController {
 
 		return "reunioes/reunioesExec";
 	}
-	
-	@PostMapping(value = { "/reunioes/participantesEdit/reuniao/{id}/participante", "/reunioes/participantesEdit/reuniao/{id}/participante/{idParticipante}" })
+
+	/**
+	 * 
+	 * @param model
+	 * @param id
+	 * @return
+	 */
+	@GetMapping(value = { "/participantesEdit/reuniao", "/participantesEdit/reuniao/{id}" })
+	public String findReuniaoForParticipantesByReuniaoId(Model model,
+			@PathVariable(required = false, name = "id") Long id) {
+		model.addAttribute("tiposParticipante", this.tipoParticipanteService.findAllTiposParticipante());
+		if (null != id) {
+			model.addAttribute("reuniao", this.reuniaoService.findReuniaoById(id));
+			model.addAttribute("participantes", this.participanteService.listParticipanteByReuniaoId(id));
+
+			Participante participante = new Participante();
+			model.addAttribute("participante", participante);
+
+		} else {
+			model.addAttribute("reuniao", new Reuniao());
+			Participante participante = new Participante();
+			model.addAttribute("participante", participante);
+		}
+		return "reunioes/participantesEdit";
+	}
+
+	@PostMapping(value = { "/reunioes/participantesEdit/reuniao/{id}/participante/{idParticipante}" })
 	public String updtateParticipanteById(@Valid Participante participante, BindingResult bindingResult,
-			@PathVariable(required = true, name = "id") Long id,
-			@PathVariable(required = false, name = "idParticipante") Long idParticipante, Model model) {
+			@PathVariable("id") Long id, @PathVariable("idParticipante") Long idParticipante, Model model) {
 
 		model.addAttribute("reuniao", this.reuniaoService.findReuniaoById(id));
 		model.addAttribute("participante", this.participanteService.findParticipanteById(idParticipante));
@@ -412,43 +412,47 @@ public class ReuniaoController {
 		} else {
 			this.participanteService.insertParticipante(participante);
 		}
-		
+
 		List<Participante> participantes = participanteService.listParticipanteByReuniaoId(id);
 		model.addAttribute("participantes", participantes);
 
 		return "reunioes/participanteEdit";
-	}	
+	}
 
 	/*------------------------------------------------------------------- 
 	 *                REPORTS 
-	 *-------------------------------------------------------------------*/	
+	 *-------------------------------------------------------------------*/
 
 	@GetMapping(value = "/{id}/ata")
 	@ResponseBody
-	public void exportAtaReuniaoToPDF(@PathVariable("id") long id, HttpServletResponse response) throws JRException, IOException, SQLException {
+	public void exportAtaReuniaoToPDF(@PathVariable("id") long id, HttpServletResponse response)
+			throws JRException, IOException, SQLException {
 
 		InputStream jasperStream = this.getClass().getResourceAsStream("/report/ata/ata-reuniao.jasper");
 
 		Map<String, Object> params = new HashMap<>();
 		params.put("reuniaoId", id);
-		params.put("SUBREPORT_DIR", this.getClass().getResourceAsStream("/report/ata/participante/participantes.jasper"));
-		params.put("SUBREPORT_DIR2", this.getClass().getResourceAsStream("/report/ata/ponto-pauta/pontos-pauta.jasper"));
-		
+		params.put("SUBREPORT_DIR",
+				this.getClass().getResourceAsStream("/report/ata/participante/participantes.jasper"));
+		params.put("SUBREPORT_DIR2",
+				this.getClass().getResourceAsStream("/report/ata/ponto-pauta/pontos-pauta.jasper"));
+
 		JasperReport jasperReport = (JasperReport) JRLoader.loadObject(jasperStream);
 		JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, params, dataSource.getConnection());
 
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd-HH-mm-ss");
-		String fileName = "ata-reuniao-"+ LocalDateTime.now().format(formatter);
+		String fileName = "ata-reuniao-" + LocalDateTime.now().format(formatter);
 		String fileFormat = ".pdf";
-		
+
 		response.setContentType("application/x-pdf");
-		response.setHeader("Content-disposition", "inline; filename="+fileName+fileFormat);				
-//		response.setContentType("application/odt");
-//		response.setHeader("Content-disposition", "inline; filename=ata-reuniao.odt");		
+		response.setHeader("Content-disposition", "inline; filename=" + fileName + fileFormat);
+		// response.setContentType("application/odt");
+		// response.setHeader("Content-disposition", "inline;
+		// filename=ata-reuniao.odt");
 
 		final OutputStream outStream = response.getOutputStream();
 		JasperExportManager.exportReportToPdfStream(jasperPrint, outStream);
-		
+
 	}
 
 }

@@ -45,8 +45,8 @@
 		        				 <div class="form-group" th:classappend="${#fields.hasErrors('participante.pessoa.nome')} ? 'has-error'">
 		        				 		<br><br>
 		        				 		<div class="col-md-10 offset-md-1 vertical-space">
-					                        <label>Participante</label>
-					                        <select class="form-control" style="height:2.5em;" id="participante" name="idParticipante">
+					                        <label for="participante">Participante</label>
+					                        <select class="form-control" style="height:2.5em;" id="participante" name="participante">
 					                            <option value="">Selecione</option>
 					                            <option th:each="p : ${pessoas}" 
 					                                    th:value="${p.id}" th:text="${p.nome}">Participante X</option>
@@ -54,8 +54,8 @@
 	                    				</div>
 		        				 				        				 
 									    <div class="col-md-10 offset-md-1 vertical-space">
-					                        <label>Tipo</label>
-					                        <select class="form-control" style="height:2.5em;" id="participante" name="idParticipante">
+					                        <label for="tipoParticipante">Tipo</label>
+					                        <select class="form-control" style="height:2.5em;" id="tipoParticipante" name="tipoParticipante">
 					                            <option value="">Selecione um tipo de participante</option>
 					                            <option th:each="t : ${tiposParticipante}" 
 					                                    th:value="${t.id}" th:text="${t.nome}">Secretário</option>

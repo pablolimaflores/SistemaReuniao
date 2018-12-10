@@ -87,6 +87,14 @@ public class Pessoa extends AbstractEntity implements UserDetails, Serializable 
 	@Enumerated(EnumType.STRING)
     private Role role;    
 
+	/**
+	 * 
+	 * @param id
+	 */
+	public Pessoa(Long id) {
+		super(id);
+	}
+	
     /**
      *  
      * @param nome

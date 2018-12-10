@@ -157,4 +157,12 @@ public class Reuniao extends AbstractEntity {
 		this.data = data;
 	}
 	
+	/**
+	 * 
+	 * @param id
+	 */
+	public Reuniao(Long id) {
+		super(id);
+	}	
+	
 }

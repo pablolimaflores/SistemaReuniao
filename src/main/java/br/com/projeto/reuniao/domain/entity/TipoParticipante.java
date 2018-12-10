@@ -58,5 +58,13 @@ public class TipoParticipante extends AbstractEntity {
 		this.descricao = descricao;
 	}
 	
+	/**
+	 * 
+	 * @param id
+	 */
+	public TipoParticipante(Long id) {
+		super(id);
+	}
+	
 		
 }
