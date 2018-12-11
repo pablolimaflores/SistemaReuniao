@@ -373,45 +373,34 @@ public class ReuniaoController {
 	 * @param id
 	 * @return
 	 */
-	@GetMapping(value = { "/participantesEdit/reuniao", "/participantesEdit/reuniao/{id}" })
+	@GetMapping(value = { "/participantesEdit/reuniao", "/participantesEdit/reuniao/{idReuniao}" })
 	public String findReuniaoForParticipantesByReuniaoId(Model model,
-			@PathVariable(required = false, name = "id") Long id) {
+			@PathVariable(required = false, name = "idReuniao") Long idReuniao, Participante participante) {
+		
 		model.addAttribute("tiposParticipante", this.tipoParticipanteService.findAllTiposParticipante());
-		if (null != id) {
-			model.addAttribute("reuniao", this.reuniaoService.findReuniaoById(id));
-			model.addAttribute("participantes", this.participanteService.listParticipanteByReuniaoId(id));
+		model.addAttribute("reuniao", this.reuniaoService.findReuniaoById(idReuniao));
+		model.addAttribute("participantes", this.participanteService.listParticipanteByReuniaoId(idReuniao));
 
-			Participante participante = new Participante();
-			model.addAttribute("participante", participante);
-
-		} else {
-			model.addAttribute("reuniao", new Reuniao());
-			Participante participante = new Participante();
-			model.addAttribute("participante", participante);
-		}
 		return "reunioes/participantesEdit";
 	}
 
-	@PostMapping(value = { "/reunioes/participantesEdit/reuniao/{id}/participante/{idParticipante}" })
-	public String updtateParticipanteById(@Valid Participante participante, BindingResult bindingResult,
-			@PathVariable("id") Long id, @PathVariable("idParticipante") Long idParticipante, Model model) {
+	@PostMapping(value = { "/participantesEdit/reuniao/{idReuniao}/participante/{id}" })
+	public String insertParticipanteById(Participante participante, BindingResult bindingResult,
+			@PathVariable("id") Long id, @PathVariable("idReuniao") Long idReuniao, Model model) {
 
-		model.addAttribute("reuniao", this.reuniaoService.findReuniaoById(id));
-		model.addAttribute("participante", this.participanteService.findParticipanteById(idParticipante));
+		model.addAttribute("participantes", this.participanteService.listParticipanteByReuniaoId(idReuniao));
+		model.addAttribute("reuniao", this.reuniaoService.findReuniaoById(idReuniao));
+//		model.addAttribute("participante", this.participanteService.findParticipanteById(id));
 
-		if (bindingResult.hasErrors()) {
-			bindingResult.getAllErrors().forEach(err -> {
-				LOGGER.info("ERROR {}", err.getDefaultMessage());
-			});
-			model.addAttribute("participante", participante);
-			return "reunioes/participanteEdit";
-		}
+//		if (bindingResult.hasErrors()) {
+//			bindingResult.getAllErrors().forEach(err -> {
+//				LOGGER.info("ERROR {}", err.getDefaultMessage());
+//			});
+//			model.addAttribute("participante", participante);
+//			return "reunioes/participanteEdit";
+//		}
 
-		if (null != id) {
-			this.participanteService.updateParticipante(participante);
-		} else {
-			this.participanteService.insertParticipante(participante);
-		}
+		this.participanteService.insertParticipante(participante);		
 
 		List<Participante> participantes = participanteService.listParticipanteByReuniaoId(id);
 		model.addAttribute("participantes", participantes);
