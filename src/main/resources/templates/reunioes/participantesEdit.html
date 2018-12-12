@@ -18,6 +18,31 @@
 <div class="container">
 	
     <div class="container" style="margin-top: 1em;">
+    		
+    		<!-- Modal de exclusão -->
+		    <div class="card">
+				<div id="myModal" class="modal fade">
+					<div class="modal-dialog modal-confirm">
+						<div class="modal-content">
+							<div class="modal-header">
+								<div class="icon-box" align="center">
+									<i class="material-icons">&#xE5CD;</i>
+								</div>				
+									
+				                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+							</div>
+							<div class="modal-body">
+								<p class="alert alert-danger">Deseja deletar este registro? O processo não pode ser desfeito</p>
+							</div>
+							<div align="center">
+								<button id="voltar" type="button" class="btn btn-success" data-dismiss="modal"><span class="glyphicon glyphicon-menu-left">Cancelar</button>
+								<a href="" id="delRef" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span> Excluir</a>
+							</div>
+						</div>
+					</div>
+				</div> 
+			</div>	
+    
 	        <div class="row">
 	            <div class="col-md-6" style="padding=0.5em;">
 	                <div class="card">
@@ -77,20 +102,20 @@
 <table class="table table-bordred table-striped">
             <thead>
                 <tr>
-                    <td align="center"><b>Cód</th>
-                    <td align="center"><b>Participante</th>
-                    <td align="center"><b>Tipo</th>
-                    <!-- <td align="center"><b>Ação</th> -->                                        
+                    <td align="center"><strong>Cód</strong></th>
+                    <td><strong>Participante</strong></th>
+                    <td align="center"><strong>Tipo</strong></th>
+                    <td align="center"><strong>Ação</strong></th>                                        
                 </tr>
             </thead>
             <tbody>
                 <tr th:each="participante : ${participantes}">
                     <td align="center" th:text="${participante.id}">1</td>
-                    <td align="center" th:text="${participante.pessoa.getNome()}">Adm</td>
+                    <td th:text="${participante.pessoa.getNome()}">Adm</td>
                     <td align="center" th:text="${participante.tipoParticipante.getNome()}">Participante</td>
-                    <!-- <td>                        
-                        <a class="btn btn-danger delBtn" href="/reunioes/participantesEdit/1" th:href="@{/reunioes/participantesEdit/__${pontoPauta.id}__}"><span class="glyphicon glyphicon-remove"></span> Excluir</a>                         
-                    </td> -->
+                    <td align="center">          
+                        <a class="btn btn-danger delBtn" href="/reunioes/participantesEdit/1/reuniao/1" th:href="@{/reunioes/participantesEdit/__${participante.id}__/reuniao/__${reuniao.id}__}"><span class="glyphicon glyphicon-remove"></span></a>                         
+                    </td>
                 </tr>
             </tbody>
         </table>

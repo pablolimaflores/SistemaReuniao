@@ -406,6 +406,20 @@ public class ReuniaoController {
 		return "redirect:/reunioes/participantesEdit/reuniao/"+String.valueOf(idReuniao);		
 	}
 
+	@GetMapping("/participantesEdit/{id}/reuniao/{idReuniao}")
+	public String deleteParticipante(@PathVariable("id") Long id, 
+			@PathVariable("idReuniao") Long idReuniao, 
+			@PageableDefault(SistemaReuniaoApp.MAXROWS) Pageable pageable, 
+			Model model) {
+		
+		this.participanteService.deleteParticipante(id);
+		
+		Page<Participante> page = participanteService.findAllParticipantes(pageable);
+		model.addAttribute("page", page);
+		
+		return "redirect:/reunioes/participantesEdit/reuniao/"+String.valueOf(idReuniao);		
+	}
+
 	/*------------------------------------------------------------------- 
 	 *                REPORTS 
 	 *-------------------------------------------------------------------*/
