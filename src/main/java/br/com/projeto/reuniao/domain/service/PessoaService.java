@@ -17,6 +17,7 @@ import org.springframework.util.Assert;
 import br.com.projeto.reuniao.application.security.ContextHolder;
 import br.com.projeto.reuniao.application.security.PessoaUsuarioSecurity;
 import br.com.projeto.reuniao.domain.entity.Pessoa;
+import br.com.projeto.reuniao.domain.entity.Reuniao;
 import br.com.projeto.reuniao.domain.repository.IPessoaRepository;
 
 @Service
@@ -54,6 +55,15 @@ public class PessoaService implements UserDetailsService {
 		final Pessoa pessoaSaved = this.pessoaRepository.findById( id )
 				.orElseThrow(() -> new IllegalArgumentException( "Registro de Pessoa com id "+ id + " não encontrado." ) );
 		return pessoaSaved;
+    }
+	
+	@Transactional(readOnly = true)
+	public List<Pessoa> findPessoaNotParticipanteByReuniaoId( long idReuniao ) {
+		List<Pessoa> pessoas = null;
+		
+		pessoas = this.pessoaRepository.findNotParticipanteByReuniaoId(idReuniao);
+		
+		return pessoas;
     }
 	
 	/**

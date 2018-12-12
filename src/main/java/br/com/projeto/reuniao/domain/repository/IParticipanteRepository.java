@@ -15,7 +15,8 @@ public interface IParticipanteRepository extends JpaRepository<Participante, Lon
 	@Query("SELECT new Participante(participante.id, participante.compareceu, participante.pessoa, participante.reuniao, "
 			+ "participante.tipoParticipante) "
 			+ "FROM Participante participante "
-			+ "WHERE participante.reuniao.id = :idReuniao")
+			+ "WHERE participante.reuniao.id = :idReuniao "
+			+ "ORDER BY participante.pessoa.nome")
 	List<Participante> listByReuniaoId(@Param("idReuniao") Long idReuniao);
 	
 }

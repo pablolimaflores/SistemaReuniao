@@ -1,5 +1,7 @@
 package br.com.projeto.reuniao.domain.repository;
 
+import java.util.List;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -30,4 +32,12 @@ public interface IPessoaRepository extends JpaRepository<Pessoa, Long>{
 			+ "coalesce(:filter, '') = '' "
 			+ ") ")
 	Page<Pessoa> findByFilter(@Param("filter") String filter, Pageable pageable);
+	
+	@Query("SELECT new Pessoa(pessoa.id, pessoa.nome, pessoa.email, pessoa.telefone, pessoa.celular) "
+			+ "FROM Pessoa pessoa "
+			+ "WHERE pessoa.id NOT IN ( "
+			+ "	SELECT p.pessoa.id FROM Participante p "
+			+ "	WHERE p.reuniao.id = :idReuniao "
+			+ ") ")
+	List<Pessoa> findNotParticipanteByReuniaoId(@Param("idReuniao") Long idReuniao);
 }

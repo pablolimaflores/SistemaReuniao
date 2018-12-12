@@ -377,6 +377,7 @@ public class ReuniaoController {
 		Reuniao r = this.reuniaoService.findReuniaoById(idReuniao);
 		model.addAttribute("tiposParticipante", this.tipoParticipanteService.findAllTiposParticipante());
 		model.addAttribute("reuniao", r);
+		model.addAttribute("pessoas2", this.pessoaService.findPessoaNotParticipanteByReuniaoId(idReuniao));
 		model.addAttribute("participantes", this.participanteService.listParticipanteByReuniaoId(idReuniao));
 		
 		Participante p = new Participante();
@@ -393,54 +394,17 @@ public class ReuniaoController {
 		Reuniao r = this.reuniaoService.findReuniaoById(idReuniao);
 		model.addAttribute("tiposParticipante", this.tipoParticipanteService.findAllTiposParticipante());
 		model.addAttribute("reuniao", r);		
+		model.addAttribute("pessoas2", this.pessoaService.findPessoaNotParticipanteByReuniaoId(idReuniao));
 				
 		participante.setReuniao(r);
-//		model.addAttribute("participante", participante);
 
 		this.participanteService.insertParticipante(participante);		
 
 		List<Participante> participantes = participanteService.listParticipanteByReuniaoId(idReuniao);
 		model.addAttribute("participantes", participantes);
 
-		return "redirect:/reunioes/participantesEdit/reuniao/"+String.valueOf(idReuniao);
-		//http://localhost:8090/reunioes/participantesEdit/reuniao/1
+		return "redirect:/reunioes/participantesEdit/reuniao/"+String.valueOf(idReuniao);		
 	}
-	
-//	@GetMapping(value = { "/participantesEdit/reuniao/{idReuniao}" })
-//	public String findReuniaoForParticipantesByReuniaoId(Model model,
-//			@PathVariable(required = false, name = "idReuniao") Long idReuniao, Participante participante) {
-//		
-//		model.addAttribute("tiposParticipante", this.tipoParticipanteService.findAllTiposParticipante());
-//		model.addAttribute("reuniao", this.reuniaoService.findReuniaoById(idReuniao));
-//		model.addAttribute("participantes", this.participanteService.listParticipanteByReuniaoId(idReuniao));
-//
-//		return "reunioes/participantesEdit";
-//	}
-//
-//	@PostMapping(value = { "/participantesEdit/reuniao/{idReuniao}/participante" })
-//	@ResponseBody
-//	public String insertParticipanteById(@RequestBody Participante participante, BindingResult bindingResult,
-//			@PathVariable("idReuniao") Long idReuniao, Model model) {
-//
-//		model.addAttribute("participantes", this.participanteService.listParticipanteByReuniaoId(idReuniao));
-//		model.addAttribute("reuniao", this.reuniaoService.findReuniaoById(idReuniao));
-////		model.addAttribute("participante", this.participanteService.findParticipanteById(id));
-//
-////		if (bindingResult.hasErrors()) {
-////			bindingResult.getAllErrors().forEach(err -> {
-////				LOGGER.info("ERROR {}", err.getDefaultMessage());
-////			});
-////			model.addAttribute("participante", participante);
-////			return "reunioes/participanteEdit";
-////		}
-//
-//		this.participanteService.insertParticipante(participante);		
-//
-//		List<Participante> participantes = participanteService.listParticipanteByReuniaoId(idReuniao);
-//		model.addAttribute("participantes", participantes);
-//
-//		return "reunioes/participanteEdit";
-//	}
 
 	/*------------------------------------------------------------------- 
 	 *                REPORTS 
