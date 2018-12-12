@@ -42,10 +42,10 @@
         				
         					<!-- http://localhost:8090/reunioes/participantesEdit/reuniao/1 -->
         				
-        					<form th:action="@{/reunioes/participantesEdit/reuniao/__${reuniao.id}__}" 
+        					<!-- <form th:action="@{/reunioes/participantesEdit/reuniao/__${reuniao.id}__/participante}" 
         						th:object="${participante}" th:method="post">
         					
-		        				 <!-- <div class="form-group" th:classappend="${#fields.hasErrors('pessoa.nome')} ? 'has-error'"> -->
+		        				 <div class="form-group" th:classappend="${#fields.hasErrors('pessoa.nome')} ? 'has-error'">
 		        				 <div class="form-group">
 		        				 		<br><br>
 		        				 		<div class="col-md-10 offset-md-1 vertical-space">
@@ -59,7 +59,7 @@
 		        				 				        				 
 									    <div class="col-md-10 offset-md-1 vertical-space">
 					                        <label for="tipoParticipante">Tipo</label>
-					                        <select class="form-control" style="height:2.5em;" id="tipoParticipante" name="tipoParticipante" th:field="*{pessoa}">
+					                        <select class="form-control" style="height:2.5em;" id="tipoParticipante" name="tipoParticipante" th:field="*{tipoParticipante}">
 					                            <option value="">Selecione um tipo de participante</option>
 					                            <option th:each="t : ${tiposParticipante}" 
 					                                    th:value="${t.id}" th:text="${t.nome}">Secretário</option>
@@ -70,7 +70,36 @@
 									    	<button class="btn btn-success" type="submit">Incluir <span class="glyphicon glyphicon-ok"></span></button>
 								    	</div>
 						        </div> 	
-						    </form>    
+						    </form> -->
+						    
+						<form th:action="@{/reunioes/participantesEdit/reuniao/__${reuniao.id}__/participante}" 
+        						th:method="post">
+        					<input th:type="hidden" name="id" th:field="${participante.id}" />
+		        				 <!-- <div class="form-group" th:classappend="${#fields.hasErrors('pessoa.nome')} ? 'has-error'"> -->
+		        				 <div class="form-group">
+		        				 		<br><br>
+		        				 		<div class="col-md-10 offset-md-1 vertical-space">
+					                        <label for="pessoa">Pessoa</label>
+					                        <select class="form-control" style="height:2.5em;" id="pessoa" name="pessoa" th:field="${participante.pessoa}">
+					                            <option value="">Selecione uma pessoa</option>
+					                            <option th:each="p : ${pessoas}" 
+					                                    th:value="${p.id}" th:text="${p.nome}">Pessoa X</option>
+					                        </select>
+	                    				</div>
+		        				 				        				 
+									    <div class="col-md-10 offset-md-1 vertical-space">
+					                        <label for="tipoParticipante">Tipo</label>
+					                        <select class="form-control" style="height:2.5em;" id="tipoParticipante" name="tipoParticipante" th:field="${participante.tipoParticipante}">
+					                            <option value="">Selecione um tipo de participante</option>
+					                            <option th:each="t : ${tiposParticipante}" 
+					                                    th:value="${t.id}" th:text="${t.nome}">Secretário</option>
+					                        </select>
+	                    				</div>
+	                    				<div class="col-md-10 offset-md-1 vertical-space">	                    					
+									    	<button class="btn btn-success" type="submit">Incluir <span class="glyphicon glyphicon-ok"></span></button>
+								    	</div>
+						        </div> 	
+						    </form>						        
                     </div>
                 </div>
             </div>  
